@@ -91,6 +91,7 @@ const Captura = () => {
             rfc,
             estado,
             municipio,
+            aeropuerto,
             numero_telefonico_notificaciones,
             correo_electronico,
             posicion_candidato,
@@ -115,6 +116,7 @@ const Captura = () => {
             !rfc ||
             !estado ||
             !municipio ||
+            !aeropuerto ||
             !numero_telefonico_notificaciones ||
             !correo_electronico ||
             !posicion_candidato ||
@@ -171,6 +173,7 @@ const Captura = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+
             const archivo_curp = await axios.post(`${API_REQUEST}carga_archivo`, formDataCurp, {
                 headers: {
                     'Content-Type': 'multipart/form-data'

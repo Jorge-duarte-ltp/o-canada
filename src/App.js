@@ -32,11 +32,7 @@ const App = () => {
               <Header cierre={cierre} />
               <hr className='gradiente' />
               <Switch>
-                {(cierre) ?
-                  <Route exact path="/" component={Cierre} />
-                  :
-                  <Route exact path="/" component={Captura} />
-                }
+                <Route exact path="/" component={Captura} />
                 <Route exact path="/dashboard" component={Administracion} />
                 <Route exact path="/pdf" component={PDF} />
               </Switch>

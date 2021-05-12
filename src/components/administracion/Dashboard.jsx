@@ -2,27 +2,26 @@ import React, { useContext, useState } from 'react'
 import sessionContext from "../../context/session/sessionContext";
 import SideBar from './SideBar';
 import RevisionDocumentacion from '../regionales/RevisionDocumentacion';
-import axios from 'axios';
+
 // import AlertError from '../../singles/AlertError';
 
 import MesaAyuda from '../..//components/mesa_ayuda/MesaAyuda';
 // import S9 from '../estatales/S9';
 import TablaEstatales from '../estatales/TablaEstatales';
+import TablaBrigadas from '../brigadas/TablaBrigadas';
 
 
 
 
 
 const Dashboard = ({ userPorfile }) => {
-    const sessContext = useContext(sessionContext)
-    const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-
 
     const [showSection, setShowSection] = useState({
         'regionales': false,
         'estatales': false,
         'mesa_ayuda': false,
         'manifiesto': false,
+        'brigadas': false,
     })
 
     const [toggled, setToggled] = useState(true)
@@ -33,7 +32,7 @@ const Dashboard = ({ userPorfile }) => {
 
 
     return (
-        <div class={`d-flex ${(toggled) ? null : 'toggled'}`} id="wrapper">
+        <div className={`d-flex ${(toggled) ? null : 'toggled'}`} id="wrapper">
             {/* SIDEBAR */}
             <SideBar
                 showSection={showSection}
@@ -53,6 +52,7 @@ const Dashboard = ({ userPorfile }) => {
                     {showSection.estatales && <TablaEstatales />}
                     {showSection.mesa_ayuda && <MesaAyuda />}
                     {/* {showSection.manifiesto && } */}
+                    {showSection.brigadas && <TablaBrigadas />}
 
                 </div>
             </div>
