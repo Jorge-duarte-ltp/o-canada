@@ -10,9 +10,7 @@ import MesaAyuda from '../..//components/mesa_ayuda/MesaAyuda';
 import TablaEstatales from '../estatales/TablaEstatales';
 import TablaBrigadas from '../brigadas/TablaBrigadas';
 
-
-
-
+{/**/}
 
 const Dashboard = ({ userPorfile }) => {
 
