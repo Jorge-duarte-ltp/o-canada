@@ -124,7 +124,7 @@ const PDF = (props) => {
         state = {
             "curp": "MADO921030HJCRZS05",
             "rechazo": true,
-            "motivo_rechazo": "pasaporte vence en menos de 8 meses",
+            "motivo_rechazo": "pasaporte vence en menos de 10 meses",
             "grupo_sanguineo": "",
             "nombres": "Oscar Jaime",
             "apellido_paterno": "Martinez",

@@ -199,7 +199,7 @@ const S4 = (props) => {
 
             {/* SCI/SMI 100 */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">SCI/SMI 100</label>
+                <label className="control-label pt-2">Curso SCI/SMI 100</label>
                 <input
                     className="form-control myInput"
                     name='sci_smi_100'
@@ -214,7 +214,7 @@ const S4 = (props) => {
 
             {/* SCI/SMI 200 */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">SCI/SMI 200</label>
+                <label className="control-label pt-2">Curso SCI/SMI 200</label>
                 <input
                     className="form-control myInput"
                     name='sci_smi_200'

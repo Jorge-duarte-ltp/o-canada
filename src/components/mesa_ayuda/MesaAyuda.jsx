@@ -789,8 +789,8 @@ const MesaAyuda = () => {
                 <Alert variant='warning'>
                     <h1>S2</h1><b>Validaciones:</b>
                     <ul>
-                        <li>Pasaporte vence en menos de 8 meses</li>
-                        <li>Eta/visa vence en menos de 8 meses</li>
+                        <li>Pasaporte vence en menos de 10 meses</li>
+                        <li>Eta/visa vence en menos de 10 meses</li>
                     </ul>
 
                 </Alert>

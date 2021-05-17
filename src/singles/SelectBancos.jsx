@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axiosClient from "../config/axios";
 import { isEmpty } from "lodash";
 const SelectBancos = (props) => {
-  const { name, className, onChange } = props;
+  const { name, className, onChange, defaultValue } = props;
   const [data, setData] = useState([]);
 
   const config = {
@@ -16,7 +16,12 @@ const SelectBancos = (props) => {
     });
   }
   return (
-    <select name={name} className={className} onChange={onChange}>
+    <select
+      name={name}
+      className={className}
+      onChange={onChange}
+      value={defaultValue}
+    >
       <option value="">--Seleccione--</option>
       {typeof data != "undefined" &&
         data.map((item, index) => (

@@ -13,12 +13,19 @@ import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import emailValid from "../../helpers/emailValid";
 import InputNumber from "../../singles/InputNumber";
 import SelectAeropuertos from "../../singles/SelectAeropuertos";
-import { SelectTallas, SelectTallasGorras, SelectTallasPantalon } from "../../singles/SelectTallas";
+import {
+  SelectTallas,
+  SelectTallasBotas,
+  SelectTallasGorras,
+  SelectTallasPantalon,
+} from "../../singles/SelectTallas";
 import SelectBancos from "../../singles/SelectBancos";
+import obtenerEstados from "../../singles/ObtenerEstados";
 
 const S1 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
   const [municipios, setMunicipios] = useState([]);
+  const [estados, setEstados] = useState([]);
   const [preview, setPreview] = useState("");
   const [enter, setEnter] = useState(false);
   const [puedeContinuar, setPuedeContinuar] = useState(false);
@@ -34,6 +41,16 @@ const S1 = (props) => {
     setPuedeContinuar(
       correoValido && correBenefValido /* && rfcCorrecto */ ? false : true
     );
+
+    obtenerEstados().then(async (response) => {
+      const data = await response.data.data;
+      setEstados(data);
+    });
+
+    typeof state.region === "undefined"
+      ? setState({ ...state, region: null })
+      : setState({ ...state, region: state.region });
+
     setEnter(true);
   }, [enter]);
 
@@ -57,6 +74,16 @@ const S1 = (props) => {
       setState({
         ...state,
         [input.target.name]: input.target.value,
+      });
+    }
+  };
+
+  const setRegion = (input) => {
+    if (input.target.name === "estado") {
+      estados.forEach((element) => {
+        if (input.target.value === element.cve_ent) {
+          setState({ ...state, region: element.region });
+        }
       });
     }
   };
@@ -249,13 +276,28 @@ const S1 = (props) => {
           placeholder="Ingrese RFC..."
         />
       </div>
+      {/* Estado */}
+      <div className="col-12 col-md-6">
+        <label className="control-label pt-2">Estado</label>
+        <SelectEstados
+          className={`form-control ${state.estado ? null : "myInput"}`}
+          name="estado"
+          Value={state.estado}
+          onBlur={getMunicipios}
+          onClick={setRegion}
+          onChange={setInfo}
+          placeholder="Ingrese Estado..."
+        />
+      </div>
 
+      {/* Region */}
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Region</label>
         <select
           className={`form-control ${state.region ? null : "myInput"}`}
           name="region"
           value={state.region}
+          defaultValue={state.region ? state.region : null}
           onChange={setInfo}
           placeholder="Ingrese Region..."
         >
@@ -268,18 +310,7 @@ const S1 = (props) => {
           <option value={6}>Sureste</option>
         </select>
       </div>
-      {/* Estado */}
-      <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Estado</label>
-        <SelectEstados
-          className={`form-control ${state.estado ? null : "myInput"}`}
-          name="estado"
-          value={state.estado}
-          onBlur={setInfo}
-          onChange={getMunicipios}
-          placeholder="Ingrese Estado..."
-        />
-      </div>
+
       {/* Municipio */}
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Municipio</label>
@@ -301,11 +332,13 @@ const S1 = (props) => {
       </div>
       {/* Aeropuerto */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Aeropuerto</label>
+        <label className="control-label pt-2">
+          Aeropuerto Internacional más cercano a su centro de trabajo
+        </label>
         <SelectAeropuertos
           className={`form-control ${state.aeropuerto ? null : "myInput"}`}
           name="aeropuerto"
-          value={state.aeropuerto}
+          defaultValue={state.aeropuerto}
           onChange={setInfo}
           placeholder="Ingrese Aeropuerto..."
         />
@@ -329,7 +362,7 @@ const S1 = (props) => {
       </div>
 
       {/* Correo electrónico */}
-      <div className="col-12 col-md-8">
+      <div className="col-12 col-md-6">
         <label className="control-label pt-2">Correo electrónico</label>
         <input
           className={`form-control ${
@@ -354,7 +387,7 @@ const S1 = (props) => {
       </div>
 
       {/* Posicion Candidato */}
-      <div className="col-12 col-md-4">
+      <div className="col-12 col-md-6">
         <label className="control-label pt-2">
           Posición a la que es candidato:
         </label>
@@ -364,6 +397,7 @@ const S1 = (props) => {
           }`}
           name="posicion_candidato"
           defaultValue={state.posicion_candidato}
+          value={state.posicion_candidato}
           onChange={setInfo}
           placeholder="Posición a la que es candidato..."
         >
@@ -391,7 +425,7 @@ const S1 = (props) => {
       </div>
 
       {/* Tipo de dependencia */}
-      <div className="col-12 col-md-6">
+      <div className="col-12 col-md-4">
         <label className="control-label pt-2">Tipo de dependencia</label>
         <select
           className={`form-control ${
@@ -429,7 +463,7 @@ const S1 = (props) => {
       </div>
 
       {/* Años de experiencia en actividades de manejo del fuego (comprobables) */}
-      <div className="col-12 col-md-8">
+      <div className="col-12 col-md-4">
         <label className="control-label pt-2">
           Años de experiencia en actividades de manejo del fuego (comprobables)
         </label>
@@ -447,7 +481,7 @@ const S1 = (props) => {
         />
       </div>
       {/* Puesto dependencia */}
-      <div className="col-12 col-md-6">
+      <div className="col-12 col-md-12">
         <label className="control-label pt-2">Puesto en su dependencia</label>
         <input
           className={`form-control ${
@@ -461,7 +495,7 @@ const S1 = (props) => {
         />
       </div>
       {/* Funciones en dependencia */}
-      <div className="col-12 col-md-6">
+      <div className="col-12 col-md-4">
         <label className="control-label pt-2">
           Funciones en su dependencia
         </label>
@@ -483,7 +517,7 @@ const S1 = (props) => {
       </div>
 
       {/* Nombre Beneficiario */}
-      <div className="col-12">
+      <div className="col-8">
         <label className="control-label pt-2">Nombre de Beneficiario</label>
         <input
           className={`form-control ${
@@ -543,10 +577,10 @@ const S1 = (props) => {
       {/* Talla de Camisa */}
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Talla de Camisa</label>
-        <SelectTallas 
+        <SelectTallas
           className={`form-control ${state.talla_camisa ? null : "myInput"}`}
           name="talla_camisa"
-          value={state.talla_camisa}
+          defaultValue={state.talla_camisa}
           onChange={setInfo}
         />
       </div>
@@ -557,9 +591,9 @@ const S1 = (props) => {
         <SelectTallas
           className={`form-control ${state.talla_sudadera ? null : "myInput"}`}
           name="talla_sudadera"
-          value={state.talla_sudadera}
+          defaultValue={state.talla_sudadera}
           onChange={setInfo}
-        /> 
+        />
       </div>
 
       {/* Talla de Playera */}
@@ -568,9 +602,9 @@ const S1 = (props) => {
         <SelectTallas
           className={`form-control ${state.talla_playera ? null : "myInput"}`}
           name="talla_playera"
-          value={state.talla_playera}
+          defaultValue={state.talla_playera}
           onChange={setInfo}
-        /> 
+        />
       </div>
 
       {/* Talla de Pantalón */}
@@ -579,9 +613,9 @@ const S1 = (props) => {
         <SelectTallasPantalon
           className={`form-control ${state.talla_pantalon ? null : "myInput"}`}
           name="talla_pantalon"
-          value={state.talla_pantalon}
+          defaultValue={state.talla_pantalon}
           onChange={setInfo}
-        /> 
+        />
       </div>
       {/* Talla de Gorras */}
       <div className="col-12 col-md-6">
@@ -589,9 +623,21 @@ const S1 = (props) => {
         <SelectTallasGorras
           className={`form-control ${state.talla_gorras ? null : "myInput"}`}
           name="talla_gorras"
-          value={state.talla_gorras}
+          defaultValue={state.talla_gorras}
           onChange={setInfo}
-        /> 
+        />
+      </div>
+
+      {/* Talla de Botas */}
+      <div className="col-12 col-md-6">
+        <label className="control-label pt-2">Talla de Botas </label>
+        <SelectTallasBotas
+          className={`form-control ${state.talla_botas ? null : "myInput"}`}
+          name="talla_botas"
+          defaultValue={state.talla_botas}
+          onChange={setInfo}
+          onBlur={setInfo}
+        />
       </div>
 
       {/* Nombre del banco */}
@@ -600,9 +646,9 @@ const S1 = (props) => {
         <SelectBancos
           className={`form-control ${state.nombre_banco ? null : "myInput"}`}
           name="nombre_banco"
-          value={state.nombre_banco}
+          defaultValue={state.nombre_banco}
           onChange={setInfo}
-        /> 
+        />
       </div>
 
       {/* Clabe de la cuenta */}
@@ -614,9 +660,10 @@ const S1 = (props) => {
           }`}
           name="clabe_interbancaria"
           value={state.clabe_interbancaria}
+          defaultValue={state.clabe_interbancaria}
           onChange={setInfo}
           maxLength={18}
-          minLength={18} 
+          minLength={18}
           placeholder="Ingrese numero de clabe de la cuenta..."
         />
       </div>
