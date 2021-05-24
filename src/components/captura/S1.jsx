@@ -114,8 +114,6 @@ const S1 = (props) => {
     /* Extrae el sexo de la informacion de la CURP*/
     const dataExtracted =
       typeof state.curp != "undefined" ? extractInfoCurp(state.curp) : "";
-
-      console.log(dataExtracted.sexo);
     setState({
       ...state,
       sexo: dataExtracted.sexo === "H" ? 1 : 2,
