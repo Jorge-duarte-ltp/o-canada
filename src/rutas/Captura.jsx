@@ -148,70 +148,6 @@ const Captura = () => {
       !archivos.fotografia_fl ||
       !archivos.curp_archivo_fl
     ) {
-      console.log(
-        "" +
-          anios_experiencia +
-          "" +
-          apellido_paterno +
-          "" +
-          apellido_materno +
-          "" +
-          nombres +
-          "" +
-          curp +
-          "" +
-          fecha_nacimiento +
-          "" +
-          sexo +
-          "" +
-          rfc +
-          "" +
-          estado +
-          "" +
-          municipio +
-          "" +
-          aeropuerto +
-          "" +
-          numero_telefonico_notificaciones +
-          "" +
-          correo_electronico +
-          "" +
-          posicion_candidato +
-          "" +
-          dependencia +
-          "" +
-          tipo_dependencia +
-          "" +
-          fecha_ingreso_dependencia +
-          "" +
-          puesto_en_dependencia +
-          "" +
-          funciones_dependencia +
-          "" +
-          nombre_beneficiario +
-          "" +
-          telefono_beneficiario +
-          "" +
-          correo_beneficiario +
-          "" +
-          region +
-          "" +
-          talla_camisa +
-          "" +
-          talla_sudadera +
-          "" +
-          talla_playera +
-          "" +
-          talla_pantalon +
-          "" +
-          talla_gorras +
-          "" +
-          talla_botas +
-          "" +
-          nombre_banco +
-          "" +
-          clabe_interbancaria
-      );
       msgFaltanCampos();
       return;
     }
@@ -971,7 +907,10 @@ const Captura = () => {
         );
 
         if (archivo_doc_acred_primeros_auxilios_fl.status !== 200) {
-          AlertError("no se pudo cargar archivo", "doc_acred_primeros_auxilios");
+          AlertError(
+            "no se pudo cargar archivo",
+            "doc_acred_primeros_auxilios"
+          );
         }
       }
       if (doc_cert_primeros_auxilios_fl) {

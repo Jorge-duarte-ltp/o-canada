@@ -112,7 +112,6 @@ const S1 = (props) => {
 
   const fillInfoCurp = () => {
     /* Extrae el sexo de la informacion de la CURP*/
-    console.log('entro curp');
     const dataExtracted =
       typeof state.curp != "undefined" ? extractInfoCurp(state.curp) : "";
 
@@ -294,6 +293,7 @@ const S1 = (props) => {
           defaultValue={state.region ? state.region : ""}
           onChange={setInfo}
           placeholder="Ingrese Region..."
+          disabled
         >
           <option value="">---Seleccione---</option>
           <option value={1}>Noroeste</option>
