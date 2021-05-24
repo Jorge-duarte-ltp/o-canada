@@ -38,7 +38,6 @@ const S1 = (props) => {
   // const [rfcCorrecto, setRfcCorrecto] = useState(false)
 
   useEffect(() => {
-    fillInfoCurp();
     setPuedeContinuar(
       correoValido && correBenefValido /* && rfcCorrecto */ ? false : true
     );
@@ -51,6 +50,8 @@ const S1 = (props) => {
     typeof state.region === "undefined"
       ? setState({ ...state, region: null })
       : setState({ ...state, region: state.region });
+
+    fillInfoCurp();
 
     setEnter(true);
   }, [enter]);
@@ -110,30 +111,18 @@ const S1 = (props) => {
   };
 
   const fillInfoCurp = () => {
-    /* Extrae la informacion de la CURP y autocompleta fechga de nacimiento y sexo  */
+    /* Extrae el sexo de la informacion de la CURP*/
+    console.log('entro curp');
     const dataExtracted =
       typeof state.curp != "undefined" ? extractInfoCurp(state.curp) : "";
-    // const fecha = moment(`${dataExtracted.anio}-${dataExtracted.mes}-${dataExtracted.dia}`, "YY-MM-DD").format("YYYY-MM-DD")
-    // const anios = diferenciaFechasAnios(fecha);
 
-    // if (anios < 21) {
-    //     /* MENOR DE EDAD */
-    //     setState({
-    //         ...state,
-    //         fecha_nacimiento: fecha,
-    //         sexo: (dataExtracted.sexo === 'H') ? 1 : 2,
-    //         rechazo: true,
-    //         motivo_rechazo: 'candidato menor de edad'
-    //     })
-    // } else {
+      console.log(dataExtracted.sexo);
     setState({
       ...state,
-      // fecha_nacimiento: fecha,
       sexo: dataExtracted.sexo === "H" ? 1 : 2,
       rechazo: false,
       motivo_rechazo: null,
     });
-    // }
   };
 
   const getMunicipios = async (input) => {
@@ -155,7 +144,7 @@ const S1 = (props) => {
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Fotografia</label>
         <input
-          className={`form-control ${state.fotografia ? null : "myInput"}`}
+          className={`form-control ${state.fotografia ? "" : "myInput"}`}
           name="fotografia"
           type="file"
           accept="image/png,image/jpeg"
@@ -213,7 +202,7 @@ const S1 = (props) => {
       <div className="col-12 col-md-6" onBlur={fillInfoCurp}>
         <label className="control-label pt-2">CURP</label>
         <InputCURP
-          className={`form-control ${state.curp ? null : "myInput"}`}
+          className={`form-control ${state.curp ? '' : "myInput"}`}
           name="curp"
           defaultValue={state.curp}
           onChange={setInfo}
@@ -256,11 +245,9 @@ const S1 = (props) => {
         <label className="control-label pt-2">Fecha de Nacimiento</label>
         <input
           // disabled
-          className={`form-control ${
-            state.fecha_nacimiento ? null : "myInput"
-          }`}
+          className={`form-control ${state.fecha_nacimiento ? "" : "myInput"}`}
           name="fecha_nacimiento"
-          value={state.fecha_nacimiento}
+          value={state.fecha_nacimiento ? state.fecha_nacimiento : ""}
           type="date"
           onChange={setInfo}
           onBlur={checkEdad}
