@@ -122,7 +122,7 @@ const S2 = (props) => {
         <input
           className="form-control myInput"
           name="pasaporte_numero"
-          value={state.pasaporte_numero}
+          value={state.pasaporte_numero? state.pasaporte_numero : ""}
           onChange={setInfo}
           onChangeCapture={ToMayus}
           placeholder="No. de Pasaporte..."
@@ -137,7 +137,8 @@ const S2 = (props) => {
         <input
           className="form-control myInput"
           name="pasaporte_fecha_cad"
-          value={state.pasaporte_fecha_cad}
+          value={state.pasaporte_fecha_cad? state.pasaporte_fecha_cad : ""
+        }
           type="date"
           onBlur={revisarFormulario}
           onChange={setInfo}
@@ -181,7 +182,7 @@ const S2 = (props) => {
         <input
           className="form-control myInput"
           name="eta_visa_num"
-          value={state.eta_visa_num}
+          value={state.eta_visa_num ? state.eta_visa_num : ""}
           onChangeCapture={ToMayus}
           onChange={setInfo}
           placeholder="Ingrese ETA/Visa No..."
@@ -197,7 +198,7 @@ const S2 = (props) => {
         <input
           className="form-control myInput"
           name="eta_visa_fecha_exp"
-          value={state.eta_visa_fecha_exp}
+          value={state.eta_visa_fecha_exp ? state.eta_visa_fecha_exp : ""}
           type="date"
           onBlur={revisarFormulario}
           onChange={setInfo}
@@ -214,7 +215,7 @@ const S2 = (props) => {
         <input
           className="form-control myInput"
           name="eta_visa_fecha_cad"
-          value={state.eta_visa_fecha_cad}
+          value={state.eta_visa_fecha_cad ? state.eta_visa_fecha_cad : ""}
           type="date"
           onBlur={revisarFormulario}
           onChange={setInfo}
@@ -227,7 +228,7 @@ const S2 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="tiene_visa_usa"
-          defaultValue={state.tiene_visa_usa}
+          defaultValue={state.tiene_visa_usa? state.tiene_visa_usa : ""}
           onChange={setInfo}
         />
       </div>
@@ -256,7 +257,7 @@ const S2 = (props) => {
             <input
               className="form-control myInput"
               name="visa_usa_num"
-              value={state.visa_usa_num}
+              value={state.visa_usa_num ?  state.visa_usa_num : ""}
               defaultValue={state.visa_usa_num}
               onChangeCapture={ToMayus}
               onChange={setInfo}
@@ -289,7 +290,7 @@ const S2 = (props) => {
             <input
               className="form-control myInput"
               name="visa_usa_fecha_cad"
-              value={state.visa_usa_fecha_cad}
+              value={state.visa_usa_fecha_cad ? state.visa_usa_fecha_cad : ""}
               defaultValue={state.visa_usa_fecha_cad}
               type="date"
               onChange={setInfo}
@@ -369,7 +370,6 @@ const S2 = (props) => {
       <div className="col-12 pt-5 btn-margin">
         <button
           // disable={(checkPassaport) ? true : false}
-          disabled
           className="btn btn-primary"
           onClick={() =>
             AlertaSiguiente(
