@@ -4,10 +4,10 @@ import diferenciaFechasMeses from "../../helpers/diferenciaFechasMeses";
 import diferenciaFechasDias from "../../helpers/diferenciaFechaDias";
 import SelectSiNo from "../../singles/SelectSiNo";
 import ToMayus from "../../helpers/ToMayus";
+import { formatDate } from "../../helpers/formatDate";
 
 const S2 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
-
   const setInfo = (input) => {
     /* setea al state las variables */
     if (
@@ -27,6 +27,14 @@ const S2 = (props) => {
         [input.target.name]: input.target.value.toUpperCase(),
       });
     }
+  };
+
+  const setVencimiento = (input) => {
+    const date = input.target.value.toUpperCase();
+    setState({
+      ...state,
+      visa_usa_fecha_cad: formatDate(date,10),
+    });
   };
 
   const revisarFormulario = () => {
@@ -71,15 +79,16 @@ const S2 = (props) => {
             motivo_rechazo: "eta/visa vence en menos de 10 meses",
           });
         } else {
-          // licencia  de manejo vence en menos de 5 meses 
+          // licencia  de manejo vence en menos de 5 meses
           if (dif_licencia > -5 && state.tiene_licencia === "1") {
             setState({
               ...state,
               rechazo: true,
-              motivo_rechazo: "licencia de licencia de manejo vence en menos de 5 meses",
+              motivo_rechazo:
+                "licencia de licencia de manejo vence en menos de 5 meses",
             });
           } else {
-             /* Si todo Bien */
+            /* Si todo Bien */
             setState({
               ...state,
               rechazo: false,
@@ -248,7 +257,7 @@ const S2 = (props) => {
               className="form-control myInput"
               name="visa_usa_num"
               value={state.visa_usa_num}
-              defaultValue={state.visa_usa_fecha_exp}
+              defaultValue={state.visa_usa_num}
               onChangeCapture={ToMayus}
               onChange={setInfo}
               placeholder="Ingrese la visa estadounidense"
@@ -256,7 +265,6 @@ const S2 = (props) => {
           </div>
 
           {/* VISA USA F. expedición */}
-
           <div className="col-12 col-md-6">
             <label className="control-label pt-2">
               Fecha de expedición - Visa estadounidense
@@ -264,10 +272,10 @@ const S2 = (props) => {
             <input
               className="form-control myInput"
               name="visa_usa_fecha_exp"
-              value={state.visa_usa_fecha_exp}
               defaultValue={state.visa_usa_fecha_exp}
               type="date"
-              onChange={setInfo}
+              onBlur={setInfo}
+              onChange={setVencimiento}
               placeholder="Visa USA Fecha de expedición"
             />
           </div>
@@ -312,7 +320,7 @@ const S2 = (props) => {
             <input
               className="form-control myInput"
               name="licencia_manejo"
-              // value={state.licencia_manejo}
+              value={state.licencia_manejo}
               type="file"
               accept="application/pdf"
               onChange={setInfo}
@@ -361,7 +369,7 @@ const S2 = (props) => {
       <div className="col-12 pt-5 btn-margin">
         <button
           // disable={(checkPassaport) ? true : false}
-          disable
+          disabled
           className="btn btn-primary"
           onClick={() =>
             AlertaSiguiente(

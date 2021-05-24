@@ -3,7 +3,7 @@ import { isEmpty } from "lodash";
 import axiosClient from "../config/axios";
 
 const SelectEstados = (props) => {
-  const { name, className, onChange, onBlur, onClick, Value } = props;
+  const { name, className, onChange, onBlur, onClick, value, defaultValue } = props;
   const [data, setData] = useState([]);
 
   const config = {
@@ -25,8 +25,8 @@ const SelectEstados = (props) => {
       onChange={onChange}
       onBlur={onBlur}
       onClick={onClick}
-      value={Value}
-      defaultValue={Value}
+      value={value ? value : ""}
+      defaultValue={defaultValue}
     >
       <option value="">--Seleccione--</option>
       {typeof data != "undefined" &&

@@ -7,7 +7,7 @@ const S8 = (props) => {
 
     const setInfo = (input) => {
         if (input.target.name === 'examen_toeic_toefl_archivo' || input.target.name === 'l_280_file'
-            || input.target.name === 's_290_file' || input.target.name === 'cert_intern_incendios_file'
+            || input.target.name === 's_290_file' || input.target.name === 's_211_file' || input.target.name === 'cert_intern_incendios_file'
             || input.target.name === 'cert_intern_ate_emerg_med_file'
         ) {
             setStateFiles({
@@ -31,6 +31,7 @@ const S8 = (props) => {
                     className={`form-control myInput`}
                     name='posicion_candidato'
                     value={state.posicion_candidato}
+                    disabled={true}
                     onChange={setInfo}
                     placeholder='Posición a la que es candidato...'
                 >
@@ -65,7 +66,7 @@ const S8 = (props) => {
                         <input
                             className="form-control myInput"
                             name='examen_toeic_toefl_archivo'
-                            value={state.examen_toeic_toefl_archivo}
+                            value={state.examen_toeic_toefl_archivo_fl}
                             type='file'
                             accept="application/pdf"
                             onChange={setInfo}
@@ -113,18 +114,45 @@ const S8 = (props) => {
                 />
             </div>
 
-            {/* S-290  Archivo*/}
+            {/* L-280  Archivo*/}
             <div className='col-12 col-md-6'>
                 {state.l_280 === '1' && <React.Fragment>
                     <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
                     <input
                         className="form-control myInput"
                         name='l_280_file'
-                        value={state.l_280_file}
+                        value={state.l_280_file_fl}
                         type='file'
                         accept="application/pdf"
                         onChange={setInfo}
                         placeholder='Ingrese archivo L-280...'
+                    />
+
+                </React.Fragment>}
+            </div>
+                {/* S-211 */}
+                <div className='col-12 col-md-6'>
+                <label className="control-label pt-2">Cuenta con el curso S-211</label>
+                <SelectSiNo
+                    className="form-control myInput"
+                    name='s_211'
+                    defaultValue={state.s_211}
+                    onChange={setInfo}
+                />
+            </div>
+
+            {/* S-211  Archivo*/}
+            <div className='col-12 col-md-6'>
+                {state.s_211 === '1' && <React.Fragment>
+                    <label className="control-label pt-2">Si la respuesta es sí cargue su constancia</label>
+                    <input
+                        className="form-control myInput"
+                        name='s_211_file'
+                        value={state.s_211_file_fl}
+                        type='file'
+                        accept="application/pdf"
+                        onChange={setInfo}
+                        placeholder='Ingrese archivo S-211...'
                     />
 
                 </React.Fragment>}
@@ -148,7 +176,7 @@ const S8 = (props) => {
                     <input
                         className="form-control myInput"
                         name='s_290_file'
-                        value={state.s_290_file}
+                        value={state.s_290_file_fl}
                         type='file'
                         accept="application/pdf"
                         onChange={setInfo}
@@ -176,7 +204,7 @@ const S8 = (props) => {
                     <input
                         className="form-control myInput"
                         name='cert_intern_incendios_file'
-                        value={state.cert_intern_incendios_file}
+                        value={state.cert_intern_incendios_file_fl}
                         type='file'
                         accept="application/pdf"
                         onChange={setInfo}
@@ -202,7 +230,7 @@ const S8 = (props) => {
                     <input
                         className="form-control myInput"
                         name='cert_intern_ate_emerg_med_file'
-                        value={state.cert_intern_ate_emerg_med_file}
+                        value={state.cert_intern_ate_emerg_med_file_fl}
                         type='file'
                         accept="application/pdf"
                         onChange={setInfo}

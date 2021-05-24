@@ -78,7 +78,7 @@ const S4 = (props) => {
     }, [timeLeft]);
 
     const handleShow = () => {
-        setTimeLeft(600)
+        setTimeLeft(900)
         window.onbeforeunload = refreshPage
         setShowExam(true)
     }
@@ -148,7 +148,7 @@ const S4 = (props) => {
             title: 'Esta por iniciar una prueba',
             text: "Asegurese de tener una conexion estable de internet.\n" +
                 "EL EXAMEN NO PODRA VOLVERSE A PRESENTAR SI SE SALE O REFRESCA LA PAGINA.\n" +
-                "Cuenta con 10 minutos para responderla.",
+                "Cuenta con 15 minutos para responderla.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

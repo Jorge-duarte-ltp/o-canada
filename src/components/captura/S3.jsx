@@ -3,15 +3,11 @@ import ToMayus from "../../helpers/ToMayus";
 import SelectSexo from "../../singles/SelectSexo";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import diferenciaFechaDias from "../../helpers/diferenciaFechaDias";
-
+import { size, isEmpty } from "lodash";
 const S3 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
 
   const setInfo = (input) => {
-    if (input.target.name === "altura") {
-      /* TRANSFORMACION A ENTERO */
-      input.target.value = parseInt(input.target.value);
-    }
     if (input.target.value < 0) {
       input.target.value = Math.abs(input.target.value);
     }
@@ -32,10 +28,37 @@ const S3 = (props) => {
     }
   };
 
+  const setNumerico = (input) => {
+    if (input.target.name === "altura") {
+      if (size(input.target.value) < 4) {
+        setState({
+          ...state,
+          [input.target.name]: parseInt(
+            input.target.value
+          ) /* TRANSFORMACION A ENTERO */,
+        });
+      }
+    }
+    if (input.target.name === "peso") {
+      if (
+        (size(input.target.value) < 6 &&
+          String(input.target.value).includes(".")) ||
+        size(input.target.value) < 4
+      ) {
+        setState({
+          ...state,
+          [input.target.name]: parseFloat(
+            input.target.value
+          ) /* TRANSFORMACION A FLOTANTE */,
+        });
+      }
+    }
+  };
+
   const calculoIMC = () => {
     const { altura, peso } = state;
 
-    if (altura && peso) {
+    if (!isEmpty(altura) && !isEmpty(peso)) {
       const alturaM = altura / 100;
       const imc = peso / Math.pow(alturaM, 2);
       setState({
@@ -139,52 +162,47 @@ const S3 = (props) => {
         <input
           className="form-control myInput"
           name="altura"
-          value={state.altura}
+          value={state.altura ? state.altura : ""}
           type="number"
           step="0"
-          min={1}
           onBlur={calculoIMC}
-          // onInput={(input) => Math.abs(input.target.value)}
-          onChange={setInfo}
+          onChange={setNumerico}
           placeholder="Ingrese Altura (cm)..."
         />
         <label className="control-label pt-2">Altura (Pies)</label>
         <input
           className="form-control myInput"
-          value={Math.round(state.altura * 0.0328084 * 10) / 10}
+          value={
+            state.altura ? Math.round(state.altura * 0.0328084 * 10) / 10 : ""
+          }
           type="number"
           step="0"
           readOnly={true}
-          min={1}
-          onChange={state.altura}
+          min={0}
           placeholder="Ingrese Altura (ft)..."
         />
       </div>
-
       {/* Peso (kilogramos) */}
       <div className="col-6 col-md-3">
         <label className="control-label pt-2">Peso (kilogramos)</label>
         <input
           className="form-control myInput"
           name="peso"
-          value={state.peso}
+          value={state.peso ? state.peso : ""}
           type="number"
-          min={0}
+          step="0.0"
           onBlur={calculoIMC}
-          // onInput={(input)=>input.target.value}
-          onChange={setInfo}
+          onChange={setNumerico}
           placeholder="Ingrese Peso (kg)..."
         />
 
         <label className="control-label pt-2">Peso (Libras)</label>
         <input
           className="form-control myInput"
-          value={Math.round(state.peso * 2.2046)}
+          value={state.peso ? Math.round(state.peso * 2.2046 * 10) / 10 : ""}
           type="number"
-          step="0"
           readOnly={true}
-          min={1}
-          onChange={state.peso}
+          min={0}
           placeholder="Ingrese Peso (lb)..."
         />
       </div>

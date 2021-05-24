@@ -894,21 +894,25 @@ const Captura = () => {
       opera_autonoma_motosierra,
       conocimientos_primeros_auxilios,
       niv_primeros_auxilios,
+      cert_primeros_auxilios,
     } = infoBrigadista;
-    const { doc_acred_primeros_auxilios_fl } = archivos;
+    const { doc_acred_primeros_auxilios_fl, doc_cert_primeros_auxilios_fl } =
+      archivos;
 
     if (
       !opera_autonoma_gps ||
       !opera_autonoma_mark3 ||
       !opera_autonoma_motosierra ||
       (conocimientos_primeros_auxilios === "1" &&
-        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl))
+        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
+      (cert_primeros_auxilios === "1" && !doc_cert_primeros_auxilios_fl)
     ) {
       msgFaltanCampos();
       return;
     }
 
     const formData_doc_acred_primeros_auxilios_fl = new FormData();
+    const formData_doc_cert_primeros_auxilios_fl = new FormData();
 
     if (doc_acred_primeros_auxilios_fl) {
       formData_doc_acred_primeros_auxilios_fl.append(
@@ -922,6 +926,21 @@ const Captura = () => {
       formData_doc_acred_primeros_auxilios_fl.append(
         "name",
         "doc_acred_primeros_auxilios"
+      );
+    }
+
+    if (doc_cert_primeros_auxilios_fl) {
+      formData_doc_cert_primeros_auxilios_fl.append(
+        "file",
+        archivos.doc_acred_primeros_auxilios_fl[0]
+      );
+      formData_doc_cert_primeros_auxilios_fl.append(
+        "curp",
+        infoBrigadista.curp
+      );
+      formData_doc_cert_primeros_auxilios_fl.append(
+        "name",
+        "doc_cert_primeros_auxilios"
       );
     }
 
@@ -952,7 +971,22 @@ const Captura = () => {
         );
 
         if (archivo_doc_acred_primeros_auxilios_fl.status !== 200) {
-          AlertError("no se pudo cargar archivo", "examen_toeic_toefl_ar");
+          AlertError("no se pudo cargar archivo", "doc_acred_primeros_auxilios");
+        }
+      }
+      if (doc_cert_primeros_auxilios_fl) {
+        const archivo_doc_cert_primeros_auxilios_fl = await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formData_doc_cert_primeros_auxilios_fl,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (archivo_doc_cert_primeros_auxilios_fl.status !== 200) {
+          AlertError("no se pudo cargar archivo", "doc_cert_primeros_auxilios");
         }
       }
       if (respuesta.status === 200) {
@@ -1089,9 +1123,7 @@ const Captura = () => {
       cert_intern_incendios,
       cert_intern_ate_emerg_med,
       examen_toeic_toefl_punt,
-      examen_toeic_toefl_archivo,
-      l_280_file,
-      s_290_file,
+
       posicion_candidato,
     } = infoBrigadista;
 
@@ -1099,6 +1131,7 @@ const Captura = () => {
       examen_toeic_toefl_archivo_fl,
       l_280_file_fl,
       s_290_file_fl,
+      s_211_file_fl,
       cert_intern_incendios_file_fl,
       cert_intern_ate_emerg_med_file_fl,
     } = archivos;
@@ -1161,6 +1194,7 @@ const Captura = () => {
     const formData_examen_toeic_toefl_archivo_fl = new FormData();
     const formData_l_280_file_fl = new FormData();
     const formData_s_290_file_fl = new FormData();
+    const formData_s_211_file_fl = new FormData();
     const formData_cert_intern_incendios_file_fl = new FormData();
     const formData_cert_intern_ate_emerg_med_file_fl = new FormData();
 
@@ -1204,6 +1238,12 @@ const Captura = () => {
         "name",
         "cert_intern_incendios_file"
       );
+    }
+
+    if (s_211_file_fl) {
+      formData_s_211_file_fl.append("file", archivos.s_211_file_fl[0]);
+      formData_s_211_file_fl.append("curp", infoBrigadista.curp);
+      formData_s_211_file_fl.append("name", "s_211_file");
     }
 
     if (cert_intern_ate_emerg_med_file_fl) {
@@ -1257,6 +1297,23 @@ const Captura = () => {
           AlertError("no se pudo cargar archivo", "l_280");
         }
       }
+
+      if (s_211_file_fl) {
+        const archivo_s_211_file_fl = await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formData_s_211_file_fl,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (archivo_s_211_file_fl.status !== 200) {
+          AlertError("no se pudo cargar archivo", "l_280");
+        }
+      }
+
       if (s_290_file_fl) {
         const archivo_s_290_file_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,

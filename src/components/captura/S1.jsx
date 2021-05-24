@@ -28,6 +28,7 @@ const S1 = (props) => {
   const [estados, setEstados] = useState([]);
   const [preview, setPreview] = useState("");
   const [enter, setEnter] = useState(false);
+  const [tecnico, setTecnico] = useState(false);
   const [puedeContinuar, setPuedeContinuar] = useState(false);
 
   /* validaciones */
@@ -100,6 +101,12 @@ const S1 = (props) => {
         motivo_rechazo: "candidato menor de edad",
       });
     }
+    if (anios > 50) {
+      setState({ ...state, posicion_candidato: "tecnico" });
+      setTecnico(true);
+    } else {
+      setTecnico(false);
+    }
   };
 
   const fillInfoCurp = () => {
@@ -165,12 +172,11 @@ const S1 = (props) => {
       <div className="col-6">
         <label className="control-label pt-2">Apellido Paterno</label>
         <input
-          className={`form-control ${
-            state.apellido_paterno ? null : "myInput"
-          }`}
+          className={`form-control "myInput`}
           name="apellido_paterno"
-          value={state.apellido_paterno}
+          value={state.apellido_paterno ? state.apellido_paterno : ""}
           onChange={setInfo}
+          defaultValue={state.apellido_paterno}
           onChangeCapture={ToMayus}
           placeholder="Ingrese Apellido Paterno..."
         />
@@ -180,12 +186,11 @@ const S1 = (props) => {
       <div className="col-6">
         <label className="control-label pt-2">Apellido Materno</label>
         <input
-          className={`form-control ${
-            state.apellido_materno ? null : "myInput"
-          }`}
+          className={`form-control "myInput"`}
           name="apellido_materno"
-          value={state.apellido_materno}
+          value={state.apellido_materno ? state.apellido_materno : ""}
           onChange={setInfo}
+          defaultValue={state.apellido_materno}
           onChangeCapture={ToMayus}
           placeholder="Ingrese Apellido Materno..."
         />
@@ -194,11 +199,12 @@ const S1 = (props) => {
       <div className="col-12">
         <label className="control-label pt-2">Nombre (s)</label>
         <input
-          className={`form-control ${state.nombres ? null : "myInput"}`}
+          className={`form-control myInput`}
           name="nombres"
-          value={state.nombres}
+          value={state.nombres ? state.nombres : ""}
           onChange={setInfo}
           onChangeCapture={ToMayus}
+          defaultValue={state.nombres}
           placeholder="Ingrese Nombre(s)..."
         />
       </div>
@@ -280,9 +286,10 @@ const S1 = (props) => {
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Estado</label>
         <SelectEstados
-          className={`form-control ${state.estado ? null : "myInput"}`}
+          className={`form-control myInput`}
           name="estado"
-          Value={state.estado}
+          value={state.estado ? state.estado : null}
+          defaultValue={state.estado}
           onBlur={getMunicipios}
           onClick={setRegion}
           onChange={setInfo}
@@ -294,10 +301,10 @@ const S1 = (props) => {
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Region</label>
         <select
-          className={`form-control ${state.region ? null : "myInput"}`}
+          className={`form-control myInput`}
           name="region"
           value={state.region}
-          defaultValue={state.region ? state.region : null}
+          defaultValue={state.region ? state.region : ""}
           onChange={setInfo}
           placeholder="Ingrese Region..."
         >
@@ -316,9 +323,10 @@ const S1 = (props) => {
         <label className="control-label pt-2">Municipio</label>
         <select
           disabled={municipios.length <= 0 ? true : false}
-          className={`form-control ${state.municipio ? null : "myInput"}`}
+          className={`form-control myInput`}
           name="municipio"
-          value={state.municipio}
+          value={state.municipio ? state.municipio : ""}
+          defaultValue={state.municipio}
           onChange={setInfo}
           placeholder="Ingrese Municipio..."
         >
@@ -336,8 +344,9 @@ const S1 = (props) => {
           Aeropuerto Internacional más cercano a su centro de trabajo
         </label>
         <SelectAeropuertos
-          className={`form-control ${state.aeropuerto ? null : "myInput"}`}
+          className={`form-control myInput`}
           name="aeropuerto"
+          value={state.aeropuerto ? state.aeropuerto : ""}
           defaultValue={state.aeropuerto}
           onChange={setInfo}
           placeholder="Ingrese Aeropuerto..."
@@ -395,6 +404,7 @@ const S1 = (props) => {
           className={`form-control ${
             state.posicion_candidato ? null : "myInput"
           }`}
+          disabled={tecnico}
           name="posicion_candidato"
           defaultValue={state.posicion_candidato}
           value={state.posicion_candidato}
