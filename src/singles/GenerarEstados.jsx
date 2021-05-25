@@ -3,9 +3,9 @@ import SelectEstadosGenerados from "./SelectEstadosGenerados";
 import { isEmpty, size } from "lodash";
 
 export const GenerarEstados = (props) => {
-  const { state, setState, cantEstados } = props;
+  const { state, setState, cantEstados, titulo, name } = props;
   const [estados, setEstados] = useState(
-    state.estados_mov_part ? state.estados_mov_part : {}
+    state[name] ? state[name] : {}
   );
   const [num, setNum] = useState([]);
 
@@ -14,7 +14,7 @@ export const GenerarEstados = (props) => {
       ...estados,
       [input.target.name]: input.target.value.toUpperCase(),
     });
-    setState({ ...state, estados_mov_part: estados });
+    setState({ ...state, [name]: estados });
   };
 
   if (isEmpty(num)) {
@@ -36,7 +36,7 @@ export const GenerarEstados = (props) => {
         {num.map((item) => (
           <div className="col-4" key={item.id}>
             <label className="control-label pt-2">
-              {item.id}.- ¿A qué estado (s) fue movilizado (a)?
+              {item.id}.- {titulo}
               <SelectEstadosGenerados
                 name={item.nombre}
                 className="form-control myInput"

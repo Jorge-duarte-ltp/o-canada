@@ -12,6 +12,7 @@ import SelectSiNo from "../../singles/SelectSiNo";
 import SelectEstadosGenerados from "../../singles/SelectEstadosGenerados";
 import GenerarEstados from "../../singles/GenerarEstados";
 import GenerarPaises from "../../singles/GenerarPaises";
+import { size } from "lodash";
 
 const S5 = (props) => {
   const candidatos = useContext(candidatoContext);
@@ -109,6 +110,15 @@ const S5 = (props) => {
       setState({
         ...state,
         [input.target.name]: input.target.value,
+      });
+    }
+  };
+
+  const setNumero = (input) => {
+    if (size(input.target.value) < 5) {
+      setState({
+        ...state,
+        [input.target.name]: input.target.value.toUpperCase(),
       });
     }
   };
@@ -249,21 +259,33 @@ const S5 = (props) => {
           </div>
 
           {state.tiene_part_brig_nac === "1" && (
-            <React.Fragment>
-              <div className="col-6">
+            <div className="col-6">
+              <React.Fragment>
                 <label className="control-label pt-2">
-                  ¿A qué estado (s) fue asignado(a)?
-                  <SelectEstadosGenerados
+                  ¿A cuantos estados Participo como miembro de brigada?
+                  <input
                     className="form-control myInput"
-                    name="estado_brig_part"
-                    onChange={setInfo}
-                    onBlur={setInfo}
-                    value={ 
-                      state.estado_brig_part ? state.estado_brig_part : ""
-                    }
+                    type="number"
+                    name="num_est_part"
+                    defaultValue={state.num_est_part}
+                    onChange={setNumero}
+                    onBlur={setNumero}
+                    placeholder="Ingresa el numero de estados"
                   />
                 </label>
-              </div>
+              </React.Fragment>
+            </div>
+          )}
+
+          {state.num_est_part > 0 && state.tiene_part_brig_nac === "1" && (
+            <React.Fragment>
+              <GenerarEstados
+                titulo={"¿A que estado (s) participo como miembro de brigada?"}
+                name="estados_part_brig"
+                state={state}
+                setState={setState}
+                cantEstados={state.num_est_part}
+              />
             </React.Fragment>
           )}
 
@@ -290,8 +312,8 @@ const S5 = (props) => {
                     type="number"
                     name="num_est_mov"
                     defaultValue={state.num_est_mov}
-                    onChange={setInfo}
-                    onBlur={setInfo}
+                    onChange={setNumero}
+                    onBlur={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>
@@ -302,6 +324,8 @@ const S5 = (props) => {
           {state.num_est_mov > 0 && state.tiene_part_mov_nac === "1" && (
             <React.Fragment>
               <GenerarEstados
+                titulo={"¿A qué estado (s) fue movilizado (a)?"}
+                name="estados_mov_part"
                 state={state}
                 setState={setState}
                 cantEstados={state.num_est_mov}
@@ -333,8 +357,8 @@ const S5 = (props) => {
                     type="number"
                     name="num_pais_asig"
                     defaultValue={state.num_pais_asig}
-                    onChange={setInfo}
-                    onBlur={setInfo}
+                    onChange={setNumero}
+                    onBlur={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>

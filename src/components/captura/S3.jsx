@@ -3,7 +3,7 @@ import ToMayus from "../../helpers/ToMayus";
 import SelectSexo from "../../singles/SelectSexo";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import diferenciaFechaDias from "../../helpers/diferenciaFechaDias";
-import { size, isEmpty } from "lodash";
+import { size } from "lodash";
 const S3 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
 
@@ -212,7 +212,7 @@ const S3 = (props) => {
         <input
           readOnly={true}
           name="imc"
-          value={state.imc? state.imc : ""}
+          value={state.imc ? state.imc : ""}
           className="form-control myInput"
           onChange={revisarFormulario}
           placeholder="IMC..."
