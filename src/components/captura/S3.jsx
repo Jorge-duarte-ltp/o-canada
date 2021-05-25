@@ -57,13 +57,12 @@ const S3 = (props) => {
 
   const calculoIMC = () => {
     const { altura, peso } = state;
-
-    if (!isEmpty(altura) && !isEmpty(peso)) {
-      const alturaM = altura / 100;
-      const imc = peso / Math.pow(alturaM, 2);
+    if (altura && peso) {
+      const alturaM = parseInt(altura) / 100;
+      const imc = parseFloat(peso) / Math.pow(alturaM, 2);
       setState({
         ...state,
-        imc,
+        imc: imc,
       });
     }
   };
@@ -211,12 +210,11 @@ const S3 = (props) => {
       <div className="col-6 col-md-3">
         <label className="control-label pt-2">IMC</label>
         <input
-          disabled
+          readOnly={true}
           name="imc"
-          value={state.imc}
+          value={state.imc? state.imc : ""}
           className="form-control myInput"
-          onChange={setInfo}
-          onBlur={revisarFormulario}
+          onChange={revisarFormulario}
           placeholder="IMC..."
         />
       </div>

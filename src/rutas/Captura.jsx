@@ -176,6 +176,7 @@ const Captura = () => {
       ...candidatos.candidatos,
       infoBrigadista,
     });
+
     const url = `${API_REQUEST}candidato_update`;
     try {
       const formData = new FormData();
@@ -209,10 +210,12 @@ const Captura = () => {
       );
 
       AlertCargando("Enviando los datos, espere por favor");
+
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
-        secuencia: secciones,
+        secuencia: { ...secciones, s1: seccionCompleta, s2: seccionSiguiente },
       });
+
       if (
         respuesta.status === 200 &&
         archivo.status === 200 &&
@@ -238,8 +241,6 @@ const Captura = () => {
             motivo_rechazo: infoBrigadista.motivo_rechazo,
           });
         } else {
-          /*  axios actualizacion de INFOCandidato */
-          /* Agrega al context general */
           setSecciones({
             ...secciones,
             s1: seccionCompleta,
@@ -440,7 +441,11 @@ const Captura = () => {
       AlertCargando("Enviando los datos, espere por favor");
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
-        secuencia: secciones,
+        secuencia: {
+          ...secciones,
+          s2: seccionCompleta,
+          s3: seccionSiguiente,
+        },
       });
 
       AlertExito("Cargado exitosamente");
@@ -579,7 +584,11 @@ const Captura = () => {
       AlertCargando("Enviando los datos, espere por favor");
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
-        secuencia: secciones,
+        secuencia: {
+          ...secciones,
+          s3: seccionCompleta,
+          s4: seccionSiguiente,
+        },
       });
 
       AlertExito("Cargado exitosamente");
@@ -891,7 +900,7 @@ const Captura = () => {
       AlertCargando("Enviando los datos, espere por favor");
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
-        secuencia: secciones,
+        secuencia: { ...secciones, s6: seccionCompleta, s7: seccionSiguiente },
       });
 
       AlertExito("Cargado exitosamente");
@@ -1005,7 +1014,7 @@ const Captura = () => {
       AlertCargando("Enviando los datos, espere por favor");
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
-        secuencia: secciones,
+        secuencia: { ...secciones, s7: seccionCompleta, s8: seccionSiguiente },
       });
       if (
         respuesta.status === 200 &&

@@ -20,7 +20,6 @@ export const CheckListEquipo = (props) => {
   }
 
   const setInfo = (input) => {
-    console.log(checkSelected);
     setCheckSelected({
       ...checkSelected,
       [input.target.name]: input.target.checked,
