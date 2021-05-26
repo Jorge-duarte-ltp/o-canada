@@ -59,7 +59,8 @@ const S3 = (props) => {
     const { altura, peso } = state;
     if (altura && peso) {
       const alturaM = parseInt(altura) / 100;
-      const imc = parseFloat(peso) / Math.pow(alturaM, 2);
+      const imc =
+        Math.round((parseFloat(peso) / Math.pow(alturaM, 2)) * 100) / 100;
       setState({
         ...state,
         imc: imc,
@@ -85,7 +86,7 @@ const S3 = (props) => {
       medico_personal_recomendo,
     } = state;
     /* IMC mayor a 30 */
-    if (imc >= 30) {
+    if (parseFloat(imc) >= 30) {
       setState({
         ...state,
         rechazo: true,

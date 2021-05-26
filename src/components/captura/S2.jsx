@@ -84,8 +84,7 @@ const S2 = (props) => {
             setState({
               ...state,
               rechazo: true,
-              motivo_rechazo:
-                "licencia de licencia de manejo vence en menos de 5 meses",
+              motivo_rechazo:"licencia de licencia de manejo vence en menos de 5 meses",
             });
           } else {
             /* Si todo Bien */

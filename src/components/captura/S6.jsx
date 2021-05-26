@@ -7,7 +7,7 @@ const S6 = (props) => {
 
   const setInfo = (input) => {
     /* setea al state las variables */
-    if (input.target.name === "doc_acred_primeros_auxilios" ||input.target.name === "doc_cert_primeros_auxilios") {
+    if (input.target.name === "doc_acred_primeros_auxilios") {
       setStateFiles({
         ...files,
         [input.target.name + "_fl"]: input.target.files,
@@ -165,10 +165,10 @@ const S6 = (props) => {
         />
       </div>
 
-      {/* Cuenta con conocimientos de primero auxilios */}
+      {/* ¿cuenta con certificado de primeros auxilios? */}
       <div className="col-12 col-md-8">
         <label className="control-label pt-2">
-          ¿Cuenta con conocimientos de primero auxilios?
+         ¿Cuenta con certificado de primeros auxilios?
         </label>
         <SelectSiNo
           className="form-control myInput"
@@ -209,38 +209,6 @@ const S6 = (props) => {
               type="file"
               accept="application/pdf"
               name="doc_acred_primeros_auxilios"
-              onChange={setInfo}
-            />
-          </React.Fragment>
-        )}
-      </div>
-
-      {/* ¿Cuenta con certificado de primeros auxilios? */}
-      <div className="col-4 col-md-6">
-        <label className="control-label pt-2">
-        ¿Cuenta con certificado de primeros auxilios?
-        </label>
-        <SelectSiNo
-          className="form-control myInput"
-          name="cert_primeros_auxilios"
-          defaultValue={state.cert_primeros_auxilios}
-          onChange={setInfo}
-          onBlur={setInfo}
-        />
-      </div>
-
-       {/* certificado de primeros auxilios */}
-       <div className="col-8 col-md-12">
-        {state.cert_primeros_auxilios === "1" && (
-          <React.Fragment>
-            <label className="control-label pt-2">
-            Certificado de Primeros Auxilios
-            </label>                     
-            <input
-              className="form-control myInput"
-              type="file"
-              accept="application/pdf"
-              name="doc_cert_primeros_auxilios"
               onChange={setInfo}
             />
           </React.Fragment>
