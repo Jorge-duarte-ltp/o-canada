@@ -13,7 +13,7 @@ import sessionContext from "../../context/session/sessionContext";
 
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-// const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
+// const API_REQUEST = 'http://187.218.230.38:81/o_canada_sisecoif/api/'
 // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
@@ -128,7 +128,7 @@ const RevisionDocumentacion = () => {
     const mostrarDocumento = (documento, data) => {
         // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
         // const url = `${URL_documentos}/${data.curp}/${documento}`;
-        const url = `http://187.218.230.38:81/o_canada/archivos/${data.curp}/${documento}`;
+        const url = `http://187.218.230.38:81/o_canada_sisecoif/archivos/${data.curp}/${documento}`;
         window.open(url, '_blank');
     }
 
@@ -184,7 +184,8 @@ const RevisionDocumentacion = () => {
                 return 'Cert. S-190'
             case 'cert_intern_incendios_file':
                 return 'Cert. Intern. Incendios'
-
+            case 'visa_estadounidense':
+                return 'VISA USA'
             default:
                 return 'check= ' + item
 

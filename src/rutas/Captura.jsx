@@ -1345,7 +1345,7 @@ const Captura = () => {
               className="btn btn-info"
               target="_blank"
               rel="noopener noreferrer"
-              href="http://187.218.230.38:81/o_canada/documentos/Manual_de_usuario_SISECOIF.pdf"
+              href="http://187.218.230.38:81/o_canada_sisecoif/documentos/Manual_de_usuario_SISECOIF.pdf"
             >
               Manual de Usuario
             </a>

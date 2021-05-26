@@ -58,7 +58,7 @@ const Header = ({ cierre }) => {
                     <Button variant='primary' onClick={() => setMostrarMesaAyuda(true)} className="ayudaStyle">
                         ¿Necesitas ayuda? <BsFillQuestionSquareFill />
                     </Button>
-                    <a href='http://187.218.230.38:81/o_canada/documentos/manual_registro_ingreso_usuarios_SISECOIF.pdf'
+                    <a href='http://187.218.230.38:81/o_canada_sisecoif/documentos/manual_registro_ingreso_usuarios_SISECOIF.pdf'
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-primary registroStyle">

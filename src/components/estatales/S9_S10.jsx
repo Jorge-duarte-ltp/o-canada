@@ -12,7 +12,7 @@ import AlertExito from '../../singles/AlertExito';
 
 const S9_S10 = (props) => {
     const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-    // const API_REQUEST = 'http://187.218.230.38:81/o_canada_temp/api/'
+    // const API_REQUEST = 'http://187.218.230.38:81/o_canada_sisecoif/api/'
 
     const pruebasContext = useContext(pruebasFisicasContext)
 
