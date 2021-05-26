@@ -234,6 +234,7 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
         });
         break;
 
@@ -256,6 +257,7 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
         });
         break;
 
@@ -278,6 +280,7 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false
         });
         break;
 
@@ -300,6 +303,7 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false
         });
         break;
 
@@ -320,6 +324,7 @@ const Finalizar = (props) => {
           aptitud_fisica: true,
           gps: true,
           motobomba_mark_iii: true,
+          motosierra_autonoma: true
         });
         break;
 

@@ -301,18 +301,18 @@ const PDF = (props) => {
             <Text style={styles.RequisitosInfo}>1.</Text>
             {/* <Text style={styles.RequisitosInfo}>2.</Text> */}
             <Text style={styles.RequisitosInfo}>2.</Text>
-            <Text style={styles.RequisitosInfo}>4.1</Text>
-            <Text style={styles.RequisitosInfo}>4.2</Text>
-            <Text style={styles.RequisitosInfo}>5.1</Text>
-            <Text style={styles.RequisitosInfo}>5.2</Text>
-            <Text style={styles.RequisitosInfo}>6</Text>
+            <Text style={styles.RequisitosInfo}>3.</Text>
+            <Text style={styles.RequisitosInfo}>4.</Text>
+            <Text style={styles.RequisitosInfo}>5.</Text>
+            <Text style={styles.RequisitosInfo}>6.</Text>
             <Text style={styles.RequisitosInfo}>7</Text>
-            <Text style={styles.RequisitosInfo}>8.</Text>
-            <Text style={styles.RequisitosInfo}>10.1</Text>
+            <Text style={styles.RequisitosInfo}>8</Text>
+            <Text style={styles.RequisitosInfo}>9.</Text>
+            <Text style={styles.RequisitosInfo}>10.</Text>
 
-            <Text style={styles.RequisitosInfo}>10.2</Text>
+            <Text style={styles.RequisitosInfo}>11.</Text>
             {state.opera_autonoma_motosierra && (
-              <Text style={styles.RequisitosInfo}>10.3</Text>
+              <Text style={styles.RequisitosInfo}>12.</Text>
             )}
           </View>
           <View style={styles.sectionRequisitos} debug={false}>
@@ -441,7 +441,7 @@ const PDF = (props) => {
             >
               {state.opera_autonoma_gps
                 ? "Realizar la prueba en la Promotoria de su Entidad"
-                : "No Aprobado"}
+                : "No Aplica"}
             </Text>
             <Text
               style={[
@@ -451,7 +451,7 @@ const PDF = (props) => {
             >
               {state.opera_autonoma_mark3
                 ? "Realizar la prueba en la Promotoria de su Entidad"
-                : "No Aprobado"}
+                : "No Aplica"}
             </Text>
             {state.opera_autonoma_motosierra && (
               <Text
@@ -464,7 +464,7 @@ const PDF = (props) => {
               >
                 {state.opera_autonoma_motosierra
                   ? "Realizar la prueba en la Promotoria de su Entidad"
-                  : "No Aprobado"}
+                  : "No Aplica"}
               </Text>
             )}
           </View>
