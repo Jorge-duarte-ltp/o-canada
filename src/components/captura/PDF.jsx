@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
 
 const aprobadoColor = { color: "#256708" };
 const reprobadoColor = { color: "#a83232" };
-const blackColor = { color: "#ffffff" };
+const blackColor = { color: "#0f0f0f" };
+
 // Create Document Component
 const PDF = (props) => {
   const {
