@@ -173,7 +173,7 @@ const Finalizar = (props) => {
 
       case "problemas de salud":
         setMensaje(
-          "No es posible continuar con el proceso debido a que por el resultado de su autoevaluación. No cumple con los requisitos mínimos para realizar la prueba de la mochila nivel arduo"
+          "No es posible continuar con el proceso debido a el resultado de  su  evaluación. No le permite cumplir los requisitos minimos para realizar la prueba de la mochila nivel arduo."
         );
         setSecciones({
           pasaporte_vigente: true,
@@ -280,7 +280,7 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
-          motosierra_autonoma: false
+          motosierra_autonoma: false,
         });
         break;
 
@@ -303,7 +303,7 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
-          motosierra_autonoma: false
+          motosierra_autonoma: false,
         });
         break;
 
@@ -324,7 +324,7 @@ const Finalizar = (props) => {
           aptitud_fisica: true,
           gps: true,
           motobomba_mark_iii: true,
-          motosierra_autonoma: true
+          motosierra_autonoma: true,
         });
         break;
 
