@@ -61,7 +61,7 @@ const Login = (props) => {
     const checkLogin = async () => {
         const { curp_ing, pass } = state
         const url = `${process.env.REACT_APP_BACKEN_URL}get_candidato`;
-        const url_poto = `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}`;
+        const url_poto = `${process.env.REACT_APP_BACKEN_URL_PHOTO}archivos?curp=${curp_ing}`;
         try {
             const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
 

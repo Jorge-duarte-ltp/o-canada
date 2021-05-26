@@ -359,8 +359,11 @@ const Finalizar = (props) => {
   };
 
   const mostrarPDF = () => {
-    window.open("https://forms.gle/NJEvVV8gefLFYADj8", "_blank");
     setShowPDF(true);
+  };
+
+  const mostrarEncuesta = () => {
+    window.open("https://forms.gle/NJEvVV8gefLFYADj8", "_blank");
   };
 
   useEffect(() => {
@@ -395,9 +398,12 @@ const Finalizar = (props) => {
             </p>
           </div>
         )}
-        <div className="py-3" style={{ textAlign: "right" }}>
-          <button className="btn btn-success" onClick={mostrarPDF}>
+        <div className="py-3" style={{ textAlign: "center" }}>
+          <button className="btn btn-success mr-2" onClick={mostrarPDF}>
             Obtener Constancia
+          </button>
+          <button className="btn btn-danger" onClick={mostrarEncuesta}>
+            Responder Encuesta
           </button>
           {/* <IconContext.Provider value={{ color: "blue", size: '2em' }}>
                         <GrDocumentPdf />

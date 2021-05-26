@@ -77,30 +77,30 @@ const styles = StyleSheet.create({
     paddingTop: "1pt",
     paddingBottom: "1pt",
   },
-  sectionRequisitosNum: {
-    width: "5%",
-    position: "relative",
-    left: "0",
-    paddingTop: "2mm",
-  },
+  
   sectionRequisitos: {
-    width: "75%",
+    width: "50%",
     position: "absolute",
-    left: "20mm",
+    left: "8mm",
     bottom: "72.1mm",
     paddingBottom: "2mm",
   },
   sectionResultados: {
-    width: "20%",
+    width: "50%",
     position: "absolute",
     bottom: "72.1mm",
     right: "8mm",
     paddingBottom: "2mm",
-    textAlign: "center",
+    textAlign: "justify",
   },
   RequisitosInfo: {
     borderBottom: "2pt solid #C8C8C8",
-    fontSize: "15pt",
+    fontSize: "12pt",
+  },
+  RequisitosEspecial: {
+    borderBottom: "2pt solid #C8C8C8",
+    fontSize: "12pt",
+    textAlign: "justify",
   },
   RequisitosColor: {
     color: "#256708",
@@ -246,7 +246,7 @@ const PDF = (props) => {
       : "No Aplica";
 
   return (
-    <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight}>
+    <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight} >
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.sectionImgTop} debug={false}>
@@ -298,51 +298,33 @@ const PDF = (props) => {
           >
             <Text style={styles.header}>Requisitos y estándares</Text>
           </View>
-          <View style={styles.sectionRequisitosNum} debug={false}>
-            <Text style={styles.RequisitosInfo}>1.</Text>
-            {/* <Text style={styles.RequisitosInfo}>2.</Text> */}
-            <Text style={styles.RequisitosInfo}>2.</Text>
-            <Text style={styles.RequisitosInfo}>3.</Text>
-            <Text style={styles.RequisitosInfo}>4.</Text>
-            <Text style={styles.RequisitosInfo}>5.</Text>
-            <Text style={styles.RequisitosInfo}>6.</Text>
-            <Text style={styles.RequisitosInfo}>7</Text>
-            <Text style={styles.RequisitosInfo}>8</Text>
-            <Text style={styles.RequisitosInfo}>9.</Text>
-            <Text style={styles.RequisitosInfo}>10.</Text>
-
-            <Text style={styles.RequisitosInfo}>11.</Text>
-            {state.opera_autonoma_motosierra && (
-              <Text style={styles.RequisitosInfo}>12.</Text>
-            )}
-          </View>
           <View style={styles.sectionRequisitos} debug={false}>
-            <Text style={styles.RequisitosInfo}>Pasaporte Mexicano</Text>
+            <Text style={styles.RequisitosInfo}>1.- Pasaporte Mexicano</Text>
             <Text style={styles.RequisitosInfo}>
-              Documento para viajar a Canadá
+              2.- Documento para viajar a Canadá
             </Text>
             {/* <Text style={styles.RequisitosInfo}>Licencia de manejo</Text> */}
-            <Text style={styles.RequisitosInfo}>Índice de Masa Corporal</Text>
-            <Text style={styles.RequisitosInfo}>Estado de salud</Text>
+            <Text style={styles.RequisitosInfo}>3.- Índice de Masa Corporal</Text>
+            <Text style={styles.RequisitosInfo}>4.- Estado de salud</Text>
             <Text style={styles.RequisitosInfo}>
-              Conocimiento y experiencia SCI
+              5.- Conocimiento y experiencia SCI
             </Text>
             <Text style={styles.RequisitosInfo}>
-              Conocimiento y experiencia en incendios
+              6.- Conocimiento y experiencia en incendios
             </Text>
             <Text style={styles.RequisitosInfo}>
-              Buena conducta y equipo de despliegue
+              7.- Buena conducta y equipo de despliegue
             </Text>
             {/* <Text style={styles.RequisitosInfo}>Disponibilidad en condiciones ambientales adversas</Text> */}
             <Text style={styles.RequisitosInfo}>
-              Capacidad para comunicarse en inglés
+              8.- Capacidad para comunicarse en inglés
             </Text>
-            <Text style={styles.RequisitosInfo}>Liderazgo</Text>
+            <Text style={styles.RequisitosInfo}>9.- Liderazgo</Text>
 
-            <Text style={styles.RequisitosInfo}>GPS</Text>
-            <Text style={styles.RequisitosInfo}>Motobomba Mark III</Text>
+            <Text style={styles.RequisitosInfo}>10.- GPS</Text>
+            <Text style={styles.RequisitosInfo}>11.- Motobomba Mark III</Text>
             {state.opera_autonoma_motosierra && (
-              <Text style={styles.RequisitosInfo}>Motosierra Autonoma</Text>
+              <Text style={styles.RequisitosInfo}>12.- Motosierra Autonoma</Text>
             )}
           </View>
           <View style={styles.sectionResultados} debug={false}>
@@ -436,7 +418,7 @@ const PDF = (props) => {
             </Text>
             <Text
               style={[
-                styles.RequisitosInfo,
+                styles.RequisitosEspecial,
                 state.opera_autonoma_gps ? aprobadoColor : blackColor,
               ]}
             >
@@ -446,7 +428,7 @@ const PDF = (props) => {
             </Text>
             <Text
               style={[
-                styles.RequisitosInfo,
+                styles.RequisitosEspecial,
                 state.opera_autonoma_mark3 ? aprobadoColor : blackColor,
               ]}
             >
@@ -457,7 +439,7 @@ const PDF = (props) => {
             {state.opera_autonoma_motosierra && (
               <Text
                 style={[
-                  styles.RequisitosInfo,
+                  styles.RequisitosEspecial,
                   state.opera_autonoma_motosierra
                     ? aprobadoColor
                     : blackColor,
