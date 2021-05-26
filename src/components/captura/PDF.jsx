@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 
 const aprobadoColor = { color: "#256708" };
 const reprobadoColor = { color: "#a83232" };
-
+const blackColor = { color: "#ffffff" };
 // Create Document Component
 const PDF = (props) => {
   const {
@@ -436,7 +436,7 @@ const PDF = (props) => {
             <Text
               style={[
                 styles.RequisitosInfo,
-                state.opera_autonoma_gps ? aprobadoColor : reprobadoColor,
+                state.opera_autonoma_gps ? aprobadoColor : blackColor,
               ]}
             >
               {state.opera_autonoma_gps
@@ -446,7 +446,7 @@ const PDF = (props) => {
             <Text
               style={[
                 styles.RequisitosInfo,
-                state.opera_autonoma_mark3 ? aprobadoColor : reprobadoColor,
+                state.opera_autonoma_mark3 ? aprobadoColor : blackColor,
               ]}
             >
               {state.opera_autonoma_mark3
@@ -459,7 +459,7 @@ const PDF = (props) => {
                   styles.RequisitosInfo,
                   state.opera_autonoma_motosierra
                     ? aprobadoColor
-                    : reprobadoColor,
+                    : blackColor,
                 ]}
               >
                 {state.opera_autonoma_motosierra
