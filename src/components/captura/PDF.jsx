@@ -252,7 +252,7 @@ const PDF = (props) => {
       state.posicion_candidato === "tecnico") &&
     state.toeic_toefl
       ? "Aprobado"
-      : "No Aplica";
+      : "No Aprobado";
 
   return (
     <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight}>
@@ -432,33 +432,33 @@ const PDF = (props) => {
             <Text
               style={[
                 styles.RequisitosEspecial,
-                state.opera_autonoma_gps ? aprobadoColor : blackColor,
+                state.opera_autonoma_gps ? aprobadoColor : reprobadoColor,
               ]}
             >
               {state.opera_autonoma_gps
                 ? "Realizar la prueba en la Promotoria de su Entidad"
-                : "No Aplica"}
+                : "No Aprobado"}
             </Text>
             <Text
               style={[
                 styles.RequisitosEspecial,
-                state.opera_autonoma_mark3 ? aprobadoColor : blackColor,
+                state.opera_autonoma_mark3 ? aprobadoColor : reprobadoColor,
               ]}
             >
               {state.opera_autonoma_mark3
                 ? "Realizar la prueba en la Promotoria de su Entidad"
-                : "No Aplica"}
+                : "No Aprobado"}
             </Text>
             {state.opera_autonoma_motosierra && (
               <Text
                 style={[
                   styles.RequisitosEspecial,
-                  state.opera_autonoma_motosierra ? aprobadoColor : blackColor,
+                  state.opera_autonoma_motosierra ? aprobadoColor : reprobadoColor,
                 ]}
               >
                 {state.opera_autonoma_motosierra
                   ? "Realizar la prueba en la Promotoria de su Entidad"
-                  : "No Aplica"}
+                  : "No Aprobado"}
               </Text>
             )}
           </View>
