@@ -197,9 +197,9 @@ const S4 = (props) => {
             </Modal>
 
 
-            {/* SCI/SMI 100 */}
+            {/* Cargar constancia del Curso SCI/SMI 100 */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">Curso SCI/SMI 100</label>
+                <label className="control-label pt-2">Cargar constancia del Curso SCI/SMI 100</label>
                 <input
                     className="form-control myInput"
                     name='sci_smi_100'
@@ -212,9 +212,9 @@ const S4 = (props) => {
                 />
             </div>
 
-            {/* SCI/SMI 200 */}
+            {/* Cargar constancia del Curso SCI/SMI 200 */}
             <div className='col-12 col-md-6'>
-                <label className="control-label pt-2">Curso SCI/SMI 200</label>
+                <label className="control-label pt-2">Cargar constancia del Curso SCI/SMI 200</label>
                 <input
                     className="form-control myInput"
                     name='sci_smi_200'
@@ -259,16 +259,16 @@ const S4 = (props) => {
                         />
                     </div>
 
-                    {/* SCI/SMI 200 */}
+                    {/* Indique cual Posición */}
                     {state.eventos_plnaeados_dentro_estructura === '1' && <React.Fragment>
                         <div className='col-5'>
-                            <label className="control-label pt-2">Indique cual</label>
+                            <label className="control-label pt-2">Indique cual Posición</label>
                             <input
                                 className="form-control myInput"
                                 name='sci_cual'
                                 type=''
                                 onChange={setInfo}
-                                placeholder='Indique cual...'
+                                placeholder='Indique cual posición...'
                             />
                         </div>
                     </React.Fragment>}
