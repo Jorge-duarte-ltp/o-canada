@@ -33,17 +33,13 @@ const S2 = (props) => {
     const date = input.target.value.toUpperCase();
     setState({
       ...state,
-      visa_usa_fecha_cad: formatDate(date,10),
+      visa_usa_fecha_cad: formatDate(date, 10),
     });
   };
 
   const revisarFormulario = () => {
-    const {
-      pasaporte_fecha_cad,
-      eta_visa_fecha_cad,
-      antecedentes_fecha,
-      licencia_fecha_cad,
-    } = state;
+    const { pasaporte_fecha_cad, eta_visa_fecha_cad, antecedentes_fecha } =
+      state;
 
     /* VALIDACIONES:
             si antecedentes_fecha > 2 meses
@@ -53,7 +49,6 @@ const S2 = (props) => {
     const dif_antecedentes = diferenciaFechasMeses(antecedentes_fecha);
     const dif_pasaporte = diferenciaFechasMeses(pasaporte_fecha_cad);
     const dif_eta_visa = diferenciaFechasMeses(eta_visa_fecha_cad);
-    const dif_licencia = diferenciaFechasMeses(licencia_fecha_cad);
 
     // Carta es menor a 2 meses
     if (dif_antecedentes > 2) {
@@ -79,21 +74,12 @@ const S2 = (props) => {
             motivo_rechazo: "eta/visa vence en menos de 10 meses",
           });
         } else {
-          // licencia  de manejo vence en menos de 5 meses
-          if (dif_licencia > -5 && state.tiene_licencia === "1") {
-            setState({
-              ...state,
-              rechazo: true,
-              motivo_rechazo:"licencia de licencia de manejo vence en menos de 5 meses",
-            });
-          } else {
-            /* Si todo Bien */
-            setState({
-              ...state,
-              rechazo: false,
-              motivo_rechazo: null,
-            });
-          }
+          /* Si todo Bien */
+          setState({
+            ...state,
+            rechazo: false,
+            motivo_rechazo: null,
+          });
         }
       }
     }
@@ -121,7 +107,7 @@ const S2 = (props) => {
         <input
           className="form-control myInput"
           name="pasaporte_numero"
-          value={state.pasaporte_numero? state.pasaporte_numero : ""}
+          value={state.pasaporte_numero ? state.pasaporte_numero : ""}
           onChange={setInfo}
           onChangeCapture={ToMayus}
           placeholder="No. de Pasaporte..."
@@ -136,8 +122,7 @@ const S2 = (props) => {
         <input
           className="form-control myInput"
           name="pasaporte_fecha_cad"
-          value={state.pasaporte_fecha_cad? state.pasaporte_fecha_cad : ""
-        }
+          value={state.pasaporte_fecha_cad ? state.pasaporte_fecha_cad : ""}
           type="date"
           onBlur={revisarFormulario}
           onChange={setInfo}
@@ -227,7 +212,7 @@ const S2 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="tiene_visa_usa"
-          defaultValue={state.tiene_visa_usa? state.tiene_visa_usa : ""}
+          defaultValue={state.tiene_visa_usa ? state.tiene_visa_usa : ""}
           onChange={setInfo}
         />
       </div>
@@ -256,7 +241,7 @@ const S2 = (props) => {
             <input
               className="form-control myInput"
               name="visa_usa_num"
-              value={state.visa_usa_num ?  state.visa_usa_num : ""}
+              value={state.visa_usa_num ? state.visa_usa_num : ""}
               defaultValue={state.visa_usa_num}
               onChangeCapture={ToMayus}
               onChange={setInfo}

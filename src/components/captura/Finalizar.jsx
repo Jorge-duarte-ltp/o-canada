@@ -83,28 +83,6 @@ const Finalizar = (props) => {
         });
         break;
 
-      case "licencia de licencia de manejo vence en menos de 5 meses":
-        setMensaje(
-          "No es posible continuar ya que no cumple con la vigencia de 5 meses de la licencia de manejo"
-        );
-        setSecciones({
-          pasaporte_vigente: true,
-          documento_para_viajar_a_canad: true,
-          licencia_de_manejo: false,
-          indice_de_masa_corporal: false,
-          salud: false,
-          conocimiento_y_experiencia_sci: false,
-          conocimiento_y_experiencia_en_incendios: false,
-          buena_conducta: false,
-          disponibilidad_en_condiciones_ambientales_adversas: false,
-          capacidad_para_comunicarse_en_ingles: false,
-          liderazgo: false,
-          aptitud_fisica: false,
-          gps: state.opera_autonoma_gps,
-          motobomba_mark_iii: state.opera_autonoma_mark3,
-        });
-        break;
-
       case "imc mayo 30":
         setMensaje(
           "No es posible continuar con el proceso debido a que su IMC es superior a 29.9"
