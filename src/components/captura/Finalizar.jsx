@@ -9,7 +9,6 @@ const Finalizar = (props) => {
   const candidatos = useContext(candidatoContext);
   const [state, setState] = useState(candidatos.candidatos.infoBrigadista);
   const { photo } = props;
-
   const [mensaje, setMensaje] = useState("");
   const [puesto, setPuesto] = useState("");
 

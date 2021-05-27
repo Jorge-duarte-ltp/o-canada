@@ -416,10 +416,14 @@ const PDF = (props) => {
             <Text
               style={[
                 styles.RequisitosInfo,
-                idioma === "Aprobado" ? aprobadoColor : null,
+                idioma === "Aprobado"
+                  ? aprobadoColor
+                  : state.posicion_candidato !== "tecnico"
+                  ? blackColor
+                  : reprobadoColor,
               ]}
             >
-              {idioma}
+              {state.posicion_candidato !== "tecnico" ? "No Aplica" : idioma}
             </Text>
             <Text
               style={[
@@ -453,7 +457,9 @@ const PDF = (props) => {
               <Text
                 style={[
                   styles.RequisitosEspecial,
-                  state.opera_autonoma_motosierra ? aprobadoColor : reprobadoColor,
+                  state.opera_autonoma_motosierra
+                    ? aprobadoColor
+                    : reprobadoColor,
                 ]}
               >
                 {state.opera_autonoma_motosierra

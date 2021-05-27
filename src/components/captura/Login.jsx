@@ -66,16 +66,14 @@ const Login = (props) => {
 
     try {
       const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
-      console.log(respuesta.data['fotografia']);
+      console.log(respuesta.data["fotografia"]);
       if (respuesta.status === 200) {
-        /* setContext */
-        // await obtenerFotografia(curp_ing, await respuesta.data['fotografia']).then(async (response) => {
-        //   console.log(response.data);
-        //   await setArchivos({
-        //     ...archivos,
-        //     fotografia_fl: await response.data,
-        //   });
-        // });
+        setArchivos({
+          ...archivos,
+          fotografia_fl: [
+            `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.datafotografia}`,
+          ],
+        });
 
         candidatos.candidatos.agregarCandidato({
           ...candidatos.candidatos,
