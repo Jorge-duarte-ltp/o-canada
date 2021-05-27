@@ -184,12 +184,11 @@ const Captura = () => {
       formData.append("file", archivos.fotografia_fl[0]);
       formData.append("curp", infoBrigadista.curp);
       formData.append("name", "fotografia");
-
+      
       const formDataCurp = new FormData();
       formDataCurp.append("file", archivos.curp_archivo_fl[0]);
       formDataCurp.append("curp", infoBrigadista.curp);
       formDataCurp.append("name", "curp_archivo");
-
       const archivo = await axios.post(
         `${API_REQUEST}carga_archivo`,
         formData,

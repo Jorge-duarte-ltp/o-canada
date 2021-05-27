@@ -65,8 +65,14 @@ const S1 = (props) => {
       input.target.name === "fotografia" ||
       input.target.name === "curp_archivo"
     ) {
-      if (input.target.name === "fotografia")
+      if (input.target.name === "fotografia") {
         setPreview(URL.createObjectURL(input.target.files[0]));
+        let filename = input.target.files[0].name;
+        setState({
+          ...state,
+          fotografia: `fotografia.${filename.split(".").pop()}`,
+        });
+      }
       setStateFiles({
         ...files,
         [input.target.name + "_fl"]: input.target.files,
@@ -87,7 +93,6 @@ const S1 = (props) => {
           setState({ ...state, region: element.region });
         }
       });
-
     }
   };
 
@@ -200,7 +205,7 @@ const S1 = (props) => {
       <div className="col-12 col-md-6" onBlur={fillInfoCurp}>
         <label className="control-label pt-2">CURP</label>
         <InputCURP
-          className={`form-control ${state.curp ? '' : "myInput"}`}
+          className={`form-control ${state.curp ? "" : "myInput"}`}
           name="curp"
           defaultValue={state.curp}
           onChange={setInfo}

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     paddingTop: "1pt",
     paddingBottom: "1pt",
   },
-  
+
   sectionRequisitos: {
     width: "50%",
     position: "absolute",
@@ -118,7 +118,16 @@ const styles = StyleSheet.create({
     paddingRight: "1cm",
   },
   headerDescText: {
-    top: "1cm",
+    position: "absolute",
+    fontWeight: "bold",
+    fontSize: "15pt",
+    bottom: "5.5cm",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    color: "#0f0f0f",
+    paddingLeft: "1cm",
+    paddingRight: "1cm",
   },
 });
 
@@ -246,7 +255,7 @@ const PDF = (props) => {
       : "No Aplica";
 
   return (
-    <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight} >
+    <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight}>
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.sectionImgTop} debug={false}>
@@ -304,7 +313,9 @@ const PDF = (props) => {
               2.- Documento para viajar a Canadá
             </Text>
             {/* <Text style={styles.RequisitosInfo}>Licencia de manejo</Text> */}
-            <Text style={styles.RequisitosInfo}>3.- Índice de Masa Corporal</Text>
+            <Text style={styles.RequisitosInfo}>
+              3.- Índice de Masa Corporal
+            </Text>
             <Text style={styles.RequisitosInfo}>4.- Estado de salud</Text>
             <Text style={styles.RequisitosInfo}>
               5.- Conocimiento y experiencia SCI
@@ -324,7 +335,9 @@ const PDF = (props) => {
             <Text style={styles.RequisitosInfo}>10.- GPS</Text>
             <Text style={styles.RequisitosInfo}>11.- Motobomba Mark III</Text>
             {state.opera_autonoma_motosierra && (
-              <Text style={styles.RequisitosInfo}>12.- Motosierra Autonoma</Text>
+              <Text style={styles.RequisitosInfo}>
+                12.- Motosierra Autonoma
+              </Text>
             )}
           </View>
           <View style={styles.sectionResultados} debug={false}>
@@ -440,9 +453,7 @@ const PDF = (props) => {
               <Text
                 style={[
                   styles.RequisitosEspecial,
-                  state.opera_autonoma_motosierra
-                    ? aprobadoColor
-                    : blackColor,
+                  state.opera_autonoma_motosierra ? aprobadoColor : blackColor,
                 ]}
               >
                 {state.opera_autonoma_motosierra
@@ -455,7 +466,7 @@ const PDF = (props) => {
           {/* NOTAS pie de pagina */}
           {state.rechazo && (
             <React.Fragment>
-              <Text style={styles.headerDescText}>MOTIVO DE RECHAZO:</Text>
+              <Text style={styles.headerDescText}>MOTIVO DE RECHAZO</Text>
               <Text
                 style={styles.descText}
                 render={() =>
