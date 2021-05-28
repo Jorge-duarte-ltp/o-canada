@@ -9,7 +9,6 @@ import moment from "moment";
 /* CONTEXT */
 import candidatoContext from "../../context/candidato/candidatoContext";
 import SelectSiNo from "../../singles/SelectSiNo";
-import SelectEstadosGenerados from "../../singles/SelectEstadosGenerados";
 import GenerarEstados from "../../singles/GenerarEstados";
 import GenerarPaises from "../../singles/GenerarPaises";
 import { size } from "lodash";
@@ -204,9 +203,9 @@ const S5 = (props) => {
         </Modal.Footer>
       </Modal>
 
-      {/* S-190 */}
+      {/* Cargar Constancia de Curso S-190 */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">S-190/CPCIF</label>
+        <label className="control-label pt-2">Cargar Constancia de Curso S-190/CPCIF</label>
         <input
           className="form-control myInput"
           name="s_190"
@@ -223,9 +222,9 @@ const S5 = (props) => {
         />
       </div>
 
-      {/* S-130 */}
+      {/* Cargar Constancia de Curso S-130 */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">S-130/CPCIF</label>
+        <label className="control-label pt-2">Cargar Constancia de Curso  S-130/CPCIF</label>
         <input
           className="form-control myInput"
           name="s_130"

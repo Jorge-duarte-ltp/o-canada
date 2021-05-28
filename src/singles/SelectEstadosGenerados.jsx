@@ -3,25 +3,13 @@ import { isEmpty } from "lodash";
 import axiosClient from "../config/axios";
 
 const SelectEstados = (props) => {
-  const { name, className, onBlur, onChange, value } = props;
-  const [data, setData] = useState([]);
-
-  const config = {
-    method: "post",
-    url: `${process.env.REACT_APP_BACKEN_URL}list_estados`,
-  };
-
-  if (isEmpty(data)) {
-    axiosClient(config).then(async (response) => {
-      const data = await response.data.data;
-      setData(data);
-    });
-  }
+  const { name, className, onBlur, onChange, value, data } = props;
+  
 
   return (
     <select
       className={className}
-      name={name}
+      name={name} 
       onBlur={onBlur}
       onChange={onChange}
       value={value}

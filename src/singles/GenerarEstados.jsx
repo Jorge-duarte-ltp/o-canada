@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 import SelectEstadosGenerados from "./SelectEstadosGenerados";
 import { isEmpty, size } from "lodash";
+import axiosClient from "../config/axios";
 
 export const GenerarEstados = (props) => {
   const { state, setState, cantEstados, titulo, name } = props;
-  const [estados, setEstados] = useState(
-    state[name] ? state[name] : {}
-  );
+  const [estados, setEstados] = useState(state[name] ? state[name] : {});
   const [num, setNum] = useState([]);
+  const [data, setData] = useState([]);
+
+  const config = {
+    method: "post",
+    url: `${process.env.REACT_APP_BACKEN_URL}list_estados`,
+  };
+
+  if (isEmpty(data)) {
+    axiosClient(config).then(async (response) => {
+      const data = await response.data.data;
+      setData(data);
+    });
+  }
 
   const setInfo = (input) => {
     setEstados({
@@ -38,6 +50,7 @@ export const GenerarEstados = (props) => {
             <label className="control-label pt-2">
               {item.id}.- {titulo}
               <SelectEstadosGenerados
+                data={data}
                 name={item.nombre}
                 className="form-control myInput"
                 onChange={setInfo}
