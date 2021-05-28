@@ -371,7 +371,7 @@ const Finalizar = (props) => {
               Debera presentarse con documentos anexados en original para su
               cotejo y el equipo requerido para trabajar en condiciones
               ambientales adversas en la fecha y hora que le sera notificada por
-              la Gerencia Estatal de la Comision Nacional Forestal en su Estado.
+              la Promotoría de Desarrollo Forestal de la Comision Nacional Forestal en su Estado.
             </p>
           </div>
         )}

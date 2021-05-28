@@ -305,16 +305,16 @@ const S3 = (props) => {
         />
       </div>
 
-      {/* ¿Padece alguna enfermedad? */}
+      {/* ¿Padece alguna enfermedad Crónica? */}
       <div className="col-12 col-md-5">
-        <label className="control-label pt-2">¿Padece alguna enfermedad?</label>
+        <label className="control-label pt-2">¿Padece alguna enfermedad Crónica?</label>
         <select
           className="form-control myInput"
           name="padece_enfermedad"
           defaultValue={state.padece_enfermedad}
           onChange={setInfo}
           onBlur={revisarFormulario}
-          placeholder="¿Padece alguna enfermedad?"
+          placeholder="¿Padece alguna enfermedad Crónica?"
         >
           <option value="">---Seleccione---</option>
           <option value={1}>Si</option>
