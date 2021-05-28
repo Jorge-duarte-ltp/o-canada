@@ -307,7 +307,7 @@ const S3 = (props) => {
 
       {/* ¿Padece alguna enfermedad? */}
       <div className="col-12 col-md-5">
-        <label className="control-label pt-2">¿Padece alguna enfermedad?</label>
+        <label className="control-label pt-2">¿Padece alguna enfermedad Crónica?</label>
         <select
           className="form-control myInput"
           name="padece_enfermedad"
