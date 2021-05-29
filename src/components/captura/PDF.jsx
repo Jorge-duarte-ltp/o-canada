@@ -339,6 +339,11 @@ const PDF = (props) => {
                 12.- Motosierra Autonoma
               </Text>
             )}
+            {state.tiene_certificado_ingles && (
+              <Text style={styles.RequisitosInfo}>
+                13.- Certificado Ingles
+              </Text>
+            )}
           </View>
           <View style={styles.sectionResultados} debug={false}>
             <Text
@@ -465,6 +470,20 @@ const PDF = (props) => {
                 {state.opera_autonoma_motosierra
                   ? "Realizar la prueba en la Promotoria de su Entidad"
                   : "No Aprobado"}
+              </Text>
+            )}
+            {state.tiene_certificado_ingles && (
+              <Text
+                style={[
+                  styles.RequisitosEspecial,
+                  state.tiene_certificado_ingles === "1" 
+                    ? aprobadoColor
+                    : blackColor,
+                ]}
+              >
+                {state.tiene_certificado_ingles === "1"
+                  ? "Aceptado"
+                  : "Sin Certificado"}
               </Text>
             )}
           </View>

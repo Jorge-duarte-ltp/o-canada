@@ -4,7 +4,7 @@ import PDF from "./PDF";
 // import { GrDocumentPdf } from 'react-icons/gr';
 // import { IconContext } from "react-icons";
 import candidatoContext from "../../context/candidato/candidatoContext";
-
+import { isEmpty } from "lodash";
 const Finalizar = (props) => {
   const candidatos = useContext(candidatoContext);
   const [state, setState] = useState(candidatos.candidatos.infoBrigadista);
@@ -306,7 +306,6 @@ const Finalizar = (props) => {
         break;
 
       default:
-        setMensaje(`Error`);
         break;
     }
   };
@@ -347,11 +346,10 @@ const Finalizar = (props) => {
     getMensaje(state.motivo_rechazo);
     getPuesto();
   }, [mensaje, puesto, state]);
-
   return (
     <>
       <div className="container pb-4">
-        {mensaje !== "finalizó" ? (
+        {!isEmpty(mensaje) && mensaje !== "finalizó" ? (
           <div>
             <h1>
               <strong>Motivo de Rechazo</strong>
@@ -371,7 +369,8 @@ const Finalizar = (props) => {
               Debera presentarse con documentos anexados en original para su
               cotejo y el equipo requerido para trabajar en condiciones
               ambientales adversas en la fecha y hora que le sera notificada por
-              la Promotoría de Desarrollo Forestal de la Comision Nacional Forestal en su Estado.
+              la Promotoría de Desarrollo Forestal de la Comision Nacional
+              Forestal en su Estado.
             </p>
           </div>
         )}

@@ -114,10 +114,10 @@ const S5 = (props) => {
   };
 
   const setNumero = (input) => {
-    if (size(input.target.value) < 5) {
+    if (size(input.target.value) < 2) {
       setState({
         ...state,
-        [input.target.name]: input.target.value.toUpperCase(),
+        [input.target.name]: input.target.value,
       });
     }
   };
@@ -205,7 +205,9 @@ const S5 = (props) => {
 
       {/* Cargar Constancia de Curso S-190 */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Cargar Constancia de Curso S-190/CPCIF</label>
+        <label className="control-label pt-2">
+          Cargar Constancia de Curso S-190/CPCIF
+        </label>
         <input
           className="form-control myInput"
           name="s_190"
@@ -224,7 +226,9 @@ const S5 = (props) => {
 
       {/* Cargar Constancia de Curso S-130 */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Cargar Constancia de Curso  S-130/CPCIF</label>
+        <label className="control-label pt-2">
+          Cargar Constancia de Curso S-130/CPCIF
+        </label>
         <input
           className="form-control myInput"
           name="s_130"
@@ -265,10 +269,9 @@ const S5 = (props) => {
                   <input
                     className="form-control myInput"
                     type="number"
+                    value={state.num_est_part}
                     name="num_est_part"
-                    defaultValue={state.num_est_part}
                     onChange={setNumero}
-                    onBlur={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>
@@ -310,9 +313,8 @@ const S5 = (props) => {
                     className="form-control myInput"
                     type="number"
                     name="num_est_mov"
-                    defaultValue={state.num_est_mov}
+                    value={state.num_est_mov}
                     onChange={setNumero}
-                    onBlur={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>
@@ -335,8 +337,7 @@ const S5 = (props) => {
           {/*¿Ha sido asignado (a) como recurso en incendios forestales en otro país? */}
           <div className="col-7">
             <label className="control-label pt-2">
-              ¿Ha sido asignado (a) como recurso en incendios forestales en otro
-              país?
+              ¿Ha sido asignado (a) como recurso en incendios forestales en otro país?
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_asig_recurso_pais"
@@ -355,9 +356,8 @@ const S5 = (props) => {
                     className="form-control myInput"
                     type="number"
                     name="num_pais_asig"
-                    defaultValue={state.num_pais_asig}
+                    value={state.num_pais_asig}
                     onChange={setNumero}
-                    onBlur={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>
