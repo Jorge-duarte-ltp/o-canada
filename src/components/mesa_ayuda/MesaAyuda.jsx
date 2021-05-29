@@ -718,7 +718,6 @@ const MesaAyuda = () => {
 
             if (
                 respuesta.status === 200 &&
-                archivo_examen_toeic_toefl_archivo_fl.status === 200 &&
                 archivo_l_280_file_fl.status === 200 &&
                 archivo_s_290_file_fl.status === 200 &&
                 archivo_cert_intern_incendios_file_fl.status === 200 &&

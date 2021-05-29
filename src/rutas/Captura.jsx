@@ -1182,10 +1182,12 @@ const Captura = () => {
 
     const url = `${API_REQUEST}candidato_update`;
     try {
+      
       setSecciones({
         ...secciones,
         s8: seccionCompleta,
       });
+
       if (examen_toeic_toefl_archivo_fl) {
         const archivo_examen_toeic_toefl_archivo_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
@@ -1294,6 +1296,7 @@ const Captura = () => {
       });
 
       if (respuesta.status === 200) {
+
         if (infoBrigadista.rechazo) {
           // se ocultan las secciones
           setSecciones({
