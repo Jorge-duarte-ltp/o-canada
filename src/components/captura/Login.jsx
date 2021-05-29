@@ -66,12 +66,12 @@ const Login = (props) => {
 
     try {
       const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
-      console.log(respuesta.data.data["fotografia"]);
+      console.log(respuesta.data.data.fotografia);
       if (respuesta.status === 200) {
         setArchivos({
           ...archivos,
           fotografia_fl: [
-            `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.datafotografia}`,
+            `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.data.fotografia}`,
           ],
         });
 

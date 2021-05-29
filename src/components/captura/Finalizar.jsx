@@ -11,7 +11,7 @@ const Finalizar = (props) => {
   const { photo } = props;
   const [mensaje, setMensaje] = useState("");
   const [puesto, setPuesto] = useState("");
-
+  let ventana = window;
   const [secciones, setSecciones] = useState({
     pasaporte_vigente: false,
     documento_para_viajar_a_canad: false,
@@ -335,11 +335,8 @@ const Finalizar = (props) => {
   };
 
   const mostrarPDF = () => {
+    ventana.open("https://forms.gle/NJEvVV8gefLFYADj8", "encuesta", "_blank");
     setShowPDF(true);
-  };
-
-  const mostrarEncuesta = () => {
-    window.open("https://forms.gle/NJEvVV8gefLFYADj8", "_blank");
   };
 
   useEffect(() => {
@@ -378,12 +375,6 @@ const Finalizar = (props) => {
           <button className="btn btn-success mr-2" onClick={mostrarPDF}>
             Obtener Constancia
           </button>
-          <button className="btn btn-danger" onClick={mostrarEncuesta}>
-            Responder Encuesta
-          </button>
-          {/* <IconContext.Provider value={{ color: "blue", size: '2em' }}>
-                        <GrDocumentPdf />
-                    </IconContext.Provider> */}
         </div>
       </div>
       {showPDF && (
