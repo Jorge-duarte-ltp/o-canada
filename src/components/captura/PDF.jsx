@@ -334,15 +334,11 @@ const PDF = (props) => {
 
             <Text style={styles.RequisitosInfo}>10.- GPS</Text>
             <Text style={styles.RequisitosInfo}>11.- Motobomba Mark III</Text>
-            {state.opera_autonoma_motosierra && (
-              <Text style={styles.RequisitosInfo}>
-                12.- Motosierra Autonoma
-              </Text>
-            )}
+            <Text style={styles.RequisitosInfo}>
+              12.- Motosierra Autonoma
+            </Text>
             {state.tiene_certificado_ingles && (
-              <Text style={styles.RequisitosInfo}>
-                13.- Certificado Ingles
-              </Text>
+              <Text style={styles.RequisitosInfo}>13.- Certificado Ingles</Text>
             )}
           </View>
           <View style={styles.sectionResultados} debug={false}>
@@ -458,25 +454,24 @@ const PDF = (props) => {
                 ? "Realizar la prueba en la Promotoria de su Entidad"
                 : "No Aprobado"}
             </Text>
-            {state.opera_autonoma_motosierra && (
-              <Text
-                style={[
-                  styles.RequisitosEspecial,
-                  state.opera_autonoma_motosierra === '1'
-                    ? aprobadoColor
-                    : reprobadoColor,
-                ]}
-              >
-                {state.opera_autonoma_motosierra === '1'
-                  ? "Realizar la prueba en la Promotoria de su Entidad"
-                  : "No Aprobado"}
-              </Text>
-            )}
+
+            <Text
+              style={[
+                styles.RequisitosEspecial,
+                state.opera_autonoma_motosierra === "1"
+                  ? aprobadoColor
+                  : blackColor,
+              ]}
+            >
+              {state.opera_autonoma_motosierra === "1"
+                ? "Realizar la prueba en la Promotoria de su Entidad"
+                : "No Aplica"}
+            </Text>
             {state.tiene_certificado_ingles && (
               <Text
                 style={[
                   styles.RequisitosEspecial,
-                  state.tiene_certificado_ingles === "1" 
+                  state.tiene_certificado_ingles === "1"
                     ? aprobadoColor
                     : blackColor,
                 ]}
