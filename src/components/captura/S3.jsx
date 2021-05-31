@@ -4,6 +4,7 @@ import SelectSexo from "../../singles/SelectSexo";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import diferenciaFechaDias from "../../helpers/diferenciaFechaDias";
 import { size } from "lodash";
+import SelectSiNo from "../../singles/SelectSiNo";
 const S3 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
 
@@ -307,70 +308,70 @@ const S3 = (props) => {
 
       {/* ¿Padece alguna enfermedad Crónica? */}
       <div className="col-12 col-md-5">
-        <label className="control-label pt-2">¿Padece alguna enfermedad Crónica?</label>
-        <select
+        <label className="control-label pt-2">
+          ¿Padece alguna enfermedad Crónica?
+        </label>
+        <SelectSiNo
           className="form-control myInput"
           name="padece_enfermedad"
           defaultValue={state.padece_enfermedad}
           onChange={setInfo}
           onBlur={revisarFormulario}
-          placeholder="¿Padece alguna enfermedad Crónica?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Qué enfermedad padece? */}
-      <div className="col-12 col-md-7">
-        <label className="control-label pt-2">¿Qué enfermedad padece?</label>
-        <input
-          className="form-control myInput"
-          name="que_enfermedad"
-          onChangeCapture={ToMayus}
-          value={state.que_enfermedad}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="Qué enfermedad padece"
         />
       </div>
 
+      {/* ¿Qué enfermedad padece? */}
+      {state.padece_enfermedad === "1" && (
+        <React.Fragment>
+          <div className="col-12 col-md-7">
+            <label className="control-label pt-2">
+              ¿Qué enfermedad padece?
+            </label>
+            <input
+              className="form-control myInput"
+              name="que_enfermedad"
+              onChangeCapture={ToMayus}
+              value={state.que_enfermedad}
+              onChange={setInfo}
+              onBlur={revisarFormulario}
+              placeholder="Qué enfermedad padece"
+            />
+          </div>
+        </React.Fragment>
+      )}
       {/* ¿Requiere medicamentos de manera permanente? */}
       <div className="col-12 col-md-5">
         <label className="control-label pt-2">
           ¿Requiere medicamentos de manera permanente?
         </label>
-        <select
+        <SelectSiNo
           className="form-control myInput"
           name="requiere_medicamentos_perm"
           defaultValue={state.requiere_medicamentos_perm}
           onChange={setInfo}
           onBlur={revisarFormulario}
-          placeholder="¿Requiere medicamentos de manera permanente?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Requiere medicamentos de manera permanente? */}
-      <div className="col-12 col-md-7">
-        <label className="control-label pt-2">
-          ¿Qué medicamentos requiere de manera permanente?
-        </label>
-        <input
-          className="form-control myInput"
-          name="que_medicamentos"
-          value={state.que_medicamentos}
-          onChange={setInfo}
-          onChangeCapture={ToMayus}
-          onBlur={revisarFormulario}
-          placeholder="¿Qué medicamentos requiere de manera permanente?"
         />
       </div>
 
+      {/* ¿Requiere medicamentos de manera permanente? */}
+      {state.requiere_medicamentos_perm === "1" && (
+        <React.Fragment>
+          <div className="col-12 col-md-7">
+            <label className="control-label pt-2">
+              ¿Qué medicamentos requiere de manera permanente?
+            </label>
+            <input
+              className="form-control myInput"
+              name="que_medicamentos"
+              value={state.que_medicamentos}
+              onChange={setInfo}
+              onChangeCapture={ToMayus}
+              onBlur={revisarFormulario}
+              placeholder="¿Qué medicamentos requiere de manera permanente?"
+            />
+          </div>
+        </React.Fragment>
+      )}
       {/* ¿Experimentó dolor, incomodidad o presión en el pecho? */}
       <div className="col-12">
         <label className="control-label pt-2">

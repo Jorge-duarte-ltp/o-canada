@@ -462,12 +462,12 @@ const PDF = (props) => {
               <Text
                 style={[
                   styles.RequisitosEspecial,
-                  state.opera_autonoma_motosierra
+                  state.opera_autonoma_motosierra === '1'
                     ? aprobadoColor
                     : reprobadoColor,
                 ]}
               >
-                {state.opera_autonoma_motosierra
+                {state.opera_autonoma_motosierra === '1'
                   ? "Realizar la prueba en la Promotoria de su Entidad"
                   : "No Aprobado"}
               </Text>
