@@ -52,6 +52,7 @@ export const SelectTallasPantalon = (props) => {
       <option value={7}>32</option>
       <option value={8}>34</option>
       <option value={9}>36</option>
+      <option value={60}>38</option>
     </select>
   );
 };

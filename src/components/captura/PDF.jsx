@@ -331,15 +331,9 @@ const PDF = (props) => {
               8.- Capacidad para comunicarse en inglés
             </Text>
             <Text style={styles.RequisitosInfo}>9.- Liderazgo</Text>
-
             <Text style={styles.RequisitosInfo}>10.- GPS</Text>
             <Text style={styles.RequisitosInfo}>11.- Motobomba Mark III</Text>
-            <Text style={styles.RequisitosInfo}>
-              12.- Motosierra Autonoma
-            </Text>
-            {state.tiene_certificado_ingles && (
-              <Text style={styles.RequisitosInfo}>13.- Certificado Ingles</Text>
-            )}
+            <Text style={styles.RequisitosInfo}>12.- Motosierra Autonoma</Text>
           </View>
           <View style={styles.sectionResultados} debug={false}>
             <Text
@@ -414,18 +408,28 @@ const PDF = (props) => {
               {sections.buena_conducta ? "Aprobado" : "No Aprobado"}
             </Text>
             {/*<Text style={[styles.RequisitosInfo, (sections.disponibilidad_en_condiciones_ambientales_adversas) ? aprobadoColor : reprobadoColor]}>{(sections.disponibilidad_en_condiciones_ambientales_adversas) ? 'Aprobado' : 'No Aprobado'}</Text>*/}
-            <Text
-              style={[
-                styles.RequisitosInfo,
-                idioma === "Aprobado"
-                  ? aprobadoColor
-                  : state.posicion_candidato !== "tecnico"
-                  ? blackColor
-                  : reprobadoColor,
-              ]}
-            >
-              {state.posicion_candidato !== "tecnico" ? "No Aplica" : idioma}
-            </Text>
+            {state.tiene_certificado_ingles ? (
+              <Text
+                style={[
+                  styles.RequisitosEspecial,
+                  state.tiene_certificado_ingles === "1"
+                    ? aprobadoColor
+                    : blackColor,
+                ]}
+              >
+                {state.tiene_certificado_ingles === "1"
+                  ? "Aceptado"
+                  : "Sin Certificado"}
+              </Text>
+            ) : (
+              <Text
+                style={[
+                  styles.RequisitosEspecial,blackColor,
+                ]}
+              >
+                {"No Aplica"}
+              </Text>
+            )}
             <Text
               style={[
                 styles.RequisitosInfo,
@@ -467,20 +471,6 @@ const PDF = (props) => {
                 ? "Realizar la prueba en la Promotoria de su Entidad"
                 : "No Aplica"}
             </Text>
-            {state.tiene_certificado_ingles && (
-              <Text
-                style={[
-                  styles.RequisitosEspecial,
-                  state.tiene_certificado_ingles === "1"
-                    ? aprobadoColor
-                    : blackColor,
-                ]}
-              >
-                {state.tiene_certificado_ingles === "1"
-                  ? "Aceptado"
-                  : "Sin Certificado"}
-              </Text>
-            )}
           </View>
 
           {/* NOTAS pie de pagina */}

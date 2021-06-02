@@ -147,7 +147,7 @@ const S7 = (props) => {
               presentación de toallitas, 4 cubre bocas, gel antibacterial
               (mínimo 100 m)l, repelente para mosquitos, 2 gasas de 10X10, 1
               venda elástica de 10 cm, 1 cinta adhesiva, 1 par de guantes de
-              látex, Pastillas para (dolor, vómito, diarrea))
+              látex, Pastillas para (dolor, vómito, diarrea), 4 cubrebocas negros)
             </li>
             <li>
               <b>Recipientes para agua</b> (De plástico o metal con los cuales
@@ -192,12 +192,6 @@ const S7 = (props) => {
             <li>
               <b>Sleeping pad</b> (Tapete para dormir aislante, ligero y
               resistente)
-            </li>
-            <li>
-              <b>Sudadera con capucha negra</b>
-            </li>
-            <li>
-              <b>4 cubrebocas negros</b>
             </li>
           </ul>
 

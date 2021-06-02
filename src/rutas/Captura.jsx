@@ -1058,7 +1058,7 @@ const Captura = () => {
       /* si es jefe de brigada o tecnico, debe tener las variables de idioma */
       if (
         !nivel_ingles ||
-        !tiene_certificado_ingles ||
+        !tiene_certificado_ingles === ""  ||
         (tiene_certificado_ingles === "1" &&
           (!toeic_toefl ||
             !examen_toeic_toefl_punt ||
