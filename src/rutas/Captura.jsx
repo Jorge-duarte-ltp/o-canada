@@ -110,8 +110,8 @@ const Captura = () => {
       talla_pantalon,
       talla_gorras,
       talla_botas,
-      nombre_banco,
-      clabe_interbancaria,
+      // nombre_banco,
+      // clabe_interbancaria,
     } = infoBrigadista;
     /* que no falte ningun dato */
     if (
@@ -144,8 +144,8 @@ const Captura = () => {
       !talla_pantalon ||
       !talla_gorras ||
       !talla_botas ||
-      !nombre_banco ||
-      !clabe_interbancaria ||
+       /*!nombre_banco || */
+      /* !clabe_interbancaria || */
       !archivos.fotografia_fl ||
       !archivos.curp_archivo_fl
     ) {
@@ -165,12 +165,12 @@ const Captura = () => {
     if (!emailValid(correo_electronico) || !emailValid(correo_beneficiario)) {
       AlertError("Los correos estan mal estructurados");
       return;
-    }
-
-    if (size(clabe_interbancaria) < 18) {
-      AlertError("El numero de cuenta clabe debe ser igual a 18 digitos");
-      return;
-    }
+    } 
+    // cuenta bancaria
+    // if (size(clabe_interbancaria) < 18) {
+    //   AlertError("El numero de cuenta clabe debe ser igual a 18 digitos");
+    //   return;
+    // }
 
     // SE AGREGA A CONTEXT
     candidatos.candidatos.agregarCandidato({

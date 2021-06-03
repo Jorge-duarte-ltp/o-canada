@@ -642,7 +642,7 @@ const S1 = (props) => {
       </div>
 
       {/* Nombre del banco */}
-      <div className="col-12 col-md-6">
+      {/* <div className="col-12 col-md-6">
         <label className="control-label pt-2">Nombre del banco</label>
         <SelectBancos
           className={`form-control ${state.nombre_banco ? null : "myInput"}`}
@@ -650,10 +650,10 @@ const S1 = (props) => {
           defaultValue={state.nombre_banco}
           onChange={setInfo}
         />
-      </div>
+      </div> */}
 
       {/* Clabe de la cuenta */}
-      <div className="col-12 col-md-6">
+      {/* <div className="col-12 col-md-6">
         <label className="control-label pt-2">Clabe de la cuenta</label>
         <input
           className={`form-control ${
@@ -667,7 +667,7 @@ const S1 = (props) => {
           minLength={18}
           placeholder="Ingrese numero de clabe de la cuenta..."
         />
-      </div>
+      </div> */}
 
       {/* BTN Continuar */}
       <div className="col-12 pt-5 btn-margin">

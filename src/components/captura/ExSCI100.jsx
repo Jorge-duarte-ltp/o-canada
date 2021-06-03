@@ -65,7 +65,8 @@ const SCI100 = (props) => {
 
             {/* 4.¿Qué significan las siglas SCI en el Programa de Manejo del Fuego?*/}
             <div className='col-12'>
-                <label className="control-label pt-2">4. La primera tarea del personal de respuesta después de ser despachado y al arribar al sitio del incidente, donde ya lo atiende un Comandante de Incidente, es:</label>
+                
+                <label className="control-label pt-2">4. ¿Qué significan las siglas SCI en el Programa de Manejo del Fuego? </label>
                 <select
                     className="form-control myInput"
                     name='4_primera_tarea_personal'
@@ -289,7 +290,7 @@ const SCI100 = (props) => {
             {/* 17. ¿Quién generalmente facilita la Sesión Informativa del periodo operacional? */}
             <div className='col-12'>
 
-                <label className="control-label pt-2">17. Formato en el cual se encuentran el nombre y distancia de los hospitales cercanos al incidente</label>
+                <label className="control-label pt-2"> 17. ¿Quién generalmente facilita la Sesión Informativa del periodo operacional?</label>
                 <select
                     className="form-control myInput"
                     name='17_formato_hospitales'
