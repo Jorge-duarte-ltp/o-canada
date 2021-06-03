@@ -13,8 +13,9 @@ const S190 = (props) => {
   }
   return (
     <div className='row'>
-      {/* 1. Las siguientes corresponden a las partes del incendio: */}
+      {/* 1.	Es una definición de zona de seguridad */}
       <div className='col-12'>
+
         <label className="control-label pt-2">1. Las siguientes corresponden a las partes del incendio:</label>
         <select
           className="form-control myInput"
@@ -23,16 +24,16 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Cola, origen, flancos, dedos, línea de control.</option>
-          <option value='b'>b) Bolsa, cola, origen, flancos, dedos.</option>
-          <option value='c'>c) Isla, línea de fuego, origen, focos secundarios.</option>
-          <option value='d'>d) Línea en retroceso, bolsas, perímetro del incendio, isla.</option>
+          <option value='a'>a) Un lugar donde las y los combatientes pueden encontrar todo lo necesario.</option>
+          <option value='b'>b) Un lugar donde las y los combatientes pueden estar siempre</option>
+          <option value='c'>c) Un lugar donde las y los combatientes pueden encontrar refugio del peligro</option>
+          <option value='d'>d) Un lugar que no existe en los incendios</option>
         </select>
       </div>
 
-      {/* 2. Los siguientes, son elementos que componen el triángulo del fuego: */}
+      {/*  2.	¿Por qué deben de mantener el personal combatiente por lo menos 2 metros o más de separación al caminar o trabajar juntos en la línea? */}
       <div className='col-12'>
-        <label className="control-label pt-2">2. Los siguientes, son elementos que componen el triángulo del fuego:</label>
+        <label className="control-label pt-2"> 2.	¿Por qué deben de mantener el personal combatiente por lo menos 2 metros o más de separación al caminar o trabajar juntos en la línea? </label>
         <select
           className="form-control myInput"
           name='2_triangulo_fuego'
@@ -40,16 +41,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Tiempo atmosférico, topografía, calor.</option>
-          <option value='b'>b) Oxígeno, combustibles, topografía.</option>
-          <option value='c'>c) Calor, combustibles, oxígeno.</option>
-          <option value='d'>d) Ignición, combustibles, tiempo atmosférico.</option>
+          <option value='a'>a) Porque así se abarca más espacio.</option>
+          <option value='b'>b) Porque se llega más rápido si no hay obstáculos.</option>
+          <option value='c'>c) Para evitar lastimar a nuestros compañeros con la herramienta.</option>
+          <option value='d'>d) Porque en el bosque hay mucho espacio y no hay necesidad de andar muy juntos.</option>
         </select>
       </div>
 
-      {/* 3. ¿Qué es más importante en el comportamiento del fuego? */}
+      {/* 3.	Al abordar un helicóptero usted debe: */}
       <div className='col-12'>
-        <label className="control-label pt-2">3. ¿Qué es más importante en el comportamiento del fuego?</label>
+
+        <label className="control-label pt-2">3.	Al abordar un helicóptero usted debe:</label>
         <select
           className="form-control myInput"
           name='3_comportamiento_fuego'
@@ -57,16 +59,20 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) La cantidad de combustible total.</option>
-          <option value='b'>b) La cantidad de combustible disponible.</option>
-          <option value='c'>c) El número de combatientes.</option>
-          <option value='d'>d) El clima.</option>
+          <option value='a'>a) Acercarse cuando el piloto o el miembro de la brigada helitransportada se lo indique.</option>
+          <option value='b'>b) Acercarse desde la cola del helicóptero.</option>
+          <option value='c'>c) Puede abordar sin ser guiado.</option>
+          <option value='d'>d) Todas las respuestas aplican.</option>
         </select>
       </div>
 
-      {/* 4. Estar de noche en terreno desconocido es: */}
+      {/* 4.	La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada. */}
       <div className='col-12'>
-        <label className="control-label pt-2">4. Estar de noche en terreno desconocido es:</label>
+      4.	La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada. 
+a.	Verdadero 
+b.	Falso 
+
+        <label className="control-label pt-2">4.	La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada.</label>
         <select
           className="form-control myInput"
           name='4_terreno_desconocido'
@@ -74,15 +80,15 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Una situación que grita ¡cuidado!</option>
-          <option value='b'>b) Una norma de combate.</option>
-          <option value='c'>c) Todas las anteriores.</option>
+          <option value='a'>a) Verdadero</option>
+          <option value='b'>b) Falso</option>
         </select>
       </div>
 
-      {/* 5. ¿Qué es lo más importante en el combate de incendios? */}
+      {/* 5.	Seleccione la “Norma de Combate” en que se hace referencia a considerar el Comportamiento de Fuego: */}
       <div className='col-12'>
-        <label className="control-label pt-2">5. ¿Qué es lo más importante en el combate de incendios?</label>
+
+        <label className="control-label pt-2">5.	Seleccione la “Norma de Combate” en que se hace referencia a considerar el Comportamiento de Fuego:</label>
         <select
           className="form-control myInput"
           name='5_combate_incendios'
@@ -90,15 +96,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Apagarlo lo más pronto posible y salvar más áreas forestales.</option>
-          <option value='b'>b) Evitar que se propague a una zona urbana.</option>
-          <option value='c'>c) La seguridad del personal que está trabajando en el incendio.</option>
+          <option value='a'>a) Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
+          <option value='b'>b) Norma 10. Combata el incendio agresivamente, habiendo provisto primero la seguridad.</option>
+          <option value='c'>c) Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.</option>
+          <option value='d'>d) Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
         </select>
       </div>
 
-      {/* 6. ¿Qué significa VCRZ? */}
+      {/* 6.	¿Cuáles son tres factores del tiempo atmosférico son los más importantes para el personal combatiente?  */}
       <div className='col-12'>
-        <label className="control-label pt-2">6. ¿Qué significa VCRZ?</label>
+
+        <label className="control-label pt-2">6.	¿Cuáles son tres factores del tiempo atmosférico son los más importantes para el personal combatiente? </label>
         <select
           className="form-control myInput"
           name='6_significa_vcrz'
@@ -106,16 +114,18 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) VERACRUZ.</option>
-          <option value='b'>b) Vigías, Cargadores, Retos y Zonas de Seguridad.</option>
-          <option value='c'>c) Vías, Comunicadores, Ríos y Zonas.</option>
-          <option value='d'>d) Vigilantes, Comunicaciones, Rutas de Escape y Zonas de Seguridad.</option>
+          <option value='a'>a) Los combustibles, pendiente y topografía.</option>
+          <option value='b'>b) Altitud sobre el nivel del mar, exposición y tipo de suelo.</option>
+          <option value='c'>c) Temperatura, humedad relativa y viento.</option>
+          <option value='d'>d) Estación del año, latitud y longitud.</option>
         </select>
       </div>
 
-      {/* 7. ¿Qué es la carga de combustible? */}
+      {/*       7.	Difícil acceso y una vía angosta y congestionada, casas ubicadas en zonas de chimenea, cañones angostos, puertos o sobre pendientes inclinadas, límite de carga en los puentes, combustibles naturales cercanos a 10 metros de casas y evacuación del público; son ejemplos de… 
+ */}
       <div className='col-12'>
-        <label className="control-label pt-2">7. ¿Qué es la carga de combustible?</label>
+  
+        <label className="control-label pt-2">7.	Difícil acceso y una vía angosta y congestionada, casas ubicadas en zonas de chimenea, cañones angostos, puertos o sobre pendientes inclinadas, límite de carga en los puentes, combustibles naturales cercanos a 10 metros de casas y evacuación del público; son ejemplos de… </label>
         <select
           className="form-control myInput"
           name='7_carga_combustible'
@@ -123,15 +133,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Cantidad de combustible en un área expresado en ton/ha.</option>
-          <option value='b'>b) Lo que pesa un árbol o un arbusto.</option>
-          <option value='c'>c) La madera que se pueda aprovechar en un bosque.</option>
+          <option value='a'>a) Cosas que existen en las ciudades.</option>
+          <option value='b'>b) Normas de seguridad en incendios forestales.</option>
+          <option value='c'>c) Condiciones de alerta en zonas de interfase urbana/forestal.</option>
+          <option value='d'>d) Situaciones que hay que observar para los helicópteros.</option>
         </select>
       </div>
 
-      {/* 8. Una línea de control son todas las barreras del fuego, construidas o naturales y aquellas en las que se han tratado los bordes del fuego para controlarlo. */}
+      {/* 8.	Seleccione la “Norma de Combate” en que se hace referencia a considerar la Organización y Control de la brigada: */}
       <div className='col-12'>
-        <label className="control-label pt-2">8. Una línea de control son todas las barreras del fuego, construidas o naturales y aquellas en las que se han tratado los bordes del fuego para controlarlo.</label>
+
+        <label className="control-label pt-2">8.	Seleccione la “Norma de Combate” en que se hace referencia a considerar la Organización y Control de la brigada:</label>
         <select
           className="form-control myInput"
           name='8_linea_control'
@@ -139,14 +151,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Verdadero.</option>
-          <option value='b'>b) Falso.</option>
+          <option value='a'>a) Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
+          <option value='b'>b) Norma 10. Combata el incendio agresivamente, habiendo provisto primero la seguridad.</option>
+          <option value='c'>c) Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.</option>
+          <option value='d'>d) Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
         </select>
       </div>
 
       {/* 9. Movimiento del incendio, expresado en longitud por unidad de tiempo */}
       <div className='col-12'>
-        <label className="control-label pt-2">9. Movimiento del incendio, expresado en longitud por unidad de tiempo</label>
+
+        <label className="control-label pt-2">9.	La parte del incendio que está quemando de manera más intensa y con mayor propagación es generalmente llamada:</label>
         <select
           className="form-control myInput"
           name='9_movimiento_incendio'
@@ -154,16 +169,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Intensidad calorífica.</option>
-          <option value='b'>b) Propagación.</option>
-          <option value='c'>c) Radiación.</option>
-          <option value='d'>d) Contrafuego.</option>
+          <option value='a'>a) Cabeza.</option>
+          <option value='b'>b) Flanco.</option>
+          <option value='c'>c) Dedo.</option>
+          <option value='d'>d) cola.</option>
         </select>
       </div>
 
-      {/* 10. Es la fuente de energía que conduce el incendio. */}
+      {/* 10.	¿Cuáles son los tres métodos de transferencia de calor? */}
       <div className='col-12'>
-        <label className="control-label pt-2">10. Es la fuente de energía que conduce el incendio.</label>
+    
+        <label className="control-label pt-2">10.	¿Cuáles son los tres métodos de transferencia de calor?</label>
         <select
           className="form-control myInput"
           name='10_conduce_incendio'
@@ -171,19 +187,53 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Oxigeno.</option>
-          <option value='b'>b) Combustible.</option>
-          <option value='c'>c) Topografía.</option>
-          <option value='d'>d) Calor.</option>
+          <option value='a'>a) Pavesas, Tiempo Atmosférico, Calor.</option>
+          <option value='b'>b) Combustibles, Organización y Seguridad.</option>
+          <option value='c'>c) Radiación, Convección y Conducción.</option>
         </select>
       </div>
 
-      {/* 11. La topografía es el elemento más variable de la gran triada. */}
+      {/* 11.	¿Cuáles son los tres elementos del triángulo de fuego? */}
       <div className='col-12'>
-        <label className="control-label pt-2">11. La topografía es el elemento más variable de la gran triada.</label>
+  
+        <label className="control-label pt-2">11.	¿Cuáles son los tres elementos del triángulo de fuego?</label>
         <select
           className="form-control myInput"
           name='11_topografia_elemento'
+          type=''
+          onChange={setInfo}
+        >
+          <option value='x' >---Seleccione---</option>
+          <option value='a'>a) Calor, Oxígeno y Combustibles.</option>
+          <option value='b'>b) Combustibles, Tiempo Atmosférico y Seguridad.</option>
+          <option value='c'>c) Radiación, Convección y Conducción</option>
+        </select>
+      </div>
+
+      {/* 12.	¿Qué sucede cuando el oxígeno es eliminado del triángulo de fuego? */}
+      <div className='col-12'>
+
+        <label className="control-label pt-2">12.	¿Qué sucede cuando el oxígeno es eliminado del triángulo de fuego?</label>
+        <select
+          className="form-control myInput"
+          name='12_elemento_variable'
+          type=''
+          onChange={setInfo}
+        >
+          <option value='x' >---Seleccione---</option>
+          <option value='a'>a) No pasa nada</option>
+          <option value='b'>b) El fuego se extingue por sofocación</option>
+          <option value='c'>c) El comportamiento del fuego se hace más intenso</option>
+        </select>
+      </div>
+
+      {/*  13. Una exposición norte tendrá más actividad de fuego que una exposición sur. */}
+      <div className='col-12'>
+      
+        <label className="control-label pt-2"> 13. Una exposición norte tendrá más actividad de fuego que una exposición sur.</label>
+        <select
+          className="form-control myInput"
+          name='13_referente_combustible'
           type=''
           onChange={setInfo}
         >
@@ -193,43 +243,10 @@ const S190 = (props) => {
         </select>
       </div>
 
-      {/* 12. Este elemento es variable, a lo largo del tiempo y en el espacio, varía por razones como: estación del año, humedad, temperatura y altitud. */}
+      {/* 14. La disposición de combustible aéreo describe que: */}
       <div className='col-12'>
-        <label className="control-label pt-2">12. Este elemento es variable, a lo largo del tiempo y en el espacio, varía por razones como: estación del año, humedad, temperatura y altitud.</label>
-        <select
-          className="form-control myInput"
-          name='12_elemento_variable'
-          type=''
-          onChange={setInfo}
-        >
-          <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Oxigeno</option>
-          <option value='b'>b) Combustible</option>
-          <option value='c'>c) Topografía</option>
-          <option value='d'>d) Calor</option>
-        </select>
-      </div>
-
-      {/* 13. Referente al combustible, el elemento más importante para pronosticar el comportamiento del fuego es: */}
-      <div className='col-12'>
-        <label className="control-label pt-2">13. Referente al combustible, el elemento más importante para pronosticar el comportamiento del fuego es:</label>
-        <select
-          className="form-control myInput"
-          name='13_referente_combustible'
-          type=''
-          onChange={setInfo}
-        >
-          <option value='x' >---Seleccione---</option>
-          <option value='a'>a) La carga total del combustible.</option>
-          <option value='b'>b) El combustible disponible.</option>
-          <option value='c'>c) Las altas temperaturas.</option>
-          <option value='d'>d) El Clima.</option>
-        </select>
-      </div>
-
-      {/* 14. Cuál de los tipos de combustibles responden más rápido a la humedad relativa */}
-      <div className='col-12'>
-        <label className="control-label pt-2">14. Cuál de los tipos de combustibles responden más rápido a la humedad relativa</label>
+      
+        <label className="control-label pt-2">14. La disposición de combustible aéreo describe que:</label>
         <select
           className="form-control myInput"
           name='14_tipos_combustible'
@@ -237,16 +254,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Combustibles de 100 horas.</option>
-          <option value='b'>b) Combustibles de 10 horas.</option>
-          <option value='c'>c) Combustibles de 1 horas.</option>
-          <option value='d'>d) Combustible de 1,000 horas.</option>
+          <option value='a'>a) El combustible es todo material inflamable ubicado debajo de la superficie.</option>
+          <option value='b'>b) El combustible es todo material inflamable ubicado en ó sobre el suelo.</option>
+          <option value='c'>c) El combustible que ayuda la propagación del incendio desde la superficie del suelo hacia las copas.</option>
+          <option value='d'>d) El combustible es todo material vivo y muerto ubicado en las copas superiores.</option>
         </select>
       </div>
 
-      {/* 15. La cantidad de agua en un combustible, expresado como porcentaje del peso del combustible secado en un horno. */}
+      {/* 15. Seleccione los tres indicadores que señalan que el comportamiento del fuego va en aumento: */}
       <div className='col-12'>
-        <label className="control-label pt-2">15. La cantidad de agua en un combustible, expresado como porcentaje del peso del combustible secado en un horno.</label>
+
+        <label className="control-label pt-2">15. Seleccione los tres indicadores que señalan que el comportamiento del fuego va en aumento:</label>
         <select
           className="form-control myInput"
           name='15_agua_combustible'
@@ -254,15 +272,16 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Humedad del combustible.</option>
-          <option value='b'>b) Humedad relativa.</option>
-          <option value='c'>c) Índice de secado.</option>
+          <option value='a'>a) Combustibles, Antorchas y Oxígeno.</option>
+          <option value='b'>b) Llamaradas, Coronamiento y Atmósfera estable.</option>
+          <option value='c'>c) Aumento en la velocidad de propagación, Focos secundarios y aumento de humedad relativa.</option>
         </select>
       </div>
 
-      {/* 16. Existen principalmente cuatro denominadores comunes en el comportamiento de incendios fatales y casi fatales. Estos incendios ocurren comúnmente: */}
+      {/* 16.  ¿Qué factor influye en la propagación del fuego más que cualquier otro? */}
       <div className='col-12'>
-        <label className="control-label pt-2">16. Existen principalmente cuatro denominadores comunes en el comportamiento de incendios fatales y casi fatales. Estos incendios ocurren comúnmente:</label>
+  
+        <label className="control-label pt-2">16.  ¿Qué factor influye en la propagación del fuego más que cualquier otro?</label>
         <select
           className="form-control myInput"
           name='16_denominadores_comunes'
@@ -270,17 +289,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) En incendios relativamente pequeños o en áreas aisladas de incendios grandes.</option>
-          <option value='b'>b) En combustibles ligeros, tales como pastos, hierbas y matorral  ligero.</option>
-          <option value='c'>c) Cuando el incendio responde a las condiciones topográficas y se propaga cuesta arriba.</option>
-          <option value='d'>d) Cuando hay un cambio inesperado en la dirección o en la velocidad del viento.</option>
-          <option value='e'>e) Todos los anteriores.</option>
+          <option value='a'>a) El Comportamiento del Fuego.</option>
+          <option value='b'>b) El Viento.</option>
+          <option value='c'>c) La Topografía.</option>
+          <option value='d'>d) La Humedad Relativa.</option>
         </select>
       </div>
 
-      {/* 17. Son lugares donde el combatiente que está en peligro puede encontrar refugio */}
+      {/* 17. Seleccione la “Norma de Combate” en que se hace referencia a considerar la Seguridad en la Línea de Fuego: */}
       <div className='col-12'>
-        <label className="control-label pt-2">17. Son lugares donde el combatiente que está en peligro puede encontrar refugio</label>
+
+        <label className="control-label pt-2">17. Seleccione la “Norma de Combate” en que se hace referencia a considerar la Seguridad en la Línea de Fuego:</label>
         <select
           className="form-control myInput"
           name='17_lugares_combatiente'
@@ -288,17 +307,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Rutas de escape.</option>
-          <option value='b'>b) Área de espera.</option>
-          <option value='c'>c) Zonas de seguridad.</option>
-          <option value='d'>d) Puesto de mando.</option>
-          <option value='e'>e) Todas las anteriores.</option>
+          <option value='a'>a) Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
+          <option value='b'>b) Norma 3. Base toda acción en el comportamiento actual y futuro del incendio.</option>
+          <option value='c'>c) Norma 8. Dar instrucciones claras y asegurarse que han sido entendidas.</option>
+          <option value='d'>d) Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
         </select>
       </div>
 
-      {/* 18. Es el nivel mínimo de control de peligro que  debe estar establecido antes de tomar la decisión de combatir incendio. */}
+      {/* 18. Seleccione la “Situación que Grita Cuidado” que se presenta cuando al llegar al incendio, la brigada inmediatamente entra al terreno y combate realizando ataque directo: */}
       <div className='col-12'>
-        <label className="control-label pt-2">18. Es el nivel mínimo de control de peligro que  debe estar establecido antes de tomar la decisión de combatir incendio.</label>
+
+        <label className="control-label pt-2">18. Seleccione la “Situación que Grita Cuidado” que se presenta cuando al llegar al incendio, la brigada inmediatamente entra al terreno y combate realizando ataque directo:</label>
         <select
           className="form-control myInput"
           name='18_nivel_minimo'
@@ -306,16 +325,17 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Mirar arriba, abajo y a los lados.</option>
-          <option value='b'>b) VCRZ.</option>
-          <option value='c'>c) 18 situaciones que gritan cuidado.</option>
-          <option value='d'>d) 10 normas de combate.</option>
+          <option value='a'>a) Frecuentes focos secundarios al otro lado de la línea de control..</option>
+          <option value='b'>b) El incendio no ha sido explorado o evaluado.</option>
+          <option value='c'>c) Existe combustible no quemado entre usted y el incendio.</option>
+          <option value='d'>d) Manténgase alerta, en calma, piense claramente y actúe con decisión.</option>
         </select>
       </div>
 
-      {/* 19. Acción de conocer directamente en el lugar, qué es lo que está sucediendo a fin de actuar en consecuencia. */}
+      {/* 19. ¿Qué incluyen los peligros de tormentas respecto del comportamiento de un incendio forestal? */}
       <div className='col-12'>
-        <label className="control-label pt-2">19. Acción de conocer directamente en el lugar, qué es lo que está sucediendo a fin de actuar en consecuencia.</label>
+      
+        <label className="control-label pt-2">19. ¿Qué incluyen los peligros de tormentas respecto del comportamiento de un incendio forestal?</label>
         <select
           className="form-control myInput"
           name='19_accion_conocer'
@@ -323,15 +343,16 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Reconocimiento.</option>
-          <option value='b'>b) Evaluacion.</option>
-          <option value='c'>c) Planificación.</option>
+          <option value='a'>a) Fuertes vientos.</option>
+          <option value='b'>b) Relámpagos.</option>
+          <option value='c'>c) Comportamiento de fuego irregular.</option>
+          <option value='d'>d) Todas las opciones son correctas.</option>
         </select>
       </div>
 
-      {/* 20. Es la cantidad de humedad en el aire expresada en porcentaje */}
+      {/* 20.	¿En qué tipo de combustible, el contenido de humedad, es el más afectado por un cambio de humedad relativa? */}
       <div className='col-12'>
-        <label className="control-label pt-2">20. Es la cantidad de humedad en el aire expresada en porcentaje</label>
+        <label className="control-label pt-2">20.	¿En qué tipo de combustible, el contenido de humedad, es el más afectado por un cambio de humedad relativa?</label>
         <select
           className="form-control myInput"
           name='20_cantidad_humedad'
@@ -339,9 +360,10 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Humedad del combustible.</option>
-          <option value='b'>b) Humedad relativa.</option>
-          <option value='c'>c) Precipitación.</option>
+          <option value='a'>a) Pasto.</option>
+          <option value='b'>b) Arbusto.</option>
+          <option value='c'>c) Residuos de Bosques.</option>
+          <option value='c'>c) Desechos de Aprovechamiento.</option>
         </select>
       </div>
 

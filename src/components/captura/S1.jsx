@@ -108,7 +108,7 @@ const S1 = (props) => {
         motivo_rechazo: "candidato menor de edad",
       });
     }
-    if (anios > 50) {
+    if (anios > 55) {
       setState({ ...state, posicion_candidato: "tecnico" });
       setTecnico(true);
     } else {

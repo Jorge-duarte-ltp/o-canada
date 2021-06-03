@@ -12,9 +12,9 @@ const SCI100 = (props) => {
     }
     return (
         <div className='row'>
-            {/* 1. Para asegurar la comunicación eficaz y clara, el SCI requiere el uso de: */}
+            {/* 1. Mando es: */}
             <div className='col-12'>
-                <label className="control-label pt-2">1. Para asegurar la comunicación eficaz y clara, el SCI requiere el uso de:</label>
+                <label className="control-label pt-2">1. Mando es:</label>
                 <select
                     className="form-control myInput"
                     name='1_asegurar_comunicacion'
@@ -22,16 +22,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Claves de Radio.</option>
-                    <option value='b'>b) Códigos específicos de la Dependencia-Instancia.</option>
-                    <option value='c'>c) Terminología común.</option>
-                    <option value='d'>d) Lenguaje técnico.</option>
+                    <option value='a'>a) La habilidad de controlar el intercambio de información dentro y entre las organizaciones involucradas en el incidente.</option>
+                    <option value='b'>b) La atribución de dirigir, ordenar y/o controlar recursos.</option>
+                    <option value='c'>c) Basado en el número de individuos o recursos que un solo supervisor puede manejar eficientemente durante un incidente.</option>
+                    <option value='d'>d) Asumido por el individuo con el rango laboral más alto en el sitio del incidente sin importar la experiencia  o nivel de entrenamiento.</option>
                 </select>
             </div>
 
-            {/* 2. Usted está implementando las actividades tácticas para lograr los objetivos del incidente. ¿Cuál es el título del puesto correcto del elemento organizacional del SCI en el cual usted está asignado? */}
+            {/* 2. ¿Cuál función del SCI registra tiempos, la contabilidad y compras de los artículos necesarios?  */}
             <div className='col-12'>
-                <label className="control-label pt-2">2. Usted está implementando las actividades tácticas para lograr los objetivos del incidente. ¿Cuál es el título del puesto correcto del elemento organizacional del SCI en el cual usted está asignado?</label>
+                <label className="control-label pt-2">2. ¿Cuál función del SCI registra tiempos, la contabilidad y compras de los artículos necesarios?  </label>
                 <select
                     className="form-control myInput"
                     name='2_implementando_actividades'
@@ -39,16 +39,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Sección de Tácticas.</option>
-                    <option value='b'>b) Sección de Operaciones.</option>
-                    <option value='c'>c) Sección de Planificación.</option>
-                    <option value='d'>d) División de Planificación.</option>
+                    <option value='a'>a) Operaciones.</option>
+                    <option value='b'>b) Comando de Incidente.</option>
+                    <option value='c'>c) Planificación.</option>
+                    <option value='d'>d) Finanzas/Administración</option>
                 </select>
             </div>
 
-            {/* 3. Las actividades principales de la Sección de Planificación incluyen: */}
+            {/* 3. ¿Quién tiene la responsabilidad total de manejar el incidente en el sitio? */}
             <div className='col-12'>
-                <label className="control-label pt-2">3. Las actividades principales de la Sección de Planificación incluyen:</label>
+                <label className="control-label pt-2">3. ¿Quién tiene la responsabilidad total de manejar el incidente en el sitio?</label>
                 <select
                     className="form-control myInput"
                     name='3_actividades_principales'
@@ -56,14 +56,14 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Proporcionar la tecnología para asegurar la comunicación eficaz del incidente.</option>
-                    <option value='b'>b) Establece y mantiene las instalaciones del incidente.</option>
-                    <option value='c'>c) Prepara y documenta los Planes de Acción del Incidente (PAI).</option>
-                    <option value='d'>d) Pagar o compensar las lesiones y daños ocasionados a la propiedad Privada por acciones de Combate.</option>
+                    <option value='a'>a) Comandante (s) del Incidente.</option>
+                    <option value='b'>b) Ejecutivo de la Dependencia/institución</option>
+                    <option value='c'>c) Manejador del Centro de Operaciones de Emergencia.</option>
+                    <option value='d'>d) Jefe de la Sección de Operaciones.</option>
                 </select>
             </div>
 
-            {/* 4. La primera tarea del personal de respuesta después de ser despachado y al arribar al sitio del incidente, donde ya lo atiende un Comandante de Incidente, es: */}
+            {/* 4.¿Qué significan las siglas SCI en el Programa de Manejo del Fuego?*/}
             <div className='col-12'>
                 <label className="control-label pt-2">4. La primera tarea del personal de respuesta después de ser despachado y al arribar al sitio del incidente, donde ya lo atiende un Comandante de Incidente, es:</label>
                 <select
@@ -73,16 +73,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Buscar los posibles sobrevivientes del incidente.</option>
-                    <option value='b'>b) Registrarse y recibir una asignación.</option>
-                    <option value='c'>c) Ubicar y asistir al personal asignado.</option>
-                    <option value='d'>d) Registrar y reportar la asignación del recurso.</option>
+                    <option value='a'>a) Sistema de Calificación Integral.</option>
+                    <option value='b'>b) Sistema de Comando de Incidentes.</option>
+                    <option value='c'>c) Sistema de Comunicación Internacional. </option>
+                    <option value='d'>d) Sistema de Certificación de Incidentes.</option>
                 </select>
             </div>
 
-            {/* 5. ¿Cuál es la instalación del incidente donde el personal y el equipo se mantienen en espera para recibir asignaciones tácticas? */}
+            {/*    5. ¿Cuál es el rango óptimo de Alcance de Control? */}
             <div className='col-12'>
-                <label className="control-label pt-2">5. ¿Cuál es la instalación del incidente donde el personal y el equipo se mantienen en espera para recibir asignaciones tácticas?</label>
+                <label className="control-label pt-2">  5. ¿Cuál es el rango óptimo de Alcance de Control?</label>
                 <select
                     className="form-control myInput"
                     name='5_instalacion_incidente'
@@ -90,16 +90,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Puesto del Mando el Incidente.</option>
-                    <option value='b'>b) Base.</option>
-                    <option value='c'>c) Campamento.</option>
-                    <option value='d'>d) Área de Espera.</option>
+                    <option value='a'>a) 1 a 5.</option>
+                    <option value='b'>b) 1 a 3.</option>
+                    <option value='c'>c) 1 a 7.</option>
+                    <option value='d'>d) 1 a 10.</option>
                 </select>
             </div>
 
-            {/* 6. La diferencia entre un Equipo de Intervención y una Fuerza de Tarea es: */}
+            {/*   6. ¿Qué significa desmovilización? */}
             <div className='col-12'>
-                <label className="control-label pt-2">6. La diferencia entre un Equipo de Intervención y una Fuerza de Tarea es:</label>
+                <label className="control-label pt-2">  6. ¿Qué significa desmovilización?</label>
                 <select
                     className="form-control myInput"
                     name='6_equipo_intervencion'
@@ -107,16 +107,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Los Equipos de Intervención se reportan a un Oficial mientras una Fuerza de Tarea se reporta a un Líder.</option>
-                    <option value='b'>b) Los Equipos de Intervención están dentro la Sección de Operaciones mientras las Fuerzas de Tarea están dentro de la Sección de Planificación.</option>
-                    <option value='c'>c) Los Equipos de Intervención tienen recursos similares mientras  las Fuerzas de Tarea contienen recursos mixtos.</option>
-                    <option value='d'>d) Los Equipos de Intervención tienen un rango de alcance de control más bajo comparado con las Fuerzas de Tarea.</option>
+                    <option value='a'>a) Recibir la indicación de llegar al puesto de mando después de combatir el incendio forestal.</option>
+                    <option value='b'>b) Recibir la orden de desmovilización a sus secciones de trabajo.</option>
+                    <option value='c'>c) Regreso ordenado, seguro y eficiente de un recurso en un incidente, evento, operativo, emergencia o desastre, a su ubicación y estado original.</option>
+                    <option value='d'>d) Ninguna.</option>
                 </select>
             </div>
 
-            {/* 7. Usted está trabajando en un incidente complejo. Hay múltiples Comandantes del Incidente representado múltiples jurisdicciones trabando juntos para establecer los objetivos del incidente. ¿Qué tipos de estructura del SCI se está usando? */}
+            {/*  7. ¿Qué es un Plan de Acción del Incidente (PAI)? */}
             <div className='col-12'>
-                <label className="control-label pt-2">7. Usted está trabajando en un incidente complejo. Hay múltiples Comandantes del Incidente representado múltiples jurisdicciones trabando juntos para establecer los objetivos del incidente. ¿Qué tipos de estructura del SCI se está usando?</label>
+                <label className="control-label pt-2"> 7. ¿Qué es un Plan de Acción del Incidente (PAI)?</label>
                 <select
                     className="form-control myInput"
                     name='7_incidente_complejo'
@@ -124,16 +124,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Comando Múltiple.</option>
-                    <option value='b'>b) Comando de Área.</option>
-                    <option value='c'>c) Mando Mutuo.</option>
-                    <option value='d'>d) Comando Unificado.</option>
+                    <option value='a'>a) El Plan que es mantenido para responder a una amplia variedad de peligros potenciales.  </option>
+                    <option value='b'>b) Revisión posterior a la acción del combate del incendio forestal.</option>
+                    <option value='c'>c) Un Plan desarrollado para restaurar el área o comunidad afectada.</option>
+                    <option value='d'>d)  El Plan oral o escrito de los objetivos, estrategias operacionales, tácticas, recursos y estructura organizacional a cumplir durante un periodo operacional para controlar un incidente, evento u operativo. </option>
                 </select>
             </div>
 
-            {/* 8. ¿Qué es lo que debe usted hacer, al retirarse de un incidente? */}
+            {/* 8. ¿En qué formato del PAI puede encontrar la lista de asignaciones tácticas del incidente para el periodo operacional? */}
             <div className='col-12'>
-                <label className="control-label pt-2">8. ¿Qué es lo que debe usted hacer, al retirarse de un incidente?</label>
+                <label className="control-label pt-2">8. ¿En qué formato del PAI puede encontrar la lista de asignaciones tácticas del incidente para el periodo operacional?</label>
                 <select
                     className="form-control myInput"
                     name='8_retirarse_incidente'
@@ -141,16 +141,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Completar todas las tareas, formatos y reportes requeridos.</option>
-                    <option value='b'>b) Informar a sus remplazos, subordinados, y supervisor.</option>
-                    <option value='c'>c) Regresar cualquier equipo proporcionado por el incidente u otros suministros no desechables.</option>
-                    <option value='d'>d) Todas las anteriores.</option>
+                    <option value='a'>a) SCI-204.</option>
+                    <option value='b'>b) SCI-202.</option>
+                    <option value='c'>c) SCI-205.</option>
+                    <option value='d'>d) SCI-206.</option>
                 </select>
             </div>
 
-            {/* 9. Alcance de Control se refiere a: */}
+            {/* 9. ¿Qué es la transferencia de mando? */}
             <div className='col-12'>
-                <label className="control-label pt-2">9. Alcance de Control se refiere a:</label>
+                <label className="control-label pt-2">9. ¿Qué es la transferencia de mando?</label>
                 <select
                     className="form-control myInput"
                     name='9_alcance_control'
@@ -158,16 +158,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) El proceso de mover la responsabilidad de un Comandante del Incidente a otro.</option>
-                    <option value='b'>b) El acto de dirigir, solicitar, y controlar por virtud de autoridad  explicita legal, regulatoria y delegada.</option>
-                    <option value='c'>c) Una línea ordenada de autoridad que existe dentro de los rangos de la organización de manejo del incidente.</option>
-                    <option value='d'>d) El número de individuos o recursos que un supervisor puede manejar con eficacia durante un incidente.</option>
+                    <option value='a'>a) El proceso de trasladar la responsabilidad de mando del incidente de un Comandante del Incidente a otro.</option>
+                    <option value='b'>b) Trasladar al personal de combate a su División de trabajo.</option>
+                    <option value='c'>c) Trasladar el Puesto de Comando a otro lugar de trabajo.</option>
+                    <option value='d'>d) Ninguna.</option>
                 </select>
             </div>
 
-            {/* 10. ¿Cuál de las siguientes entidades organizacionales dentro la Sección de Operaciones se puede usar para dividir el incidente geográficamente? */}
+            {/* 10. La cadena de mando se refiere a: */}
             <div className='col-12'>
-                <label className="control-label pt-2">10. ¿Cuál de las siguientes entidades organizacionales dentro la Sección de Operaciones se puede usar para dividir el incidente geográficamente?</label>
+                <label className="control-label pt-2">10. La cadena de mando se refiere a:</label>
                 <select
                     className="form-control myInput"
                     name='10_entidades_organizacionales'
@@ -175,16 +175,17 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Regimientos.</option>
-                    <option value='b'>b) Unidades.</option>
-                    <option value='c'>c) Grupos.</option>
-                    <option value='d'>d) Divisiones.</option>
+                    <option value='a'>a) Dar indicaciones sobre asignaciones recibidas por el oficial de información pública.</option>
+                    <option value='b'>b) Seguir la línea formal de comunicación para recibir instrucciones de su supervisor.</option>
+                    <option value='c'>c) Recibir instrucciones y asignaciones de la brigada que trabaja junto a su brigada.</option>
+                    <option value='d'>d) La Revisión Después de la Acción al término de una asignación.</option>
                 </select>
             </div>
 
-            {/* 11. El Sistema de Comando de Incidentes es: */}
+            {/* 11. Al momento de establecer los objetivos para atender un incidente, ¿Cuál es la primera prioridad? */}
             <div className='col-12'>
-                <label className="control-label pt-2">11. El Sistema de Comando de Incidentes es:</label>
+
+                <label className="control-label pt-2">11. Al momento de establecer los objetivos para atender un incidente, ¿Cuál es la primera prioridad?</label>
                 <select
                     className="form-control myInput"
                     name='11_sistema_comando'
@@ -192,16 +193,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Un sistema militar usado en incidentes domésticos para asegurar el mando y control de recursos federales.</option>
-                    <option value='b'>b) Un concepto estandarizado para el manejo de incidentes que es aplicable para usar en todo riesgo.</option>
-                    <option value='c'>c) Un concepto relativamente nuevo creado base las lecciones aprendidas de los ataques de terrorismo de 9/11 de Estados Unidos de América.</option>
-                    <option value='d'>d) Mas aplicable para el manejo de incidentes complejos que se extienden por  muchas horas o días.</option>
+                    <option value='a'>a) Que el incendio afecte la menor superficie posible.</option>
+                    <option value='b'>b) Proteger las propiedades.</option>
+                    <option value='c'>c) Controlar y liquidar el incendio lo antes posible.</option>
+                    <option value='d'>d) La seguridad del personal.</option>
                 </select>
             </div>
 
-            {/* 12. Contiene información sobre objetivos y la situación del incidente y resumen de acciones actuales para informar al Comandante de Incidente de reemplazo o equipo, u otros recursos. */}
+            {/* 12. ¿Qué es una helibase? */}
             <div className='col-12'>
-                <label className="control-label pt-2">12. Contiene información sobre objetivos y la situación del incidente y resumen de acciones actuales para informar al Comandante de Incidente de reemplazo o equipo, u otros recursos.</label>
+                <label className="control-label pt-2">12. ¿Qué es una helibase?</label>
                 <select
                     className="form-control myInput"
                     name='12_contiene_informacion'
@@ -209,16 +210,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Formato SCI-210</option>
-                    <option value='b'>b) Formato SCI-201</option>
-                    <option value='c'>c) Formato SCI-211</option>
-                    <option value='d'>d) Formato SCI-214</option>
+                    <option value='a'>a) Sitio seguro para instalación de campamentos de combatientes.</option>
+                    <option value='b'>b) Es el lugar más temporal en el incidente, donde los helicópteros pueden aterrizar y despegar de manera segura para trasladar combatientes y suministros.</option>
+                    <option value='c'>c) Es la ubicación desde la que los helicópteros se centran para llevar a cabo las operaciones. Aéreas y pueden recibir mantenimiento.</option>
+                    <option value='d'>d) Es la ubicación desde donde las funciones administrativas y logísticas primarias son coordinadas y administradas.</option>
                 </select>
             </div>
 
-            {/* 13. Los Recursos en las Áreas de Espera: */}
+            {/*  13. ¿Qué incluye una sesión informativa? */}
             <div className='col-12'>
-                <label className="control-label pt-2">13. Los Recursos en las Áreas de Espera:</label>
+                <label className="control-label pt-2">13. ¿Qué incluye una sesión informativa?</label>
                 <select
                     className="form-control myInput"
                     name='13_recursos_areas'
@@ -226,16 +227,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Son manejados por la Sección de Logística.</option>
-                    <option value='b'>b) Incluyen recursos fuera de servicio que se están preparando para ser desplegados.</option>
-                    <option value='c'>c) Se encuentran esperando una asignación operacional.</option>
-                    <option value='d'>d) Incluyen aquellos que se están preparando para la desmovilización y regreso a sus jurisdicciones.</option>
+                    <option value='a'>a) Evaluación de la situación actual.</option>
+                    <option value='b'>b) Identificación de sus responsabilidades específicas del trabajo.</option>
+                    <option value='c'>c) Las instrucciones procedentes para la obtención de recursos necesarios.</option>
+                    <option value='d'>d) Todas las opciones son correctas.</option>
                 </select>
             </div>
 
-            {/* 14. La Reunión Informativa del Periodo Operacional: */}
+            {/* 14. ¿En qué formato del PAI puede encontrar los Objetivos del incidente para el periodo operacional? */}
             <div className='col-12'>
-                <label className="control-label pt-2">14. La Reunión Informativa del Periodo Operacional:</label>
+                <label className="control-label pt-2">14. ¿En qué formato del PAI puede encontrar los Objetivos del incidente para el periodo operacional?</label>
                 <select
                     className="form-control myInput"
                     name='14_reunion_informativa'
@@ -243,16 +244,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Ayuda mantener el público y los medios de prensa informados de la situación del incidente y los logros operacionales.</option>
-                    <option value='b'>b) Proporciona una orientación para elaborar el plan de acción del incidente.</option>
-                    <option value='c'>c) Presenta el Plan de Acción del Incidente para el próximo periodo al personal de supervisión.</option>
-                    <option value='d'>d) Identifica las áreas específicas, establece los procedimientos de reporte y expectativas para el personal del apoyo.</option>
-                </select>
+                    <option value='a'>a) SCI-204.</option>
+                    <option value='b'>b) SCI-202.</option>
+                    <option value='c'>c) SCI-214.</option>
+                    <option value='d'>d) SCI-206.</option>
+                    </select>
             </div>
 
-            {/* 15. Documento que proporciona un medio coherente de comunicación de los objetivos generales del incidente en los contextos de ambas actividades operacionales y de apoyo: */}
+            {/* 15. Seleccione la opción VERDADERA: */}
             <div className='col-12'>
-                <label className="control-label pt-2">15. Documento que proporciona un medio coherente de comunicación de los objetivos generales del incidente en los contextos de ambas actividades operacionales y de apoyo:</label>
+                <label className="control-label pt-2">15. Seleccione la opción VERDADERA:</label>
                 <select
                     className="form-control myInput"
                     name='15_documento_proporciona'
@@ -260,16 +261,17 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Plan DNIII.</option>
-                    <option value='b'>b) Plan de acción y comunicación.</option>
-                    <option value='c'>c) Plan de acción del incidente.</option>
-                    <option value='d'>d) Plan de desarrollo.</option>
+                    <option value='a'>a) El alcance de control puede ser extendido más allá de 10 para asegurar que más recursos puedan ser desplegados en incidentes más complejos y grandes.</option>
+                    <option value='b'>b) El alcance de control debe ser establecido solo en incidentes complejos o en aquellos con una duración de más de tres periodos operacionales.</option>
+                    <option value='c'>c) El alcance de control consiste en organizar los recursos en Equipos, Fuerzas, Divisiones, Ramas, o Secciones.</option>
+                    <option value='d'>d) El alcance de control es un factor menor de preocupación para los incidentes que son resueltos dentro el periodo operacional inicial.</option>
                 </select>
             </div>
 
-            {/* 16. Formato en el cual se encuentran el plan de comunicación */}
+            {/* 16. ¿En qué formato del PAI puede encontrar el Plan Médico del incidente para el periodo operacional? */}
             <div className='col-12'>
-                <label className="control-label pt-2">16. Formato en el cual se encuentran el plan de comunicación</label>
+
+                <label className="control-label pt-2">16. ¿En qué formato del PAI puede encontrar el Plan Médico del incidente para el periodo operacional?</label>
                 <select
                     className="form-control myInput"
                     name='16_formato_encuentran'
@@ -277,15 +279,16 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Formato SCI 201.</option>
-                    <option value='b'>b) Formato SCI 205.</option>
-                    <option value='c'>c) Formato SCI 210.</option>
-                    <option value='d'>d) Formato SCI 215.</option>
+                    <option value='a'>a) SCI-204.</option>
+                    <option value='b'>b) SCI-202.</option>
+                    <option value='c'>c) SCI-214.</option>
+                    <option value='d'>d) SCI-206.</option>
                 </select>
             </div>
 
-            {/* 17. Formato en el cual se encuentran el nombre y distancia de los hospitales cercanos al incidente */}
+            {/* 17. ¿Quién generalmente facilita la Sesión Informativa del periodo operacional? */}
             <div className='col-12'>
+
                 <label className="control-label pt-2">17. Formato en el cual se encuentran el nombre y distancia de los hospitales cercanos al incidente</label>
                 <select
                     className="form-control myInput"
@@ -294,16 +297,17 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Formato SCI 206.</option>
-                    <option value='b'>b) Formato SCI 207.</option>
-                    <option value='c'>c) Formato SCI 209.</option>
-                    <option value='d'>d) Formato SCI 210.</option>
+                    <option value='a'>a) Oficial de Información Pública.</option>
+                    <option value='b'>b) Jefe de la Sección de Logística.</option>
+                    <option value='c'>c) Jefe de la Sección de Operaciones.</option>
+                    <option value='d'>d) Jefe de la Sección de Planificación.</option>
                 </select>
             </div>
 
-            {/* 18. Formato en el cual se encuentran las asignaciones de trabajo */}
+            {/* 18. ¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional? */}
             <div className='col-12'>
-                <label className="control-label pt-2">18. Formato en el cual se encuentran las asignaciones de trabajo</label>
+       
+                <label className="control-label pt-2">18. ¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?</label>
                 <select
                     className="form-control myInput"
                     name='18_formato_trabajo'
@@ -311,16 +315,17 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Formato SCI 206.</option>
-                    <option value='b'>b) Formato SCI 201.</option>
-                    <option value='c'>c) Formato SCI 211.</option>
-                    <option value='d'>d) Formato SCI 204.</option>
+                    <option value='a'>a) SCI-204.</option>
+                    <option value='b'>b) SCI-202.</option>
+                    <option value='c'>c) SCI-214.</option>
+                    <option value='d'>d) SCI-206.</option>
                 </select>
             </div>
 
-            {/* 19. Sección del Plan de Acción del Incidente donde se puede ubicar los procedimientos en caso de accidentes */}
+            {/* 19. Un individuo asumiendo el papel de Comandante de Incidente Auxiliar debe: */}
             <div className='col-12'>
-                <label className="control-label pt-2">19. Sección del Plan de Acción del Incidente donde se puede ubicar los procedimientos en caso de accidentes</label>
+
+                <label className="control-label pt-2">19. Un individuo asumiendo el papel de Comandante de Incidente Auxiliar debe:</label>
                 <select
                     className="form-control myInput"
                     name='19_plan_accion'
@@ -328,16 +333,17 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Información del Incidente.</option>
-                    <option value='b'>b) Organigrama.</option>
-                    <option value='c'>c) Plan Médico.</option>
-                    <option value='d'>d) Plan de Radio Comunicaciones del Incidente.</option>
+                    <option value='a'>a) Ser un representante de la jurisdicción del incidente.</option>
+                    <option value='b'>b) Tener previa experiencia en predecir cargas de trabajo y necesidades potenciales de personal.</option>
+                    <option value='c'>c) Ha funcionado como un Director de Rama dentro la organización actual.</option>
+                    <option value='d'>d) Ser igualmente capacitado para asumir el papel de Comandante de Incidente.</option>
                 </select>
             </div>
 
-            {/* 20. Sección del Plan de Acción del Incidente donde se puede encontrar la estructura y posiciones del personal asignado al incidente. */}
+            {/* 20. ¿Quién es responsable de determinar las tácticas apropiadas para un incidente? */}
             <div className='col-12'>
-                <label className="control-label pt-2">20. Sección del Plan de Acción del Incidente donde se puede encontrar la estructura y posiciones del personal asignado al incidente.</label>
+
+                <label className="control-label pt-2">20. ¿Quién es responsable de determinar las tácticas apropiadas para un incidente?</label>
                 <select
                     className="form-control myInput"
                     name='20_asignado_incidente'
@@ -345,10 +351,10 @@ const SCI100 = (props) => {
                     onChange={setInfo}
                 >
                     <option value='x' >---Seleccione---</option>
-                    <option value='a'>a) Información del Incidente.</option>
-                    <option value='b'>b) Objetivos del Incidente.</option>
-                    <option value='c'>c) Organigrama.</option>
-                    <option value='d'>d) Lista de Registro.</option>
+                    <option value='a'>a) El Oficial de Seguridad.</option>
+                    <option value='b'>b) La Sección de Planificación.</option>
+                    <option value='c'>c) La Sección de Operaciones.</option>
+                    <option value='d'>d) El Comandante de Incidente Auxiliar.</option>
                 </select>
             </div>
 
