@@ -16,7 +16,7 @@ const S190 = (props) => {
       {/* 1.	Es una definición de zona de seguridad */}
       <div className='col-12'>
 
-        <label className="control-label pt-2">1. Las siguientes corresponden a las partes del incendio:</label>
+        <label className="control-label pt-2">1.	Es una definición de zona de seguridad :</label>
         <select
           className="form-control myInput"
           name='1_partes_incendio'
@@ -68,10 +68,6 @@ const S190 = (props) => {
 
       {/* 4.	La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada. */}
       <div className='col-12'>
-      4.	La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada. 
-a.	Verdadero 
-b.	Falso 
-
         <label className="control-label pt-2">4.	La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada.</label>
         <select
           className="form-control myInput"
