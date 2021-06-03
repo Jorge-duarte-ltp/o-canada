@@ -100,7 +100,7 @@ const S4 = (props) => {
                     setState({
                         ...state,
                         rechazo: false,
-                        // motivo_rechazo: null,
+                        motivo_rechazo: null,
                         examen_smi_100: respuesta.data.calificacion
                     })
                 }
