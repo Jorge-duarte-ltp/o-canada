@@ -23,6 +23,7 @@ import { size } from "lodash";
 import candidatoContext from "./../context/candidato/candidatoContext";
 import emailValid from "../helpers/emailValid";
 import axiosClient from "../config/axios";
+import { formatDate } from "../helpers/formatDate";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
 
 const Captura = () => {
@@ -144,7 +145,7 @@ const Captura = () => {
       !talla_pantalon ||
       !talla_gorras ||
       !talla_botas ||
-       /*!nombre_banco || */
+      /*!nombre_banco || */
       /* !clabe_interbancaria || */
       !archivos.fotografia_fl ||
       !archivos.curp_archivo_fl
@@ -165,7 +166,7 @@ const Captura = () => {
     if (!emailValid(correo_electronico) || !emailValid(correo_beneficiario)) {
       AlertError("Los correos estan mal estructurados");
       return;
-    } 
+    }
     // cuenta bancaria
     // if (size(clabe_interbancaria) < 18) {
     //   AlertError("El numero de cuenta clabe debe ser igual a 18 digitos");
@@ -1058,7 +1059,7 @@ const Captura = () => {
       /* si es jefe de brigada o tecnico, debe tener las variables de idioma */
       if (
         !nivel_ingles ||
-        !tiene_certificado_ingles === ""  ||
+        !tiene_certificado_ingles === "" ||
         (tiene_certificado_ingles === "1" &&
           (!toeic_toefl ||
             !examen_toeic_toefl_punt ||
@@ -1182,7 +1183,6 @@ const Captura = () => {
 
     const url = `${API_REQUEST}candidato_update`;
     try {
-      
       setSecciones({
         ...secciones,
         s8: seccionCompleta,
@@ -1281,7 +1281,7 @@ const Captura = () => {
       }
 
       const respuesta = await axios.post(url, {
-        data: infoBrigadista,
+        data: { ...infoBrigadista, fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0) },
         secuencia: {
           login: seccionCompleta,
           s1: seccionCompleta,
@@ -1296,7 +1296,6 @@ const Captura = () => {
       });
 
       if (respuesta.status === 200) {
-
         if (infoBrigadista.rechazo) {
           // se ocultan las secciones
           setSecciones({

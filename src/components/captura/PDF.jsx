@@ -10,6 +10,7 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import logo_conafor from "../../assets/logo_cnf_2.png";
+import { formatDate } from "../../helpers/formatDate";
 //import logo_conafor from '../assets/prueba.jpg'
 // Create styles cambio menor
 const styles = StyleSheet.create({
@@ -126,6 +127,18 @@ const styles = StyleSheet.create({
     right: 0,
     textAlign: "center",
     color: "#0f0f0f",
+    paddingLeft: "1cm",
+    paddingRight: "1cm",
+  },
+  dateText: {
+    position: "absolute",
+    fontWeight: "bold",
+    fontSize: 12,
+    bottom: "2cm",
+    left: 0,
+    right: 0,
+    textAlign: "right",
+    color: "grey",
     paddingLeft: "1cm",
     paddingRight: "1cm",
   },
@@ -253,7 +266,6 @@ const PDF = (props) => {
     state.toeic_toefl
       ? "Aprobado"
       : "No Aprobado";
-
   return (
     <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight}>
       <Document>
@@ -422,11 +434,7 @@ const PDF = (props) => {
                   : "Sin Certificado"}
               </Text>
             ) : (
-              <Text
-                style={[
-                  styles.RequisitosEspecial,blackColor,
-                ]}
-              >
+              <Text style={[styles.RequisitosEspecial, blackColor]}>
                 {"No Aplica"}
               </Text>
             )}
@@ -474,7 +482,7 @@ const PDF = (props) => {
           </View>
 
           {/* NOTAS pie de pagina */}
-          {state.rechazo && (
+          {state.rechazo ? (
             <React.Fragment>
               <Text style={styles.headerDescText}>MOTIVO DE RECHAZO</Text>
               <Text
@@ -484,7 +492,14 @@ const PDF = (props) => {
                 }
                 fixed
               ></Text>
+              <Text style={styles.dateText} fixed>
+                Fecha de expedición: {state.fechaCreacion ? state.fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0)}
+              </Text>
             </React.Fragment>
+          ) : (
+            <Text style={styles.dateText} fixed>
+              Fecha de expedición: {state.fechaCreacion ? state.fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0)}
+            </Text>
           )}
         </Page>
       </Document>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import SelectSiNo from "../../singles/SelectSiNo";
 import { size } from "lodash";
+import { formatDate } from "../../helpers/formatDate";
 const S6 = (props) => {
   const { state, setState, checkData, setStateFiles, files } = props;
 
@@ -43,12 +44,14 @@ const S6 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "falta de habilidad o competencia",
+        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
       });
     } else {
       setState({
         ...state,
         rechazo: false,
         motivo_rechazo: null,
+        fechaCreacion : null,
       });
     }
   };

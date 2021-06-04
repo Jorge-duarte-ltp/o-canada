@@ -3,6 +3,7 @@ import SelectSiNo from "../../singles/SelectSiNo";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import diferenciaFechasDias from "../../helpers/diferenciaFechaDias";
 import { CheckListEquipo } from "../../singles/CheckEquipos";
+import { formatDate } from "../../helpers/formatDate";
 
 const S7 = (props) => {
   const { state, setState, checkData, setStateFiles, files } = props;
@@ -38,6 +39,7 @@ const S7 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "carta de antecedentes mayor a 2 meses",
+        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
       });
     } else {
       if (
@@ -51,12 +53,14 @@ const S7 = (props) => {
           ...state,
           rechazo: true,
           motivo_rechazo: "no cuenta con equipo completo",
+          fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
         });
       } else {
         setState({
           ...state,
           rechazo: false,
           motivo_rechazo: null,
+          fechaCreacion : null,
         });
       }
     }

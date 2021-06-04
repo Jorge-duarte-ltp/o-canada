@@ -21,6 +21,7 @@ import {
 } from "../../singles/SelectTallas";
 import SelectBancos from "../../singles/SelectBancos";
 import obtenerEstados from "../../singles/ObtenerEstados";
+import { formatDate } from "../../helpers/formatDate";
 
 const S1 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
@@ -106,6 +107,7 @@ const S1 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "candidato menor de edad",
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
     }
     if (anios > 55) {
@@ -125,6 +127,7 @@ const S1 = (props) => {
       sexo: dataExtracted.sexo === "H" ? 1 : 2,
       rechazo: false,
       motivo_rechazo: null,
+      fechaCreacion : null,
     });
   };
 

@@ -9,6 +9,7 @@ import AlertError from '../../singles/AlertError';
 import moment from 'moment'
 /* CONTEXT */
 import candidatoContext from "../../context/candidato/candidatoContext";
+import { formatDate } from '../../helpers/formatDate';
 
 const S4 = (props) => {
     const candidatos = useContext(candidatoContext);
@@ -94,14 +95,16 @@ const S4 = (props) => {
                         ...state,
                         rechazo: true,
                         motivo_rechazo: 'no aprobo examen smi_100',
-                        examen_smi_100: respuesta.data.calificacion
+                        examen_smi_100: respuesta.data.calificacion,
+                        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
                     })
                 } else {
                     setState({
                         ...state,
                         rechazo: false,
                         motivo_rechazo: null,
-                        examen_smi_100: respuesta.data.calificacion
+                        examen_smi_100: respuesta.data.calificacion,
+                        fechaCreacion : null,
                     })
                 }
                 setShowExam(false)

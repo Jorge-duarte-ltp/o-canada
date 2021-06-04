@@ -66,7 +66,6 @@ const Login = (props) => {
 
     try {
       const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
-      console.log(respuesta.data.data.fotografia);
       if (respuesta.status === 200) {
         setArchivos({
           ...archivos,

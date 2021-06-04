@@ -5,6 +5,7 @@ import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import diferenciaFechaDias from "../../helpers/diferenciaFechaDias";
 import { size } from "lodash";
 import SelectSiNo from "../../singles/SelectSiNo";
+import { formatDate } from "../../helpers/formatDate";
 const S3 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
 
@@ -92,6 +93,7 @@ const S3 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "imc mayo 30",
+        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
       });
     } else {
       /* certificado toxicologico mayor a 15 dias */
@@ -102,6 +104,7 @@ const S3 = (props) => {
           ...state,
           rechazo: true,
           motivo_rechazo: "certificado toxicológico excede los 15 dias",
+          fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
         });
       } else {
         /* Certificado medico mayor a 1 mes */
@@ -110,7 +113,8 @@ const S3 = (props) => {
           setState({
             ...state,
             rechazo: true,
-            motivo_rechazo: "certificado médico excede 1 mes",
+            motivo_rechazo: "certificado médico excede 1 mes", 
+            fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
           });
         } else {
           if (
@@ -130,12 +134,14 @@ const S3 = (props) => {
               ...state,
               rechazo: true,
               motivo_rechazo: "problemas de salud",
+              fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
             });
           } else {
             setState({
               ...state,
               rechazo: false,
-              motivo_rechazo: null,
+              motivo_rechazo: null, 
+              fechaCreacion : null,
             });
           }
         }

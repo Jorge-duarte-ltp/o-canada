@@ -12,6 +12,7 @@ import SelectSiNo from "../../singles/SelectSiNo";
 import GenerarEstados from "../../singles/GenerarEstados";
 import GenerarPaises from "../../singles/GenerarPaises";
 import { size } from "lodash";
+import { formatDate } from "../../helpers/formatDate";
 
 const S5 = (props) => {
   const candidatos = useContext(candidatoContext);
@@ -60,6 +61,7 @@ const S5 = (props) => {
             rechazo: true,
             motivo_rechazo: "no aprobo examen si_190",
             examen_s_190: respuesta.data.calificacion,
+            fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
           });
         } else {
           setState({
@@ -67,6 +69,7 @@ const S5 = (props) => {
             rechazo: false,
             motivo_rechazo: null,
             examen_s_190: respuesta.data.calificacion,
+            fechaCreacion : null,
           });
         }
         setShowExam(false);

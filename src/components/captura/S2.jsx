@@ -56,6 +56,7 @@ const S2 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "carta de antecedentes mayor a 2 meses",
+        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
       });
     } else {
       // Pasaporte vence dentro de 10 meses
@@ -64,6 +65,7 @@ const S2 = (props) => {
           ...state,
           rechazo: true,
           motivo_rechazo: "pasaporte vence en menos de 10 meses",
+          fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
         });
       } else {
         // eta/Visa vence dentro de 10 meses
@@ -72,6 +74,7 @@ const S2 = (props) => {
             ...state,
             rechazo: true,
             motivo_rechazo: "eta/visa vence en menos de 10 meses",
+            fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
           });
         } else {
           /* Si todo Bien */
@@ -79,6 +82,7 @@ const S2 = (props) => {
             ...state,
             rechazo: false,
             motivo_rechazo: null,
+            fechaCreacion : null,
           });
         }
       }
