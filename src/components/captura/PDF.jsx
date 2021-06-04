@@ -418,7 +418,7 @@ const PDF = (props) => {
                 ]}
               >
                 {state.tiene_certificado_ingles === "1"
-                  ? "Aceptado"
+                  ? "Aprobado"
                   : "Sin Certificado"}
               </Text>
             ) : (
