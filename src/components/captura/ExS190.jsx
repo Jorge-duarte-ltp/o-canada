@@ -102,7 +102,7 @@ const S190 = (props) => {
       {/* 6.	¿Cuáles son tres factores del tiempo atmosférico son los más importantes para el personal combatiente?  */}
       <div className='col-12'>
 
-        <label className="control-label pt-2">6.	¿Cuáles son tres factores del tiempo atmosférico son los más importantes para el personal combatiente? </label>
+        <label className="control-label pt-2">6.	¿Cuáles son tres factores del tiempo atmosférico más importantes para el personal combatiente? </label>
         <select
           className="form-control myInput"
           name='6_significa_vcrz'
