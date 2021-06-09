@@ -544,7 +544,7 @@ const S1 = (props) => {
           value={state.nombre_beneficiario}
           onChange={setInfo}
           onChangeCapture={ToMayus}
-          placeholder="Ingrese nombre de contacto de emergencia..."
+          placeholder="Ingrese nombre del contacto de emergencia..."
         />
       </div>
 
@@ -582,7 +582,7 @@ const S1 = (props) => {
               setCorreBenefValido(emailValid(input.target.value));
             }
           }}
-          placeholder="Ingrese Correo electrónico de contacto de emergencia..."
+          placeholder="Ingrese Correo electrónico del contacto de emergencia..."
         />
         {correBenefValido === false && (
           <div className="col-sm-12">
