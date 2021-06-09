@@ -22,6 +22,7 @@ import {
 import SelectBancos from "../../singles/SelectBancos";
 import obtenerEstados from "../../singles/ObtenerEstados";
 import { formatDate } from "../../helpers/formatDate";
+import { validarExtPdf } from "../../helpers/validarExtPDF";
 
 const S1 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
@@ -67,7 +68,9 @@ const S1 = (props) => {
       input.target.name === "curp_archivo"
     ) {
       if (input.target.name === "fotografia") {
-        setPreview(URL.createObjectURL(input.target.files[0]));
+        if (input.target.files) {
+          setPreview(URL.createObjectURL(input.target.files[0]));
+        }
         let filename = input.target.files[0].name;
         setState({
           ...state,
@@ -76,7 +79,17 @@ const S1 = (props) => {
       }
       setStateFiles({
         ...files,
-        [input.target.name + "_fl"]: input.target.files,
+        [input.target.name + "_fl"]: validarExtPdf(
+          input.target.files[0].name,
+          input.target.accept
+        )
+          ? input.target.files
+          : AlertError(
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -127,7 +140,7 @@ const S1 = (props) => {
       sexo: dataExtracted.sexo === "H" ? 1 : 2,
       rechazo: false,
       motivo_rechazo: null,
-      fechaCreacion : null,
+      fechaCreacion: null,
     });
   };
 
@@ -153,7 +166,7 @@ const S1 = (props) => {
           className={`form-control ${state.fotografia ? "" : "myInput"}`}
           name="fotografia"
           type="file"
-          accept="image/png,image/jpeg"
+          accept="image/png,image/jpeg,image/jpg"
           onChange={setInfo}
           placeholder="Ingrese Nombre(s)..."
         />

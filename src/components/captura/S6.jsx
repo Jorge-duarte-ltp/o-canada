@@ -3,6 +3,8 @@ import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import SelectSiNo from "../../singles/SelectSiNo";
 import { size } from "lodash";
 import { formatDate } from "../../helpers/formatDate";
+import { validarExtPdf } from "../../helpers/validarExtPDF";
+import AlertError from "../../singles/AlertError";
 const S6 = (props) => {
   const { state, setState, checkData, setStateFiles, files } = props;
 
@@ -11,7 +13,18 @@ const S6 = (props) => {
     if (input.target.name === "doc_acred_primeros_auxilios") {
       setStateFiles({
         ...files,
-        [input.target.name + "_fl"]: input.target.files,
+        [input.target.name + "_fl"]: validarExtPdf(
+          input.target.files[0].name,
+          input.target.accept
+        )
+          ? input.target.files
+          : AlertError(
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
+        [input.target.name]: input.target.value,
       });
     } else {
       setState({
@@ -44,14 +57,14 @@ const S6 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "falta de habilidad o competencia",
-        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
     } else {
       setState({
         ...state,
         rechazo: false,
         motivo_rechazo: null,
-        fechaCreacion : null,
+        fechaCreacion: null,
       });
     }
   };
@@ -171,7 +184,7 @@ const S6 = (props) => {
       {/* ¿cuenta con certificado de primeros auxilios? */}
       <div className="col-12 col-md-8">
         <label className="control-label pt-2">
-         ¿Cuenta con certificado de primeros auxilios?
+          ¿Cuenta con certificado de primeros auxilios?
         </label>
         <SelectSiNo
           className="form-control myInput"

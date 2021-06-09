@@ -6,6 +6,8 @@ import diferenciaFechaDias from "../../helpers/diferenciaFechaDias";
 import { size } from "lodash";
 import SelectSiNo from "../../singles/SelectSiNo";
 import { formatDate } from "../../helpers/formatDate";
+import { validarExtPdf } from "../../helpers/validarExtPDF";
+import AlertError from "../../singles/AlertError";
 const S3 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
 
@@ -19,7 +21,18 @@ const S3 = (props) => {
     ) {
       setStateFiles({
         ...files,
-        [input.target.name + "_fl"]: input.target.files,
+        [input.target.name + "_fl"]: validarExtPdf(
+          input.target.files[0].name,
+          input.target.accept
+        )
+          ? input.target.files
+          : AlertError(
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
+        [input.target.name]: input.target.value,
       });
     } else {
       /* setea al state las variables */

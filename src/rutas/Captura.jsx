@@ -144,13 +144,20 @@ const Captura = () => {
       !talla_sudadera ||
       !talla_pantalon ||
       !talla_gorras ||
-      !talla_botas ||
+      !talla_botas
       /*!nombre_banco || */
       /* !clabe_interbancaria || */
-      !archivos.fotografia_fl ||
-      !archivos.curp_archivo_fl
     ) {
       msgFaltanCampos();
+      return;
+    }
+
+    if(!archivos.fotografia_fl){
+      AlertError('Error','Falta Cargar la fotografia que solo permite los siguientes formatos .png, .jpg, .');
+      return;
+    }
+    if(!archivos.curp_archivo_fl){
+      AlertError('Error','Falta Cargar el documento de la CURP en formato PDF.');
       return;
     }
 

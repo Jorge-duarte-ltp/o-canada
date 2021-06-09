@@ -4,6 +4,8 @@ import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import diferenciaFechasDias from "../../helpers/diferenciaFechaDias";
 import { CheckListEquipo } from "../../singles/CheckEquipos";
 import { formatDate } from "../../helpers/formatDate";
+import AlertError from "../../singles/AlertError";
+import { validarExtPdf } from "../../helpers/validarExtPDF";
 
 const S7 = (props) => {
   const { state, setState, checkData, setStateFiles, files } = props;
@@ -12,7 +14,18 @@ const S7 = (props) => {
     if (input.target.name === "carta_antecedentes") {
       setStateFiles({
         ...files,
-        [input.target.name + "_fl"]: input.target.files,
+        [input.target.name + "_fl"]: validarExtPdf(
+          input.target.files[0].name,
+          input.target.accept
+        )
+          ? input.target.files
+          : AlertError(
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
+        [input.target.name]: input.target.value,
       });
     } else {
       setState({

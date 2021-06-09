@@ -5,6 +5,8 @@ import diferenciaFechasDias from "../../helpers/diferenciaFechaDias";
 import SelectSiNo from "../../singles/SelectSiNo";
 import ToMayus from "../../helpers/ToMayus";
 import { formatDate } from "../../helpers/formatDate";
+import { validarExtPdf } from "../../helpers/validarExtPDF";
+import AlertError from "../../singles/AlertError";
 
 const S2 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
@@ -19,7 +21,18 @@ const S2 = (props) => {
     ) {
       setStateFiles({
         ...files,
-        [input.target.name + "_fl"]: input.target.files,
+        [input.target.name + "_fl"]: validarExtPdf(
+          input.target.files[0].name,
+          input.target.accept
+        )
+          ? input.target.files
+          : AlertError(
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
+        [input.target.name]: input.target.value,
       });
     } else {
       setState({

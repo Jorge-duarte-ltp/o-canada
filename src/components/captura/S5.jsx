@@ -13,6 +13,7 @@ import GenerarEstados from "../../singles/GenerarEstados";
 import GenerarPaises from "../../singles/GenerarPaises";
 import { size } from "lodash";
 import { formatDate } from "../../helpers/formatDate";
+import { validarExtPdf } from "../../helpers/validarExtPDF";
 
 const S5 = (props) => {
   const candidatos = useContext(candidatoContext);
@@ -105,7 +106,18 @@ const S5 = (props) => {
     if (input.target.name === "s_190" || input.target.name === "s_130") {
       setStateFiles({
         ...files,
-        [input.target.name + "_fl"]: input.target.files,
+        [input.target.name + "_fl"]: validarExtPdf(
+          input.target.files[0].name,
+          input.target.accept
+        )
+          ? input.target.files
+          : AlertError(
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
+        [input.target.name]: input.target.value,
       });
     } else {
       /* setea al state las variables */
