@@ -533,9 +533,9 @@ const S1 = (props) => {
         </select>
       </div>
 
-      {/* Nombre Beneficiario */}
+      {/* Nombre contacto de emergencia */}
       <div className="col-8">
-        <label className="control-label pt-2">Nombre de Beneficiario</label>
+        <label className="control-label pt-2">Nombre de contacto de emergencia</label>
         <input
           className={`form-control ${
             state.nombre_beneficiario ? null : "myInput"
@@ -544,13 +544,13 @@ const S1 = (props) => {
           value={state.nombre_beneficiario}
           onChange={setInfo}
           onChangeCapture={ToMayus}
-          placeholder="Ingrese nombre de Beneficiario..."
+          placeholder="Ingrese nombre de contacto de emergencia..."
         />
       </div>
 
-      {/* Telefono Beneficiario */}
+      {/* Telefono contacto de emergencia */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Teléfono del Beneficiario</label>
+        <label className="control-label pt-2">Teléfono del contacto de emergencia</label>
         <InputNumber
           className={`form-control ${
             state.telefono_beneficiario ? null : "myInput"
@@ -561,14 +561,14 @@ const S1 = (props) => {
           type="number"
           value={state.telefono_beneficiario}
           onChange={setInfo}
-          placeholder="Ingrese Teléfono del Beneficiario..."
+          placeholder="Ingrese Teléfono del contacto de emergencia..."
         />
       </div>
 
-      {/* Correo Beneficiario */}
+      {/* Correo contacto de emergencia */}
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">
-          Correo electrónico de Beneficiario
+          Correo electrónico de contacto de emergencia
         </label>
         <input
           className={`form-control ${
@@ -582,7 +582,7 @@ const S1 = (props) => {
               setCorreBenefValido(emailValid(input.target.value));
             }
           }}
-          placeholder="Ingrese Correo electrónico de Beneficiario..."
+          placeholder="Ingrese Correo electrónico de contacto de emergencia..."
         />
         {correBenefValido === false && (
           <div className="col-sm-12">
