@@ -144,7 +144,6 @@ const RevisionDocumentacion = () => {
   const getNombreArchivo = (item) => {
     const indiceExtension = item.indexOf(".");
     const archivo = item.substring(0, indiceExtension);
-    console.log(item);
     switch (archivo) {
       case "carta_antecedentes":
         return "Carta de antecentes penales";
