@@ -19,7 +19,7 @@ import { AiOutlineReload } from "react-icons/ai";
 import sessionContext from "../../context/session/sessionContext";
 
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
-// const API_REQUEST = 'http://187.218.230.38:81/o_canada_sisecoif/api/'
+// const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
 // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
 
@@ -137,16 +137,14 @@ const RevisionDocumentacion = () => {
   }, [reload]);
 
   const mostrarDocumento = (documento, data) => {
-    // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
-    // const url = `${URL_documentos}/${data.curp}/${documento}`;
-    const url = `http://187.218.230.38:81/o_canada_sisecoif/archivos/${data.curp}/${documento}`;
+    const url = `${process.env.REACT_APP_BACKEN_FILES}${data.curp}/${documento}`;
     window.open(url, "_blank");
   };
 
   const getNombreArchivo = (item) => {
     const indiceExtension = item.indexOf(".");
     const archivo = item.substring(0, indiceExtension);
-
+    console.log(item);
     switch (archivo) {
       case "carta_antecedentes":
         return "Carta de antecentes penales";
@@ -169,6 +167,9 @@ const RevisionDocumentacion = () => {
       case "ETA":
         return "VISA/eTA";
 
+      case "VISA":
+        return "VISA/eTA";
+
       case "fotografia":
         return "Fotografía";
 
@@ -189,16 +190,28 @@ const RevisionDocumentacion = () => {
 
       case "toefl":
         return "TOEFL/TOEIC";
+
+      case "toeic":
+        return "TOEFL/TOEIC";
+
       case "s_130":
         return "Cert. S-130";
+
       case "s_190":
         return "Cert. S-190";
+
+      case "s_290_file":
+        return "Cert. S-290";
+
+      case "s_211_file":
+        return "Cert. S-211";
+
       case "cert_intern_incendios_file":
         return "Cert. Intern. Incendios";
+
       case "visa_estadounidense":
         return "VISA USA";
-      case "toeic.pdf":
-        return "TOEIC";
+
       default:
         return "check= " + item;
     }
@@ -209,8 +222,8 @@ const RevisionDocumentacion = () => {
       <div className="py-5">
         <Nav justify variant="pills" defaultActiveKey="">
           {data.files
-            ? data.files.map((item) => (
-                <Nav.Item>
+            ? data.files.map((item, index) => (
+                <Nav.Item key={index}>
                   <Nav.Link
                     eventKey={item}
                     onClick={() => mostrarDocumento(item, data)}

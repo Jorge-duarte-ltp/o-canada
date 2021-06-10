@@ -11,7 +11,7 @@ const InfomacionCandidato = (props) => {
 
             {/* fotografia DEL CANDIDATO */}
             <div className='col-12 col-md-12' style={{textAlign:'center'}}>
-                <img src={`http://187.218.230.38/o_canada_sisecoif/archivos/${state.curp}/fotografia.jpg`} alt="Fotografía" width={200} height={200} />
+                <img src={`${process.env.REACT_APP_BACKEN_FILES}${state.curp}/fotografia.jpg`} alt="Fotografía" width={200} height={200} />
             </div>
             {/* NOMBRE DEL CANDIDATO */}
             <div className='col-12 col-md-12'>
