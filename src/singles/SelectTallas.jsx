@@ -86,6 +86,7 @@ export const SelectTallasBotas = (props) => {
       <option value={26}> 29 MX - 11 USA </option>
       <option value={27}> 29.5 MX - 11.5 USA</option>
       <option value={28}> 30 MX - 12 USA </option>
+      <option value={30}> 31 MX - 13 USA </option>
     </select>
   );
 };
