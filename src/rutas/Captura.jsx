@@ -273,6 +273,7 @@ const Captura = () => {
   const checkDataS2 = async () => {
     const regex = /[A-Z]{1}[0-9]{8}$/;
     const regex_visa_eta = /[A-Z]{1}[0-9]{9}$/;
+    const regex_visa = /[A-Z]{1}[0-9]{8}$/;
     const {
       pasaporte_numero,
       pasaporte_fecha_cad,
@@ -344,7 +345,7 @@ const Captura = () => {
       );
       return;
     }
-    if (!regex_visa_eta.test(visa_usa_num) && tiene_visa_usa === "1") {
+    if (!regex_visa.test(visa_usa_num) && tiene_visa_usa === "1") {
       AlertError(
         "Error",
         "El numero de la VISA Americana no cuenta con la estructura correcta."
