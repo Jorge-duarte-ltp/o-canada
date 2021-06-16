@@ -151,6 +151,11 @@ const Login = (props) => {
               enable={ingreso}
               checkLogin={checkLogin}
             />
+            <footer>
+              <div class="pl-5 m-5 mt-5 text-danger">
+                <h3><strong class="text-dark ml-5">Nota:</strong> Se recomienda usar el Navegador Google Chrome</h3>
+              </div>
+            </footer>
           </React.Fragment>
         )}
       </div>
