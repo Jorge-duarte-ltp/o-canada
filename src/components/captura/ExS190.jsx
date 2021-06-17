@@ -269,7 +269,7 @@ const S190 = (props) => {
         >
           <option value='x' >---Seleccione---</option>
           <option value='a'>a) Combustibles, Antorchas y Oxígeno.</option>
-          <option value='b'>b) Llamaradas, Coronamiento y Atmósfera estable.</option>
+          <option value='b'>b) Llamaradas, Coronamiento y Atmósfera inestable.</option>
           <option value='c'>c) Aumento en la velocidad de propagación, Focos secundarios y aumento de humedad relativa.</option>
         </select>
       </div>

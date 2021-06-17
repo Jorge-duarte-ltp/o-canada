@@ -48,12 +48,14 @@ const S7 = (props) => {
     const dif_antecedentes = diferenciaFechasDias(antecedentes_fecha);
 
     if (dif_antecedentes > 31 * 2) {
+
       setState({
         ...state,
         rechazo: true,
         motivo_rechazo: "carta de antecedentes mayor a 2 meses",
         fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
       });
+      
     } else {
       if (
         tiene_mochila_linea === "0" ||
