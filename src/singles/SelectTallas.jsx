@@ -75,7 +75,7 @@ export const SelectTallasBotas = (props) => {
       <option value={15}> 23.5 MX - 5.5 USA</option>
       <option value={16}> 24 MX - 6 USA </option>
       <option value={17}> 24.5 MX - 6.5 USA </option>
-      <option value={18}> 25 MX 27 - USA </option>
+      <option value={18}> 25 MX - 7 USA </option>
       <option value={19}> 25.5 MX - 7.5 USA </option>
       <option value={20}> 26 MX - 8 USA</option>
       <option value={21}> 26.5 MX - 8.5 USA</option>
