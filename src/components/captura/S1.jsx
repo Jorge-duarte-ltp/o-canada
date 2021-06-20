@@ -86,7 +86,7 @@ const S1 = (props) => {
           ? input.target.files
           : AlertError(
               "Error:",
-              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+              `El archivo ó imagen con la extensión no esta permitido .${input.target.files[0].name
                 .split(".")
                 .pop()}`
             ),
@@ -166,7 +166,7 @@ const S1 = (props) => {
           className={`form-control ${state.fotografia ? "" : "myInput"}`}
           name="fotografia"
           type="file"
-          accept="image/png,image/jpeg,image/jpg"
+          accept="image/jpeg,image/jpg"
           onChange={setInfo}
           placeholder="Ingrese Nombre(s)..."
         />
