@@ -519,24 +519,12 @@ const RevisionDocumentacion = () => {
   ];
 
   const sendObservacion = async () => {
-    const url = `${API_REQUEST}candidato_update`;
+    const url = `${API_REQUEST}candidato_observacion_regional`;
 
-    const secciones = {
-      login: { status: "completa", visible: false },
-      s1: { status: "completa", visible: false },
-      s2: { status: "completa", visible: false },
-      s3: { status: "completa", visible: false },
-      s4: { status: "completa", visible: false },
-      s5: { status: "completa", visible: false },
-      s6: { status: "completa", visible: false },
-      s7: { status: "completa", visible: false },
-      s8: { status: "completa", visible: false },
-    };
     /* TOMAR STATE */
     try {
       const resp = await axios.post(url, {
         data: infoObservacionModal,
-        secuencia: secciones,
       });
       if (resp.status === 200) {
         AlertExito("Éxito", "El registro fue actualizado");
@@ -688,7 +676,7 @@ const RevisionDocumentacion = () => {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={sendObservacion}>
+          <Button variant="primary" onClick={sendObservacion} onBlur={handleCloseModal}>
             Agregar
           </Button>
           <Button variant="danger" onClick={handleCloseModal}>
