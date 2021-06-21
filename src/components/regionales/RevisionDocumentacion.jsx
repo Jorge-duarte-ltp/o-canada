@@ -519,7 +519,7 @@ const RevisionDocumentacion = () => {
   ];
 
   const sendObservacion = async () => {
-    const url = `${API_REQUEST}/candidato_update`;
+    const url = `${API_REQUEST}candidato_update`;
 
     const secciones = {
       login: { status: "completa", visible: false },
