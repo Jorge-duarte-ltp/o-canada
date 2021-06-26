@@ -211,6 +211,27 @@ const RevisionDocumentacion = () => {
       case "visa_estadounidense":
         return "VISA USA";
 
+      case "formato_eval_habilidad_uso_mark_III":
+        return "Formato Evalución Mark III";
+
+      case "formato_eval_habilidad_uso_gps":
+        return "Formato Evalución GPS";
+
+      case "formato_epp":
+        return "Formato Equipo Completo";
+
+      case "formato":
+        return "Formato Prueba Arduo";
+
+      case "formato_carrera":
+        return "Formato Prueba Carrera";
+
+      case "formato_eval_habilidad_uso_motosierra":
+        return "Formato Evalución Motosierra";
+
+      case "constancia_curso_s_211":
+        return "Constancia Presentada 211 ";
+
       default:
         return "check= " + item;
     }
@@ -676,7 +697,11 @@ const RevisionDocumentacion = () => {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={sendObservacion} onBlur={handleCloseModal}>
+          <Button
+            variant="primary"
+            onClick={sendObservacion}
+            onBlur={handleCloseModal}
+          >
             Agregar
           </Button>
           <Button variant="danger" onClick={handleCloseModal}>

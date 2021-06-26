@@ -263,6 +263,7 @@ const TablaEstatales = () => {
                         state={candidatoSelected}
                     />
                     {(modoVista) ?
+                        // eslint-disable-next-line react/jsx-pascal-case
                         <S9_S10View
                             setVolver={handleRegresar}
                             infoCandidato={candidatoSelected}
