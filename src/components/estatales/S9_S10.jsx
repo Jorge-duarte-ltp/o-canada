@@ -973,6 +973,7 @@ const S9_S10 = (props) => {
               disabled
               className={`form-control ${evaluaciones.imc_verificado ? null : "myInput"
                 }`}
+              min={0}
               name="imc_verificado"
               type="text"
               value={evaluaciones.imc_verificado}
@@ -1012,8 +1013,8 @@ const S9_S10 = (props) => {
                 <input
                   disabled
                   className={`form-control ${evaluaciones.tiempo_max_correccion_altitud
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   name="tiempo_max_correccion_altitud"
                   type="text"
@@ -1035,8 +1036,8 @@ const S9_S10 = (props) => {
                 <InputGroup className="mb-2">
                   <InputNumber
                     className={`form-control ${evaluaciones.minutos_prueba_trabajo_arduo
-                        ? null
-                        : "myInput"
+                      ? null
+                      : "myInput"
                       }`}
                     placeholder="Minutos..."
                     limitLength={2}
@@ -1051,8 +1052,8 @@ const S9_S10 = (props) => {
                   </InputGroup.Prepend>
                   <InputNumber
                     className={`form-control ${evaluaciones.segundos_prueba_trabajo_arduo
-                        ? null
-                        : "myInput"
+                      ? null
+                      : "myInput"
                       }`}
                     placeholder="Segundos..."
                     limitLength={2}
@@ -1125,8 +1126,8 @@ const S9_S10 = (props) => {
                       </label>
                       <input
                         className={`form-control ${evaluaciones.nombre_evaluador_carrera
-                            ? null
-                            : "myInput"
+                          ? null
+                          : "myInput"
                           }`}
                         name="nombre_evaluador_carrera"
                         value={evaluaciones.nombre_evaluador_carrera}
@@ -1144,8 +1145,8 @@ const S9_S10 = (props) => {
                       </label>
                       <InputNumber
                         className={`form-control ${evaluaciones.altura_sobre_niv_mar_carrera
-                            ? null
-                            : "myInput"
+                          ? null
+                          : "myInput"
                           }`}
                         name="altura_sobre_niv_mar_carrera"
                         limitLength={4}
@@ -1165,8 +1166,8 @@ const S9_S10 = (props) => {
                       <InputGroup className="mb-2">
                         <InputNumber
                           className={`form-control ${evaluaciones.minutos_prueba_trabajo_carrera
-                              ? null
-                              : "myInput"
+                            ? null
+                            : "myInput"
                             }`}
                           placeholder="Minutos..."
                           limitLength={2}
@@ -1181,8 +1182,8 @@ const S9_S10 = (props) => {
                         </InputGroup.Prepend>
                         <InputNumber
                           className={`form-control ${evaluaciones.segundos_prueba_trabajo_carrera
-                              ? null
-                              : "myInput"
+                            ? null
+                            : "myInput"
                             }`}
                           placeholder="Segundos..."
                           limitLength={2}
@@ -1282,8 +1283,8 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   className={`form-control ${evaluaciones.formato_eval_habilidad_uso_gps
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   type="file"
                   name="formato_eval_habilidad_uso_gps"
@@ -1299,10 +1300,12 @@ const S9_S10 = (props) => {
                 </label>
                 <InputNumber
                   className={`form-control ${evaluaciones.resultado_eval_presencial_gps
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   limitLength={1}
+                  min={0}
+                  max={8}
                   value={evaluaciones.resultado_eval_presencial_gps}
                   name="resultado_eval_presencial_gps"
                   onChange={setInfo}
@@ -1332,8 +1335,8 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   className={`form-control ${evaluaciones.nombre_evaluador_prueba_mark_III
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   type="text"
                   onChangeCapture={ToMayus}
@@ -1351,8 +1354,8 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   className={`form-control ${evaluaciones.formato_eval_habilidad_uso_mark_III
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   type="file"
                   name="formato_eval_habilidad_uso_mark_III"
@@ -1369,10 +1372,12 @@ const S9_S10 = (props) => {
                 </label>
                 <InputNumber
                   className={`form-control ${evaluaciones.resultado_eval_presencial_mark_III
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   limitLength={2}
+                  min={0}
+                  max={11}
                   value={evaluaciones.resultado_eval_presencial_mark_III}
                   name="resultado_eval_presencial_mark_III"
                   onChange={setInfo}
@@ -1403,8 +1408,8 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   className={`form-control ${evaluaciones.nombre_evaluador_prueba_motosierra
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   type="text"
                   onChangeCapture={ToMayus}
@@ -1422,8 +1427,8 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   className={`form-control ${evaluaciones.formato_eval_habilidad_uso_motosierra
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
                   type="file"
                   name="formato_eval_habilidad_uso_motosierra"
@@ -1440,9 +1445,11 @@ const S9_S10 = (props) => {
                 </label>
                 <InputNumber
                   className={`form-control ${evaluaciones.resultado_eval_presencial_motosierra
-                      ? null
-                      : "myInput"
+                    ? null
+                    : "myInput"
                     }`}
+                  min={0}
+                  max={9}
                   limitLength={2}
                   value={evaluaciones.resultado_eval_presencial_motosierra}
                   name="resultado_eval_presencial_motosierra"
