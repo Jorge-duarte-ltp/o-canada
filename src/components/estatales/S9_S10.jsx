@@ -9,7 +9,7 @@ import pruebasFisicasContext from "../../context/pruebas_fisicas/pruebasFisicasC
 import SelectSiNo from "../../singles/SelectSiNo";
 import Axios from "axios";
 import AlertExito from "../../singles/AlertExito";
-import { size } from "lodash";
+import { size, isEmpty } from "lodash";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 const S9_S10 = (props) => {
   const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
@@ -144,13 +144,34 @@ const S9_S10 = (props) => {
       if (input.target.name === "altura_verificada") {
         input.target.value = Math.floor(input.target.value);
       }
-
       setEvaluaciones({
         ...evaluaciones,
         [input.target.name]: input.target.value,
       });
     }
   };
+
+  const setNumericoRango = (input) => {
+    if (parseInt(input.target.min) === 0 && typeof input.target.max === "undefined") {
+      setEvaluaciones({
+        ...evaluaciones,
+        [input.target.name]: input.target.value,
+      });
+    } else if (parseInt(input.target.value) <= input.target.max) {
+      console.log(input.target.value);
+      setEvaluaciones({
+        ...evaluaciones,
+        [input.target.name]: input.target.value,
+      });
+    } else if (isEmpty(input.target.value)) {
+      setEvaluaciones({
+        ...evaluaciones,
+        [input.target.name]: ""
+      });
+    }
+  }
+
+
 
   const calculoTiempoMax = (asnm) => {
     /* asnm => Altura sobre el nivel del mar */
@@ -673,17 +694,17 @@ const S9_S10 = (props) => {
 
   const revisionMotosierra = () => {
     if (
-      evaluaciones.resultado_eval_presencial_motosierra > 11 ||
+      evaluaciones.resultado_eval_presencial_motosierra > 9 ||
       evaluaciones.resultado_eval_presencial_motosierra < 0
     ) {
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_motosierra: null,
       });
-      AlertError("El puntaje maximo es de 11 y minimo 0");
+      AlertError("El puntaje maximo es de 9 y minimo 0");
     } else {
       const resultado =
-        (evaluaciones.resultado_eval_presencial_motosierra * 100) / 11;
+        (evaluaciones.resultado_eval_presencial_motosierra * 100) / 9;
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_motosierra: resultado.toString().slice(0, 5),
@@ -870,7 +891,7 @@ const S9_S10 = (props) => {
       {/* DATOS DEL CANDIDATO */}
       {/* ENCABEZADO */}
       <div className="col-12 col-md-12 center-text">
-        <h2>Evaluaciones Arduo</h2>
+        <h2>Evaluaciones Pruebas Fisicas</h2>
       </div>
       {/* SE PRESENTO EL CANDIDATO */}
       <div className="col-12 col-md-12">
@@ -1058,9 +1079,10 @@ const S9_S10 = (props) => {
                     placeholder="Segundos..."
                     limitLength={2}
                     min={0}
+                    max={59}
                     value={evaluaciones.segundos_prueba_trabajo_arduo}
                     name="segundos_prueba_trabajo_arduo"
-                    onChange={setInfo}
+                    onChange={setNumericoRango}
                     onBlur={calcResultados}
                   />
                   <InputGroup.Prepend>
@@ -1188,9 +1210,10 @@ const S9_S10 = (props) => {
                           placeholder="Segundos..."
                           limitLength={2}
                           min={0}
+                          max={59}
                           value={evaluaciones.segundos_prueba_trabajo_carrera}
                           name="segundos_prueba_trabajo_carrera"
-                          onChange={setInfo}
+                          onChange={setNumericoRango}
                           onBlur={calcResultados}
                         />
                         <InputGroup.Prepend>
@@ -1450,7 +1473,7 @@ const S9_S10 = (props) => {
                     }`}
                   min={0}
                   max={9}
-                  limitLength={2}
+                  limitLength={1}
                   value={evaluaciones.resultado_eval_presencial_motosierra}
                   name="resultado_eval_presencial_motosierra"
                   onChange={setInfo}
