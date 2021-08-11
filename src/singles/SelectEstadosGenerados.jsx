@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { isEmpty } from "lodash";
-import axiosClient from "../config/axios";
+import React from "react";
 
 const SelectEstados = (props) => {
   const { name, className, onBlur, onChange, value, data } = props;
-  
 
   return (
     <select
       className={className}
-      name={name} 
+      name={name}
       onBlur={onBlur}
       onChange={onChange}
       value={value}

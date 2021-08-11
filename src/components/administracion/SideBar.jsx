@@ -3,7 +3,6 @@ import React from "react";
 const SideBar = (props) => {
   const {
     title = "Cotejo de documentos",
-    showSection,
     setShowSection,
     porfileSections,
   } = props;
@@ -18,8 +17,9 @@ const SideBar = (props) => {
           regionales: true,
           estatales: false,
           mesa_ayuda: false,
-          manifiesto: false,
+          disponibilidad: false,
           brigadas: false,
+          manifiesto: false,
         });
         break;
       case "estatales":
@@ -27,6 +27,7 @@ const SideBar = (props) => {
           regionales: false,
           estatales: true,
           mesa_ayuda: false,
+          disponibilidad: false,
           manifiesto: false,
           brigadas: false,
         });
@@ -36,17 +37,9 @@ const SideBar = (props) => {
           regionales: false,
           estatales: false,
           mesa_ayuda: true,
+          disponibilidad: false,
+          brigadas: false,
           manifiesto: false,
-          brigadas: false,
-        });
-        break;
-      case "manifiesto":
-        setShowSection({
-          regionales: false,
-          estatales: false,
-          mesa_ayuda: false,
-          manifiesto: true,
-          brigadas: false,
         });
         break;
       case "brigadas":
@@ -54,10 +47,32 @@ const SideBar = (props) => {
           regionales: false,
           estatales: false,
           mesa_ayuda: false,
-          manifiesto: false,
+          disponibilidad: false,
           brigadas: true,
+          manifiesto: false,
         });
         break;
+      case "disponibilidad":
+        setShowSection({
+          regionales: false,
+          estatales: false,
+          mesa_ayuda: false,
+          disponibilidad: true,
+          brigadas: false,
+          manifiesto: false,
+        });
+        break;
+      case "manifiesto":
+        setShowSection({
+          regionales: false,
+          estatales: false,
+          mesa_ayuda: false,
+          disponibilidad: false,
+          brigadas: false,
+          manifiesto: true,
+        });
+        break;
+
       default:
         return;
     }
@@ -82,6 +97,15 @@ const SideBar = (props) => {
             onClick={handleClick}
           >
             Estatales
+          </button>
+        )}
+        {porfileSections.disponibilidad && (
+          <button
+            value="disponibilidad"
+            className="list-group-item list-group-item-action bg-light"
+            onClick={handleClick}
+          >
+            Disponibilidad
           </button>
         )}
         {porfileSections.manifiesto && (

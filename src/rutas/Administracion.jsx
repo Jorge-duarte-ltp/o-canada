@@ -1,84 +1,80 @@
-import React, { useState, useContext, useEffect } from 'react'
-import Dashboard from '../components/administracion/Dashboard';
-import LoginUsers from '../singles/LoginUsers';
+import React, { useState, useContext, useEffect } from "react";
+import Dashboard from "../components/administracion/Dashboard";
+import LoginUsers from "../singles/LoginUsers";
 import sessionContext from "../context/session/sessionContext";
-import Axios from 'axios';
-import AlertError from '../singles/AlertError';
+import Axios from "axios";
+import AlertError from "../singles/AlertError";
 
 const Administracion = () => {
-    const sessContext = useContext(sessionContext)
-    const [reload, setReload] = useState(true)
+  const sessContext = useContext(sessionContext);
+  const [reload, setReload] = useState(true);
 
-    const API_REQUEST = process.env.REACT_APP_BACKEN_URL
-    // const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
-    // const [user, setUser] = useState(sessContext.session.user)
-    const [user, setUser] = useState(false)
+  const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
+  // const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
+  // const [user, setUser] = useState(sessContext.session.user)
+  const [user, setUser] = useState(false);
 
-    const [userPorfile, setUserPorfile] = useState({
-        regionales: false,
-        estatales: false,
-        mesa_ayuda: false,
-        manifiesto: false,
-        brigadas: false,
-    })
+  // nota poner todo esto en false
+  const [userPorfile, setUserPorfile] = useState({
+    regionales: false,
+    estatales: false,
+    mesa_ayuda: false,
+    brigadas: false,
+    manifiesto: false,
+  });
 
-    const [toSend, setToSend] = useState({
-        email: '',
-        pass: ''
-    })
+  const [toSend, setToSend] = useState({
+    email: "",
+    pass: "",
+  });
 
-    const checkUser = async (event) => {
-        event.preventDefault();
-        const url = `${API_REQUEST}login_user`;
+  const checkUser = async (event) => {
+    event.preventDefault();
+    const url = `${API_REQUEST}login_user`;
 
-        try {
-            const resp = await Axios.post(url, toSend);
-            if (resp.status === 200) {
-                /* ingresar en el context y en el state la respuesta */
-                setUser(resp.data)
-                sessContext.login.loginUser({
-                    ...sessContext.login,
-                    // user: resp.data.user
-                    user: resp.data.user
-                })
-                setUserPorfile(resp.data.user.porfile)
-                sessionStorage.setItem('user_session', JSON.stringify(resp.data.user))
-            }
-        } catch (error) {
-            AlertError('Error', error);
-        }
+    try {
+      const resp = await Axios.post(url, toSend);
+      if (resp.status === 200) {
+        /* ingresar en el context y en el state la respuesta */
+        console.log(resp.data);
+        setUser(resp.data);
+        sessContext.login.loginUser({
+          ...sessContext.login,
+          // user: resp.data.user
+          user: resp.data.user,
+        });
+        setUserPorfile(resp.data.user.porfile);
+        sessionStorage.setItem("user_session", JSON.stringify(resp.data.user));
+      }
+    } catch (error) {
+      AlertError("Error", error);
     }
+  };
 
-    useEffect(() => {
-        // revisar el sessionStorage y asignar session
-        const user = JSON.parse(sessionStorage.getItem('user_session'));
+  useEffect(() => {
+    // revisar el sessionStorage y asignar session
+    const user = JSON.parse(sessionStorage.getItem("user_session"));
 
-        if (user) {
-            // asignar perfil y datos de usuario
-            setUser(user)
-            sessContext.login.loginUser({
-                ...sessContext.login,
-                user: user
-            })
-            setUserPorfile(user.porfile)
-        }
-    }, [''])
-
-    return (
-        <React.Fragment>
-            {(user) ?
-                <Dashboard
-                    userPorfile={userPorfile}
-                />
-                :
-                <LoginUsers
-                    state={toSend}
-                    setState={setToSend}
-                    onSubmit={checkUser}
-                />
-            }
-        </React.Fragment>
-    );
-}
+    if (user) {
+      // asignar perfil y datos de usuario
+      setUser(user);
+      sessContext.login.loginUser({
+        ...sessContext.login,
+        user: user,
+      });
+      setUserPorfile(user.porfile);
+    }
+  }, [""]);
+  //  descomentar esta parte
+  return (
+    <React.Fragment>
+      {user ? (
+        <Dashboard userPorfile={userPorfile} />
+      ) : (
+        <LoginUsers state={toSend} setState={setToSend} onSubmit={checkUser} />
+      )}
+    </React.Fragment>
+  );
+};
 
 export default Administracion;

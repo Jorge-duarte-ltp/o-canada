@@ -121,7 +121,7 @@ const TablaBrigadas = () => {
                             Recargar
                     </button>
                         <DataTable
-                            title="Candidatos para pruebas físicas"
+                            title="Candidatos para  físicas"
                             columns={columns}
                             data={brigadistas}
                             defaultSortField="curp"

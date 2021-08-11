@@ -655,25 +655,6 @@ const RevisionDocumentacion = () => {
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
-  /* SERVER-SIDE RENDER */
-  // const handlePerRowsChange = async (newPerPage, page) => {
-  //     setLoading(true);
-  //     debugger
-  //     // const response = await axios.get(
-  //     //     `https://reqres.in/api/users?page=${page}&per_page=${newPerPage}&delay=1`,
-  //     // );
-
-  //     // setDatosTabla(response.data.data);
-  //     // setPaginasPor(newPerPage);
-  //     // setLoading(false);
-  // };
-
-  // const handlePageChange = page => {
-  //     // getCandidatos(page);
-  //     console.log(page);
-
-  // };
-
   return (
     <div>
       <Modal show={showModal} onHide={handleCloseModal}>
@@ -757,7 +738,6 @@ const RevisionDocumentacion = () => {
         persistTableHead
         progressPending={loading}
         fixedHeader
-        // fixedHeaderScrollHeight="500px"
         contextActions={contextActions}
         contextMessage={{
           singular: "registro",

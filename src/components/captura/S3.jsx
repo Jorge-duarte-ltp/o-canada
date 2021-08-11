@@ -197,7 +197,7 @@ const S3 = (props) => {
           }
           type="number"
           step="0"
-          readOnly={true}
+          disabled={true}
           min={0}
           placeholder="Ingrese Altura (ft)..."
         />
@@ -221,7 +221,7 @@ const S3 = (props) => {
           className="form-control myInput"
           value={state.peso ? Math.round(state.peso * 2.2046 * 10) / 10 : ""}
           type="number"
-          readOnly={true}
+          disabled={true}
           min={0}
           placeholder="Ingrese Peso (lb)..."
         />
@@ -231,7 +231,7 @@ const S3 = (props) => {
       <div className="col-6 col-md-3">
         <label className="control-label pt-2">IMC</label>
         <input
-          readOnly={true}
+          disabled={true}
           name="imc"
           value={state.imc ? state.imc : ""}
           className="form-control myInput"

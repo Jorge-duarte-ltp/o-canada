@@ -603,7 +603,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
                 <div className='col-12 pt-4'>
                     <label className='form-control'>Sumatoria:</label>
                     <input className='form-control'
-                        readOnly
+                        disabled
                         value={sumatoria}
                     />
                 </div>

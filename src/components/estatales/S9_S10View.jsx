@@ -291,7 +291,7 @@ const S9_S10View = (props) => {
                 : ""
             }
             type="number"
-            readOnly={true}
+            disabled={true}
             min={0}
             placeholder="Ingrese Peso verificado (lb)..."
           />
@@ -325,7 +325,7 @@ const S9_S10View = (props) => {
             }
             type="number"
             step="0"
-            readOnly={true}
+            disabled={true}
             min={0}
             placeholder="Ingrese Altura verificada (ft)..."
           />

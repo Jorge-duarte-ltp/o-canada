@@ -9,18 +9,17 @@ import MesaAyuda from "../..//components/mesa_ayuda/MesaAyuda";
 // import S9 from '../estatales/S9';
 import TablaEstatales from "../estatales/TablaEstatales";
 import TablaBrigadas from "../brigadas/TablaBrigadas";
-
-{
-  /**/
-}
+import TablaManifiesto from "../manifiesto/TablaManifiesto";
+import TablaDisponibilidad from "../disponibilidad/TablaDisponibilidad";
 
 const Dashboard = ({ userPorfile }) => {
   const [showSection, setShowSection] = useState({
     regionales: false,
     estatales: false,
     mesa_ayuda: false,
-    manifiesto: false,
+    disponibilidad: false,
     brigadas: false,
+    manifiesto: false,
   });
 
   const [toggled, setToggled] = useState(true);
@@ -46,10 +45,10 @@ const Dashboard = ({ userPorfile }) => {
         </label>
         <div className="container-fluid">
           {showSection.regionales && <RevisionDocumentacion />}
-          {/* {showSection.estatales && <S9 />} */}
           {showSection.estatales && <TablaEstatales />}
-          {/* {showSection.manifiesto } */}
           {showSection.brigadas && <TablaBrigadas />}
+          {showSection.disponibilidad && <TablaDisponibilidad />}
+          {showSection.manifiesto && <TablaManifiesto />}
           {showSection.mesa_ayuda && <MesaAyuda />}
         </div>
       </div>
