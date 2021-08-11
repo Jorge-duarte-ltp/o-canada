@@ -26,7 +26,7 @@ const TablaDisponibilidad = () => {
       }).then(async ({ data: { data } }) => {
         await setData(data);
         AlertExito(
-          "Se han cargado los candidatos disponibles para asignar u asignados"
+          "Se han cargado los candidatos disponibles"
         );
       });
       setCurp("");
@@ -247,7 +247,7 @@ const TablaDisponibilidad = () => {
         </Modal.Footer>
       </Modal>
       <DataTable
-        title="Candidatos para asignación a brigada"
+        title="Candidatos disponibles para asignación de disponibilidad"
         columns={columns}
         data={data}
         defaultSortField="curp"
