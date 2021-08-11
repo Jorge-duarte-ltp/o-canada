@@ -7,6 +7,7 @@ import InfomacionCandidato from "./InformaciónCandidato";
 const AsignarBrigada = ({ data, setShow, setReload }) => {
   const {
     id,
+    fotografia,
     curp_brigadista,
     nombres,
     nom_ent,
@@ -27,6 +28,7 @@ const AsignarBrigada = ({ data, setShow, setReload }) => {
         nom_ent={nom_ent}
         curp={curp_brigadista}
         nombres={nombres}
+        fotografia={fotografia}
         posicion_candidato={posicion_candidato}
       />
       {asignado === "1" || asignado === "0"? (

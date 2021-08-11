@@ -5,17 +5,22 @@ const InfomacionCandidato = ({
   curp,
   nom_ent,
   posicion_candidato,
+  fotografia,
 }) => {
   return (
     <div className="row body_wrap pb-4">
       <div className="col-12 col-md-12 center-text">
         <h2>Datos del candidato seleccionado</h2>
       </div>
-
-      {/* fotografia DEL CANDIDATO
-            <div className='col-12 col-md-12' style={{textAlign:'center'}}>
-                <img src={`${process.env.REACT_APP_BACKEN_FILES}${state.curp}/${state.fotografia}`} alt="Fotografía" width={200} height={200} />
-            </div> */}
+      fotografia DEL CANDIDATO
+      <div className="col-12 col-md-12" style={{ textAlign: "center" }}>
+        <img
+          src={`${process.env.REACT_APP_BACKEN_FILES}${curp}/${fotografia}`}
+          alt="Fotografía"
+          width={200}
+          height={200}
+        />
+      </div>
       {/* NOMBRE DEL CANDIDATO */}
       <div className="col-12 col-md-12">
         <label className="control-label pt-2">Nombre del candidato</label>
