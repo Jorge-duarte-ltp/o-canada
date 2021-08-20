@@ -36,7 +36,6 @@ const Administracion = () => {
       const resp = await Axios.post(url, toSend);
       if (resp.status === 200) {
         /* ingresar en el context y en el state la respuesta */
-        console.log(resp.data);
         setUser(resp.data);
         sessContext.login.loginUser({
           ...sessContext.login,

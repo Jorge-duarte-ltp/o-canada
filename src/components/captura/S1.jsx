@@ -146,7 +146,7 @@ const S1 = (props) => {
 
   const getMunicipios = async (input) => {
     const cve_enitidad = input.target.value;
-    const url = `http://187.218.230.37/siiac_ws_app/public/api/inegi/municipios?paginate%5Bpage%5D=1&paginate%5BselectQuery%5D=null&paginate%5BbyColumn%5D=true&paginate%5Blimit%5D=600&paginate%5BorderBy%5D=nom_mun&paginate%5Bascending%5D=1&paginate%5BsQ%5D%5B0%5D%5BopT%5D=con&paginate%5BsQ%5D%5B0%5D%5Bop%5D=and&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5BopT%5D=com&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5Bop%5D=%3D&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5BsQ%5D%5Bcve_ent%5D=${cve_enitidad}`;
+    const url = `http://187.218.23.71/siiac_ws_app/public/api/inegi/municipios?paginate%5Bpage%5D=1&paginate%5BselectQuery%5D=null&paginate%5BbyColumn%5D=true&paginate%5Blimit%5D=600&paginate%5BorderBy%5D=nom_mun&paginate%5Bascending%5D=1&paginate%5BsQ%5D%5B0%5D%5BopT%5D=con&paginate%5BsQ%5D%5B0%5D%5Bop%5D=and&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5BopT%5D=com&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5Bop%5D=%3D&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5BsQ%5D%5Bcve_ent%5D=${cve_enitidad}`;
     try {
       const resp = await axios.get(url);
       if (resp.status === 200) {

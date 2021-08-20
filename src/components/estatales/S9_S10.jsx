@@ -161,7 +161,6 @@ const S9_S10 = (props) => {
         [input.target.name]: input.target.value,
       });
     } else if (parseInt(input.target.value) <= input.target.max) {
-      console.log(input.target.value);
       setEvaluaciones({
         ...evaluaciones,
         [input.target.name]: input.target.value,

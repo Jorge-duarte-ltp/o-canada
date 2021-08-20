@@ -16,6 +16,7 @@ const TablaDisponibilidad = () => {
   const [state, setState] = useState({ disponible: null, referencia: null });
   const [show, setShow] = useState(false);
 
+  console.log(data);
   useEffect(() => {
     if (reload) {
       AlertCargando("Cargando información");
@@ -24,10 +25,9 @@ const TablaDisponibilidad = () => {
         url: `${process.env.REACT_APP_BACKEN_URL}disponible_candidatos`,
         data: { curp: curp ? curp : "" },
       }).then(async ({ data: { data } }) => {
+        console.log(data);
         await setData(data);
-        AlertExito(
-          "Se han cargado los candidatos disponibles"
-        );
+        AlertExito("Se han cargado los candidatos disponibles");
       });
       setCurp("");
       setReload(false);
@@ -172,6 +172,7 @@ const TablaDisponibilidad = () => {
         <Form.Row className="align-items-center">
           <Col xs="auto">
             <Form.Control
+              value={curp ? curp : ""}
               onChange={(input) => setCurp(input.target.value)}
               className="mb-2 px-5"
               placeholder="Buscar..."
@@ -249,7 +250,7 @@ const TablaDisponibilidad = () => {
       <DataTable
         title="Candidatos disponibles para asignación de disponibilidad"
         columns={columns}
-        data={data}
+        data={data ? data : []}
         defaultSortField="curp"
         paginationComponentOptions={{
           rowsPerPageText: "Filas por página",
@@ -257,8 +258,8 @@ const TablaDisponibilidad = () => {
           selectAllRowsItem: true,
           selectAllRowsItemText: "Todos",
         }}
+        striped={true}
         persistTableHead
-        progressPending={false}
         contextMessage={{
           singular: "registro",
           plural: "registros",

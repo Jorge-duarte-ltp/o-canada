@@ -47,7 +47,7 @@ const TablaManifiesto = () => {
       minWidth: "180px",
       /* asignar candidato a una brigada */
       cell: (row) =>
-        row.asignado === "1" ||  row.asignado === "0" ? (
+        row.asignado === "1" || row.asignado === "0" ? (
           <Button
             className="btn btn-block btn-info"
             onClick={() => showAsignarBrigada(row)}
@@ -100,7 +100,9 @@ const TablaManifiesto = () => {
         row.asignado === "1" ? (
           <label className="p-2  rounded bg-info text-white">Asignado</label>
         ) : row.asignado === "0" ? (
-          <label className="p-2  rounded bg-danger text-white">No Asignado</label>
+          <label className="p-2  rounded bg-danger text-white">
+            No Asignado
+          </label>
         ) : (
           <label className="p-2  rounded bg-secondary text-white">
             Por Definir
@@ -126,6 +128,7 @@ const TablaManifiesto = () => {
         <Form.Row className="align-items-center">
           <Col xs="auto">
             <Form.Control
+              value={curp ? curp : ""}
               onChange={(input) => setCurp(input.target.value)}
               className="mb-2 px-5"
               placeholder="Buscar..."
