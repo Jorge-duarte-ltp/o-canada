@@ -13,10 +13,12 @@ const TablaDisponibilidad = () => {
   const [data, setData] = useState();
   const [reload, setReload] = useState(true);
   const [curp, setCurp] = useState();
-  const [state, setState] = useState({ disponible: null, referencia: null });
+  const [state, setState] = useState({
+    disponible: null,
+    referenciaDisponible: null,
+  });
   const [show, setShow] = useState(false);
 
-  console.log(data);
   useEffect(() => {
     if (reload) {
       AlertCargando("Cargando información");
@@ -25,7 +27,6 @@ const TablaDisponibilidad = () => {
         url: `${process.env.REACT_APP_BACKEN_URL}disponible_candidatos`,
         data: { curp: curp ? curp : "" },
       }).then(async ({ data: { data } }) => {
-        console.log(data);
         await setData(data);
         AlertExito("Se han cargado los candidatos disponibles");
       });
@@ -52,6 +53,7 @@ const TablaDisponibilidad = () => {
       wrap: true,
       button: true,
       minWidth: "180px",
+      sortable: true,
       cell: (row) =>
         row.asignado === "1" ? (
           <Button
@@ -101,10 +103,18 @@ const TablaDisponibilidad = () => {
       sortable: true,
     },
     {
+      name: "Referencia",
+      selector: "referenciaDisponible",
+      wrap: false,
+      minWidth: "200px",
+      sortable: true,
+    },
+    {
       name: "Estatus",
       selector: "disponible",
       wrap: false,
       minWidth: "200px",
+      sortable: true,
       cell: (row) =>
         row.asignado === "1" ? (
           <label className=" p-2 mt-1 rounded bg-secondary text-white">
@@ -130,12 +140,17 @@ const TablaDisponibilidad = () => {
     const config = {
       method: "post",
       url: `${process.env.REACT_APP_BACKEN_URL}asignarDisponibilidadCandidato`,
-      data: { data: state },
+      data: {
+        data:
+          state.disponible === 1
+            ? { ...state, referenciaDisponible: null }
+            : state,
+      },
     };
     if (!state.disponible) {
       AlertError("Campo vacio", "Debe selecionar al menos una opción SI o NO.");
     } else if (state.disponible === "0") {
-      if (!state.referencia) {
+      if (!state.referenciaDisponible) {
         AlertError(
           "Campo vacio",
           "Deber de agregar la referencia por lo cual no esta disponible"
@@ -147,7 +162,7 @@ const TablaDisponibilidad = () => {
           if (resp.status === 200) {
             AlertExito("Guardado Correctamente");
             setReload(true);
-            setState({ disponible: null, referencia: null });
+            setState({ disponible: null, referenciaDisponible: null });
           }
         });
       }
@@ -223,10 +238,12 @@ const TablaDisponibilidad = () => {
                   <label className="control-label">Referencia:</label>
                   <input
                     className={`form-control ${
-                      state.referancia ? state.referencia : "myInput"
+                      state.referenciaDisponible
+                        ? state.referenciaDisponible
+                        : "myInput"
                     }`}
-                    name="referencia"
-                    defaultValue={state.referencia}
+                    name="referenciaDisponible"
+                    defaultValue={state.referenciaDisponible}
                     onChange={setInfo}
                     minLength={0}
                     maxLength={255}

@@ -235,7 +235,12 @@ const EditInfo = ({
       return;
     } else {
       for (let i = 0; i < keys.length; i++) {
-        if (isEmpty(dataTemp[keys[i]])) {
+        if (
+          (dataTemp.asignado === "0" && isEmpty(dataTemp[keys[i]])) ||
+          (dataTemp.asignado === "1" &&
+            isEmpty(dataTemp[keys[i]]) &&
+            keys[i] !== "referencia")
+        ) {
           AlertError(
             "Campo vacio",
             "Revisar que todos los campos no esten llenos."

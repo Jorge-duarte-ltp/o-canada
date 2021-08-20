@@ -153,7 +153,7 @@ const TablaManifiesto = () => {
       <DataTable
         title="Candidatos para asignación a brigada"
         columns={columns}
-        data={data}
+        data={data ? data : []}
         defaultSortField="curp"
         paginationComponentOptions={{
           rowsPerPageText: "Filas por página",

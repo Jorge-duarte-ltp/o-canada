@@ -16,12 +16,17 @@ const AsignarBrigada = ({ data, setShow, setReload }) => {
   } = data;
   const [asignacion, setAsignacion] = useState({ idCandidato: id, asignado });
 
+  const actions = () => {
+    setShow(false);
+    setReload(true);
+  };
+
   return (
     <>
       <div style={{ alignContent: "right" }}>
         <h3>Manifiesto</h3>
       </div>
-      <Button className="btn btn-danger" onClick={() => setShow(false)}>
+      <Button className="btn btn-danger" onClick={() => actions()}>
         Regresar
       </Button>
       <InfomacionCandidato
@@ -31,8 +36,8 @@ const AsignarBrigada = ({ data, setShow, setReload }) => {
         fotografia={fotografia}
         posicion_candidato={posicion_candidato}
       />
-      {asignado === "1" || asignado === "0"? (
-        <InfoAsignarBrigada state={asignacion} setState={setAsignacion} />
+      {asignado === "1" || asignado === "0" ? (
+        <InfoAsignarBrigada state={asignacion} />
       ) : (
         <FormAsignarBrigada
           setShow={setShow}
