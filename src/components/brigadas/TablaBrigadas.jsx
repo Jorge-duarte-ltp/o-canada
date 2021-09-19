@@ -52,6 +52,7 @@ const TablaBrigadas = () => {
             wrap: true,
             button: true,
             minWidth: '180px',
+            sortable: true,
             /* enviar a evaluacion del brigadista */
             cell: (row) => (row.status_evaluacion === 'evaluado') ?
                 <Button className='btn btn-block btn-info' onClick={() => mostrarEvaluacionBrigadista(row)}>Ver evaluación</Button>

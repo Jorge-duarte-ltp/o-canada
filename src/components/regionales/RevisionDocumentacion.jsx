@@ -230,7 +230,10 @@ const RevisionDocumentacion = () => {
         return "Formato Evalución Motosierra";
 
       case "constancia_curso_s_211":
-        return "Constancia Presentada 211 ";
+        return "Constancia Presentada 211";
+
+      case "evaluacion_desempenio_california2020":
+        return "Evaluación de Desempeño 2021";
 
       default:
         return "check= " + item;
