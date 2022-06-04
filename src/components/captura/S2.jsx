@@ -149,7 +149,7 @@ const S2 = (props) => {
 
       {/* ETA/Visa */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">ETA/Visa</label>
+        <label className="control-label pt-2">VISA/Correo Oficial de Cánada con la ETA</label>
         <input
           className="form-control myInput"
           name="eta_visa_archivo"
@@ -172,9 +172,9 @@ const S2 = (props) => {
           onChange={setInfo}
           placeholder="Documento para viajar a Canadá"
         >
-          <option value="">---Seleccione---</option>
+          <option value="">--Seleccione--</option>
           <option value="VISA">VISA</option>
-          <option value="eTA">eTA</option>
+          <option value="eTA">Correo Oficial de Canadá con la ETA</option>
         </select>
       </div>
 
@@ -303,7 +303,7 @@ const S2 = (props) => {
 
       {/* TIENE LICENCIA DE MANEJO */}
       <div className="col-12 col-md-12">
-        <label>¿Cuenta con licencia de manejo?</label>
+        <label>¿Cuenta con Licencia de Manejo de Chofer?</label>
         <SelectSiNo
           className="form-control myInput"
           name="tiene_licencia"

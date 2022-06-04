@@ -23,6 +23,7 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
   };
 
   useEffect(() => {
+
     axiosClient({
       method: "post",
       url: `${process.env.REACT_APP_BACKEN_URL}list_posiciones`,
@@ -36,6 +37,9 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
     }).then(async ({ data: { data } }) => {
       await setProvincias(data);
     });
+
+    return () => {}
+
   }, []);
 
   const onSubmit = () => {
@@ -90,9 +94,8 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
           <label className="control-label">Asignado:</label>
           <select
             name="asignado"
-            className={`form-control ${
-              state.asignado ? state.asignado : "myInput"
-            }`}
+            className={`form-control ${state.asignado ? state.asignado : "myInput"
+              }`}
             onChange={setInfo}
             value={state.asignado ? state.asignado : ""}
           >
@@ -101,20 +104,22 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
             <option value="0">NO</option>
           </select>
         </div>
-        <div className="col-6 col-md-6">
-          <label className="control-label">Referencia:</label>
-          <input
-            className={`form-control ${state.referancia ? null : "myInput"}`}
-            name="referencia"
-            defaultValue={state.referencia}
-            value={state.referencia ? state.referencia : ""}
-            onChange={setInfo}
-            minLength={0}
-            maxLength={255}
-            type="text"
-            placeholder="Ingrese el nombre de la brigada a asignar"
-          />
-        </div>
+        {state.asignado === "0" &&
+          <div className="col-6 col-md-6">
+            <label className="control-label">Observación:</label>
+            <input
+              className={`form-control ${state.referancia ? null : "myInput"}`}
+              name="referencia"
+              defaultValue={state.referencia}
+              value={state.referencia ? state.referencia : ""}
+              onChange={setInfo}
+              minLength={0}
+              maxLength={255}
+              type="text"
+              placeholder="Ingrese el motivo por el cual no fue asignado"
+            />
+          </div>
+        }
         {state.asignado === "1" && (
           <Fragment>
             <div className="col-6 col-md-6">
@@ -131,9 +136,8 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
               <label className="control-label">Providencia/Estado:</label>
               {provincias && (
                 <SelectProvicia
-                  className={`form-control ${
-                    state.idProvincia ? null : "myInput"
-                  }`}
+                  className={`form-control ${state.idProvincia ? null : "myInput"
+                    }`}
                   name="idProvincia"
                   defaultValue={state.idProvincia}
                   onChange={setInfo}
@@ -156,28 +160,28 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
             <div className="col-3 col-md-3">
               <label className="control-label">Asignación de Brigada:</label>
               <input
-                className={`form-control ${
-                  state.asignacion ? null : "myInput"
-                }`}
+                className={`form-control ${state.asignacion ? null : "myInput"
+                  }`}
                 name="asignacion"
                 defaultValue={state.asignacion}
                 value={state.asignacion ? state.asignacion : ""}
                 onChange={setInfo}
                 minLength={0}
                 maxLength={255}
+                                pattern="(^MX-\d{3},\s{1}[A-Z]{1,2}-\d{3}$)"
                 type="text"
-                placeholder="Ingrese el nombre de la brigada a asignar"
+                placeholder="Ingrese el nombre clave de la brigada a asignar"
               />
+              <small className="text-danger fs-5">Ejemplo: (MX-001, C-361)</small>
             </div>
             <div className="col-6 col-md-6">
               <label className="control-label">
-                Posición Asignada por la GMF:
+                Posición Asignada (GMF):
               </label>
               {posiciones && (
                 <SelectPosionAsignada
-                  className={`form-control ${
-                    state.idPosicion ? null : "myInput"
-                  }`}
+                  className={`form-control ${state.idPosicion ? null : "myInput"
+                    }`}
                   name="idPosicion"
                   defaultValue={state.idPosicion}
                   onChange={setInfo}
@@ -190,12 +194,11 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
             <div className="row col-12">
               <div className="col-4 col-md-4">
                 <label className="control-label">
-                  Fecha de incio de asignación:
+                  Fecha de Inicio:
                 </label>
                 <input
-                  className={`form-control ${
-                    state.fechaInicio ? null : "myInput"
-                  }`}
+                  className={`form-control ${state.fechaInicio ? null : "myInput"
+                    }`}
                   name="fechaInicio"
                   defaultValue={state.fechaInicio}
                   onChange={setInfo}
@@ -204,12 +207,11 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
               </div>
               <div className="col-4 col-md-4">
                 <label className="control-label">
-                  Fecha de conclusión de asignación:
+                  Fecha de conclusión:
                 </label>
                 <input
-                  className={`form-control ${
-                    state.fechaFinal ? null : "myInput"
-                  }`}
+                  className={`form-control ${state.fechaFinal ? null : "myInput"
+                    }`}
                   name="fechaFinal"
                   defaultValue={state.fechaFinal}
                   onChange={setInfo}
@@ -219,9 +221,8 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
               <div className="col-4 col-md-4">
                 <label className="control-label">Dias de Operacion:</label>
                 <input
-                  className={`form-control ${
-                    state.fechaFinal ? null : "myInput"
-                  }`}
+                  className={`form-control ${state.fechaFinal ? null : "myInput"
+                    }`}
                   name="fechaFinal"
                   value={
                     state.fechaFinal && state.fechaInicio

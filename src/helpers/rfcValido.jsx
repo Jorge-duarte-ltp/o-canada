@@ -17,21 +17,21 @@ const rfcValido = (rfc, aceptarGenerico = true) => {
     var suma,
         digitoEsperado;
 
-    if (len == 12) suma = 0
+    if (len === 12) suma = 0
     else suma = 481; //Ajuste para persona moral
 
     for (var i = 0; i < len; i++)
         suma += diccionario.indexOf(rfcSinDigito.charAt(i)) * (indice - i);
     digitoEsperado = 11 - suma % 11;
-    if (digitoEsperado == 11) digitoEsperado = 0;
-    else if (digitoEsperado == 10) digitoEsperado = "A";
+    if (digitoEsperado === 11) digitoEsperado = 0;
+    else if (digitoEsperado === 10) digitoEsperado = "A";
 
     //El dígito verificador coincide con el esperado?
     // o es un RFC Genérico (ventas a público general)?
-    if ((digitoVerificador != digitoEsperado)
-        && (!aceptarGenerico || rfcSinDigito + digitoVerificador != "XAXX010101000"))
+    if ((digitoVerificador !== digitoEsperado)
+        && (!aceptarGenerico || rfcSinDigito + digitoVerificador !== "XAXX010101000"))
         return false;
-    else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
+    else if (!aceptarGenerico && rfcSinDigito + digitoVerificador === "XEXX010101000")
         return false;
 
     

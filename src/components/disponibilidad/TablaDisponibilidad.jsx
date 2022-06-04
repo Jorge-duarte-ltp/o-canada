@@ -10,6 +10,7 @@ import AlertError from "../../singles/AlertError";
 import AlertExito from "../../singles/AlertExito";
 import SelectSiNo from "../../singles/SelectSiNo";
 const TablaDisponibilidad = () => {
+  
   const [data, setData] = useState();
   const [reload, setReload] = useState(true);
   const [curp, setCurp] = useState();
@@ -20,6 +21,7 @@ const TablaDisponibilidad = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
+    
     if (reload) {
       AlertCargando("Cargando información");
       axiosClient({
@@ -33,6 +35,9 @@ const TablaDisponibilidad = () => {
       setCurp("");
       setReload(false);
     }
+
+    return () => {}
+
   }, [reload, curp]);
 
   const setDisponibilidad = ({ id }) => {

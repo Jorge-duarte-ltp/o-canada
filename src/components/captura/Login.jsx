@@ -7,9 +7,9 @@ import candidatoContext from "../../context/candidato/candidatoContext";
 import axios from "axios";
 import AlertError from "../../singles/AlertError";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
-import { obtenerFotografia } from "../../singles/obtenerFotografia";
 
 const Login = (props) => {
+  
   const { secciones, setSecciones, archivos, setArchivos } = props;
   const candidatos = useContext(candidatoContext);
 
@@ -67,12 +67,17 @@ const Login = (props) => {
     try {
       const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
       if (respuesta.status === 200) {
-        setArchivos({
-          ...archivos,
-          fotografia_fl: [
-            `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.data.fotografia}`,
-          ],
-        });
+
+        if (respuesta.data.data.fotografia) {
+
+          setArchivos({
+            ...archivos,
+            fotografia_fl: [
+              `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.data.fotografia}`,
+            ],
+          });
+
+        }
 
         candidatos.candidatos.agregarCandidato({
           ...candidatos.candidatos,
@@ -124,8 +129,8 @@ const Login = (props) => {
   };
 
   return (
-    <div class="container login-container">
-      <div class="row">
+    <div className="container login-container">
+      <div className="row">
         {showTerminosCondiciones ? (
           <React.Fragment>
             <TerminosAviso
@@ -152,8 +157,8 @@ const Login = (props) => {
               checkLogin={checkLogin}
             />
             <footer>
-              <div class="pl-5 m-5 mt-5 text-danger">
-                <h3><strong class="text-dark ml-5">Nota:</strong> Se recomienda usar el Navegador Google Chrome</h3>
+              <div className="pl-5 m-5 mt-5 text-danger">
+                <h3><strong className="text-dark ml-5">Nota:</strong> Se recomienda usar el Navegador Google Chrome</h3>
               </div>
             </footer>
           </React.Fragment>

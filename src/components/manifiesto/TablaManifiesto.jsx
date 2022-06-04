@@ -37,7 +37,12 @@ const TablaManifiesto = () => {
       setCurp("");
       setReload(false);
     }
+    
+    return () => { }
+
   }, [reload, curp]);
+
+
 
   const columns = [
     {
@@ -87,6 +92,13 @@ const TablaManifiesto = () => {
     {
       name: "Estado",
       selector: "nom_ent",
+      wrap: false,
+      minWidth: "200px",
+      sortable: true,
+    },
+    {
+      name: "Brigada Asignada",
+      selector: "brigada",
       wrap: false,
       minWidth: "200px",
       sortable: true,

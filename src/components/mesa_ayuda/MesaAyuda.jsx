@@ -548,6 +548,7 @@ const MesaAyuda = () => {
 
     }
     const checkDataS7 = async () => {
+
         const {
             antecedentes_fecha,
             tiene_epp_completo,
@@ -557,6 +558,7 @@ const MesaAyuda = () => {
             tiene_sleeping_bag,
             tiene_sleeping_pad } = infoBrigadista
         const { carta_antecedentes_fl } = archivos
+        
         if (
             !antecedentes_fecha ||
             !carta_antecedentes_fl ||

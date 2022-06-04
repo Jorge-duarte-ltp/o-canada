@@ -21,7 +21,7 @@ const Ingreso = (props) => {
         >
             <h3>Usuarios ya registrados</h3>
             <form>
-                <div class="form-group">
+                <div className="form-group">
                     <InputCURP
                         disabled={enable}
                         className={`form-control`}
@@ -35,29 +35,29 @@ const Ingreso = (props) => {
                         setCorrect={setCurpValida}
                     />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <input
                         name='pass'
                         disabled={enable}
                         onChange={setInfo}
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Contraseña *"
                         value={state.pass}
                     />
                 </div>
-                {(state.curp_ing && curpValida && state.pass) && <div class="form-group">
+                {(state.curp_ing && curpValida && state.pass) && <div className="form-group">
                     <input
                         disabled={enable}
                         type='button'
                         onClick={checkLogin}
-                        class="btnSubmit"
+                        className="btnSubmit"
                         value='Ingresar'
                     />
                 </div>
                 }
-                <div class="form-group">
-                    {/* <a href="#" class="ForgetPwd" value="Login">Recuperar Contraseña</a> */}
+                <div className="form-group">
+                    {/* <a href="#" className="ForgetPwd" value="Login">Recuperar Contraseña</a> */}
                 </div>
             </form>
         </div>

@@ -263,7 +263,7 @@ const PDF = (props) => {
   let idioma =
     (state.posicion_candidato === "jefe_de_brigada" ||
       state.posicion_candidato === "tecnico") &&
-    state.toeic_toefl
+      state.toeic_toefl
       ? "Aprobado"
       : "No Aprobado";
   return (
@@ -344,8 +344,9 @@ const PDF = (props) => {
             </Text>
             <Text style={styles.RequisitosInfo}>9.- Liderazgo</Text>
             <Text style={styles.RequisitosInfo}>10.- GPS</Text>
-            <Text style={styles.RequisitosInfo}>11.- Motobomba Mark III</Text>
-            <Text style={styles.RequisitosInfo}>12.- Motosierra Autonoma</Text>
+            <Text style={styles.RequisitosInfo}>11.- Avenza Maps</Text>
+            <Text style={styles.RequisitosInfo}>12.- Motobomba Mark III</Text>
+            <Text style={styles.RequisitosInfo}>13.- Motosierra Autonoma</Text>
           </View>
           <View style={styles.sectionResultados} debug={false}>
             <Text
@@ -445,6 +446,16 @@ const PDF = (props) => {
               ]}
             >
               {sections.liderazgo ? "Aprobado" : "No Aprobado"}
+            </Text>
+            <Text
+              style={[
+                styles.RequisitosEspecial,
+                state.opera_autonoma_gps ? aprobadoColor : reprobadoColor,
+              ]}
+            >
+              {state.opera_autonoma_gps
+                ? "Realizar la prueba en la Promotoria de su Entidad"
+                : "No Aprobado"}
             </Text>
             <Text
               style={[

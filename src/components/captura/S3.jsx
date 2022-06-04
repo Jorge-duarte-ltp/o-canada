@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ToMayus from "../../helpers/ToMayus";
 import SelectSexo from "../../singles/SelectSexo";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
@@ -8,8 +8,27 @@ import SelectSiNo from "../../singles/SelectSiNo";
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import AlertError from "../../singles/AlertError";
+import SelectVacuna from "../../singles/SelectVacunas";
+import { ObtenerVacunas } from "../../services/catalogs/CatalogoService";
 const S3 = (props) => {
+
   const { state, setState, checkData, files, setStateFiles } = props;
+  const [vacunas, setVacunas] = useState([]);
+  const [timeout, setTimeout] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      ObtenerVacunas().then((response) => {
+        if (response.status === 200) {
+          setVacunas(response.data);
+        }
+      }).catch((error) => {
+        AlertError("Error al obtener la lista de vacunas");
+      })
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [])
 
   const setInfo = (input) => {
     if (input.target.value < 0) {
@@ -17,7 +36,9 @@ const S3 = (props) => {
     }
     if (
       input.target.name === "cert_toxicologico" ||
-      input.target.name === "cert_medico"
+      input.target.name === "cert_medico" ||
+      input.target.name === "certificado_covid" ||
+      input.target.name === "certificado_covid_refuerzo"
     ) {
       setStateFiles({
         ...files,
@@ -27,11 +48,11 @@ const S3 = (props) => {
         )
           ? input.target.files
           : AlertError(
-              "Error:",
-              `El archivo con la extensión no esta permitido .${input.target.files[0].name
-                .split(".")
-                .pop()}`
-            ),
+            "Error:",
+            `El archivo con la extensión no esta permitido .${input.target.files[0].name
+              .split(".")
+              .pop()}`
+          ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -42,6 +63,10 @@ const S3 = (props) => {
       });
     }
   };
+
+  const handleChange = ({ target }) => {
+    setState({ ...state, data: { ...state.data, [target.name]: target.value } });
+  }
 
   const setNumerico = (input) => {
     if (input.target.name === "altura") {
@@ -83,6 +108,10 @@ const S3 = (props) => {
     }
   };
 
+  const isUnique = (id) => {
+    return vacunas.find(item => item.id === id)?.dosisunica === '1' ? false : true;
+  }
+
   const revisarFormulario = () => {
     const {
       imc,
@@ -99,6 +128,7 @@ const S3 = (props) => {
       problemas_afeccion_osea,
       experiencia_personal_consejos,
       medico_personal_recomendo,
+      data,
     } = state;
     /* IMC mayor a 30 */
     if (parseFloat(imc) >= 30) {
@@ -106,18 +136,18 @@ const S3 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "imc mayo 30",
-        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
     } else {
       /* certificado toxicologico mayor a 15 dias */
       const dif_cert_tox = diferenciaFechaDias(fecha_cert_toxicologico);
 
-      if (dif_cert_tox > 15) {
+      if (dif_cert_tox > 31) {
         setState({
           ...state,
           rechazo: true,
-          motivo_rechazo: "certificado toxicológico excede los 15 dias",
-          fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+          motivo_rechazo: "certificado toxicológico excede 1 mes",
+          fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
         });
       } else {
         /* Certificado medico mayor a 1 mes */
@@ -126,8 +156,8 @@ const S3 = (props) => {
           setState({
             ...state,
             rechazo: true,
-            motivo_rechazo: "certificado médico excede 1 mes", 
-            fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+            motivo_rechazo: "certificado médico excede 1 mes",
+            fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
           });
         } else {
           if (
@@ -147,17 +177,50 @@ const S3 = (props) => {
               ...state,
               rechazo: true,
               motivo_rechazo: "problemas de salud",
-              fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+              fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
             });
           } else {
             setState({
               ...state,
               rechazo: false,
-              motivo_rechazo: null, 
-              fechaCreacion : null,
+              motivo_rechazo: null,
+              fechaCreacion: null,
             });
           }
         }
+
+        if (data?.esquema_completo === "0") {
+          setState({
+            ...state,
+            rechazo: true,
+            motivo_rechazo: "No cuenta con el esquema de vacunación completo",
+            fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0)
+          });
+        } else {
+          setState({
+            ...state,
+            rechazo: false,
+            motivo_rechazo: null,
+            fechaCreacion: null
+          });
+        }
+
+        if (data?.vacuna_aprobada === "0") {
+          setState({
+            ...state,
+            rechazo: true,
+            motivo_rechazo: "No cuenta con una vacuna aprobatoria para viajar",
+            fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0)
+          });
+        } else {
+          setState({
+            ...state,
+            rechazo: false,
+            motivo_rechazo: null,
+            fechaCreacion: null
+          });
+        }
+
       }
     }
   };
@@ -288,7 +351,7 @@ const S3 = (props) => {
         <input
           className="form-control myInput"
           name="fecha_cert_toxicologico"
-          value={state.fecha_cert_toxicologico}
+          value={state.fecha_cert_toxicologico ? state.fecha_cert_toxicologico : ""}
           type="date"
           onChange={setInfo}
           onBlur={revisarFormulario}
@@ -298,7 +361,7 @@ const S3 = (props) => {
 
       {/* Certificado médico */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Certificado médico</label>
+        <label className="control-label pt-2">Certificado médico o historia clínica</label>
         <input
           className="form-control myInput"
           name="cert_medico"
@@ -313,11 +376,11 @@ const S3 = (props) => {
 
       {/* Certificado médico Fecha */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Certificado médico Fecha</label>
+        <label className="control-label pt-2">Certificado médico o historia clínica Fecha</label>
         <input
           className="form-control myInput"
           name="fecha_cert_medico"
-          value={state.fecha_cert_medico}
+          value={state.fecha_cert_medico ? state.fecha_cert_medico : ""}
           type="date"
           onChange={setInfo}
           onBlur={revisarFormulario}
@@ -326,7 +389,7 @@ const S3 = (props) => {
       </div>
 
       {/* ¿Padece alguna enfermedad Crónica? */}
-      <div className="col-12 col-md-5">
+      <div className="col-12 col-md-6">
         <label className="control-label pt-2">
           ¿Padece alguna enfermedad Crónica?
         </label>
@@ -342,7 +405,7 @@ const S3 = (props) => {
       {/* ¿Qué enfermedad padece? */}
       {state.padece_enfermedad === "1" && (
         <React.Fragment>
-          <div className="col-12 col-md-7">
+          <div className="col-12 col-md-6">
             <label className="control-label pt-2">
               ¿Qué enfermedad padece?
             </label>
@@ -359,7 +422,7 @@ const S3 = (props) => {
         </React.Fragment>
       )}
       {/* ¿Requiere medicamentos de manera permanente? */}
-      <div className="col-12 col-md-5">
+      <div className="col-12 col-md-6">
         <label className="control-label pt-2">
           ¿Requiere medicamentos de manera permanente?
         </label>
@@ -375,7 +438,7 @@ const S3 = (props) => {
       {/* ¿Requiere medicamentos de manera permanente? */}
       {state.requiere_medicamentos_perm === "1" && (
         <React.Fragment>
-          <div className="col-12 col-md-7">
+          <div className="col-12 col-md-6">
             <label className="control-label pt-2">
               ¿Qué medicamentos requiere de manera permanente?
             </label>
@@ -391,6 +454,7 @@ const S3 = (props) => {
           </div>
         </React.Fragment>
       )}
+
       {/* ¿Experimentó dolor, incomodidad o presión en el pecho? */}
       <div className="col-12">
         <label className="control-label pt-2">
@@ -575,6 +639,196 @@ const S3 = (props) => {
         </select>
       </div>
 
+      {/* ¿Cuenta con el esquema completo de COVID-19(2 dosis)? */}
+      <div className="col-12">
+        <label className="control-label pt-2">
+          ¿Cuenta con el esquema completo de COVID-19(2 dosis)?
+        </label>
+        <select
+          className="form-control myInput"
+          name="esquema_completo"
+          defaultValue={state?.data?.esquema_completo}
+          onChange={handleChange}
+          onBlur={revisarFormulario}
+        >
+          <option value="">---Seleccione---</option>
+          <option value={1}>Si</option>
+          <option value={0}>No</option>
+        </select>
+      </div>
+
+      {/** ¿Cuenta con la dosis de refuerzo? */}
+      {state?.data?.esquema_completo === "1" && <React.Fragment>
+        <div className="col-12">
+          <label className="control-label pt-2">
+            ¿Cuenta con dosis de refuerzo?
+          </label>
+          <select
+            className="form-control myInput"
+            name="refuerzo"
+            defaultValue={state?.data?.refuerzo}
+            onChange={handleChange}
+          >
+            <option value="">---Seleccione---</option>
+            <option value={1}>Si</option>
+            <option value={0}>No</option>
+          </select>
+        </div>
+
+        {/* ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?*/}
+
+        <div className="col-12">
+          <label className="control-label pt-2">
+            ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?
+          </label>
+          <select
+            className="form-control myInput"
+            name="vacuna_aprobada"
+            defaultValue={state?.data?.vacuna_aprobada}
+            onChange={handleChange}
+            onBlur={revisarFormulario}
+          >
+            <option value="">---Seleccione---</option>
+            <option value={1}>Si</option>
+            <option value={0}>No</option>
+          </select>
+        </div>
+
+        {state?.data?.vacuna_aprobada === "1" && <React.Fragment>
+          {/* Certificado de vacunación COVID-19 (2 DÓSIS) */}
+          <div className="col-12 col-md-12">
+            <label className="control-label pt-2">Certificado de vacunación COVID-19 (2 DÓSIS)</label>
+            <input
+              className="form-control myInput"
+              name="certificado_covid"
+              type="file"
+              accept="application/pdf"
+              onChange={setInfo}
+              placeholder="Cargar"
+            />
+          </div>
+
+          {files.certificado_covid_fl && <React.Fragment>
+
+            {/** Marca de la vacuna primera dosis */}
+            <div className="col-12 col-md-4">
+              <label className="control-label pt-2">Marca de la Vacuna</label>
+              <SelectVacuna
+                className={`form-control myInput`}
+                name="idPrimeraDosis"
+                value={state?.data?.idPrimeraDosis ? state?.data?.idPrimeraDosis : null}
+                defaultValue={state?.data?.idPrimeraDosis}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Fecha de aplicación de 1 dosis */}
+            <div className="col-12 col-md-4">
+              <label className="control-label pt-2">
+                Fecha aplicación 1 dosis
+              </label>
+              <input
+                className="form-control myInput"
+                name="fecha_primera_dosis"
+                value={state?.data?.fecha_primera_dosis}
+                type="date"
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Fecha de aplicación de 2 dosis */}
+
+            {state?.data?.idPrimeraDosis && isUnique(state?.data?.idPrimeraDosis) &&
+              <div className="col-12 col-md-4">
+                <label className="control-label pt-2">
+                  Fecha aplicación 2 dosis
+                </label>
+                <input
+                  className="form-control myInput"
+                  name="fecha_segunda_dosis"
+                  value={state?.data?.fecha_segunda_dosis}
+                  type="date"
+                  onChange={handleChange}
+                />
+              </div>}
+
+            {/* Certificado de dosis de refuerzo */}
+            <div className="col-12 col-md-12">
+              <label className="control-label pt-2">Certificado de dosis de Refuerzo</label>
+              <input
+                className="form-control myInput"
+                name="certificado_covid_refuerzo"
+                type="file"
+                accept="application/pdf"
+                onChange={setInfo}
+                placeholder="Cargar"
+              />
+            </div>
+
+
+            {/** Marca de la vacuna */}
+            <div className="col-12 col-md-6">
+              <label className="control-label pt-2">Marca de la Vacuna</label>
+              <SelectVacuna
+                className={`form-control myInput`}
+                name="idRefuerzoDosis"
+                value={state?.data?.idRefuerzoDosis ? state?.data?.idRefuerzoDosis : null}
+                defaultValue={state?.data?.idRefuerzoDosis}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Fecha de aplicación de dosis de refuerzo */}
+            <div className="col-12 col-md-6">
+              <label className="control-label pt-2">
+                Fecha aplicación dosis de refuerzo
+              </label>
+              <input
+                className="form-control myInput"
+                name="fecha_refuerzo_dosis"
+                value={state?.data?.fecha_refuerzo_dosis}
+                type="date"
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* ¿Ha padecido COVID-19 en los últimos 6 meses? */}
+            <div className="col-12">
+              <label className="control-label pt-2">
+                ¿Ha padecido COVID-19 en los últimos 6 meses?
+              </label>
+              <select
+                className="form-control myInput"
+                name="padecimiento"
+                defaultValue={state?.data?.padecimiento}
+                onChange={handleChange}
+              >
+                <option value="">---Seleccione---</option>
+                <option value={1}>Si</option>
+                <option value={0}>No</option>
+              </select>
+            </div>
+
+            {/* ¿Requirió hospitalización cuando padeció COVID-19? */}
+            {state?.data?.padecimiento === "1" &&
+              <div className="col-12">
+                <label className="control-label pt-2">
+                  ¿Requirió hospitalización cuando padeció COVID-19?
+                </label>
+                <select
+                  className="form-control myInput"
+                  name="hospitalizacion"
+                  defaultValue={state?.data?.hospitalizacion}
+                  onChange={handleChange}
+                >
+                  <option value="">---Seleccione---</option>
+                  <option value={1}>Si</option>
+                  <option value={0}>No</option>
+                </select>
+              </div>}
+          </React.Fragment>}
+        </React.Fragment>}
+      </React.Fragment>}
       {/* BTN Continuar */}
       <div className="col-12 pt-5 btn-margin">
         <button

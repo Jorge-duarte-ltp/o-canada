@@ -69,26 +69,26 @@ const Registro = (props) => {
                 </div>
                 {state.curp_reg && <React.Fragment>
 
-                    <div class="form-group">
+                    <div className="form-group">
                         <input
                             name='pass_reg'
                             disabled={enable}
                             onChange={setInfo}
                             onChangeCapture={checkPassword}
                             type="password"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Registre una contraseña *"
                             value={state.pass_reg}
                         />
                         {passwordInvalid && <Alert variant='warning'>Contraseña debe tener minimo 4 caracteres</Alert>}
                     </div>
-                    {!passwordInvalid && <div class="form-group">
+                    {!passwordInvalid && <div className="form-group">
                         <input
                             name='comp_pass_reg'
                             disabled={enable}
                             onChange={setInfo}
                             type="password"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Repita la contraseña *"
                             value={state.comp_pass_reg}
                         />

@@ -7,7 +7,6 @@ import moment from "moment";
 import extractInfoCurp from "../../helpers/extractInfoCurp";
 import diferenciaFechasAnios from "../../helpers/diferenciaFechasAnios";
 import SelectEstados from "../../singles/SelectEstados";
-import axios from "axios";
 import AlertError from "../../singles/AlertError";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import emailValid from "../../helpers/emailValid";
@@ -19,19 +18,20 @@ import {
   SelectTallasGorras,
   SelectTallasPantalon,
 } from "../../singles/SelectTallas";
-import SelectBancos from "../../singles/SelectBancos";
-import obtenerEstados from "../../singles/ObtenerEstados";
+// import SelectBancos from "../../singles/SelectBancos";
+import { ObtenerAeropuertos, ObtenerEstados } from "../../services/catalogs/CatalogoService";
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
+import SelectMunicipio from "../../singles/SelectMunicipio";
 
 const S1 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
-  const [municipios, setMunicipios] = useState([]);
   const [estados, setEstados] = useState([]);
+  const [aeropuertos, setAeropuertos] = useState([]);
   const [preview, setPreview] = useState("");
   const [enter, setEnter] = useState(false);
-  const [tecnico, setTecnico] = useState(false);
-  const [puedeContinuar, setPuedeContinuar] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [, setPuedeContinuar] = useState(false);
 
   /* validaciones */
   const [correoValido, setCorreoValido] = useState();
@@ -40,14 +40,21 @@ const S1 = (props) => {
   // const [rfcCorrecto, setRfcCorrecto] = useState(false)
 
   useEffect(() => {
+
     setPuedeContinuar(
       correoValido && correBenefValido /* && rfcCorrecto */ ? false : true
     );
 
-    obtenerEstados().then(async (response) => {
-      const data = await response.data.data;
+    ObtenerEstados().then(async (response) => {
+      const data = await response.data;
       setEstados(data);
     });
+
+    ObtenerAeropuertos().then(async (response) => {
+      if (response.status === 200) {
+        setAeropuertos(response.data);
+      }
+    })
 
     typeof state.region === "undefined"
       ? setState({ ...state, region: null })
@@ -56,6 +63,7 @@ const S1 = (props) => {
     fillInfoCurp();
 
     setEnter(true);
+
   }, [enter]);
 
   const setInfo = (input) => {
@@ -85,11 +93,11 @@ const S1 = (props) => {
         )
           ? input.target.files
           : AlertError(
-              "Error:",
-              `El archivo ó imagen con la extensión no esta permitido .${input.target.files[0].name
-                .split(".")
-                .pop()}`
-            ),
+            "Error:",
+            `El archivo ó imagen con la extensión no esta permitido .${input.target.files[0].name
+              .split(".")
+              .pop()}`
+          ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -100,34 +108,42 @@ const S1 = (props) => {
     }
   };
 
-  const setRegion = (input) => {
-    if (input.target.name === "estado") {
-      estados.forEach((element) => {
-        if (input.target.value === element.cve_ent) {
-          setState({ ...state, region: element.region });
-        }
-      });
-    }
+  const handleChange = (input) => {
+
+    const object = new Object({ region: "", aeropuerto: "" });
+
+    estados.forEach((element) => {
+      if (input.target.value === element.cve_ent) {
+        object.region = element.region;
+        object.aeropuerto = aeropuertos.find(item => element.id === item.idEstado).id;
+      }
+    });
+
+    setState({ ...state, ...object });
+
   };
 
   const checkEdad = (input) => {
     const fecha = input.target.value;
     const fecha_moment = moment(fecha).format("YYYY-MM-DD");
     const anios = diferenciaFechasAnios(fecha_moment);
+
     /* MENOR DE EDAD */
     if (anios < 21) {
+
       setState({
         ...state,
         rechazo: true,
         motivo_rechazo: "candidato menor de edad",
         fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
+
     }
-    if (anios > 55) {
-      setState({ ...state, posicion_candidato: "tecnico" });
-      setTecnico(true);
+
+    if (anios > 50) {
+      setHidden(true);
     } else {
-      setTecnico(false);
+      setHidden(false);
     }
   };
 
@@ -142,19 +158,6 @@ const S1 = (props) => {
       motivo_rechazo: null,
       fechaCreacion: null,
     });
-  };
-
-  const getMunicipios = async (input) => {
-    const cve_enitidad = input.target.value;
-    const url = `http://187.218.23.71/siiac_ws_app/public/api/inegi/municipios?paginate%5Bpage%5D=1&paginate%5BselectQuery%5D=null&paginate%5BbyColumn%5D=true&paginate%5Blimit%5D=600&paginate%5BorderBy%5D=nom_mun&paginate%5Bascending%5D=1&paginate%5BsQ%5D%5B0%5D%5BopT%5D=con&paginate%5BsQ%5D%5B0%5D%5Bop%5D=and&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5BopT%5D=com&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5Bop%5D=%3D&paginate%5BsQ%5D%5B0%5D%5BsQ%5D%5B0%5D%5BsQ%5D%5Bcve_ent%5D=${cve_enitidad}`;
-    try {
-      const resp = await axios.get(url);
-      if (resp.status === 200) {
-        setMunicipios(resp.data.data);
-      }
-    } catch (error) {
-      AlertError("Error", error);
-    }
   };
 
   return (
@@ -296,8 +299,7 @@ const S1 = (props) => {
           name="estado"
           value={state.estado ? state.estado : null}
           defaultValue={state.estado}
-          onBlur={getMunicipios}
-          onClick={setRegion}
+          onClick={handleChange}
           onChange={setInfo}
           placeholder="Ingrese Estado..."
         />
@@ -310,7 +312,7 @@ const S1 = (props) => {
           className={`form-control myInput`}
           name="region"
           value={state.region}
-          defaultValue={state.region ? state.region : ""}
+          readOnly
           onChange={setInfo}
           placeholder="Ingrese Region..."
           disabled
@@ -328,22 +330,15 @@ const S1 = (props) => {
       {/* Municipio */}
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Municipio</label>
-        <select
-          disabled={municipios.length <= 0 ? true : false}
+        <SelectMunicipio
           className={`form-control myInput`}
           name="municipio"
-          value={state.municipio ? state.municipio : ""}
+          value={state.municipio ? state.municipio : null}
           defaultValue={state.municipio}
           onChange={setInfo}
-          placeholder="Ingrese Municipio..."
-        >
-          <option value="">---Seleccione---</option>
-          {municipios.map((item) => (
-            <option key={item.cve_mun} value={item.cve_mun}>
-              {item.nom_mun}
-            </option>
-          ))}
-        </select>
+          placeholder="Ingrese Estado..."
+          cve_entidad={state.estado}
+        />
       </div>
       {/* Aeropuerto */}
       <div className="col-12 col-md-6">
@@ -354,9 +349,10 @@ const S1 = (props) => {
           className={`form-control myInput`}
           name="aeropuerto"
           value={state.aeropuerto ? state.aeropuerto : ""}
-          defaultValue={state.aeropuerto}
+          readOnly
           onChange={setInfo}
           placeholder="Ingrese Aeropuerto..."
+          disabled
         />
       </div>
 
@@ -366,11 +362,10 @@ const S1 = (props) => {
           Número telefónico para notificaciones
         </label>
         <input
-          className={`form-control ${
-            state.numero_telefonico_notificaciones ? null : "myInput"
-          }`}
+          className={`form-control ${state.numero_telefonico_notificaciones ? "" : "myInput"
+            }`}
           name="numero_telefonico_notificaciones"
-          value={state.numero_telefonico_notificaciones}
+          value={state.numero_telefonico_notificaciones ? state.numero_telefonico_notificaciones : ""}
           maxLength="10"
           onChange={setInfo}
           placeholder="Ingrese Número telefónico para notificaciones..."
@@ -381,9 +376,8 @@ const S1 = (props) => {
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Correo electrónico</label>
         <input
-          className={`form-control ${
-            state.correo_electronico ? null : "myInput"
-          }`}
+          className={`form-control ${state.correo_electronico ? null : "myInput"
+            }`}
           name="correo_electronico"
           value={state.correo_electronico}
           type="email"
@@ -408,10 +402,8 @@ const S1 = (props) => {
           Posición a la que es candidato:
         </label>
         <select
-          className={`form-control ${
-            state.posicion_candidato ? null : "myInput"
-          }`}
-          disabled={tecnico}
+          className={`form-control ${state.posicion_candidato ? null : "myInput"
+            }`}
           name="posicion_candidato"
           defaultValue={state.posicion_candidato}
           value={state.posicion_candidato}
@@ -419,7 +411,7 @@ const S1 = (props) => {
           placeholder="Posición a la que es candidato..."
         >
           <option value="">---Seleccione---</option>
-          <option value="combatiente">Combatiente</option>
+          {!hidden && <option value="combatiente">Combatiente</option>}
           <option value="jefe_de_cuadrilla">Jefe de Cuadrilla</option>
           <option value="jefe_de_brigada">Jefe de Brigada</option>
           <option value="tecnico">Técnico</option>
@@ -445,9 +437,8 @@ const S1 = (props) => {
       <div className="col-12 col-md-4">
         <label className="control-label pt-2">Tipo de dependencia</label>
         <select
-          className={`form-control ${
-            state.tipo_dependencia ? null : "myInput"
-          }`}
+          className={`form-control ${state.tipo_dependencia ? null : "myInput"
+            }`}
           name="tipo_dependencia"
           value={state.tipo_dependencia}
           onChange={setInfo}
@@ -468,9 +459,8 @@ const S1 = (props) => {
           Fecha de ingreso a la dependencia
         </label>
         <input
-          className={`form-control ${
-            state.fecha_ingreso_dependencia ? null : "myInput"
-          }`}
+          className={`form-control ${state.fecha_ingreso_dependencia ? null : "myInput"
+            }`}
           name="fecha_ingreso_dependencia"
           value={state.fecha_ingreso_dependencia}
           type="date"
@@ -485,9 +475,8 @@ const S1 = (props) => {
           Años de experiencia en actividades de manejo del fuego (comprobables)
         </label>
         <InputNumber
-          className={`form-control ${
-            state.anios_experiencia ? null : "myInput"
-          }`}
+          className={`form-control ${state.anios_experiencia ? null : "myInput"
+            }`}
           name="anios_experiencia"
           value={state.anios_experiencia}
           limitLength={2}
@@ -501,9 +490,8 @@ const S1 = (props) => {
       <div className="col-12 col-md-12">
         <label className="control-label pt-2">Puesto en su dependencia</label>
         <input
-          className={`form-control ${
-            state.puesto_en_dependencia ? null : "myInput"
-          }`}
+          className={`form-control ${state.puesto_en_dependencia ? null : "myInput"
+            }`}
           name="puesto_en_dependencia"
           value={state.puesto_en_dependencia}
           onChange={setInfo}
@@ -517,9 +505,8 @@ const S1 = (props) => {
           Funciones en su dependencia
         </label>
         <select
-          className={`form-control ${
-            state.funciones_dependencia ? null : "myInput"
-          }`}
+          className={`form-control ${state.funciones_dependencia ? null : "myInput"
+            }`}
           name="funciones_dependencia"
           value={state.funciones_dependencia}
           onChange={setInfo}
@@ -537,9 +524,8 @@ const S1 = (props) => {
       <div className="col-8">
         <label className="control-label pt-2">Nombre de contacto de emergencia</label>
         <input
-          className={`form-control ${
-            state.nombre_beneficiario ? null : "myInput"
-          }`}
+          className={`form-control ${state.nombre_beneficiario ? null : "myInput"
+            }`}
           name="nombre_beneficiario"
           value={state.nombre_beneficiario}
           onChange={setInfo}
@@ -552,9 +538,8 @@ const S1 = (props) => {
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">Teléfono del contacto de emergencia</label>
         <InputNumber
-          className={`form-control ${
-            state.telefono_beneficiario ? null : "myInput"
-          }`}
+          className={`form-control ${state.telefono_beneficiario ? null : "myInput"
+            }`}
           name="telefono_beneficiario"
           limitLength={10}
           min={0}
@@ -571,9 +556,8 @@ const S1 = (props) => {
           Correo electrónico de contacto de emergencia
         </label>
         <input
-          className={`form-control ${
-            state.correo_beneficiario ? null : "myInput"
-          }`}
+          className={`form-control ${state.correo_beneficiario ? null : "myInput"
+            }`}
           name="correo_beneficiario"
           value={state.correo_beneficiario}
           onChange={setInfo}

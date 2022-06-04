@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import rfcValido from '../helpers/rfcValido'
+import React, { useState } from 'react'
 
 const InputRFC = (props) => {
 
     const {
-        rfc,
         onKeyPressCapture,
         name,
         defaultValue,
         placeholder,
         className,
         onChange,
-        correct,
-        setCorrect
     } = props
 
     // const [valido, setValido] = useState('')
-    const [claseValido, setClaseValido] = useState('')
+    const [claseValido,] = useState('')
 
 
 
@@ -41,7 +37,7 @@ const InputRFC = (props) => {
         <React.Fragment>
             <input
                 className={`${className} ${claseValido}`}
-                value={defaultValue}
+                value={defaultValue ? defaultValue : ''}
                 placeholder={placeholder}
                 onKeyPressCapture={onKeyPressCapture}
                 onChange={onChange}

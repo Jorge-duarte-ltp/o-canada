@@ -1,37 +1,38 @@
-import React, { useState } from "react";
-import axiosClient from "../config/axios";
-import { isEmpty } from "lodash";
+import React, { useEffect, useState } from "react";
+import { ObtenerAeropuertos } from "../services/catalogs/CatalogoService";
+
 const SelectAeropuertos = (props) => {
-  const { name, className, onChange, defaultValue } = props;
+  const { name, className, onChange, value, readOnly = false, disabled = false } = props;
   const [data, setData] = useState([]);
 
-  const config = {
-    method: "post",
-    url: `${process.env.REACT_APP_BACKEN_URL}list_aeropuertos`,
-  };
 
-  if (isEmpty(data)) {
-    axiosClient(config).then(async (response) => {
-      const data = await response.data.data;
-      setData(data);
+  useEffect(() => {
+
+    ObtenerAeropuertos().then(async (response) => {
+      if (response.status === 200) {
+        setData(response.data);
+      }
     });
-  }
+
+    return () => { }
+
+  }, [])
 
   return (
     <select
       name={name}
       className={className}
       onChange={onChange}
-      value={defaultValue}
-      defaultValue={defaultValue}
+      value={value}
+      readOnly={readOnly}
+      disabled={disabled}
     >
-      <option value="">--Seleccione--</option>
-      {typeof data != "undefined" &&
-        data.map((item, index) => (
-          <option key={index} value={item.id}>
-            {item.nombre} - {item.cod_iata}
-          </option>
-        ))}
+      <option value="">---Seleccione---</option>
+      {data && data.map((item, index) => (
+        <option key={index} value={item.id}>
+          {item.nombre} - {item.cod_iata}
+        </option>
+      ))}
     </select>
   );
 };

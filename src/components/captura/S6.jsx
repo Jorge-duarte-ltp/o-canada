@@ -10,7 +10,7 @@ const S6 = (props) => {
 
   const setInfo = (input) => {
     /* setea al state las variables */
-    if (input.target.name === "doc_acred_primeros_auxilios") {
+    if (input.target.name === "doc_acred_primeros_auxilios" || input.target.name === "constancia_operaciones_aereas") {
       setStateFiles({
         ...files,
         [input.target.name + "_fl"]: validarExtPdf(
@@ -19,11 +19,11 @@ const S6 = (props) => {
         )
           ? input.target.files
           : AlertError(
-              "Error:",
-              `El archivo con la extensión no esta permitido .${input.target.files[0].name
-                .split(".")
-                .pop()}`
-            ),
+            "Error:",
+            `El archivo con la extensión no esta permitido .${input.target.files[0].name
+              .split(".")
+              .pop()}`
+          ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -230,7 +230,40 @@ const S6 = (props) => {
           </React.Fragment>
         )}
       </div>
+      {/** ¿Cuenta con concimientos básicos en operaciones Seguras en equipo aéreo? */}
+      <div className="col-12 col-md-4">
+        <React.Fragment>
+          <label className="control-label pt-2">¿Cuenta con conocimientos básicos en Operaciones Seguras en equipo aéreo?</label>
+          <select
+            className="form-control myInput"
+            name="conocimiento_equipo_aereo"
+            value={state.conocimiento_equipo_aereo}
+            onChange={setInfo}
+          >
+            <option>---Seleccione---</option>
+            <option value="si">Si</option>
+            <option value="no">No</option>
+          </select>
+        </React.Fragment>
+      </div>
 
+      {/** Constancia de alumno o instructor en Operaciones (S-217, S-271 Y S-371). */}
+      <div className="col-12 col-md-12">
+        {state.conocimientos_primeros_auxilios === "1" && (
+          <React.Fragment>
+            <label className="control-label pt-2">
+              Constancia de alumno o instructor en Operaciones aéreas (S-217, S-271 y S-371).
+            </label>
+            <input
+              className="form-control myInput"
+              type="file"
+              accept="application/pdf"
+              name="constancia_operaciones_aereas"
+              onChange={setInfo}
+            />
+          </React.Fragment>
+        )}
+      </div>
       {/* BTN Continuar */}
       <div className="col-12 pt-5 btn-margin">
         <button

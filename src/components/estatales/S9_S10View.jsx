@@ -225,6 +225,8 @@ const S9_S10View = (props) => {
       ...pruebasContext.cand,
       pruebasCandidato: evaluaciones,
     });
+
+    return () => {}
   }, [evaluaciones]);
 
   return (

@@ -62,7 +62,7 @@ const S5 = (props) => {
             rechazo: true,
             motivo_rechazo: "no aprobo examen si_190",
             examen_s_190: respuesta.data.calificacion,
-            fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+            fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
           });
         } else {
           setState({
@@ -70,7 +70,7 @@ const S5 = (props) => {
             rechazo: false,
             motivo_rechazo: null,
             examen_s_190: respuesta.data.calificacion,
-            fechaCreacion : null,
+            fechaCreacion: null,
           });
         }
         setShowExam(false);
@@ -112,11 +112,11 @@ const S5 = (props) => {
         )
           ? input.target.files
           : AlertError(
-              "Error:",
-              `El archivo con la extensión no esta permitido .${input.target.files[0].name
-                .split(".")
-                .pop()}`
-            ),
+            "Error:",
+            `El archivo con la extensión no esta permitido .${input.target.files[0].name
+              .split(".")
+              .pop()}`
+          ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -390,7 +390,6 @@ const S5 = (props) => {
             </React.Fragment>
           )}
 
-          {/* S-130 */}
           <div className="col-12">
             <label className="control-label pt-2">
               ¿Cuántas veces ha sido asignado como recurso nacional en incendios
@@ -405,7 +404,6 @@ const S5 = (props) => {
             />
           </div>
 
-          {/* S-130 */}
           <div className="col-12">
             <label className="control-label pt-2">
               ¿Cuántas veces ha sido asignado como recurso en incendios
@@ -419,6 +417,27 @@ const S5 = (props) => {
               placeholder="¿Cuántas veces ha sido asignado como recurso en incendios forestales en otro país?"
             />
           </div>
+
+          <div className="col-12">
+            <label className="control-label pt-2">
+              ¿Qué posición ocupó en el despliegue?
+            </label>
+            <select className="form-control myInput"
+              id="ultima_posicion"
+              name="ultima_posicion"
+              onChange={setInfo}
+            >
+              <option >-- Seleccione --</option>
+              <option value='combatiente'>Combatiente</option>
+              <option value='jefe_de_cuadrilla'>Jefe de Cuadrilla</option>
+              <option value='jefe_de_brigada'>Jefe de Brigada</option>
+              <option value='técnico_arep'>Técnico (AREP)</option>
+              <option value='técnico_iarr'>Técnico (IARR)</option>
+              <option value='coordinador_covid'>Ténico (COORDINADOR COVID)</option>
+            </select>
+          </div>
+
+
         </React.Fragment>
       )}
 
@@ -427,8 +446,8 @@ const S5 = (props) => {
         <button
           hidden={
             state.asignado_recurso_nacional &&
-            state.asignado_recurso_otro_pais &&
-            !sci_190Examen
+              state.asignado_recurso_otro_pais &&
+              !sci_190Examen
               ? false
               : true
           }

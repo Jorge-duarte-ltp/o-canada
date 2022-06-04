@@ -7,6 +7,7 @@ export const CheckListEquipo = (props) => {
   const [checkSelected, setCheckSelected] = useState(
     state.equipo_proteccion ? state.equipo_proteccion : {}
   );
+  
   const config = {
     method: "post",
     url: `${process.env.REACT_APP_BACKEN_URL}list_equipo`,

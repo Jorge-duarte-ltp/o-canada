@@ -890,6 +890,8 @@ const S9_S10 = (props) => {
       ...pruebasContext.cand,
       pruebasCandidato: evaluaciones,
     });
+    return () => {}
+
   }, [evaluaciones]);
 
   return (

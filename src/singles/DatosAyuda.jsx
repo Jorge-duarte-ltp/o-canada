@@ -40,7 +40,7 @@ const DatosAyuda = ({ setShow, show }) => {
                         <br />
                         {/* <br /> */}
                         <div className='table-responsive'>
-                            <table class="table table-sm">
+                            <table className="table table-sm">
                                 <thead>
                                     <tr>
                                         <th scope="col">REGIÓN</th>

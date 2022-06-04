@@ -15,14 +15,13 @@ import AlertError from "../singles/AlertError";
 import AlertCargando from "../singles/AlertCargando";
 import AlertExito from "../singles/AlertExito";
 import Login from "../components/captura/Login";
-import { size } from "lodash";
 // import rfcValido from '../helpers/rfcValido'
 
 /* CONTEXT */
 
 import candidatoContext from "./../context/candidato/candidatoContext";
 import emailValid from "../helpers/emailValid";
-import axiosClient from "../config/axios";
+// import axiosClient from "../config/axios";
 import { formatDate } from "../helpers/formatDate";
 const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
 
@@ -51,19 +50,25 @@ const Captura = () => {
   const seccionSiguiente = { status: "actual", visible: true };
 
   useEffect(() => {
+
     if (candidatos.candidatos.infoBrigadista.rechazo) {
       setRechazo({
         rechazo: true,
         motivo_rechazo: infoBrigadista.motivo_rechazo,
       });
     }
+
     if (secciones.s8.status === "completa") {
       setRechazo({
         rechazo: true,
         motivo_rechazo: null,
       });
     }
+
     setInfoBrigadista(candidatos.candidatos.infoBrigadista);
+
+    return () => { }
+
   }, [secciones]);
 
   const [rechazo, setRechazo] = useState({
@@ -152,12 +157,12 @@ const Captura = () => {
       return;
     }
 
-    if(!archivos.fotografia_fl){
-      AlertError('Error','Falta Cargar la fotografia que solo permite los siguientes formatos .png, .jpg, .');
+    if (!archivos.fotografia_fl) {
+      AlertError('Error', 'Falta Cargar la fotografia que solo permite los siguientes formatos .png, .jpg, .');
       return;
     }
-    if(!archivos.curp_archivo_fl){
-      AlertError('Error','Falta Cargar el documento de la CURP en formato PDF.');
+    if (!archivos.curp_archivo_fl) {
+      AlertError('Error', 'Falta Cargar el documento de la CURP en formato PDF.');
       return;
     }
 
@@ -174,6 +179,7 @@ const Captura = () => {
       AlertError("Los correos estan mal estructurados");
       return;
     }
+
     // cuenta bancaria
     // if (size(clabe_interbancaria) < 18) {
     //   AlertError("El numero de cuenta clabe debe ser igual a 18 digitos");
@@ -187,7 +193,9 @@ const Captura = () => {
     });
 
     const url = `${API_REQUEST}candidato_update`;
+
     try {
+
       const formData = new FormData();
       formData.append("file", archivos.fotografia_fl[0]);
       formData.append("curp", infoBrigadista.curp);
@@ -197,8 +205,7 @@ const Captura = () => {
       formDataCurp.append("file", archivos.curp_archivo_fl[0]);
       formDataCurp.append("curp", infoBrigadista.curp);
       formDataCurp.append("name", "curp_archivo");
-      const archivo = await axios.post(
-        `${API_REQUEST}carga_archivo`,
+      const archivo = await axios.post(`${API_REQUEST}carga_archivo`,
         formData,
         {
           headers: {
@@ -270,6 +277,7 @@ const Captura = () => {
     }
     /*  mostrar siguiente seccion*/
   };
+
   const checkDataS2 = async () => {
     const regex = /[A-Z]{1}[0-9]{8}$/;
     const regex_visa_eta = /[A-Z]{1}[0-9]{9}$/;
@@ -364,31 +372,33 @@ const Captura = () => {
     formData_pasaporte_archivo.append("file", archivos.pasaporte_archivo_fl[0]);
     formData_pasaporte_archivo.append("curp", infoBrigadista.curp);
     formData_pasaporte_archivo.append("name", "pasaporte_archivo");
+
     /* ETA_VISA_ARCHIVO */
     const formData_eta_visa_archivo = new FormData();
     formData_eta_visa_archivo.append("file", archivos.eta_visa_archivo_fl[0]);
     formData_eta_visa_archivo.append("curp", infoBrigadista.curp);
-    formData_eta_visa_archivo.append(
-      "name",
-      infoBrigadista.documento_viajar_canada
-    );
+    formData_eta_visa_archivo.append("name", infoBrigadista.documento_viajar_canada);
 
     const formData_licencia_manejo = new FormData();
 
     if (tiene_licencia === "1") {
+
       /* LICENCIA_MANEJO */
       formData_licencia_manejo.append("file", archivos.licencia_manejo_fl[0]);
       formData_licencia_manejo.append("curp", infoBrigadista.curp);
       formData_licencia_manejo.append("name", "licencia_manejo");
+
     }
 
     const formData_visa_usa = new FormData();
 
     if (tiene_visa_usa === "1") {
+
       /* VISA ESTADOUNIDENSE */
       formData_visa_usa.append("file", archivos.visa_usa_archivo_fl[0]);
       formData_visa_usa.append("curp", infoBrigadista.curp);
       formData_visa_usa.append("name", "visa_estadounidense");
+
     }
 
     /*   actualizacion de informacion por AXIOS */
@@ -428,6 +438,7 @@ const Captura = () => {
           AlertError("Error", "no se pudo cargar el archivo de licencia");
         }
       }
+
       if (tiene_visa_usa === "1") {
         const archivo_visa_usa = await axios.post(
           `${API_REQUEST}carga_archivo`,
@@ -463,6 +474,7 @@ const Captura = () => {
         archivo_pasaporte_archivo.status === 200 &&
         archivo_eta_visa_archivo.status === 200
       ) {
+
         if (infoBrigadista.rechazo) {
           // se ocultan las secciones
           setSecciones({
@@ -476,11 +488,13 @@ const Captura = () => {
             s8: false,
             login: false,
           });
+
           // se muestra pantalla motivo de rechazo
           setRechazo({
             rechazo: true,
             motivo_rechazo: infoBrigadista.motivo_rechazo,
           });
+
         } else {
           /* Agrega al context general */
 
@@ -489,19 +503,27 @@ const Captura = () => {
             s2: seccionCompleta,
             s3: seccionSiguiente,
           });
+
         }
       }
     } catch (error) {
+
       if (error.response.status === 400) {
+
         Swal.fire({
           icon: "error",
           title: "No se encontró candidato",
         });
+
         return;
+
       }
+
       console.error("error", error);
+
     }
   };
+
   const checkDataS3 = async () => {
     const {
       sexo,
@@ -522,9 +544,10 @@ const Captura = () => {
       problemas_afeccion_osea,
       experiencia_personal_consejos,
       medico_personal_recomendo,
+      data,
     } = infoBrigadista;
 
-    const { cert_toxicologico_fl, cert_medico_fl } = archivos;
+    const { cert_toxicologico_fl, cert_medico_fl, certificado_covid_fl, certificado_covid_refuerzo_fl } = archivos;
 
     if (
       !sexo ||
@@ -549,6 +572,23 @@ const Captura = () => {
       !experiencia_personal_consejos ||
       !medico_personal_recomendo
     ) {
+      console.log("compos faltantes 1");
+      msgFaltanCampos();
+      return;
+    }
+
+    if (
+      !data.esquema_completo === "" ||
+      !data.refuerzo === "" ||
+      !data.vacuna_aprobada === "" ||
+      !certificado_covid_fl ||
+      !data.idPrimeraDosis === "" ||
+      !data.fecha_primera_dosis === "" ||
+      !data.idRefuerzoDosis === "" ||
+      !data.fecha_refuerzo_dosis === "" ||
+      !data.padecimineto === "") {
+      console.log(data);
+      console.log("campos faltante 2");
       msgFaltanCampos();
       return;
     }
@@ -568,7 +608,24 @@ const Captura = () => {
     formData_cert_medico.append("file", archivos.cert_medico_fl[0]);
     formData_cert_medico.append("curp", infoBrigadista.curp);
     formData_cert_medico.append("name", "cert_medico");
+
+    const formDtaa_certificado_covid = new FormData();
+    formDtaa_certificado_covid.append("file", archivos.certificado_covid_fl[0]);
+    formDtaa_certificado_covid.append("curp", infoBrigadista.curp);
+    formDtaa_certificado_covid.append("name", "certificado_covid");
+
+    const formDtaa_certificado_covid_refuerzo = new FormData();
+
+    if (certificado_covid_refuerzo_fl) {
+
+      formDtaa_certificado_covid_refuerzo.append("file", archivos.certificado_covid_refuerzo_fl[0]);
+      formDtaa_certificado_covid_refuerzo.append("curp", infoBrigadista.curp);
+      formDtaa_certificado_covid_refuerzo.append("name", "certificado_covid_refuerzo");
+
+    }
+
     const url = `${API_REQUEST}candidato_update`;
+
     try {
       /*  actualizacion de informacion por AXIOS */
       const archivo_cert_toxicologico = await axios.post(
@@ -583,6 +640,24 @@ const Captura = () => {
       const archivo_cert_medico = await axios.post(
         `${API_REQUEST}carga_archivo`,
         formData_cert_medico,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const archivo_certificado_covid = await axios.post(
+        `${API_REQUEST}carga_archivo`,
+        formDtaa_certificado_covid,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const archivo_certificado_covid_refuerzo = await axios.post(
+        `${API_REQUEST}carga_archivo`,
+        formDtaa_certificado_covid_refuerzo,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -604,7 +679,9 @@ const Captura = () => {
       if (
         respuesta.status === 200 &&
         archivo_cert_toxicologico.status === 200 &&
-        archivo_cert_medico.status === 200
+        archivo_cert_medico.status === 200 &&
+        archivo_certificado_covid.status === 200 &&
+        archivo_certificado_covid_refuerzo?.status === 200
       ) {
         if (infoBrigadista.rechazo) {
           // se ocultan las secciones
@@ -632,18 +709,25 @@ const Captura = () => {
             s3: seccionCompleta,
             s4: seccionSiguiente,
           });
+          
+
+
         }
       } else {
         AlertError("Error", respuesta.data);
       }
     } catch (error) {
+
       if (error.response.status === 400) {
+
         Swal.fire({
           icon: "error",
           title: "No se encontró candidato",
         });
+
         return;
       }
+
       console.error("error", error);
     }
   };
@@ -658,8 +742,10 @@ const Captura = () => {
       ...candidatos.candidatos,
       infoBrigadista,
     });
+
     /* update AXIOS */
     const url = `${API_REQUEST}candidato_update`;
+
     try {
       const formData_sci_smi_100_fl = new FormData();
       formData_sci_smi_100_fl.append("file", archivos.sci_smi_100_fl[0]);
@@ -690,6 +776,24 @@ const Captura = () => {
           },
         }
       );
+
+      if (archivos.sci_smi_300_fl) {
+
+        const formData_sci_smi_300_fl = new FormData();
+        formData_sci_smi_300_fl.append("file", archivos.sci_smi_100_fl[0]);
+        formData_sci_smi_300_fl.append("curp", infoBrigadista.curp);
+        formData_sci_smi_300_fl.append("name", "sci_smi_100");
+
+        await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formData_sci_smi_300_fl,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      }
 
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
@@ -748,6 +852,7 @@ const Captura = () => {
   };
 
   const checkDataS5 = async () => {
+
     // SE AGREGA A CONTEXT
     candidatos.candidatos.agregarCandidato({
       ...candidatos.candidatos,
@@ -801,7 +906,9 @@ const Captura = () => {
         archivo_s_190.status === 200 &&
         archivo_s_130.status === 200
       ) {
+        
         if (infoBrigadista.rechazo) {
+
           // se ocultan las secciones
           setSecciones({
             s1: false,
@@ -814,29 +921,38 @@ const Captura = () => {
             s8: false,
             login: false,
           });
+
           // se muestra pantalla motivo de rechazo
           setRechazo({
             rechazo: true,
             motivo_rechazo: infoBrigadista.motivo_rechazo,
           });
+
         } else {
+
           /* Agrega al context general */
           setSecciones({
             ...secciones,
             s5: seccionCompleta,
             s6: seccionSiguiente,
           });
+
         }
       } else {
+
         AlertError("Error", respuesta.data);
+
       }
     } catch (error) {
       if (error.response.status === 400) {
+
         Swal.fire({
           icon: "error",
           title: "No se encontró candidato",
         });
+
         return;
+
       }
       console.error("error", error);
     }
@@ -848,35 +964,42 @@ const Captura = () => {
       opera_autonoma_motosierra,
       conocimientos_primeros_auxilios,
       niv_primeros_auxilios,
+      conocimiento_equipo_aereo,
     } = infoBrigadista;
-    const { doc_acred_primeros_auxilios_fl } = archivos;
+    const { doc_acred_primeros_auxilios_fl, constancia_operaciones_aereas_fl } = archivos;
 
     if (
       !opera_autonoma_gps ||
       !opera_autonoma_mark3 ||
       !opera_autonoma_motosierra ||
       (conocimientos_primeros_auxilios === "1" &&
-        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl))
+        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
+      conocimiento_equipo_aereo
     ) {
+
       msgFaltanCampos();
       return;
+
     }
 
     const formData_doc_acred_primeros_auxilios_fl = new FormData();
 
     if (doc_acred_primeros_auxilios_fl) {
-      formData_doc_acred_primeros_auxilios_fl.append(
-        "file",
-        archivos.doc_acred_primeros_auxilios_fl[0]
-      );
-      formData_doc_acred_primeros_auxilios_fl.append(
-        "curp",
-        infoBrigadista.curp
-      );
-      formData_doc_acred_primeros_auxilios_fl.append(
-        "name",
-        "doc_acred_primeros_auxilios"
-      );
+
+      formData_doc_acred_primeros_auxilios_fl.append("file", archivos.doc_acred_primeros_auxilios_fl[0]);
+      formData_doc_acred_primeros_auxilios_fl.append("curp", infoBrigadista.curp);
+      formData_doc_acred_primeros_auxilios_fl.append("name", "doc_acred_primeros_auxilios");
+
+    }
+
+    const formData_constancia_operaciones_aereas_fl = new FormData();
+
+
+    if (constancia_operaciones_aereas_fl) {
+
+      formData_constancia_operaciones_aereas_fl.append("file", archivos.doc_acred_primeros_auxilios_fl[0]);
+      formData_constancia_operaciones_aereas_fl.append("curp", infoBrigadista.curp);
+      formData_constancia_operaciones_aereas_fl.append("name", "constancia_operaciones_aereas");
     }
 
     // SE AGREGA A CONTEXT
@@ -884,10 +1007,14 @@ const Captura = () => {
       ...candidatos.candidatos,
       infoBrigadista,
     });
+
     /* actualizacion de informacion por AXIOS */
     const url = `${API_REQUEST}candidato_update`;
+
     try {
+
       AlertCargando("Enviando los datos, espere por favor");
+
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
         secuencia: { ...secciones, s6: seccionCompleta, s7: seccionSiguiente },
@@ -895,6 +1022,7 @@ const Captura = () => {
 
       AlertExito("Cargado exitosamente");
       if (doc_acred_primeros_auxilios_fl) {
+
         const archivo_doc_acred_primeros_auxilios_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_doc_acred_primeros_auxilios_fl,
@@ -911,10 +1039,36 @@ const Captura = () => {
             "doc_acred_primeros_auxilios"
           );
         }
+
       }
 
+      if (constancia_operaciones_aereas_fl) {
+
+        const archivo_constancia_operaciones_aereas_fl = await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formData_constancia_operaciones_aereas_fl,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        if (archivo_constancia_operaciones_aereas_fl.status !== 200) {
+
+          AlertError(
+            "no se pudo cargar archivo",
+            "constancia_operaciones_aereas"
+          );
+
+        }
+      }
+
+
       if (respuesta.status === 200) {
+
         if (infoBrigadista.rechazo) {
+
           // se ocultan las secciones
           setSecciones({
             s1: false,
@@ -927,57 +1081,81 @@ const Captura = () => {
             s8: false,
             login: false,
           });
+
           /* Muestra ppantalla de rechazo */
           setRechazo({
             rechazo: true,
             motivo_rechazo: infoBrigadista.motivo_rechazo,
           });
-        } else {
-          /* Agrega al context general */
 
+        } else {
+
+          /* Agrega al context general */
           setSecciones({
             ...secciones,
             s6: seccionCompleta,
             s7: seccionSiguiente,
           });
+
         }
       } else {
+
         AlertError("Error", respuesta.data);
+
       }
     } catch (error) {
+
       if (error.response.status === 400) {
+
         Swal.fire({
           icon: "error",
           title: "No se encontró candidato",
         });
+
         return;
       }
+
       console.error("error", error);
     }
   };
+
   const checkDataS7 = async () => {
-    const { antecedentes_fecha, tiene_epp_completo } = infoBrigadista;
-    const { carta_antecedentes_fl } = archivos;
-    if (!antecedentes_fecha || !carta_antecedentes_fl || !tiene_epp_completo) {
-      msgFaltanCampos();
-      return;
-    }
+
+    const { antecedentes_fecha, tiene_epp_completo, calificacion_evaluacion_disponibilidad } = infoBrigadista;
+    const { carta_antecedentes_fl, evaluacion_disponibilidad_fl } = archivos;
+
+    console.log("evaluacion_disponibilidad_fl");
+    console.log(evaluacion_disponibilidad_fl);
+    console.log("calificacion_evaluacion_disponibilidad");
+    console.log(calificacion_evaluacion_disponibilidad);
+
+    // if (!evaluacion_disponibilidad_fl || !calificacion_evaluacion_disponibilidad) {
+    //   console.log('entro');
+    // } else {
+    //   if (!antecedentes_fecha || !carta_antecedentes_fl || !tiene_epp_completo) {
+    //     msgFaltanCampos();
+    //     return;
+    //   }
+    // }
+
+
     // SE AGREGA A CONTEXT
     candidatos.candidatos.agregarCandidato({
       ...candidatos.candidatos,
       infoBrigadista,
     });
+
     /* CARTA_ANTECEDENTES */
     const formData_carta_antecedentes = new FormData();
-    formData_carta_antecedentes.append(
-      "file",
-      archivos.carta_antecedentes_fl[0]
-    );
+
+    formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
     formData_carta_antecedentes.append("curp", infoBrigadista.curp);
     formData_carta_antecedentes.append("name", "carta_antecedentes");
 
     const url = `${API_REQUEST}candidato_update`;
+
     try {
+
       const archivo_carta_antecedentes = await axios.post(
         `${API_REQUEST}carga_archivo`,
         formData_carta_antecedentes,
@@ -987,15 +1165,19 @@ const Captura = () => {
           },
         }
       );
+
       AlertCargando("Enviando los datos, espere por favor");
+
       const respuesta = await axios.post(url, {
         data: infoBrigadista,
         secuencia: { ...secciones, s7: seccionCompleta, s8: seccionSiguiente },
       });
+
       if (
         respuesta.status === 200 &&
         archivo_carta_antecedentes.status === 200
       ) {
+
         AlertExito("Cargado exitosamente");
         if (infoBrigadista.rechazo) {
           // se ocultan las secciones
@@ -1010,11 +1192,13 @@ const Captura = () => {
             s8: false,
             login: false,
           });
+
           // se muestra pantalla motivo de rechazo
           setRechazo({
             rechazo: true,
             motivo_rechazo: infoBrigadista.motivo_rechazo,
           });
+
         } else {
           /* Agrega al context general */
 
@@ -1023,22 +1207,31 @@ const Captura = () => {
             s7: seccionCompleta,
             s8: seccionSiguiente,
           });
+
         }
       } else {
+
         AlertError("Error", respuesta.data);
+
       }
     } catch (error) {
+
       if (error.response.status === 400) {
+
         Swal.fire({
           icon: "error",
           title: "No se encontró candidato",
         });
+
         return;
       }
+
       console.error("error", error);
     }
   };
+
   const checkDataS8 = async () => {
+
     const {
       nivel_ingles,
       toeic_toefl,
@@ -1078,28 +1271,23 @@ const Captura = () => {
         (cert_intern_ate_emerg_med === "1" &&
           !cert_intern_ate_emerg_med_file_fl)
       ) {
+
         msgFaltanCampos();
         return;
+
       }
       if (examen_toeic_toefl_archivo_fl) {
+
         const formData_examen_toeic_toefl_archivo_fl = new FormData();
-        formData_examen_toeic_toefl_archivo_fl.append(
-          "file",
-          archivos.examen_toeic_toefl_archivo_fl[0]
-        );
-        formData_examen_toeic_toefl_archivo_fl.append(
-          "curp",
-          infoBrigadista.curp
-        );
-        formData_examen_toeic_toefl_archivo_fl.append(
-          "name",
-          infoBrigadista.toeic_toefl
-        );
+        formData_examen_toeic_toefl_archivo_fl.append("file", archivos.examen_toeic_toefl_archivo_fl[0]);
+        formData_examen_toeic_toefl_archivo_fl.append("curp", infoBrigadista.curp);
+        formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
+
       }
     } else {
+
       // SI tiene s1, debe cargar los archivos, o responder algo
-      if (
-        (l_280 === "1" && !l_280_file_fl) ||
+      if ((l_280 === "1" && !l_280_file_fl) ||
         l_280 === "" ||
         (s_290 === "1" && !s_290_file_fl) ||
         s_290 === "" ||
@@ -1127,41 +1315,41 @@ const Captura = () => {
     const formData_cert_intern_ate_emerg_med_file_fl = new FormData();
 
     if (examen_toeic_toefl_archivo_fl) {
-      formData_examen_toeic_toefl_archivo_fl.append(
-        "file",
-        archivos.examen_toeic_toefl_archivo_fl[0]
-      );
-      formData_examen_toeic_toefl_archivo_fl.append(
-        "curp",
-        infoBrigadista.curp
-      );
-      formData_examen_toeic_toefl_archivo_fl.append(
-        "name",
-        infoBrigadista.toeic_toefl
-      );
+
+      formData_examen_toeic_toefl_archivo_fl.append("file", archivos.examen_toeic_toefl_archivo_fl[0]);
+      formData_examen_toeic_toefl_archivo_fl.append("curp", infoBrigadista.curp);
+      formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
+
     }
 
     if (l_280_file_fl) {
+
       formData_l_280_file_fl.append("file", archivos.l_280_file_fl[0]);
       formData_l_280_file_fl.append("curp", infoBrigadista.curp);
       formData_l_280_file_fl.append("name", "l_280_file");
+
     }
 
     if (s_290_file_fl) {
+
       formData_s_290_file_fl.append("file", archivos.s_290_file_fl[0]);
       formData_s_290_file_fl.append("curp", infoBrigadista.curp);
       formData_s_290_file_fl.append("name", "s_290_file");
+
     }
 
     if (cert_intern_incendios_file_fl) {
+
       formData_cert_intern_incendios_file_fl.append(
         "file",
         archivos.cert_intern_incendios_file_fl[0]
       );
+
       formData_cert_intern_incendios_file_fl.append(
         "curp",
         infoBrigadista.curp
       );
+
       formData_cert_intern_incendios_file_fl.append(
         "name",
         "cert_intern_incendios_file"
@@ -1169,34 +1357,42 @@ const Captura = () => {
     }
 
     if (s_211_file_fl) {
+
       formData_s_211_file_fl.append("file", archivos.s_211_file_fl[0]);
       formData_s_211_file_fl.append("curp", infoBrigadista.curp);
       formData_s_211_file_fl.append("name", "s_211_file");
+
     }
 
     if (cert_intern_ate_emerg_med_file_fl) {
+
       formData_cert_intern_ate_emerg_med_file_fl.append(
         "file",
         archivos.cert_intern_ate_emerg_med_file_fl[0]
       );
+
       formData_cert_intern_ate_emerg_med_file_fl.append(
         "curp",
         infoBrigadista.curp
       );
+
       formData_cert_intern_ate_emerg_med_file_fl.append(
         "name",
         "cert_intern_ate_emerg_med_file"
       );
+
     }
 
     const url = `${API_REQUEST}candidato_update`;
     try {
+
       setSecciones({
         ...secciones,
         s8: seccionCompleta,
       });
 
       if (examen_toeic_toefl_archivo_fl) {
+
         const archivo_examen_toeic_toefl_archivo_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_examen_toeic_toefl_archivo_fl,
@@ -1212,6 +1408,7 @@ const Captura = () => {
         }
       }
       if (l_280_file_fl) {
+
         const archivo_l_280_file_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_l_280_file_fl,
@@ -1225,9 +1422,11 @@ const Captura = () => {
         if (archivo_l_280_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "l_280");
         }
+
       }
 
       if (s_211_file_fl) {
+
         const archivo_s_211_file_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_s_211_file_fl,
@@ -1241,9 +1440,11 @@ const Captura = () => {
         if (archivo_s_211_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "l_280");
         }
+
       }
 
       if (s_290_file_fl) {
+
         const archivo_s_290_file_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_s_290_file_fl,
@@ -1257,8 +1458,10 @@ const Captura = () => {
         if (archivo_s_290_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "s_290");
         }
+
       }
       if (cert_intern_incendios_file_fl) {
+
         const archivo_cert_intern_incendios_file_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_cert_intern_incendios_file_fl,
@@ -1272,8 +1475,11 @@ const Captura = () => {
         if (archivo_cert_intern_incendios_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "cert_intern_incendios");
         }
+
       }
+
       if (cert_intern_ate_emerg_med_file_fl) {
+
         const archivo_cert_intern_ate_emerg_med_file_fl = await axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_cert_intern_ate_emerg_med_file_fl,
@@ -1283,9 +1489,11 @@ const Captura = () => {
             },
           }
         );
+
         if (archivo_cert_intern_ate_emerg_med_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "cert_intern_ate_emerg_med");
         }
+
       }
 
       const respuesta = await axios.post(url, {
@@ -1304,7 +1512,9 @@ const Captura = () => {
       });
 
       if (respuesta.status === 200) {
+
         if (infoBrigadista.rechazo) {
+
           // se ocultan las secciones
           setSecciones({
             s1: false,
@@ -1317,23 +1527,27 @@ const Captura = () => {
             s8: false,
             login: false,
           });
+
           // se muestra pantalla motivo de rechazo
           setRechazo({
             rechazo: true,
             motivo_rechazo: infoBrigadista.motivo_rechazo,
           });
-        } else {
-          /* Agrega al context general */
 
+        } else {
+
+          /* Agrega al context general */
           Swal.fire(
             "Buen trabajo",
             "Se le notificará sobre su proceso de seleccion",
             "success"
           );
+
           setRechazo({
             rechazo: true,
             motivo_rechazo: null,
           });
+
         }
       } else {
         AlertError("Error", respuesta.data);

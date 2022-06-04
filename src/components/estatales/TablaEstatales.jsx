@@ -176,6 +176,7 @@ const TablaEstatales = () => {
       setModoVista(false);
       setReload(false);
     }
+    return () => {}
   }, [reload]);
 
   /* CONFIGURACIONES TABLA */

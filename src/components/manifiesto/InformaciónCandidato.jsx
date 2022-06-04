@@ -12,7 +12,6 @@ const InfomacionCandidato = ({
       <div className="col-12 col-md-12 center-text">
         <h2>Datos del candidato seleccionado</h2>
       </div>
-      fotografia DEL CANDIDATO
       <div className="col-12 col-md-12" style={{ textAlign: "center" }}>
         <img
           src={`${process.env.REACT_APP_BACKEN_FILES}${curp}/${fotografia}`}

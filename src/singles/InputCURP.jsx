@@ -12,7 +12,6 @@ const InputCURP = (props) => {
         className,
         disabled,
         setCorrect,
-        correct,
         onChange
     } = props
 
@@ -32,9 +31,13 @@ const InputCURP = (props) => {
     }
 
     useEffect(() => {
+        
         if (defaultValue === '') {
             setValido('')
         }
+
+        return () => { };
+
     }, [defaultValue])
 
     const [valido, setValido] = useState('')
@@ -45,7 +48,7 @@ const InputCURP = (props) => {
         <React.Fragment>
             <input
                 className={`${className} ${claseValido}`}
-                value={defaultValue}
+                value={defaultValue ? defaultValue : ''}
                 placeholder={placeholder}
                 onKeyPressCapture={onKeyPressCapture}
                 onChange={onChange}

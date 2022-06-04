@@ -48,6 +48,9 @@ const InfoAsignarBrigada = ({ state }) => {
       });
       setReload(false);
     }
+
+    return () => { }
+    
   }, [data, reload]);
 
   return edit ? (
@@ -84,9 +87,8 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
         <label className="control-label">Asignado:</label>
         <select
           name="asignado"
-          className={`form-control ${
-            data.asignado ? data.asignado : "myInput"
-          }`}
+          className={`form-control ${data.asignado ? data.asignado : "myInput"
+            }`}
           value={data.asignado}
           disabled={true}
         >
@@ -97,16 +99,15 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
       </div>
 
       <div className="col-6 col-md-6">
-        <label className="control-label">Referencia:</label>
+        <label className="control-label">Observación:</label>
         <input
-          className={`form-control ${
-            data.referancia ? data.referencia : "myInput"
-          }`}
+          className={`form-control ${data.referancia ? data.referencia : "myInput"
+            }`}
           name="referencia"
           defaultValue={data.referencia ? data.referencia : ""}
           minLength={0}
           maxLength={200}
-          placeholder="Ingrese el nombre de la brigada a asignar"
+          placeholder="Ingrese el motivo por el cual no fue asignado"
           disabled={true}
         />
       </div>
@@ -124,9 +125,8 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
         <label className="control-label">Providencia/Estado:</label>
         {provincias && (
           <SelectProvicia
-            className={`form-control ${
-              data.idProvincia ? data.idProvincia : "myInput"
-            }`}
+            className={`form-control ${data.idProvincia ? data.idProvincia : "myInput"
+              }`}
             name="idProvincia"
             value={data.idProvincia ? data.idProvincia : ""}
             filter={data.idPais}
@@ -135,7 +135,7 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
           />
         )}
       </div>
-      <div className="col-6 col-md-6">
+      <div className="col-4 col-md-4">
         <label className="control-label">Numero de Brigada:</label>
         <SelectNumeroBrigada
           className={`form-control ${data.numero ? null : "myInput"}`}
@@ -146,7 +146,7 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
         />
       </div>
 
-      <div className="col-6 col-md-6">
+      <div className="col-4 col-md-4">
         <label className="control-label">Asignación de Brigada:</label>
         <input
           className={`form-control ${data.asignacion ? null : "myInput"}`}
@@ -155,13 +155,14 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
           minLength={0}
           maxLength={20}
           type="text"
+          pattern="(^MX-\d{3},\s{1}[A-Z]{1,2}-\d{3}$)"
           disabled={true}
-          placeholder="Ingrese el nombre de la brigada a asignar"
+          placeholder="Ingrese el nombre clave de la brigada asignar"
         />
       </div>
 
-      <div className="col-6 col-md-6">
-        <label className="control-label">Posición Asignada por la GMF:</label>
+      <div className="col-4 col-md-4">
+        <label className="control-label">Posición Asignada (GMF):</label>
         {posiciones && (
           <SelectPosionAsignada
             className={`form-control ${data.idPosicion ? null : "myInput"}`}
@@ -173,41 +174,43 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
           />
         )}
       </div>
-      <div className="col-4 col-md-4">
-        <label className="control-label">Fecha de incio de asignación:</label>
-        <input
-          className={`form-control ${data.fechaInicio ? null : "myInput"}`}
-          name="fechaInicio"
-          defaultValue={data.fechaInicio}
-          disabled={true}
-          type="date"
-        />
-      </div>
-      <div className="col-4 col-md-4">
-        <label className="control-label">
-          Fecha de conclusión de asignación:
-        </label>
-        <input
-          className={`form-control ${data.fechaFinal ? null : "myInput"}`}
-          name="fechaFinal"
-          defaultValue={data.fechaFinal}
-          disabled={true}
-          type="date"
-        />
-      </div>
-      <div className="col-4 col-md-4">
-        <label className="control-label">Dias de Operacion:</label>
-        <input
-          className={`form-control ${data.fechaFinal ? null : "myInput"}`}
-          name="fechaFinal"
-          value={
-            data.fechaFinal && data.fechaInicio
-              ? calculoDiasFechas(data.fechaFinal, data.fechaInicio)
-              : ""
-          }
-          disabled={true}
-          type="number"
-        />
+      <div className="d-flex col-12 col-md-12 m-0 p-0">
+        <div className="col-4 col-md-4">
+          <label className="control-label">Fecha de Inicio:</label>
+          <input
+            className={`form-control ${data.fechaInicio ? null : "myInput"}`}
+            name="fechaInicio"
+            defaultValue={data.fechaInicio}
+            disabled={true}
+            type="date"
+          />
+        </div>
+        <div className="col-4 col-md-4">
+          <label className="control-label">
+            Fecha de conclusión:
+          </label>
+          <input
+            className={`form-control ${data.fechaFinal ? null : "myInput"}`}
+            name="fechaFinal"
+            defaultValue={data.fechaFinal}
+            disabled={true}
+            type="date"
+          />
+        </div>
+        <div className="col-4 col-md-4">
+          <label className="control-label">Dias de Operacion:</label>
+          <input
+            className={`form-control ${data.fechaFinal ? null : "myInput"}`}
+            name="fechaFinal"
+            value={
+              data.fechaFinal && data.fechaInicio
+                ? calculoDiasFechas(data.fechaFinal, data.fechaInicio)
+                : ""
+            }
+            disabled={true}
+            type="number"
+          />
+        </div>
       </div>
     </div>
   </Fragment>
@@ -265,15 +268,15 @@ const EditInfo = ({
               dataTemp.asignado === "1"
                 ? dataTemp
                 : {
-                    ...dataTemp,
-                    numero: null,
-                    asignacion: null,
-                    idPais: null,
-                    idProvincia: null,
-                    idPosicion: null,
-                    fechaInicio: null,
-                    fechaFinal: null,
-                  },
+                  ...dataTemp,
+                  numero: null,
+                  asignacion: null,
+                  idPais: null,
+                  idProvincia: null,
+                  idPosicion: null,
+                  fechaInicio: null,
+                  fechaFinal: null,
+                },
           },
         }).then(async (resp) => {
           if (resp.status === 200) {
@@ -312,13 +315,12 @@ const EditInfo = ({
   return (
     <Fragment>
       <div className="row body_wrap pb-4">
-        <div className="col-5 col-md-5">
+        <div className="col-6 col-md-6">
           <label className="control-label">Asignado:</label>
           <select
             name="asignado"
-            className={`form-control ${
-              data.asignado ? data.asignado : "myInput"
-            }`}
+            className={`form-control ${data.asignado ? data.asignado : "myInput"
+              }`}
             value={data.asignado}
             onChange={setInfo}
           >
@@ -327,29 +329,28 @@ const EditInfo = ({
             <option value="0">NO</option>
           </select>
         </div>
-
-        <div className="col-6 col-md-6">
-          <label className="control-label">Referencia:</label>
-          <input
-            className={`form-control ${
-              data.referancia ? data.referencia : "myInput"
-            }`}
-            name="referencia"
-            value={data.referencia ? data.referencia : ""}
-            minLength={0}
-            maxLength={200}
-            placeholder="Ingrese el nombre de la brigada a asignar"
-            onChange={setInfo}
-          />
-        </div>
+        {data.asignado === "0" &&
+          <div className="col-6 col-md-6">
+            <label className="control-label">Observación:</label>
+            <input
+              className={`form-control ${data.referancia ? data.referencia : "myInput"
+                }`}
+              name="referencia"
+              value={data.referencia ? data.referencia : ""}
+              minLength={0}
+              maxLength={200}
+              placeholder="Ingrese el motivo por el cual no fue asignado"
+              onChange={setInfo}
+            />
+          </div>
+        }
         {data.asignado === "1" && (
           <Fragment>
             <div className="col-6 col-md-6">
               <label className="control-label">Pais:</label>
               <SelectPaises
-                className={`form-control ${
-                  data.idPais ? data.idPais : "myInput"
-                }`}
+                className={`form-control ${data.idPais ? data.idPais : "myInput"
+                  }`}
                 name="idPais"
                 value={data.idPais ? data.idPais : ""}
                 onChange={setInfo}
@@ -359,9 +360,8 @@ const EditInfo = ({
               <label className="control-label">Providencia/Estado:</label>
               {provincias && (
                 <SelectProvicia
-                  className={`form-control ${
-                    data.idProvincia ? data.idProvincia : "myInput"
-                  }`}
+                  className={`form-control ${data.idProvincia ? data.idProvincia : "myInput"
+                    }`}
                   name="idProvincia"
                   value={data.idProvincia ? data.idProvincia : ""}
                   filter={data.idPais}
@@ -389,21 +389,22 @@ const EditInfo = ({
                 minLength={0}
                 maxLength={20}
                 type="text"
+                pattern="(^MX-\d{3},\s{1}[A-Z]{1,2}-\d{3}$)"
                 value={data.asignacion ? data.asignacion : ""}
                 onChange={setInfo}
-                placeholder="Ingrese el nombre de la brigada a asignar"
+                placeholder="Ingrese el nombre clave de la brigada asignar"
               />
+              <small className="text-danger fs-5">Ejemplo: (MX-001, C-361)</small>
             </div>
 
             <div className="col-6 col-md-6">
               <label className="control-label">
-                Posición Asignada por la GMF:
+                Posición Asignada (GMF):
               </label>
               {posiciones && (
                 <SelectPosionAsignada
-                  className={`form-control ${
-                    data.idPosicion ? null : "myInput"
-                  }`}
+                  className={`form-control ${data.idPosicion ? null : "myInput"
+                    }`}
                   name="idPosicion"
                   value={data.idPosicion ? data.idPosicion : ""}
                   filter={data.idPais}
@@ -414,12 +415,11 @@ const EditInfo = ({
             </div>
             <div className="col-4 col-md-4">
               <label className="control-label">
-                Fecha de incio de asignación:
+                Fecha de Inicio:
               </label>
               <input
-                className={`form-control ${
-                  data.fechaInicio ? null : "myInput"
-                }`}
+                className={`form-control ${data.fechaInicio ? null : "myInput"
+                  }`}
                 name="fechaInicio"
                 defaultValue={data.fechaInicio}
                 type="date"
@@ -428,7 +428,7 @@ const EditInfo = ({
             </div>
             <div className="col-4 col-md-4">
               <label className="control-label">
-                Fecha de conclusión de asignación:
+                Fecha de conclusión:
               </label>
               <input
                 className={`form-control ${data.fechaFinal ? null : "myInput"}`}

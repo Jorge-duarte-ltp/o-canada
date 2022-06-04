@@ -135,7 +135,8 @@ const S4 = (props) => {
   const setInfo = (input) => {
     if (
       input.target.name === "sci_smi_100" ||
-      input.target.name === "sci_smi_200"
+      input.target.name === "sci_smi_200" ||
+      input.target.name === "sci_smi_300" 
     ) {
       setStateFiles({
         ...files,
@@ -207,7 +208,7 @@ const S4 = (props) => {
       </Modal>
 
       {/* Cargar constancia del Curso SCI/SMI 100 */}
-      <div className="col-12 col-md-6">
+      <div className="col-12 col-md-4">
         <label className="control-label pt-2">
           Cargar constancia del Curso SCI/SMI 100
         </label>
@@ -232,7 +233,7 @@ const S4 = (props) => {
       </div>
 
       {/* Cargar constancia del Curso SCI/SMI 200 */}
-      <div className="col-12 col-md-6">
+      <div className="col-12 col-md-4">
         <label className="control-label pt-2">
           Cargar constancia del Curso SCI/SMI 200
         </label>
@@ -255,6 +256,21 @@ const S4 = (props) => {
           placeholder="Ingrese SCI/SMI 200..."
         />
       </div>
+
+       {/* Cargar constancia del Curso SCI/SMI 300 */}
+       <div className="col-12 col-md-4">
+       <label className="control-label pt-2">
+         Cargar constancia del Curso SCI/SMI 300
+       </label>
+       <input
+         className="form-control myInput"
+         name="sci_smi_300"
+         type="file"
+         accept="application/pdf"
+         onChange={setInfo}
+         placeholder="Ingrese SCI/SMI 300..."
+       />
+     </div>
 
       {preguntas_smi_100 && (
         <React.Fragment>

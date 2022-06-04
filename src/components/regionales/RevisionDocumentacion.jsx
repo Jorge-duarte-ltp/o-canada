@@ -6,8 +6,7 @@ import {
   Button,
   Form,
   Col,
-  InputGroup,
-  FormControl,
+  InputGroup
 } from "react-bootstrap";
 import axios from "axios";
 import AlertError from "../../singles/AlertError";
@@ -31,7 +30,7 @@ const RevisionDocumentacion = () => {
     -> cambio a base de datos produccion
     */
 
-  const [candidatos, setCandidatos] = useState([]);
+  const [, setCandidatos] = useState([]);
   const [datosTabla, setDatosTabla] = useState([]);
   const [searchWord, setSearchWord] = useState("");
   // const [paginasPor, setPaginasPor] = useState(10)
@@ -134,6 +133,7 @@ const RevisionDocumentacion = () => {
     getCandidatos();
     getRegionName();
     setReload(false);
+    return () => { }
   }, [reload]);
 
   const mostrarDocumento = (documento, data) => {
@@ -246,15 +246,15 @@ const RevisionDocumentacion = () => {
         <Nav justify variant="pills" defaultActiveKey="">
           {data.files
             ? data.files.map((item, index) => (
-                <Nav.Item key={index}>
-                  <Nav.Link
-                    eventKey={item}
-                    onClick={() => mostrarDocumento(item, data)}
-                  >
-                    {getNombreArchivo(item)}
-                  </Nav.Link>
-                </Nav.Item>
-              ))
+              <Nav.Item key={index}>
+                <Nav.Link
+                  eventKey={item}
+                  onClick={() => mostrarDocumento(item, data)}
+                >
+                  {getNombreArchivo(item)}
+                </Nav.Link>
+              </Nav.Item>
+            ))
             : null}
         </Nav>
       </div>
@@ -554,7 +554,7 @@ const RevisionDocumentacion = () => {
         AlertExito("Éxito", "El registro fue actualizado");
         setReload(true);
       }
-    } catch (error) {}
+    } catch (error) { }
     /* ENVIARLO VIA AXIOS */
     /* HACER RELOAD */
   };

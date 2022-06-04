@@ -33,14 +33,13 @@ const App = () => {
               <Header cierre={cierre} />
               <hr className='gradiente' />
               <Switch>
-                {/* <Route exact path="/" component={Captura} /> */}
-                <Route exact path="/" component={CierreConvocatoria} />
+                <Route exact path="/" component={Captura} />
+                {/* <Route exact path="/" component={CierreConvocatoria} /> */}
                 <Route exact path="/dashboard" component={Administracion} />
                 <Route exact path="/pdf" component={PDF} />
               </Switch>
               {/* <Footer> */}
             </Router>
-
           </PruebasFisiscasState>
         </SessionState>
       </CandidatoState>
