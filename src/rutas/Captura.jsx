@@ -709,7 +709,7 @@ const Captura = () => {
             s3: seccionCompleta,
             s4: seccionSiguiente,
           });
-          
+
 
 
         }
@@ -906,7 +906,7 @@ const Captura = () => {
         archivo_s_190.status === 200 &&
         archivo_s_130.status === 200
       ) {
-        
+
         if (infoBrigadista.rechazo) {
 
           // se ocultan las secciones
@@ -974,7 +974,7 @@ const Captura = () => {
       !opera_autonoma_motosierra ||
       (conocimientos_primeros_auxilios === "1" &&
         (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
-      conocimiento_equipo_aereo
+      conocimiento_equipo_aereo === ""
     ) {
 
       msgFaltanCampos();
@@ -1124,19 +1124,13 @@ const Captura = () => {
     const { antecedentes_fecha, tiene_epp_completo, calificacion_evaluacion_disponibilidad } = infoBrigadista;
     const { carta_antecedentes_fl, evaluacion_disponibilidad_fl } = archivos;
 
-    console.log("evaluacion_disponibilidad_fl");
-    console.log(evaluacion_disponibilidad_fl);
-    console.log("calificacion_evaluacion_disponibilidad");
-    console.log(calificacion_evaluacion_disponibilidad);
-
-    // if (!evaluacion_disponibilidad_fl || !calificacion_evaluacion_disponibilidad) {
-    //   console.log('entro');
-    // } else {
-    //   if (!antecedentes_fecha || !carta_antecedentes_fl || !tiene_epp_completo) {
-    //     msgFaltanCampos();
-    //     return;
-    //   }
-    // }
+    if (!evaluacion_disponibilidad_fl || !calificacion_evaluacion_disponibilidad) {
+      msgFaltanCampos();
+      return;
+    } else if (!antecedentes_fecha || !carta_antecedentes_fl || !tiene_epp_completo) {
+      msgFaltanCampos();
+      return;
+    }
 
 
     // SE AGREGA A CONTEXT
@@ -1146,15 +1140,31 @@ const Captura = () => {
     });
 
     /* CARTA_ANTECEDENTES */
-    const formData_carta_antecedentes = new FormData();
+    const formData_evaluacion_disponibilidad = new FormData();
+    formData_evaluacion_disponibilidad.append("file", archivos.evaluacion_disponibilidad_fl[0]);
+    formData_evaluacion_disponibilidad.append("curp", infoBrigadista.curp);
+    formData_evaluacion_disponibilidad.append("name", "evaluacion_disponibilidad");
 
+
+    const formData_carta_antecedentes = new FormData();
     formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
     formData_carta_antecedentes.append("curp", infoBrigadista.curp);
     formData_carta_antecedentes.append("name", "carta_antecedentes");
 
+
     const url = `${API_REQUEST}candidato_update`;
 
     try {
+
+      const archivo_evaluacion_disponibilidad = await axios.post(
+        `${API_REQUEST}carga_archivo`,
+        formData_evaluacion_disponibilidad,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       const archivo_carta_antecedentes = await axios.post(
         `${API_REQUEST}carga_archivo`,
@@ -1166,6 +1176,7 @@ const Captura = () => {
         }
       );
 
+
       AlertCargando("Enviando los datos, espere por favor");
 
       const respuesta = await axios.post(url, {
@@ -1175,6 +1186,7 @@ const Captura = () => {
 
       if (
         respuesta.status === 200 &&
+        archivo_evaluacion_disponibilidad.status === 200 &&
         archivo_carta_antecedentes.status === 200
       ) {
 

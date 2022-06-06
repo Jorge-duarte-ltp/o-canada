@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SelectEstadosGenerados from "./SelectEstadosGenerados";
 import { isEmpty, size } from "lodash";
-import axiosClient from "../config/axios";
+import { ObtenerEstados } from "../services/catalogs/CatalogoService";
 
 export const GenerarEstados = (props) => {
   const { state, setState, cantEstados, titulo, name } = props;
@@ -9,23 +9,21 @@ export const GenerarEstados = (props) => {
   const [num, setNum] = useState([]);
   const [data, setData] = useState([]);
 
-  const config = {
-    method: "post",
-    url: `${process.env.REACT_APP_BACKEN_URL}list_estados`,
-  };
 
-  if (isEmpty(data)) {
-    axiosClient(config).then(async (response) => {
-      const data = await response.data.data;
+  useEffect(() => {
+    ObtenerEstados().then(async (response) => {
+      const data = await response.data;
       setData(data);
     });
-  }
+  }, []);
 
   const setInfo = (input) => {
+
     setEstados({
       ...estados,
       [input.target.name]: input.target.value.toUpperCase(),
     });
+    
     setState({ ...state, [name]: estados });
   };
 

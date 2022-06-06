@@ -12,16 +12,18 @@ import { ObtenerEquipo } from "../../services/catalogs/CatalogoService";
 const S7 = (props) => {
   const { state, setState, checkData, setStateFiles, files } = props;
   const [data, setData] = useState(null);
+  const [timeout, setTimeout] = useState(0);
 
-  
   useEffect(() => {
 
-    ObtenerEquipo().then(async (response) => {
-      const data = await response.data.data;
-      setData(data);
-    });
+    setTimeout(() => {
+      ObtenerEquipo().then(async (response) => {
+        const data = await response.data.data;
+        setData(data);
+      });
+    }, 2000);
 
-    return () => {}
+    return () => { clearTimeout(timeout) }
 
   }, [])
 
@@ -55,7 +57,7 @@ const S7 = (props) => {
   const setNumero = (input) => {
 
     if (size(input.target.value) <= 2 && input.target.value >= 0 && input.target.value <= 10) {
-     
+
       setState({
         ...state,
         [input.target.name]: input.target.value,
@@ -110,7 +112,7 @@ const S7 = (props) => {
       }
     }
   };
-  
+
   return (
     <div className="row body_wrap">
 

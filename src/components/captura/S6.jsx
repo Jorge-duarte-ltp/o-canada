@@ -241,8 +241,8 @@ const S6 = (props) => {
             onChange={setInfo}
           >
             <option>---Seleccione---</option>
-            <option value="si">Si</option>
-            <option value="no">No</option>
+            <option value="0">NO</option>
+            <option value="1">Si</option>
           </select>
         </React.Fragment>
       </div>
