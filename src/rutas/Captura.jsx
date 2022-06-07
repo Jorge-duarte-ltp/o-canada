@@ -570,28 +570,20 @@ const Captura = () => {
       !pulso_mayor_100 ||
       !problemas_afeccion_osea ||
       !experiencia_personal_consejos ||
-      !medico_personal_recomendo
+      !medico_personal_recomendo ||
+      !data.esquema_completo === "" ||
+      (data.esquema_completo === "1" && !data.refuerzo === "") ||
+      (data.esquema_completo === "1" && !data.vacuna_aprobada === "") ||
+      (data.esquema_completo === "1" && !certificado_covid_fl) ||
+      (data.esquema_completo === "1" && !data.idPrimeraDosis === "") ||
+      (data.esquema_completo === "1" && !data.fecha_primera_dosis === "") ||
+      (data.esquema_completo === "1" && !data.padecimineto === "")
     ) {
-      console.log("compos faltantes 1");
       msgFaltanCampos();
       return;
     }
 
-    if (
-      !data.esquema_completo === "" ||
-      !data.refuerzo === "" ||
-      !data.vacuna_aprobada === "" ||
-      !certificado_covid_fl ||
-      !data.idPrimeraDosis === "" ||
-      !data.fecha_primera_dosis === "" ||
-      !data.idRefuerzoDosis === "" ||
-      !data.fecha_refuerzo_dosis === "" ||
-      !data.padecimineto === "") {
-      console.log(data);
-      console.log("campos faltante 2");
-      msgFaltanCampos();
-      return;
-    }
+    console.log(infoBrigadista);
 
     // SE AGREGA A CONTEXT
     candidatos.candidatos.agregarCandidato({
@@ -610,9 +602,12 @@ const Captura = () => {
     formData_cert_medico.append("name", "cert_medico");
 
     const formDtaa_certificado_covid = new FormData();
-    formDtaa_certificado_covid.append("file", archivos.certificado_covid_fl[0]);
-    formDtaa_certificado_covid.append("curp", infoBrigadista.curp);
-    formDtaa_certificado_covid.append("name", "certificado_covid");
+
+    if (certificado_covid_fl) {
+      formDtaa_certificado_covid.append("file", archivos.certificado_covid_fl[0]);
+      formDtaa_certificado_covid.append("curp", infoBrigadista.curp);
+      formDtaa_certificado_covid.append("name", "certificado_covid");
+    }
 
     const formDtaa_certificado_covid_refuerzo = new FormData();
 
@@ -646,24 +641,33 @@ const Captura = () => {
           },
         }
       );
-      const archivo_certificado_covid = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formDtaa_certificado_covid,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      const archivo_certificado_covid_refuerzo = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formDtaa_certificado_covid_refuerzo,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+
+      let archivo_certificado_covid = null;
+      if (certificado_covid_fl) {
+
+        archivo_certificado_covid = await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formDtaa_certificado_covid,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      }
+
+      let archivo_certificado_covid_refuerzo = null;
+      if (certificado_covid_refuerzo_fl) {
+        archivo_certificado_covid_refuerzo = await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formDtaa_certificado_covid_refuerzo,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      }
 
       AlertCargando("Enviando los datos, espere por favor");
       const respuesta = await axios.post(url, {
@@ -679,8 +683,8 @@ const Captura = () => {
       if (
         respuesta.status === 200 &&
         archivo_cert_toxicologico.status === 200 &&
-        archivo_cert_medico.status === 200 &&
-        archivo_certificado_covid.status === 200 &&
+        archivo_cert_medico.status === 200 ||
+        archivo_certificado_covid?.status === 200 ||
         archivo_certificado_covid_refuerzo?.status === 200
       ) {
         if (infoBrigadista.rechazo) {
@@ -1124,10 +1128,10 @@ const Captura = () => {
     const { antecedentes_fecha, tiene_epp_completo, calificacion_evaluacion_disponibilidad } = infoBrigadista;
     const { carta_antecedentes_fl, evaluacion_disponibilidad_fl } = archivos;
 
-    if (!evaluacion_disponibilidad_fl || !calificacion_evaluacion_disponibilidad) {
-      msgFaltanCampos();
-      return;
-    } else if (!antecedentes_fecha || !carta_antecedentes_fl || !tiene_epp_completo) {
+    if ((evaluacion_disponibilidad_fl && !calificacion_evaluacion_disponibilidad === "") ||
+      (calificacion_evaluacion_disponibilidad && !carta_antecedentes_fl) ||
+      (calificacion_evaluacion_disponibilidad && !antecedentes_fecha) ||
+      (calificacion_evaluacion_disponibilidad && !tiene_epp_completo === "")) {
       msgFaltanCampos();
       return;
     }
@@ -1141,53 +1145,71 @@ const Captura = () => {
 
     /* CARTA_ANTECEDENTES */
     const formData_evaluacion_disponibilidad = new FormData();
-    formData_evaluacion_disponibilidad.append("file", archivos.evaluacion_disponibilidad_fl[0]);
-    formData_evaluacion_disponibilidad.append("curp", infoBrigadista.curp);
-    formData_evaluacion_disponibilidad.append("name", "evaluacion_disponibilidad");
+    if (evaluacion_disponibilidad_fl) {
+      formData_evaluacion_disponibilidad.append("file", archivos.evaluacion_disponibilidad_fl[0]);
+      formData_evaluacion_disponibilidad.append("curp", infoBrigadista.curp);
+      formData_evaluacion_disponibilidad.append("name", "evaluacion_disponibilidad");
+    }
 
 
     const formData_carta_antecedentes = new FormData();
-    formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
-    formData_carta_antecedentes.append("curp", infoBrigadista.curp);
-    formData_carta_antecedentes.append("name", "carta_antecedentes");
+
+    if (carta_antecedentes_fl) {
+      formData_carta_antecedentes.append("file", archivos.carta_antecedentes_fl[0]);
+      formData_carta_antecedentes.append("curp", infoBrigadista.curp);
+      formData_carta_antecedentes.append("name", "carta_antecedentes");
+    }
 
 
     const url = `${API_REQUEST}candidato_update`;
 
     try {
 
-      const archivo_evaluacion_disponibilidad = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_evaluacion_disponibilidad,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      let archivo_evaluacion_disponibilidad = null;
 
-      const archivo_carta_antecedentes = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_carta_antecedentes,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      if (evaluacion_disponibilidad_fl) {
+        archivo_evaluacion_disponibilidad = await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formData_evaluacion_disponibilidad,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      }
+
+      let archivo_carta_antecedentes = null;
+      if (carta_antecedentes_fl) {
+
+        archivo_carta_antecedentes = await axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formData_carta_antecedentes,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      }
 
 
       AlertCargando("Enviando los datos, espere por favor");
 
       const respuesta = await axios.post(url, {
-        data: infoBrigadista,
+        data: evaluacion_disponibilidad_fl ? infoBrigadista : {
+          ...infoBrigadista,
+          rechazo: true,
+          motivo_rechazo: "no cuenta con constancia de disponibilidad",
+          fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
+        },
         secuencia: { ...secciones, s7: seccionCompleta, s8: seccionSiguiente },
       });
 
       if (
-        respuesta.status === 200 &&
-        archivo_evaluacion_disponibilidad.status === 200 &&
-        archivo_carta_antecedentes.status === 200
+        respuesta.status === 200 ||
+        archivo_evaluacion_disponibilidad?.status === 200 ||
+        archivo_carta_antecedentes?.status === 200
       ) {
 
         AlertExito("Cargado exitosamente");

@@ -5,7 +5,6 @@ import diferenciaFechasDias from "../../helpers/diferenciaFechaDias";
 import { formatDate } from "../../helpers/formatDate";
 import AlertError from "../../singles/AlertError";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
-import axiosClient from "../../config/axios";
 import { size } from 'lodash';
 import { ObtenerEquipo } from "../../services/catalogs/CatalogoService";
 
@@ -18,8 +17,9 @@ const S7 = (props) => {
 
     setTimeout(() => {
       ObtenerEquipo().then(async (response) => {
-        const data = await response.data.data;
-        setData(data);
+        if (response.status === 200) {
+          setData(response.data.data);
+        }
       });
     }, 2000);
 
@@ -68,16 +68,11 @@ const S7 = (props) => {
 
   const revisarValidaciones = () => {
 
-    const {
-      tiene_mochila_linea,
-      tiene_duffel_bag,
-      tiene_casa_campania,
-      tiene_sleeping_bag,
-      tiene_sleeping_pad,
-      antecedentes_fecha,
-    } = state;
-
+    const { tiene_epp_completo, antecedentes_fecha } = state;
+    const { evaluacion_disponibilidad_fl } = files;
     const dif_antecedentes = diferenciaFechasDias(antecedentes_fecha);
+
+
 
     if (dif_antecedentes > 31 * 2) {
 
@@ -88,30 +83,30 @@ const S7 = (props) => {
         fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
 
+    } else if (tiene_epp_completo === "0") {
+      setState({
+        ...state,
+        rechazo: true,
+        motivo_rechazo: "no cuenta con equipo completo",
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
+      });
+    } else if (!evaluacion_disponibilidad_fl) {
+      setState({
+        ...state,
+        rechazo: true,
+        motivo_rechazo: "no cuenta con constancia de disponibilidad",
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
+      });
     } else {
-      if (
-        tiene_mochila_linea === "0" ||
-        tiene_duffel_bag === "0" ||
-        tiene_casa_campania === "0" ||
-        tiene_sleeping_bag === "0" ||
-        tiene_sleeping_pad === "0"
-      ) {
-        setState({
-          ...state,
-          rechazo: true,
-          motivo_rechazo: "no cuenta con equipo completo",
-          fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
-        });
-      } else {
-        setState({
-          ...state,
-          rechazo: false,
-          motivo_rechazo: null,
-          fechaCreacion: null,
-        });
-      }
+      setState({
+        ...state,
+        rechazo: false,
+        motivo_rechazo: null,
+        fechaCreacion: null,
+      });
     }
-  };
+  }
+
 
   return (
     <div className="row body_wrap">

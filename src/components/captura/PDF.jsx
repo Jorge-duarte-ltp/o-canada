@@ -266,6 +266,7 @@ const PDF = (props) => {
       state.toeic_toefl
       ? "Aprobado"
       : "No Aprobado";
+
   return (
     <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight}>
       <Document>
@@ -460,12 +461,10 @@ const PDF = (props) => {
             <Text
               style={[
                 styles.RequisitosEspecial,
-                state.opera_autonoma_gps ? aprobadoColor : reprobadoColor,
+                state.avenza_maps ? aprobadoColor : reprobadoColor,
               ]}
             >
-              {state.opera_autonoma_gps
-                ? "Realizar la prueba en la Promotoria de su Entidad"
-                : "No Aprobado"}
+              "Realizar la prueba en la Promotoria de su Entidad"
             </Text>
             <Text
               style={[

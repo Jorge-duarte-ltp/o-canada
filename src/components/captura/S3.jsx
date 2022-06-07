@@ -16,6 +16,7 @@ const S3 = (props) => {
   const [vacunas, setVacunas] = useState([]);
   const [timeout, setTimeout] = useState(0);
 
+
   useEffect(() => {
     setTimeout(() => {
       ObtenerVacunas().then((response) => {
@@ -188,287 +189,478 @@ const S3 = (props) => {
             });
           }
         }
+        if (data) {
 
-        if (data?.esquema_completo === "0") {
-          setState({
-            ...state,
-            rechazo: true,
-            motivo_rechazo: "No cuenta con el esquema de vacunación completo",
-            fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0)
-          });
-        } else {
-          setState({
-            ...state,
-            rechazo: false,
-            motivo_rechazo: null,
-            fechaCreacion: null
-          });
-        }
-
-        if (data?.vacuna_aprobada === "0") {
-          setState({
-            ...state,
-            rechazo: true,
-            motivo_rechazo: "No cuenta con una vacuna aprobatoria para viajar",
-            fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0)
-          });
-        } else {
-          setState({
-            ...state,
-            rechazo: false,
-            motivo_rechazo: null,
-            fechaCreacion: null
-          });
-        }
-
+          if (data.esquema_completo === "0") {
+            setState({
+              ...state,
+              rechazo: true,
+              motivo_rechazo: "No cuenta con el esquema de vacunación completo",
+              fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0)
+            });
+          } else if (data?.vacuna_aprobada === "0") {
+            setState({
+              ...state,
+              rechazo: true,
+              motivo_rechazo: "No cuenta con una vacuna aprobatoria para viajar",
+              fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0)
+            });
+          } else {
+            setState({
+              ...state,
+              rechazo: false,
+              motivo_rechazo: null,
+              fechaCreacion: null
+            });
+          }
       }
     }
-  };
+  }
+};
 
-  return (
-    <div className="row body_wrap">
-      {/* Sexo TODO: cambiar */}
-      <div className="col-12 col-md-3">
-        <label className="control-label pt-2">Sexo</label>
-        <SelectSexo
-          className="form-control myInput"
-          name="sexo"
-          defaultValue={state.sexo}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="Ingrese Sexo..."
-        />
-      </div>
-      {/* Altura (centímetros) */}
-      <div className="col-12 col-md-3">
-        <label className="control-label pt-2">Altura (centímetros)</label>
-        <input
-          className="form-control myInput"
-          name="altura"
-          value={state.altura ? state.altura : ""}
-          type="number"
-          step="0"
-          onBlur={calculoIMC}
-          onChange={setNumerico}
-          placeholder="Ingrese Altura (cm)..."
-        />
-        <label className="control-label pt-2">Altura (Pies)</label>
-        <input
-          className="form-control myInput"
-          value={
-            state.altura ? Math.round(state.altura * 0.0328084 * 10) / 10 : ""
-          }
-          type="number"
-          step="0"
-          disabled={true}
-          min={0}
-          placeholder="Ingrese Altura (ft)..."
-        />
-      </div>
-      {/* Peso (kilogramos) */}
-      <div className="col-6 col-md-3">
-        <label className="control-label pt-2">Peso (kilogramos)</label>
-        <input
-          className="form-control myInput"
-          name="peso"
-          value={state.peso ? state.peso : ""}
-          type="number"
-          step="0.0"
-          onBlur={calculoIMC}
-          onChange={setNumerico}
-          placeholder="Ingrese Peso (kg)..."
-        />
+return (
+  <div className="row body_wrap">
+    {/* Sexo TODO: cambiar */}
+    <div className="col-12 col-md-3">
+      <label className="control-label pt-2">Sexo</label>
+      <SelectSexo
+        className="form-control myInput"
+        name="sexo"
+        defaultValue={state.sexo}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="Ingrese Sexo..."
+      />
+    </div>
+    {/* Altura (centímetros) */}
+    <div className="col-12 col-md-3">
+      <label className="control-label pt-2">Altura (centímetros)</label>
+      <input
+        className="form-control myInput"
+        name="altura"
+        value={state.altura ? state.altura : ""}
+        type="number"
+        step="0"
+        onBlur={calculoIMC}
+        onChange={setNumerico}
+        placeholder="Ingrese Altura (cm)..."
+      />
+      <label className="control-label pt-2">Altura (Pies)</label>
+      <input
+        className="form-control myInput"
+        value={
+          state.altura ? Math.round(state.altura * 0.0328084 * 10) / 10 : ""
+        }
+        type="number"
+        step="0"
+        disabled={true}
+        min={0}
+        placeholder="Ingrese Altura (ft)..."
+      />
+    </div>
+    {/* Peso (kilogramos) */}
+    <div className="col-6 col-md-3">
+      <label className="control-label pt-2">Peso (kilogramos)</label>
+      <input
+        className="form-control myInput"
+        name="peso"
+        value={state.peso ? state.peso : ""}
+        type="number"
+        step="0.0"
+        onBlur={calculoIMC}
+        onChange={setNumerico}
+        placeholder="Ingrese Peso (kg)..."
+      />
 
-        <label className="control-label pt-2">Peso (Libras)</label>
-        <input
-          className="form-control myInput"
-          value={state.peso ? Math.round(state.peso * 2.2046 * 10) / 10 : ""}
-          type="number"
-          disabled={true}
-          min={0}
-          placeholder="Ingrese Peso (lb)..."
-        />
-      </div>
+      <label className="control-label pt-2">Peso (Libras)</label>
+      <input
+        className="form-control myInput"
+        value={state.peso ? Math.round(state.peso * 2.2046 * 10) / 10 : ""}
+        type="number"
+        disabled={true}
+        min={0}
+        placeholder="Ingrese Peso (lb)..."
+      />
+    </div>
 
-      {/* IMC */}
-      <div className="col-6 col-md-3">
-        <label className="control-label pt-2">IMC</label>
-        <input
-          disabled={true}
-          name="imc"
-          value={state.imc ? state.imc : ""}
-          className="form-control myInput"
-          onChange={revisarFormulario}
-          placeholder="IMC..."
-        />
-      </div>
+    {/* IMC */}
+    <div className="col-6 col-md-3">
+      <label className="control-label pt-2">IMC</label>
+      <input
+        disabled={true}
+        name="imc"
+        value={state.imc ? state.imc : ""}
+        className="form-control myInput"
+        onChange={revisarFormulario}
+        placeholder="IMC..."
+      />
+    </div>
 
-      {/* Grupo Sanguíneo */}
-      <div className="col-6 col-md-4">
-        <label className="control-label pt-2">Grupo Sanguíneo</label>
-        <select
-          className="form-control myInput"
-          name="grupo_sanguineo"
-          defaultValue={state.grupo_sanguineo}
-          maxLength="6"
-          // onChangeCapture={ToMayus}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="Ingrese Grupo Sanguíneo..."
-        >
-          <option value="">---Seleccione---</option>
-          <option value="O RH-">O RH-</option>
-          <option value="O RH+">O RH+</option>
-          <option value="A RH-">A RH-</option>
-          <option value="A RH+">A RH+</option>
-          <option value="B RH-">B RH-</option>
-          <option value="B RH+">B RH+</option>
-          <option value="AB RH-">AB RH-</option>
-          <option value="AB RH+">AB RH+</option>
-        </select>
-      </div>
+    {/* Grupo Sanguíneo */}
+    <div className="col-6 col-md-4">
+      <label className="control-label pt-2">Grupo Sanguíneo</label>
+      <select
+        className="form-control myInput"
+        name="grupo_sanguineo"
+        defaultValue={state.grupo_sanguineo}
+        maxLength="6"
+        // onChangeCapture={ToMayus}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="Ingrese Grupo Sanguíneo..."
+      >
+        <option value="">---Seleccione---</option>
+        <option value="O RH-">O RH-</option>
+        <option value="O RH+">O RH+</option>
+        <option value="A RH-">A RH-</option>
+        <option value="A RH+">A RH+</option>
+        <option value="B RH-">B RH-</option>
+        <option value="B RH+">B RH+</option>
+        <option value="AB RH-">AB RH-</option>
+        <option value="AB RH+">AB RH+</option>
+      </select>
+    </div>
 
-      {/* Certificado toxicológico */}
-      <div className="col-12 col-md-4">
-        <label className="control-label pt-2">Certificado toxicológico</label>
-        <input
-          className="form-control myInput"
-          name="cert_toxicologico"
-          // value={state.cert_toxicologico}
-          type="file"
-          accept="application/pdf"
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="Ingrese Certificado toxicológico..."
-        />
-      </div>
+    {/* Certificado toxicológico */}
+    <div className="col-12 col-md-4">
+      <label className="control-label pt-2">Certificado toxicológico</label>
+      <input
+        className="form-control myInput"
+        name="cert_toxicologico"
+        // value={state.cert_toxicologico}
+        type="file"
+        accept="application/pdf"
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="Ingrese Certificado toxicológico..."
+      />
+    </div>
 
-      {/* Certificado toxicológico Fecha */}
-      <div className="col-12 col-md-4">
-        <label className="control-label pt-2">
-          Certificado toxicológico Fecha
-        </label>
-        <input
-          className="form-control myInput"
-          name="fecha_cert_toxicologico"
-          value={state.fecha_cert_toxicologico ? state.fecha_cert_toxicologico : ""}
-          type="date"
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="Ingrese Certificado toxicológico Fecha..."
-        />
-      </div>
+    {/* Certificado toxicológico Fecha */}
+    <div className="col-12 col-md-4">
+      <label className="control-label pt-2">
+        Certificado toxicológico Fecha
+      </label>
+      <input
+        className="form-control myInput"
+        name="fecha_cert_toxicologico"
+        value={state.fecha_cert_toxicologico ? state.fecha_cert_toxicologico : ""}
+        type="date"
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="Ingrese Certificado toxicológico Fecha..."
+      />
+    </div>
 
-      {/* Certificado médico */}
-      <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Certificado médico o historia clínica</label>
-        <input
-          className="form-control myInput"
-          name="cert_medico"
-          // value={state.cert_medico}
-          type="file"
-          accept="application/pdf"
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="Ingrese Certificado médico..."
-        />
-      </div>
+    {/* Certificado médico */}
+    <div className="col-12 col-md-6">
+      <label className="control-label pt-2">Certificado médico o historia clínica</label>
+      <input
+        className="form-control myInput"
+        name="cert_medico"
+        // value={state.cert_medico}
+        type="file"
+        accept="application/pdf"
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="Ingrese Certificado médico..."
+      />
+    </div>
 
-      {/* Certificado médico Fecha */}
-      <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Certificado médico o historia clínica Fecha</label>
-        <input
-          className="form-control myInput"
-          name="fecha_cert_medico"
-          value={state.fecha_cert_medico ? state.fecha_cert_medico : ""}
-          type="date"
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="Ingrese Certificado médico Fecha..."
-        />
-      </div>
+    {/* Certificado médico Fecha */}
+    <div className="col-12 col-md-6">
+      <label className="control-label pt-2">Certificado médico o historia clínica Fecha</label>
+      <input
+        className="form-control myInput"
+        name="fecha_cert_medico"
+        value={state.fecha_cert_medico ? state.fecha_cert_medico : ""}
+        type="date"
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="Ingrese Certificado médico Fecha..."
+      />
+    </div>
 
-      {/* ¿Padece alguna enfermedad Crónica? */}
-      <div className="col-12 col-md-6">
-        <label className="control-label pt-2">
-          ¿Padece alguna enfermedad Crónica?
-        </label>
-        <SelectSiNo
-          className="form-control myInput"
-          name="padece_enfermedad"
-          defaultValue={state.padece_enfermedad}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-        />
-      </div>
+    {/* ¿Padece alguna enfermedad Crónica? */}
+    <div className="col-12 col-md-6">
+      <label className="control-label pt-2">
+        ¿Padece alguna enfermedad Crónica?
+      </label>
+      <SelectSiNo
+        className="form-control myInput"
+        name="padece_enfermedad"
+        defaultValue={state.padece_enfermedad}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+      />
+    </div>
 
-      {/* ¿Qué enfermedad padece? */}
-      {state.padece_enfermedad === "1" && (
-        <React.Fragment>
-          <div className="col-12 col-md-6">
-            <label className="control-label pt-2">
-              ¿Qué enfermedad padece?
-            </label>
-            <input
-              className="form-control myInput"
-              name="que_enfermedad"
-              onChangeCapture={ToMayus}
-              value={state.que_enfermedad}
-              onChange={setInfo}
-              onBlur={revisarFormulario}
-              placeholder="Qué enfermedad padece"
-            />
-          </div>
-        </React.Fragment>
-      )}
-      {/* ¿Requiere medicamentos de manera permanente? */}
-      <div className="col-12 col-md-6">
-        <label className="control-label pt-2">
-          ¿Requiere medicamentos de manera permanente?
-        </label>
-        <SelectSiNo
-          className="form-control myInput"
-          name="requiere_medicamentos_perm"
-          defaultValue={state.requiere_medicamentos_perm}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-        />
-      </div>
+    {/* ¿Qué enfermedad padece? */}
+    {state.padece_enfermedad === "1" && (
+      <React.Fragment>
+        <div className="col-12 col-md-6">
+          <label className="control-label pt-2">
+            ¿Qué enfermedad padece?
+          </label>
+          <input
+            className="form-control myInput"
+            name="que_enfermedad"
+            onChangeCapture={ToMayus}
+            value={state.que_enfermedad}
+            onChange={setInfo}
+            onBlur={revisarFormulario}
+            placeholder="Qué enfermedad padece"
+          />
+        </div>
+      </React.Fragment>
+    )}
+    {/* ¿Requiere medicamentos de manera permanente? */}
+    <div className="col-12 col-md-6">
+      <label className="control-label pt-2">
+        ¿Requiere medicamentos de manera permanente?
+      </label>
+      <SelectSiNo
+        className="form-control myInput"
+        name="requiere_medicamentos_perm"
+        defaultValue={state.requiere_medicamentos_perm}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+      />
+    </div>
 
-      {/* ¿Requiere medicamentos de manera permanente? */}
-      {state.requiere_medicamentos_perm === "1" && (
-        <React.Fragment>
-          <div className="col-12 col-md-6">
-            <label className="control-label pt-2">
-              ¿Qué medicamentos requiere de manera permanente?
-            </label>
-            <input
-              className="form-control myInput"
-              name="que_medicamentos"
-              value={state.que_medicamentos}
-              onChange={setInfo}
-              onChangeCapture={ToMayus}
-              onBlur={revisarFormulario}
-              placeholder="¿Qué medicamentos requiere de manera permanente?"
-            />
-          </div>
-        </React.Fragment>
-      )}
+    {/* ¿Requiere medicamentos de manera permanente? */}
+    {state.requiere_medicamentos_perm === "1" && (
+      <React.Fragment>
+        <div className="col-12 col-md-6">
+          <label className="control-label pt-2">
+            ¿Qué medicamentos requiere de manera permanente?
+          </label>
+          <input
+            className="form-control myInput"
+            name="que_medicamentos"
+            value={state.que_medicamentos}
+            onChange={setInfo}
+            onChangeCapture={ToMayus}
+            onBlur={revisarFormulario}
+            placeholder="¿Qué medicamentos requiere de manera permanente?"
+          />
+        </div>
+      </React.Fragment>
+    )}
 
-      {/* ¿Experimentó dolor, incomodidad o presión en el pecho? */}
+    {/* ¿Experimentó dolor, incomodidad o presión en el pecho? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        Durante los últimos 12 meses, en cualquier momento (durante la
+        actividad física o mientras descansa) ¿experimentó dolor, incomodidad
+        o presión en el pecho?
+      </label>
+      <select
+        className="form-control myInput"
+        name="experimento_dolor_pecho"
+        defaultValue={state.experimento_dolor_pecho}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Experimentó dolor, incomodidad o presión en el pecho?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        Durante los últimos 12 meses, ¿ha experimentado dificultad para
+        respirar, mareos, desmayos o pérdida del conocimiento?
+      </label>
+      <select
+        className="form-control myInput"
+        name="experimento_dificultad_respirar"
+        defaultValue={state.experimento_dificultad_respirar}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor
+        que 90?
+      </label>
+      <select
+        className="form-control myInput"
+        name="presion_arterial_sistolica_diastolica"
+        defaultValue={state.presion_arterial_sistolica_diastolica}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca,
+        soplo cardíaco, dolor en el pecho (angina), arritmias (latido
+        irregular) o ataque cardíaco?
+      </label>
+      <select
+        className="form-control myInput"
+        name="enfermedad_cardiaca"
+        defaultValue={state.enfermedad_cardiaca}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Alguna vez ha tenido una cirugía de corazón, angioplastia o
+        marcapasos, reemplazo de válvula o trasplante de corazón?
+      </label>
+      <select
+        className="form-control myInput"
+        name="cirugia_corazon"
+        defaultValue={state.cirugia_corazon}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Tiene un pulso en reposo mayor a 100 latidos por minuto? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Tiene un pulso en reposo mayor a 100 latidos por minuto?
+      </label>
+      <select
+        className="form-control myInput"
+        name="pulso_mayor_100"
+        defaultValue={state.pulso_mayor_100}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Tiene un pulso en reposo mayor a 100 latidos por minuto?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas /
+        dolor o cualquier otra afección ósea o articular que podría agravarse
+        o empeorar con la prueba de capacidad de trabajo?
+      </label>
+      <select
+        className="form-control myInput"
+        name="problemas_afeccion_osea"
+        defaultValue={state.problemas_afeccion_osea}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Tiene usted experiencia personal o consejos del médico de cualquier
+        otra razón médica o física que le prohibiría realizar la prueba de la
+        mochila nivel arduo?
+      </label>
+      <select
+        className="form-control myInput"
+        name="experiencia_personal_consejos"
+        defaultValue={state.experiencia_personal_consejos}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría realizar la prueba de la mochila nivel arduo?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Su médico personal le recomendó no realizar la prueba de trabajo
+        arduo debido a asma, diabetes, epilepsia o colesterol elevado o una
+        hernia?
+      </label>
+      <select
+        className="form-control myInput"
+        name="medico_personal_recomendo"
+        defaultValue={state.medico_personal_recomendo}
+        onChange={setInfo}
+        onBlur={revisarFormulario}
+        placeholder="¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?"
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/* ¿Cuenta con el esquema completo de COVID-19? */}
+    <div className="col-12">
+      <label className="control-label pt-2">
+        ¿Cuenta con el esquema completo de COVID-19?
+      </label>
+      <select
+        className="form-control myInput"
+        name="esquema_completo"
+        defaultValue={state?.data?.esquema_completo}
+        onChange={handleChange}
+        onBlur={revisarFormulario}
+      >
+        <option value="">---Seleccione---</option>
+        <option value={1}>Si</option>
+        <option value={0}>No</option>
+      </select>
+    </div>
+
+    {/** ¿Cuenta con la dosis de refuerzo? */}
+    {state?.data?.esquema_completo === "1" && <React.Fragment>
       <div className="col-12">
         <label className="control-label pt-2">
-          Durante los últimos 12 meses, en cualquier momento (durante la
-          actividad física o mientras descansa) ¿experimentó dolor, incomodidad
-          o presión en el pecho?
+          ¿Cuenta con dosis de refuerzo?
         </label>
         <select
           className="form-control myInput"
-          name="experimento_dolor_pecho"
-          defaultValue={state.experimento_dolor_pecho}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Experimentó dolor, incomodidad o presión en el pecho?"
+          name="refuerzo"
+          defaultValue={state?.data?.refuerzo}
+          onChange={handleChange}
         >
           <option value="">---Seleccione---</option>
           <option value={1}>Si</option>
@@ -476,178 +668,16 @@ const S3 = (props) => {
         </select>
       </div>
 
-      {/* ¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          Durante los últimos 12 meses, ¿ha experimentado dificultad para
-          respirar, mareos, desmayos o pérdida del conocimiento?
-        </label>
-        <select
-          className="form-control myInput"
-          name="experimento_dificultad_respirar"
-          defaultValue={state.experimento_dificultad_respirar}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
+      {/* ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?*/}
 
-      {/* ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90? */}
       <div className="col-12">
         <label className="control-label pt-2">
-          ¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor
-          que 90?
+          ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?
         </label>
         <select
           className="form-control myInput"
-          name="presion_arterial_sistolica_diastolica"
-          defaultValue={state.presion_arterial_sistolica_diastolica}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          ¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca,
-          soplo cardíaco, dolor en el pecho (angina), arritmias (latido
-          irregular) o ataque cardíaco?
-        </label>
-        <select
-          className="form-control myInput"
-          name="enfermedad_cardiaca"
-          defaultValue={state.enfermedad_cardiaca}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          ¿Alguna vez ha tenido una cirugía de corazón, angioplastia o
-          marcapasos, reemplazo de válvula o trasplante de corazón?
-        </label>
-        <select
-          className="form-control myInput"
-          name="cirugia_corazon"
-          defaultValue={state.cirugia_corazon}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Tiene un pulso en reposo mayor a 100 latidos por minuto? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          ¿Tiene un pulso en reposo mayor a 100 latidos por minuto?
-        </label>
-        <select
-          className="form-control myInput"
-          name="pulso_mayor_100"
-          defaultValue={state.pulso_mayor_100}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Tiene un pulso en reposo mayor a 100 latidos por minuto?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          ¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas /
-          dolor o cualquier otra afección ósea o articular que podría agravarse
-          o empeorar con la prueba de capacidad de trabajo?
-        </label>
-        <select
-          className="form-control myInput"
-          name="problemas_afeccion_osea"
-          defaultValue={state.problemas_afeccion_osea}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría tomar el examen de capacidad de trabajo? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          ¿Tiene usted experiencia personal o consejos del médico de cualquier
-          otra razón médica o física que le prohibiría realizar la prueba de la
-          mochila nivel arduo?
-        </label>
-        <select
-          className="form-control myInput"
-          name="experiencia_personal_consejos"
-          defaultValue={state.experiencia_personal_consejos}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría realizar la prueba de la mochila nivel arduo?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          ¿Su médico personal le recomendó no realizar la prueba de trabajo
-          arduo debido a asma, diabetes, epilepsia o colesterol elevado o una
-          hernia?
-        </label>
-        <select
-          className="form-control myInput"
-          name="medico_personal_recomendo"
-          defaultValue={state.medico_personal_recomendo}
-          onChange={setInfo}
-          onBlur={revisarFormulario}
-          placeholder="¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?"
-        >
-          <option value="">---Seleccione---</option>
-          <option value={1}>Si</option>
-          <option value={0}>No</option>
-        </select>
-      </div>
-
-      {/* ¿Cuenta con el esquema completo de COVID-19(2 dosis)? */}
-      <div className="col-12">
-        <label className="control-label pt-2">
-          ¿Cuenta con el esquema completo de COVID-19(2 dosis)?
-        </label>
-        <select
-          className="form-control myInput"
-          name="esquema_completo"
-          defaultValue={state?.data?.esquema_completo}
+          name="vacuna_aprobada"
+          defaultValue={state?.data?.vacuna_aprobada}
           onChange={handleChange}
           onBlur={revisarFormulario}
         >
@@ -657,102 +687,66 @@ const S3 = (props) => {
         </select>
       </div>
 
-      {/** ¿Cuenta con la dosis de refuerzo? */}
-      {state?.data?.esquema_completo === "1" && <React.Fragment>
-        <div className="col-12">
-          <label className="control-label pt-2">
-            ¿Cuenta con dosis de refuerzo?
-          </label>
-          <select
+      {state?.data?.vacuna_aprobada === "1" && <React.Fragment>
+        {/* Certificado de vacunación COVID-19 (2 DÓSIS) */}
+        <div className="col-12 col-md-12">
+          <label className="control-label pt-2">Certificado de vacunación COVID-19 (2 DÓSIS)</label>
+          <input
             className="form-control myInput"
-            name="refuerzo"
-            defaultValue={state?.data?.refuerzo}
-            onChange={handleChange}
-          >
-            <option value="">---Seleccione---</option>
-            <option value={1}>Si</option>
-            <option value={0}>No</option>
-          </select>
+            name="certificado_covid"
+            type="file"
+            accept="application/pdf"
+            onChange={setInfo}
+            placeholder="Cargar"
+          />
         </div>
 
-        {/* ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?*/}
+        {files.certificado_covid_fl && <React.Fragment>
 
-        <div className="col-12">
-          <label className="control-label pt-2">
-            ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?
-          </label>
-          <select
-            className="form-control myInput"
-            name="vacuna_aprobada"
-            defaultValue={state?.data?.vacuna_aprobada}
-            onChange={handleChange}
-            onBlur={revisarFormulario}
-          >
-            <option value="">---Seleccione---</option>
-            <option value={1}>Si</option>
-            <option value={0}>No</option>
-          </select>
-        </div>
-
-        {state?.data?.vacuna_aprobada === "1" && <React.Fragment>
-          {/* Certificado de vacunación COVID-19 (2 DÓSIS) */}
-          <div className="col-12 col-md-12">
-            <label className="control-label pt-2">Certificado de vacunación COVID-19 (2 DÓSIS)</label>
-            <input
-              className="form-control myInput"
-              name="certificado_covid"
-              type="file"
-              accept="application/pdf"
-              onChange={setInfo}
-              placeholder="Cargar"
+          {/** Marca de la vacuna primera dosis */}
+          <div className="col-12 col-md-4">
+            <label className="control-label pt-2">Marca de la Vacuna</label>
+            <SelectVacuna
+              className={`form-control myInput`}
+              name="idPrimeraDosis"
+              value={state?.data?.idPrimeraDosis ? state?.data?.idPrimeraDosis : null}
+              defaultValue={state?.data?.idPrimeraDosis}
+              onChange={handleChange}
             />
           </div>
 
-          {files.certificado_covid_fl && <React.Fragment>
+          {/* Fecha de aplicación de 1 dosis */}
+          <div className="col-12 col-md-4">
+            <label className="control-label pt-2">
+              Fecha aplicación 1 dosis
+            </label>
+            <input
+              className="form-control myInput"
+              name="fecha_primera_dosis"
+              value={state?.data?.fecha_primera_dosis}
+              type="date"
+              onChange={handleChange}
+            />
+          </div>
 
-            {/** Marca de la vacuna primera dosis */}
-            <div className="col-12 col-md-4">
-              <label className="control-label pt-2">Marca de la Vacuna</label>
-              <SelectVacuna
-                className={`form-control myInput`}
-                name="idPrimeraDosis"
-                value={state?.data?.idPrimeraDosis ? state?.data?.idPrimeraDosis : null}
-                defaultValue={state?.data?.idPrimeraDosis}
-                onChange={handleChange}
-              />
-            </div>
+          {/* Fecha de aplicación de 2 dosis */}
 
-            {/* Fecha de aplicación de 1 dosis */}
+          {state?.data?.idPrimeraDosis && isUnique(state?.data?.idPrimeraDosis) &&
             <div className="col-12 col-md-4">
               <label className="control-label pt-2">
-                Fecha aplicación 1 dosis
+                Fecha aplicación 2 dosis
               </label>
               <input
                 className="form-control myInput"
-                name="fecha_primera_dosis"
-                value={state?.data?.fecha_primera_dosis}
+                name="fecha_segunda_dosis"
+                value={state?.data?.fecha_segunda_dosis}
                 type="date"
                 onChange={handleChange}
               />
-            </div>
+            </div>}
 
-            {/* Fecha de aplicación de 2 dosis */}
-
-            {state?.data?.idPrimeraDosis && isUnique(state?.data?.idPrimeraDosis) &&
-              <div className="col-12 col-md-4">
-                <label className="control-label pt-2">
-                  Fecha aplicación 2 dosis
-                </label>
-                <input
-                  className="form-control myInput"
-                  name="fecha_segunda_dosis"
-                  value={state?.data?.fecha_segunda_dosis}
-                  type="date"
-                  onChange={handleChange}
-                />
-              </div>}
-
-            {/* Certificado de dosis de refuerzo */}
+          {/* Certificado de dosis de refuerzo */}
+          {state?.data?.refuerzo === "1" && <React.Fragment>
             <div className="col-12 col-md-12">
               <label className="control-label pt-2">Certificado de dosis de Refuerzo</label>
               <input
@@ -767,6 +761,7 @@ const S3 = (props) => {
 
 
             {/** Marca de la vacuna */}
+
             <div className="col-12 col-md-6">
               <label className="control-label pt-2">Marca de la Vacuna</label>
               <SelectVacuna
@@ -792,60 +787,62 @@ const S3 = (props) => {
               />
             </div>
 
-            {/* ¿Ha padecido COVID-19 en los últimos 6 meses? */}
+          </React.Fragment>}
+
+          {/* ¿Ha padecido COVID-19 en los últimos 6 meses? */}
+          <div className="col-12">
+            <label className="control-label pt-2">
+              ¿Ha padecido COVID-19 en los últimos 6 meses?
+            </label>
+            <select
+              className="form-control myInput"
+              name="padecimiento"
+              defaultValue={state?.data?.padecimiento}
+              onChange={handleChange}
+            >
+              <option value="">---Seleccione---</option>
+              <option value={1}>Si</option>
+              <option value={0}>No</option>
+            </select>
+          </div>
+
+          {/* ¿Requirió hospitalización cuando padeció COVID-19? */}
+          {state?.data?.padecimiento === "1" &&
             <div className="col-12">
               <label className="control-label pt-2">
-                ¿Ha padecido COVID-19 en los últimos 6 meses?
+                ¿Requirió hospitalización cuando padeció COVID-19?
               </label>
               <select
                 className="form-control myInput"
-                name="padecimiento"
-                defaultValue={state?.data?.padecimiento}
+                name="hospitalizacion"
+                defaultValue={state?.data?.hospitalizacion}
                 onChange={handleChange}
               >
                 <option value="">---Seleccione---</option>
                 <option value={1}>Si</option>
                 <option value={0}>No</option>
               </select>
-            </div>
-
-            {/* ¿Requirió hospitalización cuando padeció COVID-19? */}
-            {state?.data?.padecimiento === "1" &&
-              <div className="col-12">
-                <label className="control-label pt-2">
-                  ¿Requirió hospitalización cuando padeció COVID-19?
-                </label>
-                <select
-                  className="form-control myInput"
-                  name="hospitalizacion"
-                  defaultValue={state?.data?.hospitalizacion}
-                  onChange={handleChange}
-                >
-                  <option value="">---Seleccione---</option>
-                  <option value={1}>Si</option>
-                  <option value={0}>No</option>
-                </select>
-              </div>}
-          </React.Fragment>}
+            </div>}
         </React.Fragment>}
       </React.Fragment>}
-      {/* BTN Continuar */}
-      <div className="col-12 pt-5 btn-margin">
-        <button
-          className="btn btn-primary"
-          // onClick={revisarFormulario}
-          onClick={() =>
-            AlertaSiguiente(
-              "Si continúa, no será posible volver a esta seccion",
-              checkData
-            )
-          }
-        >
-          Continuar
-        </button>
-      </div>
+    </React.Fragment>}
+    {/* BTN Continuar */}
+    <div className="col-12 pt-5 btn-margin">
+      <button
+        className="btn btn-primary"
+        // onClick={revisarFormulario}
+        onClick={() =>
+          AlertaSiguiente(
+            "Si continúa, no será posible volver a esta seccion",
+            checkData
+          )
+        }
+      >
+        Continuar
+      </button>
     </div>
-  );
+  </div>
+);
 };
 
 export default S3;

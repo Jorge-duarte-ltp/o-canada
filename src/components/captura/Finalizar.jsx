@@ -7,7 +7,7 @@ import candidatoContext from "../../context/candidato/candidatoContext";
 import { isEmpty } from "lodash";
 const Finalizar = (props) => {
   const candidatos = useContext(candidatoContext);
-  const [state, ] = useState(candidatos.candidatos.infoBrigadista);
+  const [state,] = useState(candidatos.candidatos.infoBrigadista);
   const { photo } = props;
   const [mensaje, setMensaje] = useState("");
   const [puesto, setPuesto] = useState("");
@@ -27,6 +27,8 @@ const Finalizar = (props) => {
     aptitud_fisica: false,
     gps: false,
     motobomba_mark_iii: false,
+    motosierra_autonoma: false,
+    avenza_maps: false
   });
   const [showPDF, setShowPDF] = useState(false);
 
@@ -55,8 +57,10 @@ const Finalizar = (props) => {
           capacidad_para_comunicarse_en_ingles: false,
           liderazgo: false,
           aptitud_fisica: false,
-          gps: state.opera_autonoma_gps,
-          motobomba_mark_iii: state.opera_autonoma_mark3,
+          gps: false,
+          motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -79,6 +83,8 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -101,6 +107,8 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -123,6 +131,8 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -145,6 +155,8 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -167,7 +179,34 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
+        break;
+
+      case "No cuenta con el esquema de vacunación completo":
+        setMensaje(
+          "No es posible continuar con el proceso ya que no cuenta con el esquema de vacunación COVID-19 completo."
+        );
+        setSecciones({
+          pasaporte_vigente: true,
+          documento_para_viajar_a_canad: true,
+          licencia_de_manejo: true,
+          indice_de_masa_corporal: true,
+          salud: false,
+          conocimiento_y_experiencia_sci: false,
+          conocimiento_y_experiencia_en_incendios: false,
+          buena_conducta: false,
+          disponibilidad_en_condiciones_ambientales_adversas: false,
+          capacidad_para_comunicarse_en_ingles: false,
+          liderazgo: false,
+          aptitud_fisica: false,
+          gps: false,
+          motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
+        });
+        break;
         break;
 
       case "no aprobo examen smi_100":
@@ -189,6 +228,8 @@ const Finalizar = (props) => {
           aptitud_fisica: false,
           gps: false,
           motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -212,6 +253,31 @@ const Finalizar = (props) => {
           gps: false,
           motobomba_mark_iii: false,
           motosierra_autonoma: false,
+          avenza_maps: false
+        });
+        break;
+
+      case "no cuenta con constancia de disponibilidad":
+        setMensaje(
+          "No es posible continuar con el proceso debido que no cuenta con la evaluación de disponibilidad"
+        );
+        setSecciones({
+          pasaporte_vigente: true,
+          documento_para_viajar_a_canad: true,
+          licencia_de_manejo: true,
+          indice_de_masa_corporal: true,
+          salud: true,
+          conocimiento_y_experiencia_sci: true,
+          conocimiento_y_experiencia_en_incendios: false,
+          buena_conducta: false,
+          disponibilidad_en_condiciones_ambientales_adversas: false,
+          capacidad_para_comunicarse_en_ingles: false,
+          liderazgo: false,
+          aptitud_fisica: false,
+          gps: false,
+          motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -235,6 +301,7 @@ const Finalizar = (props) => {
           gps: false,
           motobomba_mark_iii: false,
           motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -258,6 +325,7 @@ const Finalizar = (props) => {
           gps: false,
           motobomba_mark_iii: false,
           motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -281,6 +349,7 @@ const Finalizar = (props) => {
           gps: false,
           motobomba_mark_iii: false,
           motosierra_autonoma: false,
+          avenza_maps: false
         });
         break;
 
@@ -302,6 +371,7 @@ const Finalizar = (props) => {
           gps: true,
           motobomba_mark_iii: true,
           motosierra_autonoma: true,
+          avenza_maps: true
         });
         break;
 

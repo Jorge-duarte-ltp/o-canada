@@ -127,8 +127,8 @@ const S1 = (props) => {
     const fecha = input.target.value;
     const fecha_moment = moment(fecha).format("YYYY-MM-DD");
     const anios = diferenciaFechasAnios(fecha_moment);
-
     /* MENOR DE EDAD */
+    console.log(anios);
     if (anios < 21) {
 
       setState({
@@ -138,13 +138,24 @@ const S1 = (props) => {
         fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
 
+    } else if (anios > 20) {
+
+      setState({
+        ...state,
+        rechazo: false,
+        motivo_rechazo: null,
+        fechaCreacion: null,
+      });
+
+      if (anios > 50) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
     }
 
-    if (anios > 50) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
+
   };
 
   const fillInfoCurp = () => {

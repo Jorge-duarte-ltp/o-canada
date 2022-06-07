@@ -52,7 +52,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
       };
   const [state, setState] = useState(evaluacionDefault);
 
-  console.log(state);
+  
   const setInfo = (input) => {
     /* setea al state las variables */
     if (input.target.name === "evaluacion_desempenio_archivo") {
