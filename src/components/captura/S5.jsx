@@ -14,6 +14,7 @@ import GenerarPaises from "../../singles/GenerarPaises";
 import { size } from "lodash";
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
+import GenerarPosiciones from "../../singles/GenerarPosiciones";
 
 const S5 = (props) => {
   const candidatos = useContext(candidatoContext);
@@ -129,7 +130,7 @@ const S5 = (props) => {
   };
 
   const setNumero = (input) => {
-    if (size(input.target.value) < 2) {
+    if (size(input.target.value) < 2 && input.target.value >= 0) {
       setState({
         ...state,
         [input.target.name]: input.target.value,
@@ -418,24 +419,46 @@ const S5 = (props) => {
             />
           </div>
 
-          <div className="col-12">
+          {/*¿Ha participado en despliegues internacionales? */}
+          <div className="col-6">
             <label className="control-label pt-2">
-              ¿Qué posición ocupó en el despliegue?
+              ¿Ha participado en despliegues internacionales?
+              <SelectSiNo
+                className="form-control myInput"
+                name="tiene_participacion_internacional"
+                defaultValue={state.tiene_participacion_internacional}
+                onChange={setInfo}
+                onBlur={setInfo}
+              />
             </label>
-            <select className="form-control myInput"
-              id="ultima_posicion"
-              name="ultima_posicion"
-              onChange={setInfo}
-            >
-              <option >-- Seleccione --</option>
-              <option value='combatiente'>Combatiente</option>
-              <option value='jefe_de_cuadrilla'>Jefe de Cuadrilla</option>
-              <option value='jefe_de_brigada'>Jefe de Brigada</option>
-              <option value='técnico_arep'>Técnico (AREP)</option>
-              <option value='técnico_iarr'>Técnico (IARR)</option>
-              <option value='coordinador_covid'>Ténico (COORDINADOR COVID)</option>
-            </select>
           </div>
+          <div className="col-6">
+            {state.tiene_participacion_internacional === "1" && (
+              <React.Fragment>
+                <label className="control-label pt-2">
+                  ¿A cuantos despliegues internacionales ha participado?
+                  <input
+                    className="form-control myInput"
+                    type="number"
+                    name="numero_despliegues"
+                    value={state.numero_despliegues}
+                    onChange={setNumero}
+                    placeholder="Ingresa el numero de paticipaciones"
+                  />
+                </label>
+              </React.Fragment>
+            )}
+          </div>
+
+          {state.numero_despliegues > 0 && state.tiene_participacion_internacional === "1" && (
+            <React.Fragment>
+              <GenerarPosiciones
+                state={state}
+                setState={setState}
+                cantDespliegues={state.numero_despliegues}
+              />
+            </React.Fragment>
+          )}
 
         </React.Fragment>
       )}

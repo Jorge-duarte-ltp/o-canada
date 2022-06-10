@@ -17,11 +17,10 @@ const Dashboard = ({ userPorfile }) => {
   const [showSection, setShowSection] = useState({
     regionales: false,
     estatales: false,
-    mesa_ayuda: false,
+    mesa_ayuda: true,
     disponibilidad: false,
     brigadas: false,
     manifiesto: false,
-    examen_pruebas: true,
   });
 
   const [toggled, setToggled] = useState(true);

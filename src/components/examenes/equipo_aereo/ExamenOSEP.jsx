@@ -69,8 +69,6 @@ const ExamenOSEP = ({ setState, state }) => {
             object.aciertos = suma;
             object.calificacion = ((suma * 100) / size(Data));
 
-            console.log(object);
-
             await postExamenOSEP(object)
                 .then(async ({ status, data: { title, message } }) => {
                     if (status === 200) {

@@ -18,7 +18,7 @@ export const GenerarPaises = (props) => {
   };
 
   const setAnio = (input) => {
-    if (size(input.target.value) < 5) {
+    if (size(input.target.value) < 5 && input.target.value >= 0) {
       setPaises({
         ...paises,
         [input.target.name]: input.target.value.toUpperCase(),
@@ -43,6 +43,9 @@ export const GenerarPaises = (props) => {
       setPaises(object);
     }
   }
+
+  console.log(num);
+  console.log(paises);
 
   return (
     size(num) > 0 && (
