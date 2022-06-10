@@ -132,8 +132,8 @@ const S3 = (props) => {
       data,
     } = state;
 
-    const dif_cert_tox = diferenciaFechaDias(fecha_cert_toxicologico);
     const dif_cert_med = diferenciaFechaDias(fecha_cert_medico);
+    const dif_cert_tox = diferenciaFechaDias(fecha_cert_toxicologico);
     /* IMC mayor a 30 */
     if (parseFloat(imc) >= 30) {
       setState({
@@ -144,14 +144,6 @@ const S3 = (props) => {
       });
       /* certificado toxicologico mayor a 15 dias */
 
-    } else if (dif_cert_tox > 31) {
-      setState({
-        ...state,
-        rechazo: true,
-        motivo_rechazo: "certificado toxicológico excede 1 mes",
-        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
-      });
-      /* Certificado medico mayor a 1 mes */
     } else if (dif_cert_med > 31) {
       setState({
         ...state,
@@ -159,6 +151,15 @@ const S3 = (props) => {
         motivo_rechazo: "certificado médico excede 1 mes",
         fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
+    }
+    else if (dif_cert_tox > 31) {
+      setState({
+        ...state,
+        rechazo: true,
+        motivo_rechazo: "certificado toxicológico excede 1 mes",
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
+      });
+      /* Certificado medico mayor a 1 mes */
     } else if (
       padece_enfermedad === "1" ||
       requiere_medicamentos_perm === "1" ||

@@ -574,10 +574,10 @@ const Captura = () => {
       !data.esquema_completo === "" ||
       (data.esquema_completo === "1" && !data.refuerzo === "") ||
       (data.esquema_completo === "1" && !data.vacuna_aprobada === "") ||
-      (data.esquema_completo === "1" && !certificado_covid_fl) ||
-      (data.esquema_completo === "1" && !data.idPrimeraDosis === "") ||
-      (data.esquema_completo === "1" && !data.fecha_primera_dosis === "") ||
-      (data.esquema_completo === "1" && !data.padecimineto === "")
+      (data.vacuna_aprobada === "1" && !certificado_covid_fl) ||
+      (data.vacuna_aprobada === "1" && !data.idPrimeraDosis === "") ||
+      (data.vacuna_aprobada === "1" && !data.fecha_primera_dosis === "") ||
+      (data.vacuna_aprobada === "1" && !data.padecimineto === "")
     ) {
       msgFaltanCampos();
       return;
@@ -969,6 +969,7 @@ const Captura = () => {
       conocimientos_primeros_auxilios,
       niv_primeros_auxilios,
       conocimiento_equipo_aereo,
+      examen_equipo_aereo
     } = infoBrigadista;
     const { doc_acred_primeros_auxilios_fl, constancia_operaciones_aereas_fl } = archivos;
 
@@ -978,7 +979,8 @@ const Captura = () => {
       !opera_autonoma_motosierra ||
       (conocimientos_primeros_auxilios === "1" &&
         (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
-      conocimiento_equipo_aereo === ""
+      conocimiento_equipo_aereo === "" ||
+      examen_equipo_aereo === "faltante"
     ) {
 
       msgFaltanCampos();

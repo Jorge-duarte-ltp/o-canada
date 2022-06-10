@@ -11,17 +11,17 @@ import TablaEstatales from "../estatales/TablaEstatales";
 import TablaBrigadas from "../brigadas/TablaBrigadas";
 import TablaManifiesto from "../manifiesto/TablaManifiesto";
 import TablaDisponibilidad from "../disponibilidad/TablaDisponibilidad";
-import ExamenPrueba from "../examen_prueba/ExamenPrueba";
+import ExamenPrueba from "../examenes/equipo_aereo/ExamenOSEP";
 
 const Dashboard = ({ userPorfile }) => {
   const [showSection, setShowSection] = useState({
     regionales: false,
     estatales: false,
-    mesa_ayuda: true,
+    mesa_ayuda: false,
     disponibilidad: false,
     brigadas: false,
     manifiesto: false,
-    examen_pruebas: false,
+    examen_pruebas: true,
   });
 
   const [toggled, setToggled] = useState(true);
@@ -52,7 +52,6 @@ const Dashboard = ({ userPorfile }) => {
           {showSection.disponibilidad && <TablaDisponibilidad />}
           {showSection.manifiesto && <TablaManifiesto />}
           {showSection.mesa_ayuda && <MesaAyuda />}
-          {showSection.examen_pruebas && <ExamenPrueba />}
         </div>
       </div>
     </div>

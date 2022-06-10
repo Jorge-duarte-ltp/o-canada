@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import SelectSiNo from "../../singles/SelectSiNo";
 import { size } from "lodash";
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import AlertError from "../../singles/AlertError";
+import ExamenOSEP from "../examenes/equipo_aereo/ExamenOSEP";
+
 const S6 = (props) => {
   const { state, setState, checkData, setStateFiles, files } = props;
 
@@ -234,22 +236,18 @@ const S6 = (props) => {
       <div className="col-12 col-md-4">
         <React.Fragment>
           <label className="control-label pt-2">¿Cuenta con conocimientos básicos en Operaciones Seguras en equipo aéreo?</label>
-          <select
+          <SelectSiNo
             className="form-control myInput"
             name="conocimiento_equipo_aereo"
-            value={state.conocimiento_equipo_aereo}
+            defaultValue={state.conocimiento_equipo_aereo}
             onChange={setInfo}
-          >
-            <option>---Seleccione---</option>
-            <option value="0">NO</option>
-            <option value="1">Si</option>
-          </select>
+          />
         </React.Fragment>
       </div>
 
       {/** Constancia de alumno o instructor en Operaciones (S-217, S-271 Y S-371). */}
       <div className="col-12 col-md-12">
-        {state.conocimientos_primeros_auxilios === "1" && (
+        {state.conocimiento_equipo_aereo === "1" && (
           <React.Fragment>
             <label className="control-label pt-2">
               Constancia de alumno o instructor en Operaciones aéreas (S-217, S-271 y S-371).
@@ -264,6 +262,12 @@ const S6 = (props) => {
           </React.Fragment>
         )}
       </div>
+      <div className="col-12 col-md-12">
+        {state.conocimiento_equipo_aereo && state.examen_equipo_aereo === "faltante" && (
+          <ExamenOSEP state={state} setState={setState} />
+        )}
+      </div>
+
       {/* BTN Continuar */}
       <div className="col-12 pt-5 btn-margin">
         <button

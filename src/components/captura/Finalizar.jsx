@@ -112,9 +112,9 @@ const Finalizar = (props) => {
         });
         break;
 
-      case "certificado toxicológico excede los 15 dias":
+      case "certificado toxicológico excede 1 mes":
         setMensaje(
-          "No es posible continuar con el proceso debido a que la fecha de su Certificado toxicológico es mayor a 15 días"
+          "No es posible continuar con el proceso debido a que la fecha de su Certificado toxicológico es mayor a 31 días"
         );
         setSecciones({
           pasaporte_vigente: true,
@@ -138,7 +138,7 @@ const Finalizar = (props) => {
 
       case "certificado médico excede 1 mes":
         setMensaje(
-          "No es posible continuar con el proceso debido a que la fecha de su Certificado médico es mayor a 1 mes"
+          "No es posible continuar con el proceso debido a que la fecha de su Certificado médico o historia clínica es mayor a 1 mes"
         );
         setSecciones({
           pasaporte_vigente: true,
@@ -207,6 +207,29 @@ const Finalizar = (props) => {
           avenza_maps: false
         });
         break;
+
+      case "No cuenta con una vacuna aprobatoria para viajar":
+        setMensaje(
+          "No es posible continuar con el proceso debido a que no se encuentra vacunado con alguna marca de vacuna aceptada para viajar a Estados Unidos y Canadá"
+        );
+        setSecciones({
+          pasaporte_vigente: true,
+          documento_para_viajar_a_canad: true,
+          licencia_de_manejo: true,
+          indice_de_masa_corporal: true,
+          salud: false,
+          conocimiento_y_experiencia_sci: false,
+          conocimiento_y_experiencia_en_incendios: false,
+          buena_conducta: false,
+          disponibilidad_en_condiciones_ambientales_adversas: false,
+          capacidad_para_comunicarse_en_ingles: false,
+          liderazgo: false,
+          aptitud_fisica: false,
+          gps: false,
+          motobomba_mark_iii: false,
+          motosierra_autonoma: false,
+          avenza_maps: false
+        });
         break;
 
       case "no aprobo examen smi_100":

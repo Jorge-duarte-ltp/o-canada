@@ -151,15 +151,6 @@ const SideBar = (props) => {
             Mesa de ayuda
           </button>
         )}
-        
-        <button
-          value="examen_pruebas"
-          className="list-group-item list-group-item-action bg-light"
-          onClick={handleClick}
-        >
-          Examen Pruebas
-        </button>
-
       </div>
     </div>
   );
