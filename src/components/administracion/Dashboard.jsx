@@ -11,7 +11,6 @@ import TablaEstatales from "../estatales/TablaEstatales";
 import TablaBrigadas from "../brigadas/TablaBrigadas";
 import TablaManifiesto from "../manifiesto/TablaManifiesto";
 import TablaDisponibilidad from "../disponibilidad/TablaDisponibilidad";
-import ExamenPrueba from "../examenes/equipo_aereo/ExamenOSEP";
 
 const Dashboard = ({ userPorfile }) => {
   const [showSection, setShowSection] = useState({

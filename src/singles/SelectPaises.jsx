@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import { isEmpty } from "lodash";
-import axiosClient from "../config/axios";
+import React, { useEffect, useState } from "react";
+import { ObtenerPaises } from "../services/catalogs/CatalogoService";
 
 const SelectPaises = (props) => {
-  const { name, className, onBlur, onChange, defaultValue, value, disabled } = props;
+  const { name, className, onBlur, onChange, defaultValue, value, disabled } =
+    props;
   const [data, setData] = useState([]);
 
-  const config = {
-    method: "post",
-    url: `${process.env.REACT_APP_BACKEN_URL}list_paises`,
-  };
+  useEffect(() => {
+    const timeout = setTimeout(async () => {
+      await ObtenerPaises().then(async (response) => {
+        if (response.status === 200) {
+          setData(response.data);
+        }
+      });
+    }, 100);
 
-  if (isEmpty(data)) {
-    axiosClient(config).then(async (response) => {
-      const data = await response.data.data;
-      setData(data);
-    });
-  }
+    return () => {
+      clearTimeout(timeout);
+    };
+
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <select
@@ -29,12 +33,11 @@ const SelectPaises = (props) => {
       disabled={disabled}
     >
       <option value="">--Seleccione--</option>
-      {typeof data != "undefined" &&
-        data.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.nombre} - {item.clave}
-          </option>
-        ))}
+      {data.map((item) => (
+        <option key={item.id} value={item.id}>
+          {item.nombre} - {item.clave}
+        </option>
+      ))}
     </select>
   );
 };

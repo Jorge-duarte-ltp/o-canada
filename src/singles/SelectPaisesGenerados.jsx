@@ -1,6 +1,6 @@
 import React from "react";
 
-const SelectEstadosGenerados = (props) => {
+const SelectPaisesGenerados = (props) => {
   const { name, className, onBlur, onChange, value, data } = props;
 
   return (
@@ -13,12 +13,12 @@ const SelectEstadosGenerados = (props) => {
     >
       <option value="">--Seleccione--</option>
       {data.map((item) => (
-        <option key={item.cve_ent} value={item.id}>
-          {item.nom_ent}
+        <option key={item.id} value={item.id}>
+          {item.nombre}
         </option>
       ))}
     </select>
   );
 };
 
-export default SelectEstadosGenerados;
+export default SelectPaisesGenerados;

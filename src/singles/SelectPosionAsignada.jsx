@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SelectPosionAsignada = (props) => {
-  const { name, className, onBlur, onChange, value, filter, data, disabled} =
+  const [temp, setTemp] = useState([]);
+  const { name, className, onBlur, onChange, value, filter, data, disabled } =
     props;
 
-  let dataTemp = data.filter((item) => item.idPais === filter);
+  useEffect(() => {
+    
+    const timeout = setTimeout(() => {
+      setTemp(data.filter((item) => item.idPais === filter));
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+    // eslint-disable-next-line
+  }, [filter]);
 
   return (
     <select
@@ -16,12 +27,11 @@ const SelectPosionAsignada = (props) => {
       disabled={disabled}
     >
       <option value="">--Seleccione--</option>
-      {typeof dataTemp != "undefined" &&
-        dataTemp.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.nombre} - {item.clave}
-          </option>
-        ))}
+      {temp.map((item) => (
+        <option key={item.id} value={item.id}>
+          {item.nombre} - {item.clave}
+        </option>
+      ))}
     </select>
   );
 };

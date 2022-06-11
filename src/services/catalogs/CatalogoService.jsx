@@ -56,3 +56,13 @@ export function ObtenerVacunas() {
 
     return axios(config);
 }
+
+export function ObtenerPaises() {
+
+    const config = {
+        method: "post",
+        url: `${process.env.REACT_APP_BACKEN_URL}list_paises`,
+    };
+
+    return axios(config);
+}

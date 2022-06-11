@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SelectEstadosGenerados from "./SelectEstadosGenerados";
-import { isEmpty, size } from "lodash";
+import { range } from "lodash";
 import { ObtenerEstados } from "../services/catalogs/CatalogoService";
 
 export const GenerarEstados = (props) => {
@@ -9,60 +9,63 @@ export const GenerarEstados = (props) => {
   const [num, setNum] = useState([]);
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
-    ObtenerEstados().then(async (response) => {
-      const data = await response.data;
-      setData(data);
-    });
+    const timeout = setTimeout(() => {
+      ObtenerEstados().then(async (response) => {
+        if (response.status === 200) {
+          setData(response.data);
+        }
+      });
+
+      for (let i in range(0, cantEstados)) {
+        const index = parseInt(i) + 1;
+
+        num.push({
+          id: index,
+          name: `estado${index}`,
+          value: "",
+        });
+
+        setNum(num);
+
+        setEstados({
+          ...estados,
+          [`estado${index}`]: estados[`estado${index}`],
+        });
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+
+    // eslint-disable-next-line
   }, []);
 
   const setInfo = (input) => {
-
     setEstados({
       ...estados,
       [input.target.name]: input.target.value.toUpperCase(),
     });
-    
+
     setState({ ...state, [name]: estados });
   };
 
-  if (isEmpty(num)) {
-    let data = [];
-    let object = {};
-    for (let i = 0; i < cantEstados; i++) {
-      data.push({ id: i + 1, nombre: `estado${i + 1}` });
-      object = { ...object, [`estado${i + 1}`]: estados[`estado${i + 1}`] };
-    }
-    setNum(data);
-    if (size(estados) > cantEstados) {
-      setEstados(object);
-    }
-  }
-
-  return (
-    size(num) > 0 && (
-      <React.Fragment>
-        {num.map((item) => (
-          <div className="col-4" key={item.id}>
-            <label className="control-label pt-2">
-              {item.id}.- {titulo}
-              <SelectEstadosGenerados
-                data={data}
-                name={item.nombre}
-                className="form-control myInput"
-                onChange={setInfo}
-                onBlur={setInfo}
-                value={
-                  !isEmpty(estados[item.nombre]) ? estados[item.nombre] : ""
-                }
-              />
-            </label>
-          </div>
-        ))}
-      </React.Fragment>
-    )
-  );
+  return num.map((item) => (
+    <div className="col-4" key={item.id}>
+      <label className="control-label pt-2">
+        {item.id}.- {titulo}
+        <SelectEstadosGenerados
+          data={data}
+          name={item.name}
+          className="form-control myInput"
+          onChange={setInfo}
+          onBlur={setInfo}
+          value={estados[item.name] ? estados[item.name] : item.value}
+        />
+      </label>
+    </div>
+  ));
 };
 
 export default GenerarEstados;

@@ -1,44 +1,47 @@
 import React, { useEffect, useState } from "react";
-import SelectPaises from "./SelectPaises";
-import { isEmpty, size, range } from "lodash";
+import { size, range } from "lodash";
 
 export const GenerarPosiciones = (props) => {
-  const { state, setState, cantDespliegues } = props;
+  const { state, setState, cantDespliegues, name } = props;
   const [despliegues, setDespliegues] = useState(
-    state.despliegues_internacionales ? state.despliegues_internacionales : {}
+    state[name] ? state[name] : {}
   );
+
   const [num, setNum] = useState([]);
 
   useEffect(() => {
-    const data = [];
-    let object = {};
+    const timeout = setTimeout(() => {
+      for (let i in range(0, cantDespliegues)) {
+        const index = parseInt(i) + 1;
 
-    for (let i in range(0, cantDespliegues)) {
+        num.push({
+          id: index,
+          posicion: { name: `posicion${index}`, value: "" },
+          anio: { name: `anio${index}`, value: "" },
+        });
 
-      const index = parseInt(i) + 1;
-      
-      data.push({ id: index, nombre: `posicion${index}`, anio: `anio${index}` });
+        setNum(num);
 
-      object = {
-        ...object,
-        [`posicion${index}`]: despliegues[`posicion${index}`],
-        [`anio${index}`]: despliegues[`anio${index}`],
-      };
-    }
+        setDespliegues({
+          ...despliegues,
+          [`posicion${index}`]: despliegues[`posicion${index}`],
+          [`anio${index}`]: despliegues[`anio${index}`],
+        });
+      }
+    }, 100);
 
-    setNum(data);
-    if (size(despliegues) > cantDespliegues) {
-      setDespliegues(object);
-    }
-
-  }, [])
+    return () => {
+      clearTimeout(timeout);
+    };
+    // eslint-disable-next-line
+  }, []);
 
   const setInfo = (input) => {
     setDespliegues({
       ...despliegues,
       [input.target.name]: input.target.value.toUpperCase(),
     });
-    setState({ ...state, despliegues_internacionales: despliegues });
+    setState({ ...state, [name]: despliegues });
   };
 
   const setAnio = (input) => {
@@ -48,10 +51,8 @@ export const GenerarPosiciones = (props) => {
         [input.target.name]: input.target.value.toUpperCase(),
       });
     }
-    setState({ ...state, despliegues_internacionales: despliegues });
+    setState({ ...state, [name]: despliegues });
   };
-
-
 
   return (
     size(num) > 0 && (
@@ -60,34 +61,44 @@ export const GenerarPosiciones = (props) => {
           <div className="col-4" key={item.id}>
             <label className="control-label pt-2">
               {item.id}.- ¿Qué posición ocupó en el despliegue?
-              <select className="form-control myInput"
-                id={item.nombre}
-                name={item.nombre}
+              <select
+                className="form-control myInput"
+                id={item.posicion.name}
+                name={item.posicion.name}
                 onChange={setInfo}
                 onBlur={setInfo}
-                value={!isEmpty(despliegues[item.nombre]) ? despliegues[item.nombre] : ""}
+                value={
+                  despliegues[item.posicion.name]
+                    ? despliegues[item.posicion.name]
+                    : item.posicion.value
+                }
               >
-                <option >--- Seleccione ---</option>
-                <option value='COMBATIENTE'>Combatiente</option>
-                <option value='JEFE_DE_CUADRILLA'>Jefe de Cuadrilla</option>
-                <option value='JEFE_DE_BRIGADA'>Jefe de Brigada</option>
-                <option value='TECNICO_AREP'>Técnico (AREP)</option>
-                <option value='TECNICO_IARR'>Técnico (IARR)</option>
-                <option value='COORDINADIR_COVID'>Ténico (COORDINADOR COVID)</option>
+                <option value="">--- Seleccione ---</option>
+                <option value="COMBATIENTE">Combatiente</option>
+                <option value="JEFE_DE_CUADRILLA">Jefe de Cuadrilla</option>
+                <option value="JEFE_DE_BRIGADA">Jefe de Brigada</option>
+                <option value="TECNICO_AREP">Técnico (AREP)</option>
+                <option value="TECNICO_IARR">Técnico (IARR)</option>
+                <option value="COORDINADIR_COVID">
+                  Ténico (COORDINADOR COVID)
+                </option>
               </select>
             </label>
             <label className="control-label pt-2">
               ¿Ingrese el año del despliegue?
               <input
-                name={item.anio}
+                name={item.anio.name}
                 className="form-control myInput"
                 type="number"
                 onChange={setAnio}
                 onBlur={setAnio}
-                value={!isEmpty(despliegues[item.anio]) ? despliegues[item.anio] : ""}
+                value={
+                  despliegues[item.anio.name]
+                    ? despliegues[item.anio.name]
+                    : item.anio.value
+                }
               />
             </label>
-
           </div>
         ))}
       </React.Fragment>

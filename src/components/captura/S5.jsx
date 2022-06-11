@@ -113,11 +113,11 @@ const S5 = (props) => {
         )
           ? input.target.files
           : AlertError(
-            "Error:",
-            `El archivo con la extensión no esta permitido .${input.target.files[0].name
-              .split(".")
-              .pop()}`
-          ),
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -285,7 +285,7 @@ const S5 = (props) => {
                   <input
                     className="form-control myInput"
                     type="number"
-                    value={state.num_est_part}
+                    value={state.num_est_part ? state.num_est_part : ""}
                     name="num_est_part"
                     onChange={setNumero}
                     placeholder="Ingresa el numero de estados"
@@ -329,7 +329,7 @@ const S5 = (props) => {
                     className="form-control myInput"
                     type="number"
                     name="num_est_mov"
-                    value={state.num_est_mov}
+                    value={state.num_est_mov ? state.num_est_mov : ""}
                     onChange={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
@@ -353,7 +353,8 @@ const S5 = (props) => {
           {/*¿Ha sido asignado (a) como recurso en incendios forestales en otro país? */}
           <div className="col-7">
             <label className="control-label pt-2">
-              ¿Ha sido asignado (a) como recurso en incendios forestales en otro país?
+              ¿Ha sido asignado (a) como recurso en incendios forestales en otro
+              país?
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_asig_recurso_pais"
@@ -372,7 +373,7 @@ const S5 = (props) => {
                     className="form-control myInput"
                     type="number"
                     name="num_pais_asig"
-                    value={state.num_pais_asig}
+                    value={state.num_pais_asig ? state.num_pais_asig : ""}
                     onChange={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
@@ -384,6 +385,7 @@ const S5 = (props) => {
           {state.num_pais_asig > 0 && state.tiene_asig_recurso_pais === "1" && (
             <React.Fragment>
               <GenerarPaises
+                name="paises_asig_recurso"
                 state={state}
                 setState={setState}
                 cantPaises={state.num_pais_asig}
@@ -425,15 +427,15 @@ const S5 = (props) => {
               ¿Ha participado en despliegues internacionales?
               <SelectSiNo
                 className="form-control myInput"
-                name="tiene_participacion_internacional"
-                defaultValue={state.tiene_participacion_internacional}
+                name="tiene_participacion_despliegues_internacionales"
+                defaultValue={state.tiene_participacion_despliegues_internacionales}
                 onChange={setInfo}
                 onBlur={setInfo}
               />
             </label>
           </div>
           <div className="col-6">
-            {state.tiene_participacion_internacional === "1" && (
+            {state.tiene_participacion_despliegues_internacionales === "1" && (
               <React.Fragment>
                 <label className="control-label pt-2">
                   ¿A cuantos despliegues internacionales ha participado?
@@ -441,7 +443,9 @@ const S5 = (props) => {
                     className="form-control myInput"
                     type="number"
                     name="numero_despliegues"
-                    value={state.numero_despliegues}
+                    value={
+                      state.numero_despliegues ? state.numero_despliegues : ""
+                    }
                     onChange={setNumero}
                     placeholder="Ingresa el numero de paticipaciones"
                   />
@@ -450,16 +454,17 @@ const S5 = (props) => {
             )}
           </div>
 
-          {state.numero_despliegues > 0 && state.tiene_participacion_internacional === "1" && (
-            <React.Fragment>
-              <GenerarPosiciones
-                state={state}
-                setState={setState}
-                cantDespliegues={state.numero_despliegues}
-              />
-            </React.Fragment>
-          )}
-
+          {state.numero_despliegues > 0 &&
+            state.tiene_participacion_despliegues_internacionales === "1" && (
+              <React.Fragment>
+                <GenerarPosiciones
+                  name="despliegues_internacionales"
+                  state={state}
+                  setState={setState}
+                  cantDespliegues={state.numero_despliegues}
+                />
+              </React.Fragment>
+            )}
         </React.Fragment>
       )}
 
@@ -468,8 +473,8 @@ const S5 = (props) => {
         <button
           hidden={
             state.asignado_recurso_nacional &&
-              state.asignado_recurso_otro_pais &&
-              !sci_190Examen
+            state.asignado_recurso_otro_pais &&
+            !sci_190Examen
               ? false
               : true
           }
