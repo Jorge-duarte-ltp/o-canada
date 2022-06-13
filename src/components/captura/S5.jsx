@@ -14,7 +14,6 @@ import GenerarPaises from "../../singles/GenerarPaises";
 import { size } from "lodash";
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
-import GenerarPosiciones from "../../singles/GenerarPosiciones";
 
 const S5 = (props) => {
   const candidatos = useContext(candidatoContext);
@@ -415,7 +414,6 @@ const S5 = (props) => {
         <button
           hidden={
             state.asignado_recurso_nacional &&
-            state.asignado_recurso_otro_pais &&
             !sci_190Examen
               ? false
               : true
