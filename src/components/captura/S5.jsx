@@ -407,64 +407,6 @@ const S5 = (props) => {
             />
           </div>
 
-          <div className="col-12">
-            <label className="control-label pt-2">
-              ¿Cuántas veces ha sido asignado como recurso en incendios
-              forestales en otro país?
-            </label>
-            <input
-              className="form-control myInput"
-              name="asignado_recurso_otro_pais"
-              type="number"
-              onChange={setInfo}
-              placeholder="¿Cuántas veces ha sido asignado como recurso en incendios forestales en otro país?"
-            />
-          </div>
-
-          {/*¿Ha participado en despliegues internacionales? */}
-          <div className="col-6">
-            <label className="control-label pt-2">
-              ¿Ha participado en despliegues internacionales?
-              <SelectSiNo
-                className="form-control myInput"
-                name="tiene_participacion_despliegues_internacionales"
-                defaultValue={state.tiene_participacion_despliegues_internacionales}
-                onChange={setInfo}
-                onBlur={setInfo}
-              />
-            </label>
-          </div>
-          <div className="col-6">
-            {state.tiene_participacion_despliegues_internacionales === "1" && (
-              <React.Fragment>
-                <label className="control-label pt-2">
-                  ¿A cuantos despliegues internacionales ha participado?
-                  <input
-                    className="form-control myInput"
-                    type="number"
-                    name="numero_despliegues"
-                    value={
-                      state.numero_despliegues ? state.numero_despliegues : ""
-                    }
-                    onChange={setNumero}
-                    placeholder="Ingresa el numero de paticipaciones"
-                  />
-                </label>
-              </React.Fragment>
-            )}
-          </div>
-
-          {state.numero_despliegues > 0 &&
-            state.tiene_participacion_despliegues_internacionales === "1" && (
-              <React.Fragment>
-                <GenerarPosiciones
-                  name="despliegues_internacionales"
-                  state={state}
-                  setState={setState}
-                  cantDespliegues={state.numero_despliegues}
-                />
-              </React.Fragment>
-            )}
         </React.Fragment>
       )}
 

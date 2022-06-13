@@ -24,6 +24,7 @@ export const GenerarPaises = (props) => {
           id: index,
           pais: { name: `pais${index}`, value: "" },
           anio: { name: `anio${index}`, value: "" },
+          posicion: { name: `posicion${index}`, value: "" },
         });
 
         setNum(num);
@@ -32,6 +33,7 @@ export const GenerarPaises = (props) => {
           ...paises,
           [`pais${index}`]: paises[`pais${index}`],
           [`anio${index}`]: paises[`anio${index}`],
+          [`posicion${index}`]: paises[`posicion${index}`],
         });
       }
     }, 100);
@@ -77,7 +79,7 @@ export const GenerarPaises = (props) => {
         />
       </label>
       <label className="control-label pt-2">
-        ¿En qué año fue asignado (a) al pais?
+       ¿En qué año fue asignado (a) al pais?
         <input
           name={item.anio.name}
           className="form-control myInput"
@@ -88,6 +90,29 @@ export const GenerarPaises = (props) => {
             paises[item.anio.name] ? paises[item.anio.name] : item.anio.value
           }
         />
+      </label>
+      <label className="control-label pt-2">
+        ¿Qué posición ocupó?
+        <select
+          className="form-control myInput"
+          id={item.posicion.name}
+          name={item.posicion.name}
+          onChange={setInfo}
+          onBlur={setInfo}
+          value={
+            paises[item.posicion.name]
+              ? paises[item.posicion.name]
+              : item.posicion.value
+          }
+        >
+          <option value="">--- Seleccione ---</option>
+          <option value="COMBATIENTE">Combatiente</option>
+          <option value="JEFE_DE_CUADRILLA">Jefe de Cuadrilla</option>
+          <option value="JEFE_DE_BRIGADA">Jefe de Brigada</option>
+          <option value="TECNICO_AREP">Técnico (AREP)</option>
+          <option value="TECNICO_IARR">Técnico (IARR)</option>
+          <option value="COORDINADIR_COVID">Ténico (COORDINADOR COVID)</option>
+        </select>
       </label>
     </div>
   ));
