@@ -980,7 +980,7 @@ const Captura = () => {
       (conocimientos_primeros_auxilios === "1" &&
         (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
       conocimiento_equipo_aereo === "" ||
-      examen_equipo_aereo === "faltante"
+      !examen_equipo_aereo
     ) {
 
       msgFaltanCampos();

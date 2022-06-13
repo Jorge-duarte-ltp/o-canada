@@ -169,20 +169,6 @@ const S6 = (props) => {
         </React.Fragment>
       )}
 
-      {/* ¿Maneja la aplicación Avenza Maps? */}
-      <div className="col-4 col-md-6">
-        <label className="control-label pt-2">
-          ¿Maneja la aplicación Avenza Maps?
-        </label>
-        <SelectSiNo
-          className="form-control myInput"
-          name="maneja_app_avenza"
-          defaultValue={state.maneja_app_avenza}
-          onChange={setInfo}
-          onBlur={setInfo}
-        />
-      </div>
-
       {/* ¿cuenta con certificado de primeros auxilios? */}
       <div className="col-12 col-md-8">
         <label className="control-label pt-2">
@@ -195,6 +181,7 @@ const S6 = (props) => {
           onChange={setInfo}
         />
       </div>
+      
       {/* Cuenta con conocimientos de primero auxilios */}
       <div className="col-12 col-md-4">
         {state.conocimientos_primeros_auxilios === "1" && (
@@ -263,7 +250,7 @@ const S6 = (props) => {
         )}
       </div>
       <div className="col-12 col-md-12">
-        {state.conocimiento_equipo_aereo && (
+        {state.conocimiento_equipo_aereo && state.examen_equipo_aereo !== "completa" && (
           <ExamenOSEP state={state} setState={setState} />
         )}
       </div>

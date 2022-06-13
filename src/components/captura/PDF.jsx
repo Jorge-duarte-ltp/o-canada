@@ -451,25 +451,25 @@ const PDF = (props) => {
             <Text
               style={[
                 styles.RequisitosEspecial,
-                state.opera_autonoma_gps ? aprobadoColor : reprobadoColor,
+                sections.gps ? aprobadoColor : reprobadoColor,
               ]}
             >
-              {state.opera_autonoma_gps
+              {sections.gps
                 ? "Realizar la prueba en la Promotoria de su Entidad"
                 : "No Aprobado"}
             </Text>
             <Text
-              style={[styles.RequisitosEspecial, state.opera_autonoma_gps ? aprobadoColor : reprobadoColor,]}
+              style={[styles.RequisitosEspecial, state.avenza_maps ? aprobadoColor : reprobadoColor,]}
             >
-              {state.opera_autonoma_gps ? 'Realizar la prueba en la Promotoria de su Entidad' : 'No Aprobado'}
+              {sections.avenza_maps ? 'Realizar la prueba en la Promotoria de su Entidad' : 'No Aprobado'}
             </Text>
             <Text
               style={[
                 styles.RequisitosEspecial,
-                state.opera_autonoma_mark3 ? aprobadoColor : reprobadoColor,
+                sections.motobomba_mark_iii ? aprobadoColor : reprobadoColor,
               ]}
             >
-              {state.opera_autonoma_mark3
+              {sections.motobomba_mark_iii
                 ? "Realizar la prueba en la Promotoria de su Entidad"
                 : "No Aprobado"}
             </Text>
@@ -477,12 +477,12 @@ const PDF = (props) => {
             <Text
               style={[
                 styles.RequisitosEspecial,
-                state.opera_autonoma_motosierra === "1"
+                sections.motosierra_autonoma
                   ? aprobadoColor
                   : blackColor,
               ]}
             >
-              {state.opera_autonoma_motosierra === "1"
+              {sections.motosierra_autonoma
                 ? "Realizar la prueba en la Promotoria de su Entidad"
                 : "No Aplica"}
             </Text>
