@@ -977,10 +977,11 @@ const Captura = () => {
       !opera_autonoma_gps ||
       !opera_autonoma_mark3 ||
       !opera_autonoma_motosierra ||
+      !conocimientos_primeros_auxilios === "" ||
       (conocimientos_primeros_auxilios === "1" &&
-        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
+      (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
       conocimiento_equipo_aereo === "" ||
-      !examen_equipo_aereo
+      !examen_equipo_aereo != ""
     ) {
 
       msgFaltanCampos();

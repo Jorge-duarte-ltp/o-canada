@@ -459,7 +459,7 @@ const PDF = (props) => {
                 : "No Aprobado"}
             </Text>
             <Text
-              style={[styles.RequisitosEspecial, state.avenza_maps ? aprobadoColor : reprobadoColor,]}
+              style={[styles.RequisitosEspecial, sections.avenza_maps ? aprobadoColor : reprobadoColor,]}
             >
               {sections.avenza_maps ? 'Realizar la prueba en la Promotoria de su Entidad' : 'No Aprobado'}
             </Text>
