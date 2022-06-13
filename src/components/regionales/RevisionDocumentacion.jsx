@@ -187,6 +187,9 @@ const RevisionDocumentacion = () => {
       case "sci_smi_200":
         return "SCI 200";
 
+      case "sci_smi_300":
+        return "SCI 300";
+
       case "toefl":
         return "TOEFL/TOEIC";
 
@@ -232,8 +235,11 @@ const RevisionDocumentacion = () => {
       case "constancia_curso_s_211":
         return "Constancia Presentada 211";
 
-      case "evaluacion_desempenio_california2020":
+      case "evaluacion_desempenio_canada2022":
         return "Evaluación de Desempeño 2021";
+
+      case "evaluacion_disponibilidad":
+        return "Evaluación de Disponibilidad";
 
       default:
         return "check= " + item;

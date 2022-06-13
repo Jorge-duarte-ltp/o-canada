@@ -784,9 +784,9 @@ const Captura = () => {
       if (archivos.sci_smi_300_fl) {
 
         const formData_sci_smi_300_fl = new FormData();
-        formData_sci_smi_300_fl.append("file", archivos.sci_smi_100_fl[0]);
+        formData_sci_smi_300_fl.append("file", archivos.sci_smi_300_fl[0]);
         formData_sci_smi_300_fl.append("curp", infoBrigadista.curp);
-        formData_sci_smi_300_fl.append("name", "sci_smi_100");
+        formData_sci_smi_300_fl.append("name", "sci_smi_300");
 
         await axios.post(
           `${API_REQUEST}carga_archivo`,

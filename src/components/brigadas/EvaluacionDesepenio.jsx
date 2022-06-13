@@ -6,16 +6,17 @@ import AlertError from "../../singles/AlertError";
 import AlertExito from "../../singles/AlertExito";
 import InfomacionCandidato from "../estatales/InfomacionCandidato";
 import sessionContext from "../../context/session/sessionContext";
+import moment from "moment";
 
 const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
-  console.log(data);
+  
   const sessContext = useContext(sessionContext);
   const [files, setFiles] = useState({
     evaluacion_desempenio_archivo_fl: null,
   });
   const [sumatoria, setSumatoria] = useState(0);
   /* TODO: El evento debe ser de forma dinamica para futuros deploys */
-  const evento = `california2020`;
+  const evento = `canada${moment().format('YYYY')}`;
   const [edicion, setEdicion] = useState(data.evaluaciones[0] ? true : false);
   const evaluacionDefault = data.evaluaciones[0]
     ? data.evaluaciones[0]
