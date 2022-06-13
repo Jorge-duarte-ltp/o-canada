@@ -263,7 +263,7 @@ const S6 = (props) => {
         )}
       </div>
       <div className="col-12 col-md-12">
-        {state.conocimiento_equipo_aereo && state.examen_equipo_aereo === "faltante" && (
+        {state.conocimiento_equipo_aereo && (
           <ExamenOSEP state={state} setState={setState} />
         )}
       </div>
