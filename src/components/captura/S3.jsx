@@ -203,7 +203,6 @@ const S3 = (props) => {
     }
   }
 
-
   return (
     <div className="row body_wrap">
       {/* Sexo TODO: cambiar */}
@@ -212,7 +211,7 @@ const S3 = (props) => {
         <SelectSexo
           className="form-control myInput"
           name="sexo"
-          defaultValue={state.sexo}
+          value={state.sexo ? state.sexo : ""}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="Ingrese Sexo..."
@@ -288,7 +287,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="grupo_sanguineo"
-          defaultValue={state.grupo_sanguineo}
+          value={state.grupo_sanguineo ? state.grupo_sanguineo : ""}
           maxLength="6"
           // onChangeCapture={ToMayus}
           onChange={setInfo}
@@ -375,7 +374,7 @@ const S3 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="padece_enfermedad"
-          defaultValue={state.padece_enfermedad}
+          value={state.padece_enfermedad ? state.padece_enfermedad : ""}
           onChange={setInfo}
           onBlur={revisarFormulario}
         />
@@ -392,7 +391,7 @@ const S3 = (props) => {
               className="form-control myInput"
               name="que_enfermedad"
               onChangeCapture={ToMayus}
-              value={state.que_enfermedad}
+              value={state.que_enfermedad ? state.que_enfermedad : ""}
               onChange={setInfo}
               onBlur={revisarFormulario}
               placeholder="Qué enfermedad padece"
@@ -408,7 +407,7 @@ const S3 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="requiere_medicamentos_perm"
-          defaultValue={state.requiere_medicamentos_perm}
+          value={state.requiere_medicamentos_perm ? state.requiere_medicamentos_perm : ""}
           onChange={setInfo}
           onBlur={revisarFormulario}
         />
@@ -444,7 +443,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="experimento_dolor_pecho"
-          defaultValue={state.experimento_dolor_pecho}
+          value={state.experimento_dolor_pecho}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Experimentó dolor, incomodidad o presión en el pecho?"
@@ -464,7 +463,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="experimento_dificultad_respirar"
-          defaultValue={state.experimento_dificultad_respirar}
+          value={state.experimento_dificultad_respirar}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Ha experimentado dificultad para respirar, mareos, desmayos o pérdida del conocimiento?"
@@ -484,7 +483,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="presion_arterial_sistolica_diastolica"
-          defaultValue={state.presion_arterial_sistolica_diastolica}
+          value={state.presion_arterial_sistolica_diastolica}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Tiene una presión arterial sistólica mayor que 140 o diastólica mayor que 90?"
@@ -505,7 +504,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="enfermedad_cardiaca"
-          defaultValue={state.enfermedad_cardiaca}
+          value={state.enfermedad_cardiaca}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Alguna vez le han diagnosticado o tratado alguna enfermedad cardíaca, soplo cardíaco, dolor en el pecho, arritmias o ataque cardíaco?"
@@ -525,7 +524,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="cirugia_corazon"
-          defaultValue={state.cirugia_corazon}
+          value={state.cirugia_corazon}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Alguna vez ha tenido una cirugía de corazón, angioplastia o marcapasos, reemplazo de válvula o trasplante de corazón?"
@@ -544,7 +543,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="pulso_mayor_100"
-          defaultValue={state.pulso_mayor_100}
+          value={state.pulso_mayor_100}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Tiene un pulso en reposo mayor a 100 latidos por minuto?"
@@ -565,7 +564,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="problemas_afeccion_osea"
-          defaultValue={state.problemas_afeccion_osea}
+          value={state.problemas_afeccion_osea}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Tiene artritis, problemas de espalda, cadera / rodilla / coyunturas / dolor o cualquier otra afección ósea o articular que podría agravarse o empeorar con la prueba de capacidad de trabajo?"
@@ -586,7 +585,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="experiencia_personal_consejos"
-          defaultValue={state.experiencia_personal_consejos}
+          value={state.experiencia_personal_consejos}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Tiene usted experiencia personal o consejos del médico de cualquier otra razón médica o física que le prohibiría realizar la prueba de la mochila nivel arduo?"
@@ -607,7 +606,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="medico_personal_recomendo"
-          defaultValue={state.medico_personal_recomendo}
+          value={state.medico_personal_recomendo}
           onChange={setInfo}
           onBlur={revisarFormulario}
           placeholder="¿Su médico personal le recomendó no realizar la prueba de trabajo arduo debido a asma, diabetes, epilepsia o colesterol elevado o una hernia?"
@@ -626,7 +625,7 @@ const S3 = (props) => {
         <select
           className="form-control myInput"
           name="esquema_completo"
-          defaultValue={state?.data?.esquema_completo}
+          value={state?.data?.esquema_completo}
           onChange={handleChange}
           onBlur={revisarFormulario}
         >
@@ -645,7 +644,7 @@ const S3 = (props) => {
           <select
             className="form-control myInput"
             name="refuerzo"
-            defaultValue={state?.data?.refuerzo}
+            value={state?.data?.refuerzo}
             onChange={handleChange}
           >
             <option value="">---Seleccione---</option>
@@ -663,7 +662,7 @@ const S3 = (props) => {
           <select
             className="form-control myInput"
             name="vacuna_aprobada"
-            defaultValue={state?.data?.vacuna_aprobada}
+            value={state?.data?.vacuna_aprobada}
             onChange={handleChange}
             onBlur={revisarFormulario}
           >
@@ -696,7 +695,7 @@ const S3 = (props) => {
                 className={`form-control myInput`}
                 name="idPrimeraDosis"
                 value={state?.data?.idPrimeraDosis ? state?.data?.idPrimeraDosis : null}
-                defaultValue={state?.data?.idPrimeraDosis}
+                value={state?.data?.idPrimeraDosis}
                 onChange={handleChange}
               />
             </div>
@@ -754,7 +753,7 @@ const S3 = (props) => {
                   className={`form-control myInput`}
                   name="idRefuerzoDosis"
                   value={state?.data?.idRefuerzoDosis ? state?.data?.idRefuerzoDosis : null}
-                  defaultValue={state?.data?.idRefuerzoDosis}
+                  value={state?.data?.idRefuerzoDosis}
                   onChange={handleChange}
                 />
               </div>
@@ -783,7 +782,7 @@ const S3 = (props) => {
               <select
                 className="form-control myInput"
                 name="padecimiento"
-                defaultValue={state?.data?.padecimiento}
+                value={state?.data?.padecimiento}
                 onChange={handleChange}
               >
                 <option value="">---Seleccione---</option>
@@ -801,7 +800,7 @@ const S3 = (props) => {
                 <select
                   className="form-control myInput"
                   name="hospitalizacion"
-                  defaultValue={state?.data?.hospitalizacion}
+                  value={state?.data?.hospitalizacion}
                   onChange={handleChange}
                 >
                   <option value="">---Seleccione---</option>

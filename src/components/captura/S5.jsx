@@ -269,7 +269,7 @@ const S5 = (props) => {
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_part_brig_nac"
-                defaultValue={state.tiene_part_brig_nac}
+                value={state.tiene_part_brig_nac}
                 onChange={setInfo}
                 onBlur={setInfo}
               />
@@ -313,7 +313,7 @@ const S5 = (props) => {
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_part_mov_nac"
-                defaultValue={state.tiene_part_mov_nac}
+                value={state.tiene_part_mov_nac}
                 onChange={setInfo}
                 onBlur={setInfo}
               />
@@ -357,7 +357,7 @@ const S5 = (props) => {
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_asig_recurso_pais"
-                defaultValue={state.tiene_asig_recurso_pais}
+                value={state.tiene_asig_recurso_pais}
                 onChange={setInfo}
                 onBlur={setInfo}
               />
@@ -401,6 +401,7 @@ const S5 = (props) => {
               className="form-control myInput"
               name="asignado_recurso_nacional"
               type="number"
+              value={state.asignado_recurso_nacional}
               onChange={setInfo}
               placeholder="¿Cuántas veces ha sido asignado como recurso nacional en incendios forestales..."
             />
@@ -413,6 +414,8 @@ const S5 = (props) => {
       <div className="col-12 pt-5 btn-margin">
         <button
           hidden={
+            files.s_130_fl &&
+            files.s_190_fl &&
             state.asignado_recurso_nacional &&
             !sci_190Examen
               ? false

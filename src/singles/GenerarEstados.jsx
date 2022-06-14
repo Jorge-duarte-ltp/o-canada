@@ -52,7 +52,7 @@ export const GenerarEstados = (props) => {
   };
 
   return num.map((item) => (
-    <div className="col-4" key={item.id}>
+    <div className="col-4 col-mb-4" key={item.id}>
       <label className="control-label pt-2">
         {item.id}.- {titulo}
         <SelectEstadosGenerados

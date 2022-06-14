@@ -82,7 +82,7 @@ const S6 = (props) => {
           className="form-control myInput"
           name="opera_autonoma_gps"
           onBlur={revisionCompetencias}
-          defaultValue={state.opera_autonoma_gps}
+          value={state.opera_autonoma_gps}
           onChange={setInfo}
         />
       </div>
@@ -96,7 +96,7 @@ const S6 = (props) => {
           className="form-control myInput"
           name="opera_autonoma_mark3"
           onBlur={revisionCompetencias}
-          defaultValue={state.opera_autonoma_mark3}
+          value={state.opera_autonoma_mark3}
           onChange={setInfo}
         />
       </div>
@@ -110,7 +110,7 @@ const S6 = (props) => {
           className="form-control myInput"
           name="opera_autonoma_motosierra"
           onBlur={revisionCompetencias}
-          defaultValue={state.opera_autonoma_motosierra}
+          value={state.opera_autonoma_motosierra}
           onChange={setInfo}
         />
       </div>
@@ -127,7 +127,7 @@ const S6 = (props) => {
               className="form-control myInput"
               name="posicion_operador_moto_briga"
               onBlur={revisionCompetencias}
-              defaultValue={state.posicion_operador_moto_briga}
+              value={state.posicion_operador_moto_briga}
               onChange={setInfo}
             />
           </div>
@@ -177,7 +177,7 @@ const S6 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="conocimientos_primeros_auxilios"
-          defaultValue={state.conocimientos_primeros_auxilios}
+          value={state.conocimientos_primeros_auxilios}
           onChange={setInfo}
         />
       </div>
@@ -226,11 +226,12 @@ const S6 = (props) => {
           <SelectSiNo
             className="form-control myInput"
             name="conocimiento_equipo_aereo"
-            defaultValue={state.conocimiento_equipo_aereo}
+            value={state.conocimiento_equipo_aereo}
             onChange={setInfo}
           />
         </React.Fragment>
       </div>
+      
 
       {/** Constancia de alumno o instructor en Operaciones (S-217, S-271 Y S-371). */}
       <div className="col-12 col-md-12">
@@ -259,6 +260,7 @@ const S6 = (props) => {
       <div className="col-12 pt-5 btn-margin">
         <button
           className="btn btn-primary"
+          disabled={state.examen_equipo_aereo !== "completa" }
           onClick={() =>
             AlertaSiguiente(
               "Si continúa, no será posible volver a esta seccion",

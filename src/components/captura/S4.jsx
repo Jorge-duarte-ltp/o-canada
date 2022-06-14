@@ -136,7 +136,7 @@ const S4 = (props) => {
     if (
       input.target.name === "sci_smi_100" ||
       input.target.name === "sci_smi_200" ||
-      input.target.name === "sci_smi_300" 
+      input.target.name === "sci_smi_300"
     ) {
       setStateFiles({
         ...files,
@@ -146,11 +146,11 @@ const S4 = (props) => {
         )
           ? input.target.files
           : AlertError(
-              "Error:",
-              `El archivo con la extensión no esta permitido .${input.target.files[0].name
-                .split(".")
-                .pop()}`
-            ),
+            "Error:",
+            `El archivo con la extensión no esta permitido .${input.target.files[0].name
+              .split(".")
+              .pop()}`
+          ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -257,20 +257,20 @@ const S4 = (props) => {
         />
       </div>
 
-       {/* Cargar constancia del Curso SCI/SMI 300 */}
-       <div className="col-12 col-md-4">
-       <label className="control-label pt-2">
-         Cargar constancia del Curso SCI/SMI 300
-       </label>
-       <input
-         className="form-control myInput"
-         name="sci_smi_300"
-         type="file"
-         accept="application/pdf"
-         onChange={setInfo}
-         placeholder="Ingrese SCI/SMI 300..."
-       />
-     </div>
+      {/* Cargar constancia del Curso SCI/SMI 300 */}
+      <div className="col-12 col-md-4">
+        <label className="control-label pt-2">
+          Cargar constancia del Curso SCI/SMI 300
+        </label>
+        <input
+          className="form-control myInput"
+          name="sci_smi_300"
+          type="file"
+          accept="application/pdf"
+          onChange={setInfo}
+          placeholder="Ingrese SCI/SMI 300..."
+        />
+      </div>
 
       {preguntas_smi_100 && (
         <React.Fragment>
@@ -284,6 +284,7 @@ const S4 = (props) => {
               className="form-control myInput"
               name="eventos_plnaeados_sci"
               onChange={setInfo}
+              value={state.eventos_plnaeados_sci ? state.eventos_plnaeados_sci : ""}
             />
           </div>
 
@@ -297,6 +298,7 @@ const S4 = (props) => {
               className="form-control myInput"
               name="eventos_plnaeados_sci_fuera"
               onChange={setInfo}
+              value={state.eventos_plnaeados_sci_fuera ? state.eventos_plnaeados_sci_fuera : ""}
             />
           </div>
 
@@ -310,6 +312,7 @@ const S4 = (props) => {
               className="form-control myInput"
               name="eventos_plnaeados_dentro_estructura"
               onChange={setInfo}
+              value={state.eventos_plnaeados_dentro_estructura ? state.eventos_plnaeados_dentro_estructura : ""}
             />
           </div>
 
@@ -323,9 +326,10 @@ const S4 = (props) => {
                 <input
                   className="form-control myInput"
                   name="sci_cual"
-                  type=""
+                  type="text"
                   onChange={setInfo}
                   placeholder="Indique cual posición..."
+                  value={state.sci_cual ? state.sci_cual : ""}
                 />
               </div>
             </React.Fragment>
@@ -340,6 +344,7 @@ const S4 = (props) => {
               className="form-control myInput"
               name="evaluado_menejo_incidentes"
               onChange={setInfo}
+              value={state.evaluado_menejo_incidentes ? state.evaluado_menejo_incidentes : ""}
             />
           </div>
         </React.Fragment>
@@ -349,17 +354,19 @@ const S4 = (props) => {
       <div className="col-12 pt-5 btn-margin">
         <button
           hidden={
+            files.sci_smi_100_fl &&
+            files.sci_smi_200_fl &&
             state.eventos_plnaeados_sci &&
-            state.eventos_plnaeados_sci_fuera &&
-            state.eventos_plnaeados_dentro_estructura &&
-            state.evaluado_menejo_incidentes &&
-            !smi_100Examen
+              state.eventos_plnaeados_sci_fuera &&
+              state.eventos_plnaeados_dentro_estructura &&
+              state.evaluado_menejo_incidentes &&
+              !smi_100Examen
               ? false
               : true
           }
           onClick={siguienteExamen}
           className="btn btn-warning"
-          //  onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
+        //  onClick={() =>AlertaSiguiente("Si continúa, no será posible volver a esta seccion",checkData)}
         >
           Tomar examen SCI/SMI 100-200
         </button>

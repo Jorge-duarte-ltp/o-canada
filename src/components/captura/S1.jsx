@@ -128,7 +128,7 @@ const S1 = (props) => {
     const fecha_moment = moment(fecha).format("YYYY-MM-DD");
     const anios = diferenciaFechasAnios(fecha_moment);
     /* MENOR DE EDAD */
-    console.log(anios);
+    
     if (anios < 21) {
 
       setState({

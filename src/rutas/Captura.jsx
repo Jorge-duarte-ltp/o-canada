@@ -583,8 +583,6 @@ const Captura = () => {
       return;
     }
 
-    console.log(infoBrigadista);
-
     // SE AGREGA A CONTEXT
     candidatos.candidatos.agregarCandidato({
       ...candidatos.candidatos,

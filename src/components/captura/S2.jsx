@@ -27,11 +27,11 @@ const S2 = (props) => {
         )
           ? input.target.files
           : AlertError(
-              "Error:",
-              `El archivo con la extensión no esta permitido .${input.target.files[0].name
-                .split(".")
-                .pop()}`
-            ),
+            "Error:",
+            `El archivo con la extensión no esta permitido .${input.target.files[0].name
+              .split(".")
+              .pop()}`
+          ),
         [input.target.name]: input.target.value,
       });
     } else {
@@ -69,7 +69,7 @@ const S2 = (props) => {
         ...state,
         rechazo: true,
         motivo_rechazo: "carta de antecedentes mayor a 2 meses",
-        fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
       });
     } else {
       // Pasaporte vence dentro de 10 meses
@@ -78,7 +78,7 @@ const S2 = (props) => {
           ...state,
           rechazo: true,
           motivo_rechazo: "pasaporte vence en menos de 10 meses",
-          fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+          fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
         });
       } else {
         // eta/Visa vence dentro de 10 meses
@@ -87,7 +87,7 @@ const S2 = (props) => {
             ...state,
             rechazo: true,
             motivo_rechazo: "eta/visa vence en menos de 10 meses",
-            fechaCreacion : formatDate(new Date().toString().toUpperCase(), 0),
+            fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
           });
         } else {
           /* Si todo Bien */
@@ -95,7 +95,7 @@ const S2 = (props) => {
             ...state,
             rechazo: false,
             motivo_rechazo: null,
-            fechaCreacion : null,
+            fechaCreacion: null,
           });
         }
       }
@@ -168,7 +168,7 @@ const S2 = (props) => {
         <select
           className="form-control myInput"
           name="documento_viajar_canada"
-          defaultValue={state.documento_viajar_canada}
+          value={state.documento_viajar_canada}
           onChange={setInfo}
           placeholder="Documento para viajar a Canadá"
         >
@@ -229,7 +229,7 @@ const S2 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="tiene_visa_usa"
-          defaultValue={state.tiene_visa_usa ? state.tiene_visa_usa : ""}
+          value={state.tiene_visa_usa ? state.tiene_visa_usa : ""}
           onChange={setInfo}
         />
       </div>
@@ -307,7 +307,7 @@ const S2 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="tiene_licencia"
-          defaultValue={state.tiene_licencia}
+          value={state.tiene_licencia ? state.tiene_licencia : ""}
           onChange={setInfo}
         />
       </div>
@@ -338,14 +338,14 @@ const S2 = (props) => {
             <select
               className="form-control myInput"
               name="tipo_licencia"
-              defaultValue={state.tipo_licencia}
+              value={state.tipo_licencia ? state.tipo_licencia : ""}
               onChange={setInfo}
               placeholder="Tipo de licencia de manejo de chofer"
             >
               <option value="">---Seleccione---</option>
-              <option value="Nacional">Nacional de chofer</option>
-              <option value="Nacional Traducida">Nacional traducida</option>
-              <option value="Internacional">Internacional</option>
+              <option value="NACIONAL">Nacional de chofer</option>
+              <option value="NACIONAL TRADUCIDA">Nacional traducida</option>
+              <option value="INTERNACIONAL">Internacional</option>
             </select>
           </div>
 
@@ -378,7 +378,7 @@ const S2 = (props) => {
               checkData
             )
           }
-          // onClick={revisarFormulario}
+        // onClick={revisarFormulario}
         >
           Continuar
         </button>
