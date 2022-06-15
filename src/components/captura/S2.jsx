@@ -12,13 +12,7 @@ const S2 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
   const setInfo = (input) => {
     /* setea al state las variables */
-    if (
-      input.target.name === "carta_antecedentes" ||
-      input.target.name === "pasaporte_archivo" ||
-      input.target.name === "licencia_manejo" ||
-      input.target.name === "eta_visa_archivo" ||
-      input.target.name === "visa_usa_archivo"
-    ) {
+    if (input.target.type === "file") {
       setStateFiles({
         ...files,
         [input.target.name + "_fl"]: validarExtPdf(
@@ -174,7 +168,7 @@ const S2 = (props) => {
         >
           <option value="">--Seleccione--</option>
           <option value="VISA">VISA</option>
-          <option value="eTA">Correo Oficial de Canadá con la ETA</option>
+          <option value="ETA">Correo Oficial de Canadá con la ETA</option>
         </select>
       </div>
 

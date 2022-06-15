@@ -197,7 +197,7 @@ const S5 = (props) => {
 
   return (
     <div className="row body_wrap">
-      <Modal show={showExam} dialogClassName="modal-90w">
+      <Modal show={showExam} animation={false} dialogClassName="modal-90w">
         <Modal.Header>
           <Modal.Title>S-130/S-190</Modal.Title>
         </Modal.Header>

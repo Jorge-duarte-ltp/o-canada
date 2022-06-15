@@ -8,7 +8,13 @@ import AlertError from "../../singles/AlertError";
 import ExamenOSEP from "../examenes/equipo_aereo/ExamenOSEP";
 
 const S6 = (props) => {
+
   const { state, setState, checkData, setStateFiles, files } = props;
+
+  useEffect(() => {
+    window.onbeforeunload = false;
+    revisionCompetencias();
+  }, [state.examen_equipo_aereo]);
 
   const setInfo = (input) => {
     /* setea al state las variables */
@@ -46,15 +52,18 @@ const S6 = (props) => {
       }
     }
   };
-  useEffect(() => {
-    window.onbeforeunload = false;
-  }, []);
 
   const revisionCompetencias = () => {
     if (
-      state.opera_autonoma_gps === "0" ||
-      state.opera_autonoma_mark3 === "0"
+      state.opera_autonoma_gps === "0"
     ) {
+      setState({
+        ...state,
+        rechazo: true,
+        motivo_rechazo: "falta de habilidad o competencia",
+        fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
+      });
+    } else if (state.opera_autonoma_mark3 === "0") {
       setState({
         ...state,
         rechazo: true,
@@ -181,7 +190,7 @@ const S6 = (props) => {
           onChange={setInfo}
         />
       </div>
-      
+
       {/* Cuenta con conocimientos de primero auxilios */}
       <div className="col-12 col-md-4">
         {state.conocimientos_primeros_auxilios === "1" && (
@@ -231,7 +240,7 @@ const S6 = (props) => {
           />
         </React.Fragment>
       </div>
-      
+
 
       {/** Constancia de alumno o instructor en Operaciones (S-217, S-271 Y S-371). */}
       <div className="col-12 col-md-12">
@@ -260,7 +269,7 @@ const S6 = (props) => {
       <div className="col-12 pt-5 btn-margin">
         <button
           className="btn btn-primary"
-          disabled={state.examen_equipo_aereo !== "completa" }
+          disabled={state.examen_equipo_aereo !== "completa"}
           onClick={() =>
             AlertaSiguiente(
               "Si continúa, no será posible volver a esta seccion",

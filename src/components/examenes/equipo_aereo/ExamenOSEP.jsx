@@ -126,7 +126,7 @@ const ExamenOSEP = ({ setState, state }) => {
       <Button variant="warning" onClick={handleShow}>
         Examen Operaciones Seguras de Equipo Aéreo
       </Button>
-      <Modal show={show} onHide={handleClose} backdrop="static">
+      <Modal show={show} animation={false} onHide={handleClose} backdrop="static">
         <Modal.Header>
           <Modal.Title>
             Examen de Operaciones Seguras de Equipo Aéreo

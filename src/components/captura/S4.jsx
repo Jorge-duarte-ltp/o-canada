@@ -186,7 +186,7 @@ const S4 = (props) => {
 
   return (
     <div className="row body_wrap">
-      <Modal show={showExam} dialogClassName="modal-90w">
+      <Modal show={showExam}  animation={false} dialogClassName="modal-90w">
         <Modal.Header>
           <Modal.Title>SCI/SMI 100-200</Modal.Title>
         </Modal.Header>
