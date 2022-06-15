@@ -193,7 +193,7 @@ const S7 = (props) => {
                 className="form-control myInput"
                 name="tiene_epp_completo"
                 onBlur={revisarValidaciones}
-                defaultValue={state.tiene_epp_completo}
+                value={state.tiene_epp_completo}
                 onChange={setInfo}
               />
             </label>

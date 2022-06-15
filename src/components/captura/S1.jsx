@@ -23,6 +23,7 @@ import { ObtenerAeropuertos, ObtenerEstados } from "../../services/catalogs/Cata
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import SelectMunicipio from "../../singles/SelectMunicipio";
+import DefaultUserProfile from "../../assets/images/profile/user.png";
 
 const S1 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
@@ -128,7 +129,7 @@ const S1 = (props) => {
     const fecha_moment = moment(fecha).format("YYYY-MM-DD");
     const anios = diferenciaFechasAnios(fecha_moment);
     /* MENOR DE EDAD */
-    
+
     if (anios < 21) {
 
       setState({
@@ -186,9 +187,7 @@ const S1 = (props) => {
         />
       </div>
       <div className="col-12 col-md-6 imagen">
-        {preview && (
-          <img src={preview} alt="Fotografía" width={200} height={200} />
-        )}
+        <img src={state.fotografia ? `${process.env.REACT_APP_BACKEN_FILES}${state.curp}/${state.fotografia}` : preview ? preview : DefaultUserProfile} alt="Fotografía" className="d-block rounded m-auto" width={200} height={200} />
       </div>
       {/* Apellido Paterno */}
       <div className="col-6">
@@ -322,7 +321,7 @@ const S1 = (props) => {
         <select
           className={`form-control myInput`}
           name="region"
-          value={state.region}
+          value={state.region ? state.region : ""}
           readOnly
           onChange={setInfo}
           placeholder="Ingrese Region..."
@@ -390,7 +389,7 @@ const S1 = (props) => {
           className={`form-control ${state.correo_electronico ? null : "myInput"
             }`}
           name="correo_electronico"
-          value={state.correo_electronico}
+          value={state.correo_electronico ? state.correo_electronico : ""}
           type="email"
           onBlur={(input) => {
             if (input.target.value) {
@@ -417,7 +416,7 @@ const S1 = (props) => {
             }`}
           name="posicion_candidato"
           defaultValue={state.posicion_candidato}
-          value={state.posicion_candidato}
+          value={state.posicion_candidato ? state.posicion_candidato : ""}
           onChange={setInfo}
           placeholder="Posición a la que es candidato..."
         >
@@ -437,7 +436,7 @@ const S1 = (props) => {
         <input
           className={`form-control ${state.dependencia ? null : "myInput"}`}
           name="dependencia"
-          value={state.dependencia}
+          value={state.dependencia ? state.dependencia : ""}
           onChange={setInfo}
           onChangeCapture={ToMayus}
           placeholder="Ingrese Dependencia..."
@@ -451,7 +450,7 @@ const S1 = (props) => {
           className={`form-control ${state.tipo_dependencia ? null : "myInput"
             }`}
           name="tipo_dependencia"
-          value={state.tipo_dependencia}
+          value={state.tipo_dependencia ? state.tipo_dependencia : ""}
           onChange={setInfo}
           placeholder="Ingrese Tipo de dependencia..."
         >
@@ -473,7 +472,7 @@ const S1 = (props) => {
           className={`form-control ${state.fecha_ingreso_dependencia ? null : "myInput"
             }`}
           name="fecha_ingreso_dependencia"
-          value={state.fecha_ingreso_dependencia}
+          value={state.fecha_ingreso_dependencia ? state.fecha_ingreso_dependencia : ""}
           type="date"
           onChange={setInfo}
           placeholder="Ingrese Fecha de ingreso a la dependencia..."
@@ -489,7 +488,7 @@ const S1 = (props) => {
           className={`form-control ${state.anios_experiencia ? null : "myInput"
             }`}
           name="anios_experiencia"
-          value={state.anios_experiencia}
+          value={state.anios_experiencia ? state.anios_experiencia : ""}
           limitLength={2}
           min={0}
           type="number"
@@ -504,7 +503,7 @@ const S1 = (props) => {
           className={`form-control ${state.puesto_en_dependencia ? null : "myInput"
             }`}
           name="puesto_en_dependencia"
-          value={state.puesto_en_dependencia}
+          value={state.puesto_en_dependencia ? state.puesto_en_dependencia : ""}
           onChange={setInfo}
           onChangeCapture={ToMayus}
           placeholder="Ingrese su puesto en la dependencia..."
@@ -519,7 +518,7 @@ const S1 = (props) => {
           className={`form-control ${state.funciones_dependencia ? null : "myInput"
             }`}
           name="funciones_dependencia"
-          value={state.funciones_dependencia}
+          value={state.funciones_dependencia ? state.funciones_dependencia : ""}
           onChange={setInfo}
           placeholder="Ingrese su puesto en la dependencia..."
         >
@@ -538,7 +537,7 @@ const S1 = (props) => {
           className={`form-control ${state.nombre_beneficiario ? null : "myInput"
             }`}
           name="nombre_beneficiario"
-          value={state.nombre_beneficiario}
+          value={state.nombre_beneficiario ? state.nombre_beneficiario : ""}
           onChange={setInfo}
           onChangeCapture={ToMayus}
           placeholder="Ingrese nombre del contacto de emergencia..."
@@ -555,7 +554,7 @@ const S1 = (props) => {
           limitLength={10}
           min={0}
           type="number"
-          value={state.telefono_beneficiario}
+          value={state.telefono_beneficiario ? state.telefono_beneficiario : ""}
           onChange={setInfo}
           placeholder="Ingrese Teléfono del contacto de emergencia..."
         />
@@ -570,7 +569,7 @@ const S1 = (props) => {
           className={`form-control ${state.correo_beneficiario ? null : "myInput"
             }`}
           name="correo_beneficiario"
-          value={state.correo_beneficiario}
+          value={state.correo_beneficiario ? state.correo_beneficiario : ""}
           onChange={setInfo}
           onBlur={(input) => {
             if (input.target.value) {
@@ -592,7 +591,7 @@ const S1 = (props) => {
         <SelectTallas
           className={`form-control ${state.talla_camisa ? null : "myInput"}`}
           name="talla_camisa"
-          defaultValue={state.talla_camisa}
+          defaultValue={state.talla_camisa ? state.talla_camisa :"F"}
           onChange={setInfo}
         />
       </div>
@@ -603,7 +602,7 @@ const S1 = (props) => {
         <SelectTallas
           className={`form-control ${state.talla_sudadera ? null : "myInput"}`}
           name="talla_sudadera"
-          defaultValue={state.talla_sudadera}
+          defaultValue={state.talla_sudadera ? state.talla_sudadera : ""}
           onChange={setInfo}
         />
       </div>
@@ -614,7 +613,7 @@ const S1 = (props) => {
         <SelectTallas
           className={`form-control ${state.talla_playera ? null : "myInput"}`}
           name="talla_playera"
-          defaultValue={state.talla_playera}
+          defaultValue={state.talla_playera ? state.talla_playera : ""}
           onChange={setInfo}
         />
       </div>
@@ -625,7 +624,7 @@ const S1 = (props) => {
         <SelectTallasPantalon
           className={`form-control ${state.talla_pantalon ? null : "myInput"}`}
           name="talla_pantalon"
-          defaultValue={state.talla_pantalon}
+          defaultValue={state.talla_pantalon ? state.talla_pantalon : ""}
           onChange={setInfo}
         />
       </div>
@@ -635,7 +634,7 @@ const S1 = (props) => {
         <SelectTallasGorras
           className={`form-control ${state.talla_gorras ? null : "myInput"}`}
           name="talla_gorras"
-          defaultValue={state.talla_gorras}
+          defaultValue={state.talla_gorras ? state.talla_gorras : ""}
           onChange={setInfo}
         />
       </div>
@@ -646,7 +645,7 @@ const S1 = (props) => {
         <SelectTallasBotas
           className={`form-control ${state.talla_botas ? null : "myInput"}`}
           name="talla_botas"
-          defaultValue={state.talla_botas}
+          defaultValue={state.talla_botas ? state.talla_botas : ""}
           onChange={setInfo}
           onBlur={setInfo}
         />

@@ -96,7 +96,7 @@ const S8 = (props) => {
             <SelectSiNo
               className="form-control myInput"
               name="tiene_certificado_ingles"
-              defaultValue={state.tiene_certificado_ingles}
+              value={state.tiene_certificado_ingles}
               onChange={setInfo}
             />
           </div>
@@ -153,7 +153,7 @@ const S8 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="l_280"
-          defaultValue={state.l_280}
+          value={state.l_280}
           onChange={setInfo}
         />
       </div>
@@ -183,7 +183,7 @@ const S8 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="s_211"
-          defaultValue={state.s_211}
+          value={state.s_211}
           onChange={setInfo}
         />
       </div>
@@ -214,7 +214,7 @@ const S8 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="s_290"
-          defaultValue={state.s_290}
+          value={state.s_290}
           onChange={setInfo}
         />
       </div>
@@ -247,7 +247,7 @@ const S8 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="cert_intern_incendios"
-          defaultValue={state.cert_intern_incendios}
+          value={state.cert_intern_incendios}
           onChange={setInfo}
         />
       </div>
@@ -280,7 +280,7 @@ const S8 = (props) => {
         <SelectSiNo
           className="form-control myInput"
           name="cert_intern_ate_emerg_med"
-          defaultValue={state.cert_intern_ate_emerg_med}
+          value={state.cert_intern_ate_emerg_med}
           onChange={setInfo}
         />
       </div>
