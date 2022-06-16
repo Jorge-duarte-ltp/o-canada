@@ -8,7 +8,7 @@ import AleatoryArray from "../../../singles/AleatoryArray";
 import Swal from "sweetalert2";
 import { postExamenOSEP } from "../../../services/exams/ExamsService";
 
-const ExamenOSEP = ({ setState, state }) => {
+const ExamenSCI100 = ({ setState, state }) => {
   const { curp } = state;
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
@@ -124,12 +124,12 @@ const ExamenOSEP = ({ setState, state }) => {
   return (
     <div className="col-12 col-md-12 ml-0 pt-2">
       <Button variant="warning" onClick={handleShow}>
-        Examen Operaciones Seguras de Equipo Aéreo
+        Tomar Examen SCI/SMI 100-200
       </Button>
       <Modal show={show} animation={false} onHide={handleClose} backdrop="static">
         <Modal.Header>
           <Modal.Title>
-            Examen de Operaciones Seguras de Equipo Aéreo
+            Examen SCI/SMI 100-200
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -200,4 +200,4 @@ const ExamenOSEP = ({ setState, state }) => {
   );
 };
 
-export default ExamenOSEP;
+export default ExamenSCI100;

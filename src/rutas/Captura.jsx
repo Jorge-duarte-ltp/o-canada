@@ -977,8 +977,9 @@ const Captura = () => {
       !opera_autonoma_motosierra ||
       !conocimientos_primeros_auxilios === "" ||
       (conocimientos_primeros_auxilios === "1" &&
-      (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
+        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
       conocimiento_equipo_aereo === "" ||
+      (conocimiento_equipo_aereo === "1" && !constancia_operaciones_aereas_fl) ||
       !examen_equipo_aereo != ""
     ) {
 
@@ -1128,8 +1129,8 @@ const Captura = () => {
 
     const { antecedentes_fecha, tiene_epp_completo, calificacion_evaluacion_disponibilidad } = infoBrigadista;
     const { carta_antecedentes_fl, evaluacion_disponibilidad_fl } = archivos;
-
-    if ((evaluacion_disponibilidad_fl && !calificacion_evaluacion_disponibilidad === "") ||
+    
+    if ((evaluacion_disponibilidad_fl && !calificacion_evaluacion_disponibilidad) ||
       (calificacion_evaluacion_disponibilidad && !carta_antecedentes_fl) ||
       (calificacion_evaluacion_disponibilidad && !antecedentes_fecha) ||
       (calificacion_evaluacion_disponibilidad && !tiene_epp_completo === "")) {
@@ -1141,7 +1142,7 @@ const Captura = () => {
     // SE AGREGA A CONTEXT
     candidatos.candidatos.agregarCandidato({
       ...candidatos.candidatos,
-      infoBrigadista,
+      infoBrigadista
     });
 
     /* CARTA_ANTECEDENTES */
@@ -1198,12 +1199,7 @@ const Captura = () => {
       AlertCargando("Enviando los datos, espere por favor");
 
       const respuesta = await axios.post(url, {
-        data: evaluacion_disponibilidad_fl ? infoBrigadista : {
-          ...infoBrigadista,
-          rechazo: true,
-          motivo_rechazo: "no cuenta con constancia de disponibilidad",
-          fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0),
-        },
+        data: infoBrigadista,
         secuencia: { ...secciones, s7: seccionCompleta, s8: seccionSiguiente },
       });
 
@@ -1214,6 +1210,7 @@ const Captura = () => {
       ) {
 
         AlertExito("Cargado exitosamente");
+
         if (infoBrigadista.rechazo) {
           // se ocultan las secciones
           setSecciones({

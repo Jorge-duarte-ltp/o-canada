@@ -15,6 +15,8 @@ const S7 = (props) => {
 
   useEffect(() => {
 
+    revisarValidaciones();
+
     setTimeout(() => {
       ObtenerEquipo().then(async (response) => {
         if (response.status === 200) {
@@ -25,12 +27,10 @@ const S7 = (props) => {
 
     return () => { clearTimeout(timeout) }
 
-  }, [])
-
+  }, [state.rechazo])
 
   const setInfo = (input) => {
-    if (input.target.name === "carta_antecedentes" ||
-      input.target.name === "evaluacion_disponibilidad") {
+    if (input.target.type === "file") {
       setStateFiles({
         ...files,
         [input.target.name + "_fl"]: validarExtPdf(
@@ -71,8 +71,6 @@ const S7 = (props) => {
     const { tiene_epp_completo, antecedentes_fecha } = state;
     const { evaluacion_disponibilidad_fl } = files;
     const dif_antecedentes = diferenciaFechasDias(antecedentes_fecha);
-
-
 
     if (dif_antecedentes > 31 * 2) {
 
@@ -138,6 +136,7 @@ const S7 = (props) => {
           value={state.calificacion_evaluacion_disponibilidad ? state.calificacion_evaluacion_disponibilidad : ''}
           name="calificacion_evaluacion_disponibilidad"
           onChange={setNumero}
+          onBlur={revisarValidaciones}
           placeholder="Ingresa la calificación obtenida en la evaluación"
         />
       </div>
