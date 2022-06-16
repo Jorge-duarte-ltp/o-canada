@@ -24,6 +24,10 @@ import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import SelectMunicipio from "../../singles/SelectMunicipio";
 import DefaultUserProfile from "../../assets/images/profile/user.png";
+// import { Button } from "react-bootstrap";
+// import { FileEarmarkPdf } from "react-bootstrap-icons";
+// import { checkFilesExist } from "../../services/files/FilesService";
+// import GetFilesSection from "../../singles/GetFilesSection";
 
 const S1 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
@@ -38,6 +42,9 @@ const S1 = (props) => {
   const [correoValido, setCorreoValido] = useState();
   const [correBenefValido, setCorreBenefValido] = useState();
   const [curpCorrecto, setCurpCorrecto] = useState(false);
+
+  // implementación posterior 
+  // const [checkFiles, setCheckFiles] = useState({});
   // const [rfcCorrecto, setRfcCorrecto] = useState(false)
 
   useEffect(() => {
@@ -56,6 +63,12 @@ const S1 = (props) => {
         setAeropuertos(response.data);
       }
     })
+
+    // checkFilesExist(GetFilesSection("S1", state.curp)).then((response) => {
+    //   if (response.status === 200) {
+    //     setCheckFiles(response.data);
+    //   }
+    // })
 
     typeof state.region === "undefined"
       ? setState({ ...state, region: null })
@@ -187,7 +200,7 @@ const S1 = (props) => {
         />
       </div>
       <div className="col-12 col-md-6 imagen">
-        <img src={state.fotografia ? `${process.env.REACT_APP_BACKEN_FILES}${state.curp}/${state.fotografia}` : preview ? preview : DefaultUserProfile} alt="Fotografía" className="d-block rounded m-auto" width={200} height={200} />
+        <img src={state.fotografia ? `${process.env.REACT_APP_BACKEND_FILES}${state.curp}/${state.fotografia}` : preview ? preview : DefaultUserProfile} alt="Fotografía" className="d-block rounded m-auto" width={200} height={200} />
       </div>
       {/* Apellido Paterno */}
       <div className="col-6">
@@ -248,7 +261,16 @@ const S1 = (props) => {
       </div>
       {/* CURP File */}
       <div className="col-12 col-md-4">
-        <label className="control-label pt-2">Documento CURP</label>
+        <label className="control-label pt-2">Documento CURP
+          {/**checkFiles?.curp_archivo && <a
+            href={`${process.env.REACT_APP_BACKEND_FILES}/${state.curp}/curp_archivo.pdf`}
+            rel="noopener noreferrer"
+            target="_blank" className="ml-5">
+            <Button variant="outline-danger" className="text-right m-0" >
+              <FileEarmarkPdf />
+            </Button>
+          </a>*/}
+        </label>
         <input
           className={`form-control ${state.curp_archivo ? null : "myInput"}`}
           name="curp_archivo"
@@ -257,6 +279,7 @@ const S1 = (props) => {
           onChange={setInfo}
           placeholder="Ingrese Fecha de Nacimiento..."
         />
+
       </div>
 
       <div
@@ -591,7 +614,7 @@ const S1 = (props) => {
         <SelectTallas
           className={`form-control ${state.talla_camisa ? null : "myInput"}`}
           name="talla_camisa"
-          defaultValue={state.talla_camisa ? state.talla_camisa :"F"}
+          defaultValue={state.talla_camisa ? state.talla_camisa : "F"}
           onChange={setInfo}
         />
       </div>

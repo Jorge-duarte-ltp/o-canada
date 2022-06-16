@@ -85,7 +85,7 @@ const S4 = (props) => {
   const terminarExamen = async () => {
     try {
       const respuesta = await axios.post(
-        process.env.REACT_APP_BACKEN_URL + "smi100_exam",
+        process.env.REACT_APP_BACKEND_URL + "smi100_exam",
         examResp
       );
       // console.log('TERMINANDO EXAMEN');

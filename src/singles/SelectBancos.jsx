@@ -7,7 +7,7 @@ const SelectBancos = (props) => {
 
   const config = {
     method: "post",
-    url: `${process.env.REACT_APP_BACKEN_URL}list_bancos`,
+    url: `${process.env.REACT_APP_BACKEND_URL}list_bancos`,
   };
   
   if (isEmpty(data)) {

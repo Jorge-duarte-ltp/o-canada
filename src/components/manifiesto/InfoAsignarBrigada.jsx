@@ -26,21 +26,21 @@ const InfoAsignarBrigada = ({ state }) => {
       AlertCargando("Cargando información...");
       axiosClient({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}list_posiciones`,
+        url: `${process.env.REACT_APP_BACKEND_URL}list_posiciones`,
       }).then(async ({ data: { data } }) => {
         await setPosiciones(data);
       });
 
       axiosClient({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}list_provincias`,
+        url: `${process.env.REACT_APP_BACKEND_URL}list_provincias`,
       }).then(async ({ data: { data } }) => {
         await setProvincias(data);
       });
 
       axiosClient({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}selectCandidatoBrigada`,
+        url: `${process.env.REACT_APP_BACKEND_URL}selectCandidatoBrigada`,
         data: { idCandidato: data.idCandidato },
       }).then(async ({ data: { data } }) => {
         await setData(data[0]);
@@ -262,7 +262,7 @@ const EditInfo = ({
       } else {
         await axiosClient({
           method: "post",
-          url: `${process.env.REACT_APP_BACKEN_URL}updateCandidatoBrigada`,
+          url: `${process.env.REACT_APP_BACKEND_URL}updateCandidatoBrigada`,
           data: {
             data:
               dataTemp.asignado === "1"

@@ -292,7 +292,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
             <div className="col-12 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEN_FILES}${data.curp_brigadista}/evaluacion_desempanio_2021.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${data.curp_brigadista}/evaluacion_desempanio_2021.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >

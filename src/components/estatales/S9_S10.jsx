@@ -12,7 +12,7 @@ import AlertExito from "../../singles/AlertExito";
 import { size, isEmpty } from "lodash";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 const S9_S10 = (props) => {
-  const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
+  const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
   // const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
 
   const pruebasContext = useContext(pruebasFisicasContext);

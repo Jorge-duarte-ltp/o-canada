@@ -62,7 +62,7 @@ const Header = ({ cierre }) => {
             ¿Necesitas ayuda? <BsFillQuestionSquareFill />
           </Button>
           <a
-            href={`${process.env.REACT_APP_BACKEN_DOCUMENT}manual_registro_ingreso_usuarios_SISECOIF.pdf`}
+            href={`${process.env.REACT_APP_BACKEND_DOCUMENT}manual_registro_ingreso_usuarios_SISECOIF.pdf`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary registroStyle"

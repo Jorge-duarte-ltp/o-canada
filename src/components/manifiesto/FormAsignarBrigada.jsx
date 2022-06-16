@@ -26,14 +26,14 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
 
     axiosClient({
       method: "post",
-      url: `${process.env.REACT_APP_BACKEN_URL}list_posiciones`,
+      url: `${process.env.REACT_APP_BACKEND_URL}list_posiciones`,
     }).then(async ({ data: { data } }) => {
       await setPosiciones(data);
     });
 
     axiosClient({
       method: "post",
-      url: `${process.env.REACT_APP_BACKEN_URL}list_provincias`,
+      url: `${process.env.REACT_APP_BACKEND_URL}list_provincias`,
     }).then(async ({ data: { data } }) => {
       await setProvincias(data);
     });
@@ -74,7 +74,7 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
       } else {
         axiosClient({
           method: "post",
-          url: `${process.env.REACT_APP_BACKEN_URL}insertCandidatoBrigada`,
+          url: `${process.env.REACT_APP_BACKEND_URL}insertCandidatoBrigada`,
           data: { data: state },
         }).then((resp) => {
           if (resp.status === 200) {

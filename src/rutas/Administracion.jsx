@@ -8,7 +8,7 @@ import AlertError from "../singles/AlertError";
 const Administracion = () => {
   const sessContext = useContext(sessionContext);
 
-  const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
+  const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
   // const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
   // const [user, setUser] = useState(sessContext.session.user)
   const [user, setUser] = useState(false);

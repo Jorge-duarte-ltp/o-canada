@@ -241,7 +241,7 @@ const S9_S10View = (props) => {
         <div className="col-12 col-md-12">
           <a
             className="btn btn-dark"
-            href={`${process.env.REACT_APP_BACKEN_FILES}${evaluaciones.curp}/formato.pdf`}
+            href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato.pdf`}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -468,7 +468,7 @@ const S9_S10View = (props) => {
             <div className="col-12 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEN_FILES}${evaluaciones.curp}/formato_carrera.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_carrera.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -569,7 +569,7 @@ const S9_S10View = (props) => {
             <div className="col-12 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEN_FILES}${evaluaciones.curp}/formato_epp.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_epp.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -632,7 +632,7 @@ const S9_S10View = (props) => {
             <div className="col-12 pt-2 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEN_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -695,7 +695,7 @@ const S9_S10View = (props) => {
             <div className="col-12 pt-2 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEN_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_mark_III.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_mark_III.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -742,7 +742,7 @@ const S9_S10View = (props) => {
             <div className="col-12 pt-2 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEN_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_motosierra.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_motosierra.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -810,7 +810,7 @@ const S9_S10View = (props) => {
             <div className="col-12 pt-2 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEN_FILES}${evaluaciones.curp}/constancia_curso_s_211.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/constancia_curso_s_211.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >

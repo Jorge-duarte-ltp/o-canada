@@ -4,7 +4,7 @@ export function ObtenerEstados() {
 
     const config = {
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}list_estados`,
+        url: `${process.env.REACT_APP_BACKEND_URL}list_estados`,
     };
 
     return axios(config);
@@ -14,7 +14,7 @@ export function ObtenerEstados() {
 export function ObtenerAeropuertos() {
     const config = {
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}list_aeropuertos`,
+        url: `${process.env.REACT_APP_BACKEND_URL}list_aeropuertos`,
     };
 
     return axios(config);
@@ -27,7 +27,7 @@ export function ObtenerMunicipios(cve_entidad) {
 
         const config = {
             method: "POST",
-            url: `${process.env.REACT_APP_BACKEN_URL}obtener_municipios_entidad`,
+            url: `${process.env.REACT_APP_BACKEND_URL}obtener_municipios_entidad`,
             data: JSON.stringify({ clave_entidad: cve_entidad }),
             headers: { 'Content-Type': 'application/json' }
         };
@@ -40,7 +40,7 @@ export function ObtenerEquipo() {
 
     const config = {
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}list_equipo`,
+        url: `${process.env.REACT_APP_BACKEND_URL}list_equipo`,
     };
 
     return axios(config);
@@ -51,7 +51,7 @@ export function ObtenerVacunas() {
 
     const config = {
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}list_vacunas`,
+        url: `${process.env.REACT_APP_BACKEND_URL}list_vacunas`,
     };
 
     return axios(config);
@@ -61,7 +61,7 @@ export function ObtenerPaises() {
 
     const config = {
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}list_paises`,
+        url: `${process.env.REACT_APP_BACKEND_URL}list_paises`,
     };
 
     return axios(config);

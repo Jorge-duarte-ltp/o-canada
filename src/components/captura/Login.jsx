@@ -25,7 +25,7 @@ const Login = (props) => {
   });
 
   const sendTerminos = async () => {
-    const url = `${process.env.REACT_APP_BACKEN_URL}create_candidato`;
+    const url = `${process.env.REACT_APP_BACKEND_URL}create_candidato`;
     const { curp_reg, comp_pass_reg } = state;
 
     try {
@@ -62,7 +62,7 @@ const Login = (props) => {
 
   const checkLogin = async () => {
     const { curp_ing, pass } = state;
-    const url = `${process.env.REACT_APP_BACKEN_URL}get_candidato`;
+    const url = `${process.env.REACT_APP_BACKEND_URL}get_candidato`;
 
     try {
       const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
@@ -73,7 +73,7 @@ const Login = (props) => {
           setArchivos({
             ...archivos,
             fotografia_fl: [
-              `${process.env.REACT_APP_BACKEN_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.data.fotografia}`,
+              `${process.env.REACT_APP_BACKEND_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.data.fotografia}`,
             ],
           });
 

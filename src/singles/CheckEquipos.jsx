@@ -10,7 +10,7 @@ export const CheckListEquipo = (props) => {
   
   const config = {
     method: "post",
-    url: `${process.env.REACT_APP_BACKEN_URL}list_equipo`,
+    url: `${process.env.REACT_APP_BACKEND_URL}list_equipo`,
   };
 
   if (isEmpty(data)) {

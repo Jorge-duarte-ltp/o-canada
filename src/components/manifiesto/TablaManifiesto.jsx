@@ -26,7 +26,7 @@ const TablaManifiesto = () => {
       AlertCargando("Cargando información");
       axiosClient({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}brigada_candidatos`,
+        url: `${process.env.REACT_APP_BACKEND_URL}brigada_candidatos`,
         data: { curp: curp ? curp : "" },
       }).then(async ({ data: { data } }) => {
         await setData(data);

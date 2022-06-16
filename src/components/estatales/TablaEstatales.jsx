@@ -14,7 +14,7 @@ import InfomacionCandidato from "./InfomacionCandidato";
 
 const TablaEstatales = () => {
   const sessContext = useContext(sessionContext);
-  const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
+  const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
 
   const [reload, setReload] = useState(true);
   const [showPruebas, setShowPruebas] = useState(false);

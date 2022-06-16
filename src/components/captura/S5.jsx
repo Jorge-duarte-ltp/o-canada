@@ -51,7 +51,7 @@ const S5 = (props) => {
   const terminarExamen = async () => {
     try {
       const respuesta = await axios.post(
-        process.env.REACT_APP_BACKEN_URL + "s_190_exam",
+        process.env.REACT_APP_BACKEND_URL + "s_190_exam",
         examResp
       );
 

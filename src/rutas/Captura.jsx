@@ -23,7 +23,7 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 import emailValid from "../helpers/emailValid";
 // import axiosClient from "../config/axios";
 import { formatDate } from "../helpers/formatDate";
-const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
+const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
 
 const Captura = () => {
   const candidatos = useContext(candidatoContext);
@@ -158,7 +158,7 @@ const Captura = () => {
     }
 
     if (!archivos.fotografia_fl) {
-      AlertError('Error', 'Falta Cargar la fotografia que solo permite los siguientes formatos .png, .jpg, .');
+      AlertError('Error', 'Falta Cargar la fotografia que solo permite los siguientes formatos .jpg, .');
       return;
     }
     if (!archivos.curp_archivo_fl) {
@@ -1002,7 +1002,7 @@ const Captura = () => {
 
     if (constancia_operaciones_aereas_fl) {
 
-      formData_constancia_operaciones_aereas_fl.append("file", archivos.doc_acred_primeros_auxilios_fl[0]);
+      formData_constancia_operaciones_aereas_fl.append("file", archivos.constancia_operaciones_aereas_fl[0]);
       formData_constancia_operaciones_aereas_fl.append("curp", infoBrigadista.curp);
       formData_constancia_operaciones_aereas_fl.append("name", "constancia_operaciones_aereas");
     }
@@ -1608,7 +1608,7 @@ const Captura = () => {
               className="btn btn-info"
               target="_blank"
               rel="noopener noreferrer"
-              href={`${process.env.REACT_APP_BACKEN_DOCUMENT}Manual_de_usuario_SISECOIF.pdf`}
+              href={`${process.env.REACT_APP_BACKEND_DOCUMENT}Manual_de_usuario_SISECOIF.pdf`}
             >
               Manual de Usuario
             </a>

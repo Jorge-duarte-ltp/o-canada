@@ -17,7 +17,7 @@ import AlertCargando from "../../singles/AlertCargando";
 import { AiOutlineReload } from "react-icons/ai";
 import sessionContext from "../../context/session/sessionContext";
 
-const API_REQUEST = process.env.REACT_APP_BACKEN_URL;
+const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
 // const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
 // const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
 // const URL_documentos = '187.218.230.38:81'
@@ -137,7 +137,7 @@ const RevisionDocumentacion = () => {
   }, [reload]);
 
   const mostrarDocumento = (documento, data) => {
-    const url = `${process.env.REACT_APP_BACKEN_FILES}${data.curp}/${documento}`;
+    const url = `${process.env.REACT_APP_BACKEND_FILES}${data.curp}/${documento}`;
     window.open(url, "_blank");
   };
 

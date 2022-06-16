@@ -26,7 +26,7 @@ const TablaDisponibilidad = () => {
       AlertCargando("Cargando información");
       axiosClient({
         method: "post",
-        url: `${process.env.REACT_APP_BACKEN_URL}disponible_candidatos`,
+        url: `${process.env.REACT_APP_BACKEND_URL}disponible_candidatos`,
         data: { curp: curp ? curp : "" },
       }).then(async ({ data: { data } }) => {
         await setData(data);
@@ -144,7 +144,7 @@ const TablaDisponibilidad = () => {
   const onSubmit = () => {
     const config = {
       method: "post",
-      url: `${process.env.REACT_APP_BACKEN_URL}asignarDisponibilidadCandidato`,
+      url: `${process.env.REACT_APP_BACKEND_URL}asignarDisponibilidadCandidato`,
       data: {
         data:
           state.disponible === 1
