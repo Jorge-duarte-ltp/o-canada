@@ -18,7 +18,7 @@ const S6 = (props) => {
 
   const setInfo = (input) => {
     /* setea al state las variables */
-    if (input.target.name === "doc_acred_primeros_auxilios" || input.target.name === "constancia_operaciones_aereas") {
+    if (input.target.type === "file") {
       setStateFiles({
         ...files,
         [input.target.name + "_fl"]: validarExtPdf(
@@ -142,7 +142,7 @@ const S6 = (props) => {
           </div>
         </React.Fragment>
       )}
-      {state.posicion_operador_moto_briga === "1" && (
+      {state.posicion_operador_moto_briga === "1" && state.opera_autonoma_motosierra === "1" && (
         <React.Fragment>
           <div className="col-12 col-md-6">
             {/*  ¿En qué país? */}

@@ -94,12 +94,12 @@ const Login = (props) => {
         });
       }
     } catch (error) {
-      AlertError("Error", error);
-      if (typeof error.response !== "undefined") {
-        if (error.response.status === 404) {
-          AlertError("Error", error.response.data.msg);
-        }
-      }
+      AlertError("Error", "Las credenciales de acceso son incorrectas o el usuario no existe");
+      // if (typeof error.response !== "undefined") {
+      //   if (error.response.status === 404) {
+      //     AlertError("Error", error.response.data.msg);
+      //   }
+      // }
     }
   };
 
