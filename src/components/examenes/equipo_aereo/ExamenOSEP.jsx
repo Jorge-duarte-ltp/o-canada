@@ -6,7 +6,7 @@ import { size, isEmpty } from "lodash";
 import Data from "./Data";
 import AleatoryArray from "../../../singles/AleatoryArray";
 import Swal from "sweetalert2";
-import { postExamenOSEP } from "../../../services/exams/ExamsService";
+import { postExamen } from "../../../services/exams/ExamsService";
 
 const ExamenOSEP = ({ setState, state }) => {
   const { curp } = state;
@@ -55,6 +55,7 @@ const ExamenOSEP = ({ setState, state }) => {
       ),
     }),
     onSubmit: async ({ examen, respuestas }) => {
+       
       let suma = 0;
 
       const object = { curp, examen };
@@ -69,13 +70,13 @@ const ExamenOSEP = ({ setState, state }) => {
       object.aciertos = suma;
       object.calificacion = Math.round((suma * 100) / size(Data));
 
-      await postExamenOSEP(object)
+      await postExamen(object)
         .then(async ({ status, data: { title, message } }) => {
           if (status === 200) {
             Swal.fire({
               title: title,
               icon: "success",
-              text: message,
+              text: `${message} \n Aciertos: ${object.aciertos}/${size(Data)} \n Calificación: ${object.calificacion}`,
               allowOutsideClick: false,
             }).then((result) => {
               if (result.isConfirmed) {
@@ -88,7 +89,7 @@ const ExamenOSEP = ({ setState, state }) => {
         .catch((err) => {
           Swal.fire(
             "Error",
-            "Error al guardar los resultados de el examen",
+            `Error al guardar los resultados de el examen: ${object.examen.toUpperCase()}`,
             "error"
           );
         });

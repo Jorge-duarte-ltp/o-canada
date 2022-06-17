@@ -13,8 +13,8 @@ const Data = [
         "id": 1,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué nombre reciben los tres elementos que deben estar presentes y combinados antes que ocurra y continué la combustión?",
         "image": Image32,
-        "width": "512px",
-        "height": "512px",
+        "width": "256px",
+        "height": "256px",
         "answers": [
             {
                 "id": 1,

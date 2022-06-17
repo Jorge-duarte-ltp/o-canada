@@ -11,8 +11,6 @@ import S8 from '../captura/S8';
 import Finalizar from '../captura/Finalizar';
 import axios from 'axios';
 import { Alert } from 'react-bootstrap';
-import ExamenSCI100 from '../examenes/examen_sci100/ExamenSCI100';
-import ExamenS190 from '../examenes/examen_s190/ExamenS190';
 
 const API_REQUEST = ''
 
@@ -776,8 +774,6 @@ const MesaAyuda = () => {
                     <h1>S1</h1><b>Validaciones:</b>
                     <ul>
                         <li>Candidato menor de edad</li>
-                        <li><ExamenSCI100/></li>
-                        <li><ExamenS190/></li>
                     </ul>
                 </Alert>
                 <S1

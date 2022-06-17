@@ -6,11 +6,11 @@ import { size, isEmpty } from "lodash";
 import Data from "./Data";
 import AleatoryArray from "../../../singles/AleatoryArray";
 import Swal from "sweetalert2";
-import { postExamenOSEP } from "../../../services/exams/ExamsService";
+import { postExamen } from "../../../services/exams/ExamsService";
 
 // recibe state y setState como destructuración por ejemplo: {state,setState}
-const ExamenSCI100 = () => {
-  // const { curp } = state;
+const ExamenSCI100 = ({state,setState}) => {
+  const { curp } = state;
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(false);
@@ -56,9 +56,10 @@ const ExamenSCI100 = () => {
       ),
     }),
     onSubmit: async ({ examen, respuestas }) => {
+       
       let suma = 0;
 
-      const object = { examen };
+      const object = { curp, examen };
 
       respuestas.forEach((respuesta, index) => {
         const temp = Data[index].answers;
@@ -70,29 +71,29 @@ const ExamenSCI100 = () => {
       object.aciertos = suma;
       object.calificacion = Math.round((suma * 100) / size(Data));
 
-      // await postExamenOSEP(object)
-      //   .then(async ({ status, data: { title, message } }) => {
-      //     if (status === 200) {
-      //       Swal.fire({
-      //         title: title,
-      //         icon: "success",
-      //         text: message,
-      //         allowOutsideClick: false,
-      //       }).then((result) => {
-      //         if (result.isConfirmed) {
-      //           setState({ ...state, examen_equipo_aereo: "completa" });
-      //           handleClose();
-      //         }
-      //       });
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     Swal.fire(
-      //       "Error",
-      //       "Error al guardar los resultados de el examen",
-      //       "error"
-      //     );
-      //   });
+      await postExamen(object)
+        .then(async ({ status, data: { title, message } }) => {
+          if (status === 200) {
+            Swal.fire({
+              title: title,
+              icon: "success",
+              text: `${message} \n Aciertos: ${object.aciertos}/${size(Data)} \n Calificación: ${object.calificacion}`,
+              allowOutsideClick: false,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setState({ ...state, examen_equipo_aereo: "completa" });
+                handleClose();
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          Swal.fire(
+            "Error",
+            `Error al guardar los resultados de el examen: ${object.examen.toUpperCase()}`,
+            "error"
+          );
+        });
     },
   });
 

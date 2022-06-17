@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export function postExamenOSEP(data = null) {
+export function postExamen(data = null) {
     if (data) {
         const config = {
             method: "post",
-            url: `${process.env.REACT_APP_BACKEND_URL}insert_examen_equipo_aereo`,
+            url: `${process.env.REACT_APP_BACKEND_URL}insert_examen`,
             data: data,
             Headers: {
                 "Content-Type": "application/json"

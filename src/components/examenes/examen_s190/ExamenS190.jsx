@@ -6,10 +6,11 @@ import { size, isEmpty } from "lodash";
 import Data from "./Data";
 import AleatoryArray from "../../../singles/AleatoryArray";
 import Swal from "sweetalert2";
-import { postExamenOSEP } from "../../../services/exams/ExamsService";
+import { postExamen } from "../../../services/exams/ExamsService";
+import Question from "../../../singles/Question";
 
-const ExamenS190 = () => {
-  // const { curp } = state;
+const ExamenS190 = ({ state, setState }) => {
+  const { curp } = state;
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(false);
@@ -55,9 +56,10 @@ const ExamenS190 = () => {
       ),
     }),
     onSubmit: async ({ examen, respuestas }) => {
+      
       let suma = 0;
 
-      const object = { examen };
+      const object = { curp, examen };
 
       respuestas.forEach((respuesta, index) => {
         const temp = Data[index].answers;
@@ -69,29 +71,29 @@ const ExamenS190 = () => {
       object.aciertos = suma;
       object.calificacion = Math.round((suma * 100) / size(Data));
 
-      // await postExamenOSEP(object)
-      //   .then(async ({ status, data: { title, message } }) => {
-      //     if (status === 200) {
-      //       Swal.fire({
-      //         title: title,
-      //         icon: "success",
-      //         text: message,
-      //         allowOutsideClick: false,
-      //       }).then((result) => {
-      //         if (result.isConfirmed) {
-      //           setState({ ...state, examen_equipo_aereo: "completa" });
-      //           handleClose();
-      //         }
-      //       });
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     Swal.fire(
-      //       "Error",
-      //       "Error al guardar los resultados de el examen",
-      //       "error"
-      //     );
-      //   });
+      await postExamen(object)
+        .then(async ({ status, data: { title, message } }) => {
+          if (status === 200) {
+            Swal.fire({
+              title: title,
+              icon: "success",
+              text: `${message} \n Aciertos: ${object.aciertos}/${size(Data)} \n Calificación: ${object.calificacion}`,
+              allowOutsideClick: false,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                setState({ ...state, examen_equipo_aereo: "completa" });
+                handleClose();
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          Swal.fire(
+            "Error",
+            `Error al guardar los resultados de el examen: ${object.examen.toUpperCase()}`,
+            "error"
+          );
+        });
     },
   });
 
@@ -111,9 +113,6 @@ const ExamenS190 = () => {
       setCount((count) => count + 1);
     }
   };
-
-  const handleNumberToChar = (value) =>
-    String.fromCharCode("a".charCodeAt(0) + value);
 
   const loadFields = (data) => {
     for (let index = 0; index < data.length; index++) {
@@ -135,42 +134,12 @@ const ExamenS190 = () => {
         <Modal.Body>
           <form onSubmit={formik.handleSubmit}>
             {current.map((question) => (
-              <React.Fragment key={question.id}>
-                <div className="col-12 col-md-12 d-flex">
-                  {question?.image && <div className="col-6 col-md-6">
-                    <img
-                      src={question.image}
-                      className="rounded mx-auto d-block img-fluid"
-                      alt={`Imagen asignada para la pregunta ${question.id}`}
-                      width={`${question.width}`}
-                      height={`${question.height}`}
-                    />
-                  </div>
-                  }
-                  <div className="col-6 col-md-6">
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className="d-block form-label text-justify"
-                    >
-                      {question?.id}.- {question?.nombre}
-                    </label>
-                    <select
-                      className="form-control"
-                      name={`respuestas[${question.id - 1}].value`}
-                      value={formik.values.respuestas[question.id - 1].value}
-                      onChange={formik.handleChange}
-                      required
-                    >
-                      <option value="">---seleccione---</option>
-                      {question.answers.map((item, index) => (
-                        <option key={index} value={item.value}>
-                          {handleNumberToChar(index)}) {item.nombre}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </React.Fragment>
+              <Question key={question.id}
+                question={question}
+                name={`respuestas[${question.id - 1}].value`}
+                value={formik.values.respuestas[question.id - 1].value}
+                onChange={formik.handleChange}
+              />
             ))}
             <div className="col-12 col-mb-12">
               <label className="float-sm-left">
