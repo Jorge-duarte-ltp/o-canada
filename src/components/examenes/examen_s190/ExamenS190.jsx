@@ -8,14 +8,13 @@ import AleatoryArray from "../../../singles/AleatoryArray";
 import Swal from "sweetalert2";
 import { postExamenOSEP } from "../../../services/exams/ExamsService";
 
-// recibe state y setState como destructuración por ejemplo: {state,setState}
-const ExamenSCI100 = () => {
+const ExamenS190 = () => {
   // const { curp } = state;
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState([]);
-  const initialValues = { examen: "smi100", respuestas: [] };
+  const initialValues = { examen: "s_190", respuestas: [] };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -43,7 +42,7 @@ const ExamenSCI100 = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: yup.object({
-      examen: yup.string().default(() => "smi100"),
+      examen: yup.string().default(() => "s_190"),
       preguntas: yup.array().of(
         yup.object().shape({
           id: yup
@@ -125,12 +124,12 @@ const ExamenSCI100 = () => {
   return (
     <div className="col-12 col-md-12 ml-0 pt-2">
       <Button variant="warning" onClick={handleShow}>
-        Tomar Examen SCI/SMI 100-200
+        Tomar Examen S-130/S-190
       </Button>
       <Modal show={show} animation={false} onHide={handleClose} backdrop="static">
         <Modal.Header>
           <Modal.Title>
-            Examen SCI/SMI 100-200
+            Examen S-130/S-190
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -201,4 +200,4 @@ const ExamenSCI100 = () => {
   );
 };
 
-export default ExamenSCI100;
+export default ExamenS190;
