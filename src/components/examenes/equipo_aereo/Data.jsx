@@ -527,7 +527,7 @@ const Data = [
             },
             {
                 "id": 2,
-                "nombre": "b.	Acercarse al helicóptero cuando se lo indique el piloto o la persona responsable de abordar, manteniendo contacto visual con el piloto",
+                "nombre": "Acercarse al helicóptero cuando se lo indique el piloto o la persona responsable de abordar, manteniendo contacto visual con el piloto",
                 "value": "b",
                 "correcta": true,
             },

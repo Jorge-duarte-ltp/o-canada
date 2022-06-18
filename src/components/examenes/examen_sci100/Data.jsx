@@ -119,8 +119,8 @@ const Data = [
         "id": 4,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el alcance de control mínimo?",
         "image": Image16,
-        "width": "512px",
-        "height": "512px",
+        "width": "256px",
+        "height": "256px",
         "answers": [
             {
                 "id": 1,
@@ -158,8 +158,8 @@ const Data = [
         "id": 5,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el alcance de control máximo?",
         "image": Image16,
-        "width": "512px",
-        "height": "512px",
+        "width": "256px",
+        "height": "256px",
         "answers": [
             {
                 "id": 1,
@@ -197,8 +197,8 @@ const Data = [
         "id": 6,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el alcance de control óptimo?",
         "image": Image16,
-        "width": "512px",
-        "height": "512px",
+        "width": "256px",
+        "height": "256px",
         "answers": [
             {
                 "id": 1,
@@ -236,8 +236,8 @@ const Data = [
         "id": 7,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image17,
-        "width": "256px",
-        "height": "256px",
+        "width": "192px",
+        "height": "192px",
         "answers": [
             {
                 "id": 1,
@@ -311,8 +311,8 @@ const Data = [
         "id": 8,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image18,
-        "width": "256px",
-        "height": "256px",
+        "width": "192px",
+        "height": "192px",
         "answers": [
             {
                 "id": 1,
@@ -386,8 +386,8 @@ const Data = [
         "id": 9,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image19,
-        "width": "256px",
-        "height": "256px",
+        "width": "192px",
+        "height": "192px",
         "answers": [
             {
                 "id": 1,
@@ -461,8 +461,8 @@ const Data = [
         "id": 10,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image20,
-        "width": "256px",
-        "height": "256px",
+        "width": "192px",
+        "height": "192px",
         "answers": [
             {
                 "id": 1,
@@ -536,8 +536,8 @@ const Data = [
         "id": 11,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image21,
-        "width": "256px",
-        "height": "256px",
+        "width": "192px",
+        "height": "192px",
         "answers": [
             {
                 "id": 1,
@@ -611,8 +611,8 @@ const Data = [
         "id": 12,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image22,
-        "width": "256px",
-        "height": "256px",
+        "width": "192px",
+        "height": "192px",
         "answers": [
             {
                 "id": 1,

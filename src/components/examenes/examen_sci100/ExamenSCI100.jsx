@@ -7,18 +7,24 @@ import Data from "./Data";
 import AleatoryArray from "../../../singles/AleatoryArray";
 import Swal from "sweetalert2";
 import { postExamen } from "../../../services/exams/ExamsService";
+import Question from "../../../singles/Question";
+import moment from "moment";
+import { formatDate } from "../../../helpers/formatDate";
 
-// recibe state y setState como destructuración por ejemplo: {state,setState}
-const ExamenSCI100 = ({state,setState}) => {
+const ExamenSCI100 = ({ state, setState }) => {
   const { curp } = state;
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState([]);
   const initialValues = { examen: "smi100", respuestas: [] };
+  const [timeLeft, setTimeLeft] = useState(900);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+
     const timeout = setTimeout(() => {
+
       loadFields(Data);
 
       const temp = AleatoryArray(
@@ -29,6 +35,7 @@ const ExamenSCI100 = ({state,setState}) => {
       );
 
       setCurrent([temp.pop()]);
+      setTimeLeft(30);
 
       setData(temp);
     }, 2000);
@@ -39,6 +46,23 @@ const ExamenSCI100 = ({state,setState}) => {
 
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+
+    if (isOpen) {
+
+      if (!timeLeft) {
+        guardar();
+      }
+
+      const interval = setInterval(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+
+  }, [timeLeft, show]);
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -56,7 +80,7 @@ const ExamenSCI100 = ({state,setState}) => {
       ),
     }),
     onSubmit: async ({ examen, respuestas }) => {
-       
+
       let suma = 0;
 
       const object = { curp, examen };
@@ -77,11 +101,24 @@ const ExamenSCI100 = ({state,setState}) => {
             Swal.fire({
               title: title,
               icon: "success",
-              text: `${message} \n Aciertos: ${object.aciertos}/${size(Data)} \n Calificación: ${object.calificacion}`,
+              html: `${message} <br> Aciertos: ${object.aciertos}/${size(Data)} <br> Calificación: ${object.calificacion}`,
               allowOutsideClick: false,
             }).then((result) => {
               if (result.isConfirmed) {
-                setState({ ...state, examen_equipo_aereo: "completa" });
+                if (object.calificacion < 70) {
+                  setState({
+                    ...state,
+                    rechazo: true,
+                    motivo_rechazo: "no aprobo examen smi_100",
+                    examen_smi_100: "reprobado",
+                    fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0)
+                  })
+                } else {
+                  setState({
+                    ...state,
+                    examen_smi_100: "aprobado"
+                  });
+                }
                 handleClose();
               }
             });
@@ -99,10 +136,12 @@ const ExamenSCI100 = ({state,setState}) => {
 
   const handleClose = () => {
     setShow((show) => !show);
+    setIsOpen((isOpen) => !isOpen);
   };
 
   const handleShow = () => {
     setShow((show) => !show);
+    setIsOpen((isOpen) => !isOpen);
   };
 
   const handleNext = () => {
@@ -114,14 +153,55 @@ const ExamenSCI100 = ({state,setState}) => {
     }
   };
 
-  const handleNumberToChar = (value) =>
-    String.fromCharCode("a".charCodeAt(0) + value);
-
   const loadFields = (data) => {
     for (let index = 0; index < data.length; index++) {
       initialValues.respuestas.push({ id: index + 1, value: "" });
     }
   };
+
+  const guardar = async () => {
+
+    const { examen, respuestas } = formik.values;
+
+    let suma = 0;
+
+    const object = { curp, examen };
+
+    respuestas.forEach((respuesta, index) => {
+      const temp = Data[index].answers;
+      const answer = temp.find((item) => item.value === respuesta.value);
+      suma = suma + (answer?.correcta ? 1 : 0);
+      object[`pregunta_${respuesta.id}`] = respuesta.value ? respuesta.value : null;
+    });
+
+    object.aciertos = suma;
+    object.calificacion = Math.round((suma * 100) / size(Data));
+
+    await postExamen(object)
+      .then(async ({ status, data: { title, message } }) => {
+        if (status === 200) {
+          Swal.fire({
+            title: title,
+            icon: "success",
+            html: `${message} <br> Aciertos: ${object.aciertos}/${size(Data)} <br> Calificación: ${object.calificacion}`,
+            allowOutsideClick: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              handleClose();
+            }
+          });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error",
+          html: `Error al guardar los resultados de el examen: ${object.examen.toUpperCase()}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      });
+  }
 
   return (
     <div className="col-12 col-md-12 ml-0 pt-2">
@@ -130,49 +210,22 @@ const ExamenSCI100 = ({state,setState}) => {
       </Button>
       <Modal show={show} animation={false} onHide={handleClose} backdrop="static">
         <Modal.Header>
-          <Modal.Title>
+          <Modal.Title className="col-12 col-mb-12">
             Examen SCI/SMI 100-200
+            <label className="float-sm-right">
+              {moment.utc(moment.duration(timeLeft, "seconds").asMilliseconds()).format("m:ss")}
+            </label>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={formik.handleSubmit}>
             {current.map((question) => (
-              <React.Fragment key={question.id}>
-                <div className="col-12 col-md-12 d-flex">
-                  {question?.image && <div className="col-6 col-md-6">
-                    <img
-                      src={question.image}
-                      className="rounded mx-auto d-block img-fluid"
-                      alt={`Imagen asignada para la pregunta ${question.id}`}
-                      width={`${question.width}`}
-                      height={`${question.height}`}
-                    />
-                  </div>
-                  }
-                  <div className="col-6 col-md-6">
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className="d-block form-label text-justify"
-                    >
-                      {question?.id}.- {question?.nombre}
-                    </label>
-                    <select
-                      className="form-control"
-                      name={`respuestas[${question.id - 1}].value`}
-                      value={formik.values.respuestas[question.id - 1].value}
-                      onChange={formik.handleChange}
-                      required
-                    >
-                      <option value="">---seleccione---</option>
-                      {question.answers.map((item, index) => (
-                        <option key={index} value={item.value}>
-                          {handleNumberToChar(index)}) {item.nombre}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </React.Fragment>
+              <Question key={question.id}
+                question={question}
+                name={`respuestas[${question.id - 1}].value`}
+                value={formik.values.respuestas[question.id - 1].value}
+                onChange={formik.handleChange}
+              />
             ))}
             <div className="col-12 col-mb-12">
               <label className="float-sm-left">

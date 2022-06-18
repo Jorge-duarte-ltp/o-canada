@@ -56,7 +56,7 @@ const ExamenS190 = ({ state, setState }) => {
       ),
     }),
     onSubmit: async ({ examen, respuestas }) => {
-      
+
       let suma = 0;
 
       const object = { curp, examen };
@@ -77,7 +77,7 @@ const ExamenS190 = ({ state, setState }) => {
             Swal.fire({
               title: title,
               icon: "success",
-              text: `${message} \n Aciertos: ${object.aciertos}/${size(Data)} \n Calificación: ${object.calificacion}`,
+              html: `${message} <br> Aciertos: ${object.aciertos}/${size(Data)} <br> Calificación: ${object.calificacion}`,
               allowOutsideClick: false,
             }).then((result) => {
               if (result.isConfirmed) {

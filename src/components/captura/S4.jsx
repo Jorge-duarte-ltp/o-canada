@@ -11,6 +11,7 @@ import moment from "moment";
 import candidatoContext from "../../context/candidato/candidatoContext";
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
+import ExamenSCI100 from "../examenes/examen_sci100/ExamenSCI100";
 
 const S4 = (props) => {
   const candidatos = useContext(candidatoContext);
@@ -116,6 +117,7 @@ const S4 = (props) => {
     }
     // console.log('envio de resultados');
   };
+
   const handleClose = () => {
     Swal.fire({
       title: "Esta seguro que desea terminar la prueba?",
@@ -133,11 +135,8 @@ const S4 = (props) => {
   };
 
   const setInfo = (input) => {
-    if (
-      input.target.name === "sci_smi_100" ||
-      input.target.name === "sci_smi_200" ||
-      input.target.name === "sci_smi_300"
-    ) {
+
+    if (input.target.type === "file") {
       setStateFiles({
         ...files,
         [input.target.name + "_fl"]: validarExtPdf(
@@ -186,7 +185,7 @@ const S4 = (props) => {
 
   return (
     <div className="row body_wrap">
-      <Modal show={showExam}  animation={false} dialogClassName="modal-90w">
+      <Modal show={showExam} animation={false} dialogClassName="modal-90w">
         <Modal.Header>
           <Modal.Title>SCI/SMI 100-200</Modal.Title>
         </Modal.Header>
@@ -206,6 +205,10 @@ const S4 = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ExamenSCI100
+        state={state}
+        setState={setState}
+      />
 
       {/* Cargar constancia del Curso SCI/SMI 100 */}
       <div className="col-12 col-md-4">
@@ -355,8 +358,8 @@ const S4 = (props) => {
         <button
           hidden={
             files.sci_smi_100_fl &&
-            files.sci_smi_200_fl &&
-            state.eventos_plnaeados_sci &&
+              files.sci_smi_200_fl &&
+              state.eventos_plnaeados_sci &&
               state.eventos_plnaeados_sci_fuera &&
               state.eventos_plnaeados_dentro_estructura &&
               state.evaluado_menejo_incidentes &&
