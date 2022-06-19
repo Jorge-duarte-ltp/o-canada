@@ -118,7 +118,7 @@ const Data = [
                 "id": 3,
                 "nombre": "Nariz",
                 "value": "c",
-                "correcta": true
+                "correcta": false
             },
             {
                 "id": 4,
@@ -130,7 +130,7 @@ const Data = [
                 "id": 5,
                 "nombre": "Rotor principal",
                 "value": "e",
-                "correcta": false
+                "correcta": true
             },
             {
                 "id": 6,
@@ -163,13 +163,13 @@ const Data = [
                 "id": 3,
                 "nombre": "Nariz",
                 "value": "c",
-                "correcta": false
+                "correcta": true
             },
             {
                 "id": 4,
                 "nombre": "Visión de piloto",
                 "value": "d",
-                "correcta": true
+                "correcta": false
             },
             {
                 "id": 5,
@@ -214,13 +214,13 @@ const Data = [
                 "id": 4,
                 "nombre": "Visión de piloto",
                 "value": "d",
-                "correcta": false
+                "correcta": true
             },
             {
                 "id": 5,
                 "nombre": "Rotor principal",
                 "value": "e",
-                "correcta": true
+                "correcta": false
             },
             {
                 "id": 6,

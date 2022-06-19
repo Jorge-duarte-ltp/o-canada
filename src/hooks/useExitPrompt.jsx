@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-const initBeforeUnLoad = (showExitPrompt) => {
-    window.onbeforeunload = (event) => {
-        if (showExitPrompt) {
-            const e = event || window.event;
-            e.preventDefault();
-            if (e) {
-                e.returnValue = '';
-            }
-            return '';
-        }
-    };
+const initBeforeUnLoad = ({ showExitPrompt, accion }) => {
+  window.onbeforeunload = (event) => {
+    if (showExitPrompt) {
+      const e = event || window.event;
+      e.preventDefault();
+      if (e) {
+        accion();
+        e.returnValue = "";
+      }
+      return "";
+    }
+  };
 };
 
-const useExitPrompt = (bool) => {
+const useExitPrompt = (values) => {
+  const [showOnBeforeUnload, setShowOnBeforeUnload] = useState(values);
 
-    const [showExitPrompt, setShowPrompt] = useState(bool);
+  window.onload = function () {
+    initBeforeUnLoad(showOnBeforeUnload);
+  };
 
-    window.onload = function () {
-        initBeforeUnLoad(showExitPrompt);
-    }
+  useEffect(() => {
+    initBeforeUnLoad(showOnBeforeUnload);
+  }, [showOnBeforeUnload]);
 
-    useEffect(() => {
-        initBeforeUnLoad(showExitPrompt);
-    }, [showExitPrompt])
-
-    return [showExitPrompt, setShowPrompt];
-}
-
-
+  return [showOnBeforeUnload, setShowOnBeforeUnload];
+};
 
 export default useExitPrompt;

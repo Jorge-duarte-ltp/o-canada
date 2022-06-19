@@ -47,16 +47,13 @@ const ExamenOSEP = ({ setState, state }) => {
       preguntas: yup.array().of(
         yup.object().shape({
           id: yup
-            .number("Debes de marcar el permiso")
-            .min(1, "El permiso deber ser diferente de 0")
-            .max(9, "El permiso a seleccionar debe ser menor a 9.")
-            .required("Debes de marcar el permiso"),
-          value: yup.bool().default(() => false),
+            .number("el id debe ser entero")
+            .required("El id de la pregunta es requerido"),
+          value: yup.string().default(() => ""),
         })
       ),
     }),
     onSubmit: async ({ examen, respuestas }) => {
-
       let suma = 0;
 
       const object = { curp, examen };
@@ -77,7 +74,9 @@ const ExamenOSEP = ({ setState, state }) => {
             Swal.fire({
               title: title,
               icon: "success",
-              html: `${message} <br> Aciertos: ${object.aciertos}/${size(Data)} <br> Calificación: ${object.calificacion}`,
+              html: `${message} <br> Aciertos: ${object.aciertos}/${size(
+                Data
+              )} <br> Calificación: ${object.calificacion}`,
               allowOutsideClick: false,
             }).then((result) => {
               if (result.isConfirmed) {
@@ -125,7 +124,12 @@ const ExamenOSEP = ({ setState, state }) => {
       <Button variant="warning" onClick={handleShow}>
         Examen Operaciones Seguras de Equipo Aéreo
       </Button>
-      <Modal show={show} animation={false} onHide={handleClose} backdrop="static">
+      <Modal
+        show={show}
+        animation={false}
+        onHide={handleClose}
+        backdrop="static"
+      >
         <Modal.Header>
           <Modal.Title>
             Examen de Operaciones Seguras de Equipo Aéreo
@@ -134,7 +138,8 @@ const ExamenOSEP = ({ setState, state }) => {
         <Modal.Body>
           <form onSubmit={formik.handleSubmit}>
             {current.map((question) => (
-              <Question key={question.id}
+              <Question
+                key={question.id}
                 question={question}
                 name={`respuestas[${question.id - 1}].value`}
                 value={formik.values.respuestas[question.id - 1].value}
