@@ -112,7 +112,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
                   setState({
                     ...state,
                     rechazo: true,
-                    motivo_rechazo: "no aprobo examen s_190",
+                    motivo_rechazo: "no aprobo examen si_190",
                     examen_s_190: "reprobado",
                     fechaCreacion: formatDate(
                       new Date().toString().toUpperCase(),
@@ -175,7 +175,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
                 setState({
                   ...state,
                   rechazo: true,
-                  motivo_rechazo: "no aprobo examen s_190",
+                  motivo_rechazo: "no aprobo examen si_190",
                   examen_s_190: "reprobado",
                   fechaCreacion: formatDate(
                     new Date().toString().toUpperCase(),

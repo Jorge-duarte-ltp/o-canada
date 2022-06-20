@@ -128,7 +128,7 @@ const Data = [
     },
     {
         "id": 6,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿En qué tipo de combustible de ños descritos en las imágenes, el contenido de humedad es el menos afectado por el cambio diario de humedad relativa?",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿En qué tipo de combustible de los descritos en las imágenes, el contenido de humedad es el menos afectado por el cambio diario de humedad relativa?",
         "image": Image34,
         "width": "256px",
         "height": "256px",
@@ -221,7 +221,7 @@ const Data = [
     },
     {
         "id": 9,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodod de trasnferencia de calor, en que el calor se propaga en forma de rayo o onda.\n El calor lo calienta a usted cuando se para cerca de una fogata, o se para frente a los rayos del sol.",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasnferencia de calor, en que el calor se propaga en forma de rayo o onda.\n El calor lo calienta a usted cuando se para cerca de una fogata, o se para frente a los rayos del sol.",
         "image": Image35,
         "width": "512px",
         "height": "512px",
@@ -288,56 +288,32 @@ const Data = [
         "answers": [
             {
                 "id": 1,
-                "nombre": "Punto de Origen",
+                "nombre": "Superfícial",
                 "value": "a",
                 "correcta": false
             },
             {
                 "id": 2,
-                "nombre": "Frente principal o cabeza",
+                "nombre": "Interfaz urbano-forestal",
                 "value": "b",
-                "correcta": false
+                "correcta": true
             },
             {
                 "id": 3,
-                "nombre": "Flancos",
+                "nombre": "Fuera de Control",
                 "value": "c",
                 "correcta": false
             },
             {
                 "id": 4,
-                "nombre": "Talón o cola del incendio",
+                "nombre": "Comportamiento Extremo",
                 "value": "d",
                 "correcta": false
             },
             {
                 "id": 5,
-                "nombre": "Perímetro del incendio",
+                "nombre": "Subterráneo",
                 "value": "e",
-                "correcta": false
-            },
-            {
-                "id": 6,
-                "nombre": "Dedo",
-                "value": "f",
-                "correcta": false
-            },
-            {
-                "id": 7,
-                "nombre": "Bolsa",
-                "value": "g",
-                "correcta": false
-            },
-            {
-                "id": 8,
-                "nombre": "Isla",
-                "value": "h",
-                "correcta": false
-            },
-            {
-                "id": 9,
-                "nombre": "Focos Secundarios",
-                "value": "i",
                 "correcta": false
             }
         ]
@@ -404,10 +380,10 @@ const Data = [
                 "correcta": false
             }
         ]
-    }, 
+    },
     {
         "id": 13,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nUn Un área, generalmente una franja estrecha, que es extensión del incendio principal.",
         "image": Image38,
         "width": "512px",
         "height": "512px",
@@ -467,7 +443,7 @@ const Data = [
                 "correcta": false
             }
         ]
-    }, 
+    },
     {
         "id": 14,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
@@ -531,7 +507,7 @@ const Data = [
             }
         ]
     },
-     {
+    {
         "id": 15,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
         "image": Image38,
