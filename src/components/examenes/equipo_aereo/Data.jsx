@@ -7,7 +7,7 @@ import Image14 from "../../../assets/images/examen/image14.png";
 const Data = [
     {
         "id": 1,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
         "width": "512px",
         "height": "512px",
@@ -52,7 +52,7 @@ const Data = [
     },
     {
         "id": 2,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
         "width": "512px",
         "height": "512px",
@@ -97,7 +97,7 @@ const Data = [
     },
     {
         "id": 3,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
         "width": "512px",
         "height": "512px",
@@ -142,7 +142,7 @@ const Data = [
     },
     {
         "id": 4,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
         "width": "512px",
         "height": "512px",
@@ -187,7 +187,7 @@ const Data = [
     },
     {
         "id": 5,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
         "width": "512px",
         "height": "512px",
@@ -232,7 +232,7 @@ const Data = [
     },
     {
         "id": 6,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
         "width": "512px",
         "height": "512px",

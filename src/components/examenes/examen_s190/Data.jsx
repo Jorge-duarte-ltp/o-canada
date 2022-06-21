@@ -188,7 +188,7 @@ const Data = [
     },
     {
         "id": 8,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodod de trasnferencia de calor, en que los gases calientes qe componen la columna de humo puede secar y encender otros combustibles.",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasnferencia de calor, en que los gases calientes que componen la columna de humo puede secar y encender otros combustibles.",
         "image": Image35,
         "width": "512px",
         "height": "512px",
@@ -261,7 +261,7 @@ const Data = [
         "answers": [
             {
                 "id": 1,
-                "nombre": "Obteniendo frecuentos focos secundarios",
+                "nombre": "Obteniendo frecuentes focos secundarios",
                 "value": "a",
                 "correcta": true
             },
@@ -320,7 +320,7 @@ const Data = [
     },
     {
         "id": 12,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea de combustible que no se ha quemado dentro del perímetro del incendio",
         "image": Image38,
         "width": "512px",
         "height": "512px",
@@ -383,7 +383,7 @@ const Data = [
     },
     {
         "id": 13,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nUn Un área, generalmente una franja estrecha, que es extensión del incendio principal.",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nUn área, generalmente una franja estrecha, que es extensión del incendio principal",
         "image": Image38,
         "width": "512px",
         "height": "512px",
@@ -446,7 +446,7 @@ const Data = [
     },
     {
         "id": 14,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea que no se ha quemado entre el incendio principal y cualquiera extensión del incendio principal",
         "image": Image38,
         "width": "512px",
         "height": "512px",
@@ -509,7 +509,7 @@ const Data = [
     },
     {
         "id": 15,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea ardiente fuera del perímetro principal del incendio, causado a menudo por los brasas que ruedan o chispas que vuelan",
         "image": Image38,
         "width": "512px",
         "height": "512px",
