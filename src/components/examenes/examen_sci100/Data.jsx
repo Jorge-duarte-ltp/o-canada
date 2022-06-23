@@ -22,6 +22,7 @@ const Data = [
         "id": 1,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué nombre reciben las posiciones de los jefes de sección en conjunto?",
         "image": Image15,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -54,6 +55,7 @@ const Data = [
         "id": 2,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Posición donde se ubica quién da seguimiento a la información Pública del incidente?",
         "image": Image15,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -86,6 +88,7 @@ const Data = [
         "id": 3,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué nombre reciben las posiciones del personal Oficiales de Conjunto?",
         "image": Image15,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -119,6 +122,7 @@ const Data = [
         "id": 4,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el alcance de control mínimo?",
         "image": Image16,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -158,6 +162,7 @@ const Data = [
         "id": 5,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el alcance de control máximo?",
         "image": Image16,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -197,6 +202,7 @@ const Data = [
         "id": 6,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el alcance de control óptimo?",
         "image": Image16,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -236,6 +242,7 @@ const Data = [
         "id": 7,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image17,
+        "show": true,
         "width": "192px",
         "height": "192px",
         "answers": [
@@ -311,6 +318,7 @@ const Data = [
         "id": 8,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image18,
+        "show": true,
         "width": "192px",
         "height": "192px",
         "answers": [
@@ -386,6 +394,7 @@ const Data = [
         "id": 9,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image19,
+        "show": true,
         "width": "192px",
         "height": "192px",
         "answers": [
@@ -461,6 +470,7 @@ const Data = [
         "id": 10,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image20,
+        "show": true,
         "width": "192px",
         "height": "192px",
         "answers": [
@@ -536,6 +546,7 @@ const Data = [
         "id": 11,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image21,
+        "show": true,
         "width": "192px",
         "height": "192px",
         "answers": [
@@ -611,6 +622,7 @@ const Data = [
         "id": 12,
         "nombre": "Seleccione el nombre correcto de la instalación o ubicación al que hace referencia la simbología del SCI:",
         "image": Image22,
+        "show": true,
         "width": "192px",
         "height": "192px",
         "answers": [
@@ -686,6 +698,7 @@ const Data = [
         "id": 13,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image23,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -713,6 +726,7 @@ const Data = [
         "id": 14,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image24,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -740,6 +754,7 @@ const Data = [
         "id": 15,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image25,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -767,6 +782,7 @@ const Data = [
         "id": 16,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image26,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -794,6 +810,7 @@ const Data = [
         "id": 17,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image27,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -821,6 +838,7 @@ const Data = [
         "id": 18,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image28,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -848,6 +866,7 @@ const Data = [
         "id": 19,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta\n¿Formato del SCI en que se describen asignaciones tácticas?",
         "image": Image29,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -881,6 +900,7 @@ const Data = [
         "id": 20,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta\n¿Formato del SCI en que se describe Plan Médico?",
         "image": Image30,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -920,6 +940,7 @@ const Data = [
         "id": 21,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta\n¿Formato del SCI en que se describe Resumen del Incidente?",
         "image": Image31,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -959,6 +980,7 @@ const Data = [
         "id": 22,
         "nombre": "Mando es:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -992,6 +1014,7 @@ const Data = [
         "id": 23,
         "nombre": "¿Cuál función del SCI registra tiempos, la contabilidad y compras de los artículos necesarios?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1025,6 +1048,7 @@ const Data = [
         "id": 24,
         "nombre": "¿Quién tiene la responsabilidad total de manejar el incidente en el sitio?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1058,6 +1082,7 @@ const Data = [
         "id": 25,
         "nombre": "¿Qué significan las siglas SCI en el Programa de Manejo del Fuego?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1091,6 +1116,7 @@ const Data = [
         "id": 26,
         "nombre": "¿Cuál es el rango óptimo de Alcance de Control?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1124,6 +1150,7 @@ const Data = [
         "id": 27,
         "nombre": "¿Qué significa desmovilización?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1155,8 +1182,9 @@ const Data = [
     },
     {
         "id": 28,
-        "nombre": "¿Cuál función del SCI registra tiempos, la contabilidad y compras de los artículos necesarios?",
+        "nombre": "¿Qué es un Plan de Acción del Incidente (PAI)?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1190,6 +1218,7 @@ const Data = [
         "id": 29,
         "nombre": "¿En qué formato del PAI puede encontrar la lista de asignaciones tácticas del incidente para el periodo operacional?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1223,6 +1252,7 @@ const Data = [
         "id": 30,
         "nombre": "¿Qué es la transferencia de mando?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1256,6 +1286,7 @@ const Data = [
         "id": 31,
         "nombre": "La cadena de mando se refiere a:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1289,6 +1320,7 @@ const Data = [
         "id": 32,
         "nombre": "Al momento de establecer los objetivos para atender un incidente, ¿Cuál es la primera prioridad?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1322,6 +1354,7 @@ const Data = [
         "id": 33,
         "nombre": "¿Qué es una helibase?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1355,6 +1388,7 @@ const Data = [
         "id": 34,
         "nombre": "¿Qué incluye una sesión informativa?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1388,6 +1422,7 @@ const Data = [
         "id": 35,
         "nombre": "¿En qué formato del PAI puede encontrar los Objetivos del incidente para el periodo operacional?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1421,6 +1456,7 @@ const Data = [
         "id": 36,
         "nombre": "Seleccione la opción VERDADERA",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1454,6 +1490,7 @@ const Data = [
         "id": 37,
         "nombre": "¿En qué formato del PAI puede encontrar el Plan Médico del incidente para el periodo operacional?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1487,6 +1524,7 @@ const Data = [
         "id": 38,
         "nombre": "¿Quién generalmente facilita la Sesión Informativa del periodo operacional?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1520,6 +1558,7 @@ const Data = [
         "id": 39,
         "nombre": "¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1553,6 +1592,7 @@ const Data = [
         "id": 40,
         "nombre": "Un individuo asumiendo el papel de Comandante de Incidente Auxiliar debe:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1586,6 +1626,7 @@ const Data = [
         "id": 41,
         "nombre": "¿Quién es responsable de determinar las tácticas apropiadas para un incidente?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [

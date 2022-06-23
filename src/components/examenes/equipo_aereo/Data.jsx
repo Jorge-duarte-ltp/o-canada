@@ -9,6 +9,7 @@ const Data = [
         "id": 1,
         "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -54,6 +55,7 @@ const Data = [
         "id": 2,
         "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -99,6 +101,7 @@ const Data = [
         "id": 3,
         "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -144,6 +147,7 @@ const Data = [
         "id": 4,
         "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -189,6 +193,7 @@ const Data = [
         "id": 5,
         "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -234,6 +239,7 @@ const Data = [
         "id": 6,
         "nombre": "El número de esta indicación se corresponde con el número en la imagen",
         "image": Image9,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -279,6 +285,7 @@ const Data = [
         "id": 7,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image11,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -330,6 +337,7 @@ const Data = [
         "id": 8,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image12,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -381,6 +389,7 @@ const Data = [
         "id": 9,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image13,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -432,6 +441,7 @@ const Data = [
         "id": 10,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta",
         "image": Image14,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -483,6 +493,7 @@ const Data = [
         "id": 11,
         "nombre": "¡Como combatiente que debe considerar para subir las herramientas al helicóptero!",
         "image": null,
+        "show": false,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -516,6 +527,7 @@ const Data = [
         "id": 12,
         "nombre": "¿Qué debe hacer en preparación para abordar un helcóptero?",
         "image": null,
+        "show": false,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -555,6 +567,7 @@ const Data = [
         "id": 13,
         "nombre": "¿Qué debe considerar al ser transportado en un helicóptero?",
         "image": null,
+        "show": false,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -588,6 +601,7 @@ const Data = [
         "id": 14,
         "nombre": "¿Qué es lo que debe realizar al accesar a un helicóptero en operación?",
         "image": null,
+        "show": false,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -621,6 +635,7 @@ const Data = [
         "id": 15,
         "nombre": "La siguiente es una de las precauciones de seguridad en tierra cuando se opera con helicópteros",
         "image": null,
+        "show": false,
         "width": "256px",
         "height": "256px",
         "answers": [

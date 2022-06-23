@@ -13,6 +13,7 @@ const Data = [
         "id": 1,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué nombre reciben los tres elementos que deben estar presentes y combinados antes que ocurra y continué la combustión?",
         "image": Image32,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -46,6 +47,7 @@ const Data = [
         "id": 2,
         "nombre": "En el hemisferio norte, la imagen corresponde a una configuración natural del terreno que presenta dos laderas, una con exposición norte y la otra con exposición sur, seleccione la opción correcta de las siguientes preguntas:\n¿Qué ladera presentará mayor humedad relativa?",
         "image": Image33,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -67,6 +69,7 @@ const Data = [
         "id": 3,
         "nombre": "En el hemisferio norte, la imagen corresponde a una configuración natural del terreno que presenta dos laderas, una con exposición norte y la otra con exposición sur, seleccione la opción correcta de las siguientes preguntas:\n¿Qué ladera sería menos calurosa?",
         "image": Image33,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -88,6 +91,7 @@ const Data = [
         "id": 4,
         "nombre": "En el hemisferio norte, la imagen corresponde a una configuración natural del terreno que presenta dos laderas, una con exposición norte y la otra con exposición sur, seleccione la opción correcta de las siguientes preguntas:\n¿Qué ladera tandría mayor actividad de fuego?",
         "image": Image33,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -109,6 +113,7 @@ const Data = [
         "id": 5,
         "nombre": "En el hemisferio norte, la imagen corresponde a una configuración natural del terreno que presenta dos laderas, una con exposición norte y la otra con exposición sur, seleccione la opción correcta de las siguientes preguntas:\n¿Qué ladera presentará una menor velocidad de propagación del fuego?",
         "image": Image33,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -130,6 +135,7 @@ const Data = [
         "id": 6,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿En qué tipo de combustible de los descritos en las imágenes, el contenido de humedad es el menos afectado por el cambio diario de humedad relativa?",
         "image": Image34,
+        "show": true,
         "width": "256px",
         "height": "256px",
         "answers": [
@@ -157,6 +163,7 @@ const Data = [
         "id": 7,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de transferencia de calor, en que el calor se propaga de una partícula del material hacia otra en la misma dirección, a través de contacto directo.",
         "image": Image35,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -190,6 +197,7 @@ const Data = [
         "id": 8,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasnferencia de calor, en que los gases calientes que componen la columna de humo puede secar y encender otros combustibles.",
         "image": Image35,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -223,6 +231,7 @@ const Data = [
         "id": 9,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasnferencia de calor, en que el calor se propaga en forma de rayo o onda.\n El calor lo calienta a usted cuando se para cerca de una fogata, o se para frente a los rayos del sol.",
         "image": Image35,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -256,6 +265,7 @@ const Data = [
         "id": 10,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál de las situaciones que gritan cuidado observamos en la imagen?",
         "image": Image36,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -283,6 +293,7 @@ const Data = [
         "id": 11,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
         "image": Image37,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -322,6 +333,7 @@ const Data = [
         "id": 12,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea de combustible que no se ha quemado dentro del perímetro del incendio",
         "image": Image38,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -385,6 +397,7 @@ const Data = [
         "id": 13,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nUn área, generalmente una franja estrecha, que es extensión del incendio principal",
         "image": Image38,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -448,6 +461,7 @@ const Data = [
         "id": 14,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea que no se ha quemado entre el incendio principal y cualquiera extensión del incendio principal",
         "image": Image38,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -511,6 +525,7 @@ const Data = [
         "id": 15,
         "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea ardiente fuera del perímetro principal del incendio, causado a menudo por los brasas que ruedan o chispas que vuelan",
         "image": Image38,
+        "show": true,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -574,6 +589,7 @@ const Data = [
         "id": 16,
         "nombre": "Es una definición de zona de seguridad:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -607,6 +623,7 @@ const Data = [
         "id": 17,
         "nombre": "¿Por qué deben de mantener el personal combatiente por lo menos 2 metros o más de separación al caminar o trabajar juntos en la línea? ",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -641,6 +658,7 @@ const Data = [
         "id": 18,
         "nombre": "Al abordar un helicóptero usted debe:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -675,6 +693,7 @@ const Data = [
         "id": 19,
         "nombre": "La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada.",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -697,6 +716,7 @@ const Data = [
         "id": 20,
         "nombre": "Seleccione la “Norma de Combate” en que se hace referencia a considerar el Comportamiento de Fuego:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -731,6 +751,7 @@ const Data = [
         "id": 21,
         "nombre": "¿Cuáles son tres factores del tiempo atmosférico más importantes para el personal combatiente? ",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -765,6 +786,7 @@ const Data = [
         "id": 22,
         "nombre": "Difícil acceso y una vía angosta y congestionada, casas ubicadas en zonas de chimenea, cañones angostos, puertos o sobre pendientes inclinadas, límite de carga en los puentes, combustibles naturales cercanos a 10 metros de casas y evacuación del público; son ejemplos de… ",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -799,6 +821,7 @@ const Data = [
         "id": 23,
         "nombre": "Seleccione la “Norma de Combate” en que se hace referencia a considerar la Organización y Control de la brigada:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -833,6 +856,7 @@ const Data = [
         "id": 24,
         "nombre": "La parte del incendio que está quemando de manera más intensa y con mayor propagación es generalmente llamada:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -867,6 +891,7 @@ const Data = [
         "id": 25,
         "nombre": "¿Cuáles son los tres métodos de transferencia de calor?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -895,6 +920,7 @@ const Data = [
         "id": 26,
         "nombre": "¿Cuáles son los tres elementos del triángulo de fuego?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -923,6 +949,7 @@ const Data = [
         "id": 27,
         "nombre": "¿Qué sucede cuando el oxígeno es eliminado del triángulo de fuego?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -951,6 +978,7 @@ const Data = [
         "id": 28,
         "nombre": "Una exposición norte tendrá más actividad de fuego que una exposición sur.",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -973,6 +1001,7 @@ const Data = [
         "id": 29,
         "nombre": "La disposición de combustible aéreo describe que:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1007,6 +1036,7 @@ const Data = [
         "id": 30,
         "nombre": "Seleccione los tres indicadores que señalan que el comportamiento del fuego va en aumento:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1035,6 +1065,7 @@ const Data = [
         "id": 31,
         "nombre": "¿Qué factor influye en la propagación del fuego más que cualquier otro?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1069,6 +1100,7 @@ const Data = [
         "id": 32,
         "nombre": "Seleccione la “Norma de Combate” en que se hace referencia a considerar la Seguridad en la Línea de Fuego:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1103,6 +1135,7 @@ const Data = [
         "id": 33,
         "nombre": "Seleccione la “Situación que Grita Cuidado” que se presenta cuando al llegar al incendio, la brigada inmediatamente entra al terreno y combate realizando ataque directo:",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1137,6 +1170,7 @@ const Data = [
         "id": 34,
         "nombre": "¿Qué incluyen los peligros de tormentas respecto del comportamiento de un incendio forestal?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [
@@ -1171,6 +1205,7 @@ const Data = [
         "id": 35,
         "nombre": "¿En qué tipo de combustible, el contenido de humedad, es el más afectado por un cambio de humedad relativa?",
         "image": null,
+        "show": false,
         "width": "512px",
         "height": "512px",
         "answers": [

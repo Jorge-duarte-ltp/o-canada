@@ -22,7 +22,7 @@ const Question = ({ question, value, name, onChange }) => {
                     htmlFor="exampleFormControlInput1"
                     className="d-block form-label text-justify"
                 >
-                    {question?.nombre}
+                  {question.show && `${question.id}.-`}  {question?.nombre}
                 </label>
                 <select
                     className="form-control"
