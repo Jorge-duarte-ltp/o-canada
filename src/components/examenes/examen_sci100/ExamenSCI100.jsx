@@ -14,7 +14,7 @@ import useExitPrompt from "../../../hooks/useExitPrompt";
 
 const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const { curp } = state;
-  const [preguntas, setPreguntas] = useState(AleatoryArray(Data));
+  const [preguntas,] = useState(AleatoryArray(Data));
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
@@ -47,7 +47,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
 
     return () => {
       clearTimeout(timeout);
-      setShowOnBeforeUnload({ showOnBeforeUnload: false, accion: null });
+      setShowOnBeforeUnload({ showExitPrompt: false, accion: null });
     };
 
     // eslint-disable-next-line
@@ -56,19 +56,19 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   useEffect(() => {
 
     if (show) {
-    
+
       if (!timeLeft) {
-    
+
         guardar();
-    
+
       }
 
       setShowOnBeforeUnload({ ...showOnBeforeUnload, accion: guardar });
 
       const interval = setInterval(() => {
-        
+
         setTimeLeft(timeLeft - 1);
-      
+
       }, 1000);
 
       return () => clearInterval(interval);
@@ -91,11 +91,12 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
       ),
     }),
     onSubmit: async ({ examen, respuestas }) => {
+
       let suma = 0;
 
       const object = { curp, examen, resultado: [] };
 
-      respuestas.forEach((respuesta, index) => {
+      respuestas.forEach((respuesta) => {
         const temp = preguntas.find(item => item.id === respuesta.id).answers;
         const answer = temp.find((item) => item.value === respuesta.value);
         suma = suma + (answer.correcta ? 1 : 0);
@@ -113,7 +114,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
               title: title,
               icon: "success",
               html: `${message} <br> Aciertos: ${object.aciertos}/${size(
-                Data
+                preguntas
               )} <br> Calificación: ${object.calificacion}`,
               allowOutsideClick: false,
             }).then((result) => {
@@ -158,8 +159,8 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
     const object = { curp, examen, resultado: [] };
 
     respuestas.forEach((respuesta) => {
-      const temp = preguntas.find(item => item.id === respuesta.id).answers;
-      const answer = temp.find((item) => item.value === respuesta.value);
+      const temp = preguntas.find(item => item.id === respuesta.id);
+      const answer = temp.answers.find((item) => item.value === respuesta.value);
       suma = suma + (answer.correcta ? 1 : 0);
       object.resultado.push({ [`pregunta_${respuesta.id}`]: respuesta.value });
     });
@@ -175,7 +176,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
             title: title,
             icon: "success",
             html: `${message} <br> Aciertos: ${object.aciertos}/${size(
-              Data
+              preguntas
             )} <br> Calificación: ${object.calificacion}`,
             allowOutsideClick: false,
           }).then((result) => {
@@ -223,6 +224,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   };
 
   const handleShow = () => {
+
     Swal.fire({
       title: "Esta por iniciar una prueba",
       text:
@@ -243,8 +245,9 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
 
     setShowOnBeforeUnload({
       ...showOnBeforeUnload,
-      showExitPrompt: !showOnBeforeUnload.showExitPrompt,
+      showExitPrompt: !showOnBeforeUnload.showExitPrompt
     });
+
   };
 
   const handleNext = () => {
@@ -256,11 +259,13 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
     }
   };
 
+
   const loadFields = (data) => {
-    for (let index = 0; index < data.length; index++) {
-      initialValues.respuestas.push({ id: index + 1, value: "" });
-    }
+    data.forEach(item => {
+      initialValues.respuestas.push({ id: item.id, value: "" });
+    });
   };
+
 
   const indexOf = (id) => {
     return formik.values.respuestas.findIndex(item => item.id === id);

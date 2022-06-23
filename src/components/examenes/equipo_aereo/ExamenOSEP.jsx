@@ -11,7 +11,7 @@ import Question from "../../../singles/Question";
 
 const ExamenOSEP = ({ setState, state }) => {
   const { curp } = state;
-  const [preguntas, setPreguntas] = useState(AleatoryArray(Data));
+  const [preguntas,] = useState(AleatoryArray(Data));
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
@@ -32,9 +32,9 @@ const ExamenOSEP = ({ setState, state }) => {
       setCurrent([temp.pop()]);
 
       setCount(1);
-      
+
       setData(temp);
-      
+
     }, 2000);
 
     return () => {
@@ -81,7 +81,7 @@ const ExamenOSEP = ({ setState, state }) => {
               title: title,
               icon: "success",
               html: `${message} <br> Aciertos: ${object.aciertos}/${size(
-                Data
+                preguntas
               )} <br> Calificación: ${object.calificacion}`,
               allowOutsideClick: false,
             }).then((result) => {
@@ -119,11 +119,13 @@ const ExamenOSEP = ({ setState, state }) => {
     }
   };
 
+
   const loadFields = (data) => {
-    for (let index = 0; index < data.length; index++) {
-      initialValues.respuestas.push({ id: index + 1, value: "" });
-    }
+    data.forEach(item => {
+      initialValues.respuestas.push({ id: item.id, value: "" });
+    });
   };
+
 
   const indexOf = (id) => {
     return formik.values.respuestas.findIndex(item => item.id === id);

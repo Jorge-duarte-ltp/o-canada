@@ -14,7 +14,7 @@ import moment from "moment";
 
 const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const { curp } = state;
-  const [preguntas, setPreguntas] = useState(AleatoryArray(Data));
+  const [preguntas,] = useState(AleatoryArray(Data));
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
@@ -42,7 +42,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
       setCurrent([temp.pop()]);
 
       setCount(1);
-      
+
       setData(temp);
 
       setTimeLeft(900);
@@ -51,7 +51,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
 
     return () => {
       clearTimeout(timeout);
-      setShowOnBeforeUnload({ showOnBeforeUnload: false, accion: null });
+      setShowOnBeforeUnload({ showExitPrompt: false, accion: null });
     };
 
     // eslint-disable-next-line
@@ -72,7 +72,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
       const interval = setInterval(() => {
 
         setTimeLeft(timeLeft - 1);
-      
+
       }, 1000);
 
       return () => clearInterval(interval);
