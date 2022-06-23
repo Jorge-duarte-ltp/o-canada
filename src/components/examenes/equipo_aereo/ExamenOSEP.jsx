@@ -13,7 +13,7 @@ const ExamenOSEP = ({ setState, state }) => {
   const { curp } = state;
   const [preguntas, setPreguntas] = useState(AleatoryArray(Data));
   const [data, setData] = useState([]);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState([]);
   const initialValues = { examen: "eval_osep", respuestas: [] };
@@ -31,7 +31,10 @@ const ExamenOSEP = ({ setState, state }) => {
 
       setCurrent([temp.pop()]);
 
+      setCount(1);
+      
       setData(temp);
+      
     }, 2000);
 
     return () => {

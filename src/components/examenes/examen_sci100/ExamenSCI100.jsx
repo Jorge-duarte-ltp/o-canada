@@ -16,7 +16,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const { curp } = state;
   const [preguntas, setPreguntas] = useState(AleatoryArray(Data));
   const [data, setData] = useState([]);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState([]);
   const initialValues = { examen: "smi100", respuestas: [] };
@@ -37,9 +37,12 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
       }));
 
       setCurrent([temp.pop()]);
-      setTimeLeft(900);
+
+      setCount(1);
 
       setData(temp);
+
+      setTimeLeft(900);
     }, 2000);
 
     return () => {
@@ -51,15 +54,21 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   }, []);
 
   useEffect(() => {
+
     if (show) {
+    
       if (!timeLeft) {
+    
         guardar();
+    
       }
 
       setShowOnBeforeUnload({ ...showOnBeforeUnload, accion: guardar });
 
       const interval = setInterval(() => {
+        
         setTimeLeft(timeLeft - 1);
+      
       }, 1000);
 
       return () => clearInterval(interval);
