@@ -165,7 +165,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
     respuestas.forEach((respuesta) => {
       const temp = preguntas.find(item => item.id === respuesta.id);
       const answer = temp.answers.find((item) => item.value === respuesta.value);
-      suma = suma + (answer.correcta ? 1 : 0);
+      suma = suma + (answer?.correcta ? 1 : 0);
       object.resultado.push({ [`pregunta_${respuesta.id}`]: respuesta.value });
     });
 

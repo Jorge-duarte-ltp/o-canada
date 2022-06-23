@@ -21,10 +21,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const [current, setCurrent] = useState([]);
   const initialValues = { examen: "smi100", respuestas: [] };
   const [timeLeft, setTimeLeft] = useState(900);
-  const [showOnBeforeUnload, setShowOnBeforeUnload] = useExitPrompt({
-    showExitPrompt: false,
-    accion: null,
-  });
+  const [showOnBeforeUnload, setShowOnBeforeUnload] = useExitPrompt({});
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -38,11 +35,18 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
 
       setCurrent([temp.pop()]);
 
+      setShowOnBeforeUnload({
+        showExitPrompt: false,
+        accion: null,
+      });
+
       setCount(1);
 
       setData(temp);
 
       setTimeLeft(900);
+
+
     }, 2000);
 
     return () => {
@@ -76,6 +80,11 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
 
     // eslint-disable-next-line
   }, [timeLeft, show]);
+
+  const beforeUnloadListener = (event) => {
+    event.preventDefault();
+    return event.returnValue = "Are you sure you want to exit?";
+  };
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -154,14 +163,16 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const guardar = () => {
     const { examen, respuestas } = formik.values;
 
+    console.log(examen, respuestas);
+
     let suma = 0;
 
     const object = { curp, examen, resultado: [] };
 
     respuestas.forEach((respuesta) => {
-      const temp = preguntas.find(item => item.id === respuesta.id);
-      const answer = temp.answers.find((item) => item.value === respuesta.value);
-      suma = suma + (answer.correcta ? 1 : 0);
+      const temp = preguntas.find(item => item.id === respuesta.id).answers;
+      const answer = temp.find((item) => item.value === respuesta.value);
+      suma = suma + (answer?.correcta ? 1 : 0);
       object.resultado.push({ [`pregunta_${respuesta.id}`]: respuesta.value });
     });
 
@@ -223,6 +234,12 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
     });
   };
 
+  const onbeforeunload = () => {
+    if (show) {
+      guardar();
+    }
+  }
+
   const handleShow = () => {
 
     Swal.fire({
@@ -245,7 +262,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
 
     setShowOnBeforeUnload({
       ...showOnBeforeUnload,
-      showExitPrompt: !showOnBeforeUnload.showExitPrompt
+      showExitPrompt: !showOnBeforeUnload.showExitPrompt,
     });
 
   };

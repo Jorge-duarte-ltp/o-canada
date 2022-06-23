@@ -200,7 +200,7 @@ const S1 = (props) => {
         />
       </div>
       <div className="col-12 col-md-6 imagen">
-        <img src={state.fotografia ? `${process.env.REACT_APP_BACKEND_FILES}${state.curp}/${state.fotografia}` : preview ? preview : DefaultUserProfile} alt="Fotografía" className="d-block rounded m-auto" width={200} height={200} />
+        <img src={preview ? preview : DefaultUserProfile} alt="Fotografía" className="d-block rounded m-auto" width={200} height={200} />
       </div>
       {/* Apellido Paterno */}
       <div className="col-6">

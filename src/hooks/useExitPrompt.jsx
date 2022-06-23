@@ -5,15 +5,22 @@ const initBeforeUnLoad = ({ showExitPrompt, accion }) => {
   window.onbeforeunload = (event) => {
 
     if (showExitPrompt) {
+
       const e = event || window.event;
+
       e.preventDefault();
+      
       if (e) {
+
         accion();
+
         e.returnValue = "";
+
       }
+
       return "";
     }
-  };
+  }
 };
 
 const useExitPrompt = (values) => {
