@@ -14,9 +14,10 @@ import moment from "moment";
 
 const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const { curp } = state;
+  const [preguntas, setPreguntas] = useState(AleatoryArray(Data));
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [current, setCurrent] = useState([]);
   const initialValues = { examen: "s_190", respuestas: [] };
   const [timeLeft, setTimeLeft] = useState(900);
@@ -26,15 +27,17 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
   });
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      loadFields(Data);
 
-      const temp = AleatoryArray(
-        Data.map((item) => ({
+    const timeout = setTimeout(() => {
+
+      loadFields(preguntas);
+
+      const temp = preguntas.map((item) => (
+        {
           ...item,
           answers: AleatoryArray(item.answers),
-        }))
-      );
+        }
+      ));
 
       setCurrent([temp.pop()]);
       setTimeLeft(900);
@@ -72,7 +75,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
     initialValues: initialValues,
     validationSchema: yup.object({
       examen: yup.string().default(() => "s_190"),
-      preguntas: yup.array().of(
+      respuestas: yup.array().of(
         yup.object().shape({
           id: yup
             .number("el id debe ser entero")
@@ -84,17 +87,18 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
     onSubmit: async ({ examen, respuestas }) => {
       let suma = 0;
 
-      const object = { curp, examen };
+      const object = { curp, examen, resultado: [] };
 
-      respuestas.forEach((respuesta, index) => {
-        const temp = Data[index].answers;
+      respuestas.forEach((respuesta) => {
+        const temp = preguntas.find(item => item.id === respuesta.id).answers;
         const answer = temp.find((item) => item.value === respuesta.value);
         suma = suma + (answer.correcta ? 1 : 0);
-        object[`pregunta_${respuesta.id}`] = respuesta.value;
+        object.resultado.push({ [`pregunta_${respuesta.id}`]: respuesta.value });
       });
 
+      object.resultado = JSON.stringify(object.resultado);
       object.aciertos = suma;
-      object.calificacion = Math.round((suma * 100) / size(Data));
+      object.calificacion = Math.round((suma * 100) / size(preguntas));
 
       await postExamen(object)
         .then(async ({ status, data: { title, message } }) => {
@@ -103,7 +107,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
               title: title,
               icon: "success",
               html: `${message} <br> Aciertos: ${object.aciertos}/${size(
-                Data
+                preguntas
               )} <br> Calificación: ${object.calificacion}`,
               allowOutsideClick: false,
             }).then((result) => {
@@ -141,23 +145,23 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
   });
 
   const guardar = () => {
+
     const { examen, respuestas } = formik.values;
 
     let suma = 0;
 
-    const object = { curp, examen };
+    const object = { curp, examen, resultado: [] };
 
-    respuestas.forEach((respuesta, index) => {
-      const temp = Data[index].answers;
-      const answer = temp.find((item) => item.value === respuesta.value);
-      suma = suma + (answer?.correcta ? 1 : 0);
-      object[`pregunta_${respuesta.id}`] = respuesta.value
-        ? respuesta.value
-        : null;
+    respuestas.forEach((respuesta) => {
+      const temp = preguntas.find(item => item.id === respuesta.id);
+      const answer = temp.answers.find((item) => item.value === respuesta.value);
+      suma = suma + (answer.correcta ? 1 : 0);
+      object.resultado.push({ [`pregunta_${respuesta.id}`]: respuesta.value });
     });
 
+    object.resultado = JSON.stringify(object.resultado);
     object.aciertos = suma;
-    object.calificacion = Math.round((suma * 100) / size(Data));
+    object.calificacion = Math.round((suma * 100) / size(preguntas));
 
     postExamen(object)
       .then(async ({ status, data: { title, message } }) => {
@@ -166,7 +170,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
             title: title,
             icon: "success",
             html: `${message} <br> Aciertos: ${object.aciertos}/${size(
-              Data
+              preguntas
             )} <br> Calificación: ${object.calificacion}`,
             allowOutsideClick: false,
           }).then((result) => {
@@ -239,7 +243,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
   };
 
   const handleNext = () => {
-    if (isEmpty(formik.values.respuestas[current[0].id - 1].value)) {
+    if (isEmpty(formik.values.respuestas[indexOf(current[0].id)].value)) {
       Swal.fire("Campo requerido", "debes seleccionar una respuesta", "error");
     } else {
       setCurrent([data.pop()]);
@@ -248,10 +252,14 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
   };
 
   const loadFields = (data) => {
-    for (let index = 0; index < data.length; index++) {
-      initialValues.respuestas.push({ id: index + 1, value: "" });
-    }
+    data.forEach(item => {
+      initialValues.respuestas.push({ id: item.id, value: "" });
+    });
   };
+
+  const indexOf = (id) => {
+    return formik.values.respuestas.findIndex(item => item.id === id);
+  }
 
   return (
     <div className="col-12 col-md-12 ml-0 pt-2">
@@ -280,16 +288,16 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
               <Question
                 key={question.id}
                 question={question}
-                name={`respuestas[${question.id - 1}].value`}
-                value={formik.values.respuestas[question.id - 1].value}
+                name={`respuestas[${indexOf(question.id)}].value`}
+                value={formik.values.respuestas[indexOf(question.id)].value}
                 onChange={formik.handleChange}
               />
             ))}
             <div className="col-12 col-mb-12">
               <label className="float-sm-left">
-                Pregunta {count}/{size(Data)}
+                Pregunta {count}/{size(preguntas)}
               </label>
-              {count === size(Data) ? (
+              {count === size(preguntas) ? (
                 <Button
                   variant="outline-secondary float-sm-right border-0"
                   type="submit"
@@ -301,6 +309,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
                   variant="outline-secondary float-sm-right border-0"
                   onClick={handleNext}
                   type="button"
+                  disabled={current.length !== 1}
                 >
                   Continuar
                 </Button>

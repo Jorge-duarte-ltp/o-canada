@@ -954,6 +954,666 @@ const Data = [
                 "correcta": true
             }
         ]
+    },
+    {
+        "id": 22,
+        "nombre": "Mando es:",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "La habilidad de controlar el intercambio de información dentro y entre las organizaciones involucradas en el incidente",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "La atribucción de dirigir, ordenar y/o controlar recursos",
+                "value": "b",
+                "correcta": true
+            },
+            {
+                "id": 3,
+                "nombre": "Basado en el número de individuos o recursos que un solo supervisor puede menejar eficientemente durante un incidente.",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Asumido por el individuo con el rango laboral más alto en el sitio del incidente sin importar la experiecia o nivel de entrenamiento",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "nombre": "¿Cuál función del SCI registra tiempos, la contabilidad y compras de los artículos necesarios?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Operaciones",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Comando de Incidente",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Planificación",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Finanzas/Administración",
+                "value": "d",
+                "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "nombre": "¿Quién tiene la responsabilidad total de manejar el incidente en el sitio?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Comandante (s) del Incidente",
+                "value": "a",
+                "correcta": true
+            },
+            {
+                "id": 2,
+                "nombre": "Ejecutivo de la Dependencia/institución",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Manejador del Centro de Operaciones de Emergencia",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Jefe de la Sección de Operaciones",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "nombre": "¿Qué significan las siglas SCI en el Programa de Manejo del Fuego?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Sistema de Calificación Integral",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Sistema de Comando de Incidentes",
+                "value": "b",
+                "correcta": true
+            },
+            {
+                "id": 3,
+                "nombre": "Sistema de Comunicación Internacional",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Sistema de Certificación de Incidentes",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "nombre": "¿Cuál es el rango óptimo de Alcance de Control?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "1 a 5",
+                "value": "a",
+                "correcta": true
+            },
+            {
+                "id": 2,
+                "nombre": "1 a 3",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "1 a 7",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "21 a 10",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "nombre": "¿Qué significa desmovilización?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Recibir la indicación de llegar al puesto de mando después de combatir el incendio forestal",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Recibir la orden de desmovilización a sus secciones de trabajo",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Regreso ordenado, seguro y eficiente de un recurso en un incidente, evento, operativo, emergencia o desastre, a su ubicación y estado original",
+                "value": "c",
+                "correcta": true
+            },
+            {
+                "id": 4,
+                "nombre": "Ninguna",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "nombre": "¿Cuál función del SCI registra tiempos, la contabilidad y compras de los artículos necesarios?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "El Plan que es mantenido para responder a una amplia variedad de peligros potenciales",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Revisión posterior a la acción del combate del incendio forestal",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Un Plan desarrollado para restaurar el área o comunidad afectada",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "El Plan oral o escrito de los objetivos, estrategias operacionales, tácticas, recursos y estructura organizacional a cumplir durante un periodo operacional para controlar un incidente, evento u operativo",
+                "value": "d",
+                "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "nombre": "¿En qué formato del PAI puede encontrar la lista de asignaciones tácticas del incidente para el periodo operacional?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "SCI-204",
+                "value": "a",
+                "correcta": true
+            },
+            {
+                "id": 2,
+                "nombre": "SCI-202",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "SCI-205",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "SCI-206",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "nombre": "¿Qué es la transferencia de mando?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "El proceso de trasladar la responsabilidad de mando del incidente de un Comandante del Incidente a otro",
+                "value": "a",
+                "correcta": true
+            },
+            {
+                "id": 2,
+                "nombre": "Trasladar al personal de combate a su División de trabajo",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Trasladar el Puesto de Comando a otro lugar de trabajo",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Ninguna",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "nombre": "La cadena de mando se refiere a:",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Dar indicaciones sobre asignaciones recibidas por el oficial de información pública",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Seguir la línea formal de comunicación para recibir instrucciones de su supervisor",
+                "value": "b",
+                "correcta": true
+            },
+            {
+                "id": 3,
+                "nombre": "Recibir instrucciones y asignaciones de la brigada que trabaja junto a su brigada",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "La Revisión Después de la Acción al término de una asignación",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "nombre": "Al momento de establecer los objetivos para atender un incidente, ¿Cuál es la primera prioridad?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Que el incendio afecte la menor superficie posible",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Proteger las propiedades",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Controlar y liquidar el incendio lo antes posible",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "La seguridad del personal",
+                "value": "d",
+                "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "nombre": "¿Qué es una helibase?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Sitio seguro para instalación de campamentos de combatientes",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Es el lugar más temporal en el incidente, donde los helicópteros pueden aterrizar y despegar de manera segura para trasladar combatientes y suministros",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Es la ubicación desde la que los helicópteros se centran para llevar a cabo las operaciones. Aéreas y pueden recibir mantenimiento",
+                "value": "c",
+                "correcta": true
+            },
+            {
+                "id": 4,
+                "nombre": "Es la ubicación desde donde las funciones administrativas y logísticas primarias son coordinadas y administradas",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "nombre": "¿Qué incluye una sesión informativa?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Evaluación de la situación actual",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Identificación de sus responsabilidades específicas del trabajo",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Las instrucciones procedentes para la obtención de recursos necesarios",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Todas las opciones son correctas",
+                "value": "d",
+                "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "nombre": "¿En qué formato del PAI puede encontrar los Objetivos del incidente para el periodo operacional?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "SCI-204",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "SCI-202",
+                "value": "b",
+                "correcta": true
+            },
+            {
+                "id": 3,
+                "nombre": "SCI-214",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "SCI-206",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "nombre": "Seleccione la opción VERDADERA",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "El alcance de control puede ser extendido más allá de 10 para asegurar que más recursos puedan ser desplegados en incidentes más complejos y grandes",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "El alcance de control debe ser establecido solo en incidentes complejos o en aquellos con una duración de más de tres periodos operacionales",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "El alcance de control consiste en organizar los recursos en Equipos, Fuerzas, Divisiones, Ramas, o Secciones",
+                "value": "c",
+                "correcta": true
+            },
+            {
+                "id": 4,
+                "nombre": "El alcance de control es un factor menor de preocupación para los incidentes que son resueltos dentro el periodo operacional inicial",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "nombre": "¿En qué formato del PAI puede encontrar el Plan Médico del incidente para el periodo operacional?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "SCI-204",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "SCI-202",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "SCI-214",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "SCI-206",
+                "value": "d",
+                "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "nombre": "¿Quién generalmente facilita la Sesión Informativa del periodo operacional?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Oficial de Información Pública",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Jefe de la Sección de Logística",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Jefe de la Sección de Operaciones",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Jefe de la Sección de Planificación",
+                "value": "d",
+                "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "nombre": "¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "SCI-204",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "SCI-202",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "SCI-214",
+                "value": "c",
+                "correcta": true
+            },
+            {
+                "id": 4,
+                "nombre": "SCI-206",
+                "value": "d",
+                "correcta": false
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "nombre": "Un individuo asumiendo el papel de Comandante de Incidente Auxiliar debe:",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Ser un representante de la jurisdicción del incidente",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "Tener previa experiencia en predecir cargas de trabajo y necesidades potenciales de personal",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "Ha funcionado como un Director de Rama dentro la organización actual",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Ser igualmente capacitado para asumir el papel de Comandante de Incidente",
+                "value": "d",
+                "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "nombre": "¿Quién es responsable de determinar las tácticas apropiadas para un incidente?",
+        "image": null,
+        "width": "512px",
+        "height": "512px",
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "El Oficial de Seguridad",
+                "value": "a",
+                "correcta": false
+            },
+            {
+                "id": 2,
+                "nombre": "La Sección de Planificación",
+                "value": "b",
+                "correcta": false
+            },
+            {
+                "id": 3,
+                "nombre": "La Sección de Operaciones",
+                "value": "c",
+                "correcta": true
+            },
+            {
+                "id": 4,
+                "nombre": "El Comandante de Incidente Auxiliar",
+                "value": "d",
+                "correcta": false
+            }
+        ]
     }
 ]
 

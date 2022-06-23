@@ -11,6 +11,7 @@ import Question from "../../../singles/Question";
 
 const ExamenOSEP = ({ setState, state }) => {
   const { curp } = state;
+  const [preguntas, setPreguntas] = useState(AleatoryArray(Data));
   const [data, setData] = useState([]);
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(false);
@@ -18,15 +19,15 @@ const ExamenOSEP = ({ setState, state }) => {
   const initialValues = { examen: "eval_osep", respuestas: [] };
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      loadFields(Data);
 
-      const temp = AleatoryArray(
-        Data.map((item) => ({
-          ...item,
-          answers: AleatoryArray(item.answers),
-        }))
-      );
+    const timeout = setTimeout(() => {
+
+      loadFields(preguntas);
+
+      const temp = preguntas.map((item) => ({
+        ...item,
+        answers: AleatoryArray(item.answers),
+      }));
 
       setCurrent([temp.pop()]);
 
@@ -44,7 +45,7 @@ const ExamenOSEP = ({ setState, state }) => {
     initialValues: initialValues,
     validationSchema: yup.object({
       examen: yup.string().default(() => "eval_osep"),
-      preguntas: yup.array().of(
+      respuestas: yup.array().of(
         yup.object().shape({
           id: yup
             .number("el id debe ser entero")
@@ -56,17 +57,19 @@ const ExamenOSEP = ({ setState, state }) => {
     onSubmit: async ({ examen, respuestas }) => {
       let suma = 0;
 
-      const object = { curp, examen };
+      const object = { curp, examen, resultado: [] };
 
       respuestas.forEach((respuesta, index) => {
-        const temp = Data[index].answers;
+        const temp = preguntas.find(item => item.id === respuesta.id).answers;
         const answer = temp.find((item) => item.value === respuesta.value);
         suma = suma + (answer.correcta ? 1 : 0);
-        object[`pregunta_${respuesta.id}`] = respuesta.value;
+        object.resultado.push({ [`pregunta_${respuesta.id}`]: respuesta.value });
       });
 
+      object.resultado = JSON.stringify(object.resultado);
       object.aciertos = suma;
-      object.calificacion = Math.round((suma * 100) / size(Data));
+      object.calificacion = Math.round((suma * 100) / size(preguntas));
+
 
       await postExamen(object)
         .then(async ({ status, data: { title, message } }) => {
@@ -105,7 +108,7 @@ const ExamenOSEP = ({ setState, state }) => {
   };
 
   const handleNext = () => {
-    if (isEmpty(formik.values.respuestas[current[0].id - 1].value)) {
+    if (isEmpty(formik.values.respuestas[indexOf(current[0].id)].value)) {
       Swal.fire("Campo requerido", "debes seleccionar una respuesta", "error");
     } else {
       setCurrent([data.pop()]);
@@ -118,6 +121,10 @@ const ExamenOSEP = ({ setState, state }) => {
       initialValues.respuestas.push({ id: index + 1, value: "" });
     }
   };
+
+  const indexOf = (id) => {
+    return formik.values.respuestas.findIndex(item => item.id === id);
+  }
 
   return (
     <div className="col-12 col-md-12 ml-0 pt-2">
@@ -141,16 +148,16 @@ const ExamenOSEP = ({ setState, state }) => {
               <Question
                 key={question.id}
                 question={question}
-                name={`respuestas[${question.id - 1}].value`}
-                value={formik.values.respuestas[question.id - 1].value}
+                name={`respuestas[${indexOf(question.id)}].value`}
+                value={formik.values.respuestas[indexOf(question.id)].value}
                 onChange={formik.handleChange}
               />
             ))}
             <div className="col-12 col-mb-12">
               <label className="float-sm-left">
-                Pregunta {count}/{size(Data)}
+                Pregunta {count}/{size(preguntas)}
               </label>
-              {count === size(Data) ? (
+              {count === size(preguntas) ? (
                 <Button
                   variant="outline-secondary float-sm-right border-0"
                   type="submit"
