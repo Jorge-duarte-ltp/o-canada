@@ -26,6 +26,7 @@ const ExamenS190 = ({ state, setState, hidden, setIsCompleteExam }) => {
     accion: null,
   });
 
+
   useEffect(() => {
 
     const timeout = setTimeout(() => {

@@ -303,13 +303,13 @@ const Data = [
             {
                 "id": 10,
                 "nombre": "Helibase",
-                "value": "i",
+                "value": "j",
                 "correcta": false
             },
             {
                 "id": 11,
                 "nombre": "Helipista",
-                "value": "j",
+                "value": "k",
                 "correcta": false
             }
         ]
@@ -379,13 +379,13 @@ const Data = [
             {
                 "id": 10,
                 "nombre": "Helibase",
-                "value": "i",
+                "value": "j",
                 "correcta": false
             },
             {
                 "id": 11,
                 "nombre": "Helipista",
-                "value": "j",
+                "value": "k",
                 "correcta": false
             }
         ]
@@ -455,13 +455,13 @@ const Data = [
             {
                 "id": 10,
                 "nombre": "Helibase",
-                "value": "i",
+                "value": "j",
                 "correcta": false
             },
             {
                 "id": 11,
                 "nombre": "Helipista",
-                "value": "j",
+                "value": "k",
                 "correcta": false
             }
         ]
@@ -531,13 +531,13 @@ const Data = [
             {
                 "id": 10,
                 "nombre": "Helibase",
-                "value": "i",
+                "value": "j",
                 "correcta": false
             },
             {
                 "id": 11,
                 "nombre": "Helipista",
-                "value": "j",
+                "value": "k",
                 "correcta": false
             }
         ]
@@ -607,13 +607,13 @@ const Data = [
             {
                 "id": 10,
                 "nombre": "Helibase",
-                "value": "i",
+                "value": "j",
                 "correcta": true
             },
             {
                 "id": 11,
                 "nombre": "Helipista",
-                "value": "j",
+                "value": "k",
                 "correcta": false
             }
         ]
@@ -683,13 +683,13 @@ const Data = [
             {
                 "id": 10,
                 "nombre": "Helibase",
-                "value": "i",
+                "value": "j",
                 "correcta": false
             },
             {
                 "id": 11,
                 "nombre": "Helipista",
-                "value": "j",
+                "value": "k",
                 "correcta": true
             }
         ]

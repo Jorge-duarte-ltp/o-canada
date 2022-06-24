@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+
+document.onkeydown = (event) => {
+  if (event && (event.key === 'Escape')) {
+    return false;
+  }
+};
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

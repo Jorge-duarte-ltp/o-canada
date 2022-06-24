@@ -21,7 +21,6 @@ import Cierre from './components/cierre/Cierre';
 const cierre = true;
 
 
-
 const App = () => {
   return (
     <div>
