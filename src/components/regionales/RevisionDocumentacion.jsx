@@ -109,6 +109,7 @@ const RevisionDocumentacion = () => {
       getCandidatos();
     }
   };
+
   const getCandidatos = async () => {
     const { user } = sessContext.login;
     const url = `${API_REQUEST}revision_region`;
@@ -241,6 +242,15 @@ const RevisionDocumentacion = () => {
       case "evaluacion_disponibilidad":
         return "Evaluación de Disponibilidad";
 
+      case "certificado_covid":
+        return "Cert. Covid-19";
+
+      case "certificado_covid_refuerzo":
+        return "Cert. Covid-19 Refuerzo";
+
+      case "constancia_operaciones_aereas":
+        return "Cost. Operaciones Aéreas";
+
       default:
         return "check= " + item;
     }
@@ -327,6 +337,12 @@ const RevisionDocumentacion = () => {
     {
       name: "Estado",
       selector: "nom_ent",
+      wrap: true,
+      sortable: true,
+    },
+    {
+      name: "Municipio",
+      selector: "nom_mun",
       wrap: true,
       sortable: true,
     },

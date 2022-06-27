@@ -16,7 +16,7 @@ const Dashboard = ({ userPorfile }) => {
   const [showSection, setShowSection] = useState({
     regionales: false,
     estatales: false,
-    mesa_ayuda: true,
+    mesa_ayuda: false,
     disponibilidad: false,
     brigadas: false,
     manifiesto: false,
