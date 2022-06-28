@@ -6,12 +6,12 @@ import { FcAssistant, FcVoicePresentation } from 'react-icons/fc';
 const DatosAyuda = ({ setShow, show }) => {
 
     const contactosIncendios = [
-        { region: 'Noroeste', nombre: 'Rodrigo Contreras Armenta', telefono: ' 01(662) 260 49 77   ||   01 (662) 262 09 18 ', celular: '045(662) 299 75 66', extension: '7100', correo: 'rcontreras@conafor.gob.mx' },
-        { region: 'Norte', nombre: 'Oscar René Domínguez Moreno', telefono: '01(618) 827 98 33', celular: '045(618) 176 26 91', extension: '6850', correo: 'odominguez@conafor.gob.mx' },
-        { region: 'Noreste', nombre: 'Jorge Alberto Serna Zamarron', telefono: '01(844) 488 35 00   ||   01(844) 488 16 68', celular: '045(444) 140 88 88', extension: '6900', correo: 'jorge.serna@conafor.gob.mx' },
-        { region: 'Occidente', nombre: 'Martín Delgadillo Rosas', telefono: '01(341) 413 64 01   ||   01(341) 413 64 78', celular: '045(311) 107 71 16', extension: '6800', correo: 'mdelgadillo@conafor.gob.mx' },
-        { region: 'Centro', nombre: 'Ismael Solórzano Ibarra', telefono: '01(222) 291 43 77   ||   01(222) 291 46 66', celular: '045(222) 564 66 26', extension: '6950', correo: 'isolorzano@conafor.gob.mx' },
-        { region: 'Sureste', nombre: 'Pánfilo Fernández Flores', telefono: '01(981) 811 4417', celular: '045(981) 207 59 00   ||   01(981) 817 24 98', extension: '6750', correo: 'pfernandez@conafor.gob.mx' },
+        { region: 'Noroeste', nombre: 'Rodrigo Contreras Armenta', telefono: '(662) 260 4977   ||   (662) 262 0918 ', celular: '(662) 299 7566', extension: '9780', correo: 'rcontreras@conafor.gob.mx' },
+        { region: 'Norte', nombre: 'Oscar René Domínguez Moreno', telefono: '(618) 827 9833', celular: '(618) 176 2691', extension: '9790', correo: 'odominguez@conafor.gob.mx' },
+        { region: 'Noreste', nombre: 'Jorge Alberto Serna Zamarron', telefono: '(844) 488 3500   ||   (844) 488 1668', celular: '(844) 505 9093', extension: '9770', correo: 'jorge.serna@conafor.gob.mx' },
+        { region: 'Occidente', nombre: 'Juvenal Rodríguez Villa', telefono: '(341) 413 6401   ||   (341) 413 6478', celular: '(311) 102 4341', extension: '9760', correo: 'juvenal.rodriguez@conafor.gob.mx' },
+        { region: 'Centro', nombre: 'Ismael Solórzano Ibarra', telefono: '(222) 291 4377   ||   (222) 291 4666', celular: '(222) 564 6626', extension: '9740', correo: 'isolorzano@conafor.gob.mx' },
+        { region: 'Sureste', nombre: 'Pánfilo Fernández Flores', telefono: '(981) 811 4417', celular: '(981) 207 5900   ||   (981) 817 2498', extension: '9750', correo: 'pfernandez@conafor.gob.mx' },
     ]
     return (
         <Modal show={show} onHide={() => setShow(false)}>

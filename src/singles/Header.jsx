@@ -52,7 +52,7 @@ const Header = ({ cierre }) => {
         </div>
       </nav>
       {/* variable para cierre de proyecto */}
-      {cierre ? null : (
+      {cierre && (
         <div className="text-right">
           <Button
             variant="primary"
