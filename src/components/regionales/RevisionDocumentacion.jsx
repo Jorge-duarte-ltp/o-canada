@@ -236,7 +236,10 @@ const RevisionDocumentacion = () => {
       case "constancia_curso_s_211":
         return "Constancia Presentada 211";
 
-      case "evaluacion_desempenio_canada2022":
+      case "evaluacion_desempenio_california2020":
+        return "Evaluación de Desempeño 2020";
+
+      case "evaluacion_desempenio_canada2021":
         return "Evaluación de Desempeño 2021";
 
       case "evaluacion_disponibilidad":

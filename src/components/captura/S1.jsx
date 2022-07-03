@@ -124,7 +124,7 @@ const S1 = (props) => {
 
   const handleChange = (input) => {
 
-    const object = new Object({ region: "", aeropuerto: "" });
+    const object = { region: "", aeropuerto: "" };
 
     estados.forEach((element) => {
       if (input.target.value === element.cve_ent) {
