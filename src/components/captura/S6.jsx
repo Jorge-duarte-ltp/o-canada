@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import SelectSiNo from "../../singles/SelectSiNo";
 import { size } from "lodash";

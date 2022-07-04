@@ -28,7 +28,6 @@ const S9_S10View = (props) => {
   const [sectionGPSMark, setSectionGPSMark] = useState(true);
   const [sectionEPP, setSectionEPP] = useState(true);
   const [sectionPruebaFisica, setSectionPruebaFisica] = useState(true);
-
   const [evaluaciones, setEvaluaciones] = useState(props.infoCandidato);
 
   const setInfo = (input) => {
@@ -226,7 +225,7 @@ const S9_S10View = (props) => {
       pruebasCandidato: evaluaciones,
     });
 
-    return () => {}
+    return () => { }
   }, [evaluaciones]);
 
   return (
@@ -252,9 +251,8 @@ const S9_S10View = (props) => {
         <div className="col-12 col-md-12">
           <label className="control-label pt-2">Nombre del evaluador</label>
           <input
-            className={`form-control ${
-              evaluaciones.nombre_evaluador ? null : "myInput"
-            }`}
+            className={`form-control ${evaluaciones.nombre_evaluador ? null : "myInput"
+              }`}
             disabled
             name="nombre_evaluador"
             value={evaluaciones.nombre_evaluador}
@@ -269,9 +267,8 @@ const S9_S10View = (props) => {
         <div className="col-12 col-md-4">
           <label className="control-label pt-2">Peso comprobado</label>
           <InputNumber
-            className={`form-control ${
-              evaluaciones.peso_verificado ? null : "myInput"
-            }`}
+            className={`form-control ${evaluaciones.peso_verificado ? null : "myInput"
+              }`}
             disabled
             name="peso_verificado"
             limitLength={5}
@@ -302,9 +299,8 @@ const S9_S10View = (props) => {
         <div className="col-12 col-md-4">
           <label className="control-label pt-2">Altura comprobado (cm.)</label>
           <InputNumber
-            className={`form-control ${
-              evaluaciones.altura_verificada ? null : "myInput"
-            }`}
+            className={`form-control ${evaluaciones.altura_verificada ? null : "myInput"
+              }`}
             disabled
             name="altura_verificada"
             limitLength={3}
@@ -322,7 +318,7 @@ const S9_S10View = (props) => {
             value={
               evaluaciones.altura_verificada
                 ? Math.round(evaluaciones.altura_verificada * 0.0328084 * 10) /
-                  10
+                10
                 : ""
             }
             type="number"
@@ -337,9 +333,8 @@ const S9_S10View = (props) => {
           <label className="control-label pt-2">IMC verificado</label>
           <input
             disabled
-            className={`form-control ${
-              evaluaciones.imc_verificado ? null : "myInput"
-            }`}
+            className={`form-control ${evaluaciones.imc_verificado ? null : "myInput"
+              }`}
             name="imc_verificado"
             type="text"
             value={evaluaciones.imc_verificado}
@@ -358,9 +353,8 @@ const S9_S10View = (props) => {
                 prueba.
               </label>
               <InputNumber
-                className={`form-control ${
-                  evaluaciones.altura_sobre_niv_mar ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.altura_sobre_niv_mar ? null : "myInput"
+                  }`}
                 disabled
                 name="altura_sobre_niv_mar"
                 limitLength={4}
@@ -380,9 +374,8 @@ const S9_S10View = (props) => {
               </label>
               <input
                 disabled
-                className={`form-control ${
-                  evaluaciones.tiempo_req_mas_seg ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.tiempo_req_mas_seg ? null : "myInput"
+                  }`}
                 name="tiempo_req_mas_seg"
                 type="text"
                 value={`${evaluaciones.tiempo_req_max_min}' ${evaluaciones.tiempo_req_mas_seg}''`}
@@ -397,9 +390,8 @@ const S9_S10View = (props) => {
               <InputGroup className="mb-2">
                 <InputNumber
                   disabled
-                  className={`form-control ${
-                    evaluaciones.minutos_prueba_trabajo_arduo ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.minutos_prueba_trabajo_arduo ? null : "myInput"
+                    }`}
                   placeholder="Minutos..."
                   limitLength={2}
                   min={0}
@@ -412,11 +404,10 @@ const S9_S10View = (props) => {
                   <InputGroup.Text>'</InputGroup.Text>
                 </InputGroup.Prepend>
                 <InputNumber
-                  className={`form-control ${
-                    evaluaciones.segundos_prueba_trabajo_arduo
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.segundos_prueba_trabajo_arduo
+                    ? null
+                    : "myInput"
+                    }`}
                   disabled
                   placeholder="Segundos..."
                   limitLength={2}
@@ -436,9 +427,8 @@ const S9_S10View = (props) => {
               <label className="control-label pt-2">Puntuación estimada.</label>
               <InputNumber
                 disabled
-                className={`form-control ${
-                  evaluaciones.puntuacion_estimada ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.puntuacion_estimada ? null : "myInput"
+                  }`}
                 name="puntuacion_estimada"
                 value={evaluaciones.puntuacion_estimada}
                 // onChange={setInfo}
@@ -450,9 +440,8 @@ const S9_S10View = (props) => {
               <label className="control-label pt-2">Prueba:</label>
               <input
                 disabled
-                className={`form-control ${
-                  evaluaciones.prueba ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.prueba ? null : "myInput"
+                  }`}
                 name="prueba"
                 // onChange={setInfo}
                 value={evaluaciones.prueba}
@@ -481,9 +470,8 @@ const S9_S10View = (props) => {
                 Nombre del evaluador de la prueba de la carrera
               </label>
               <input
-                className={`form-control ${
-                  evaluaciones.nombre_evaluador_carrera ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.nombre_evaluador_carrera ? null : "myInput"
+                  }`}
                 disabled
                 name="nombre_evaluador_carrera"
                 value={evaluaciones.nombre_evaluador_carrera}
@@ -500,9 +488,8 @@ const S9_S10View = (props) => {
                 prueba.
               </label>
               <InputNumber
-                className={`form-control ${
-                  evaluaciones.altura_sobre_niv_mar_carrera ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.altura_sobre_niv_mar_carrera ? null : "myInput"
+                  }`}
                 disabled
                 name="altura_sobre_niv_mar_carrera"
                 limitLength={4}
@@ -521,11 +508,10 @@ const S9_S10View = (props) => {
               </label>
               <InputGroup className="mb-2">
                 <InputNumber
-                  className={`form-control ${
-                    evaluaciones.minutos_prueba_trabajo_carrera
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.minutos_prueba_trabajo_carrera
+                    ? null
+                    : "myInput"
+                    }`}
                   disabled
                   placeholder="Minutos..."
                   limitLength={2}
@@ -539,11 +525,10 @@ const S9_S10View = (props) => {
                   <InputGroup.Text>'</InputGroup.Text>
                 </InputGroup.Prepend>
                 <InputNumber
-                  className={`form-control ${
-                    evaluaciones.segundos_prueba_trabajo_carrera
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.segundos_prueba_trabajo_carrera
+                    ? null
+                    : "myInput"
+                    }`}
                   disabled
                   placeholder="Segundos..."
                   limitLength={2}
@@ -583,16 +568,14 @@ const S9_S10View = (props) => {
               {!props.enabled ? (
                 <input
                   disabled
-                  className={`form-control ${
-                    evaluaciones.presento_equipo ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.presento_equipo ? null : "myInput"
+                    }`}
                   value={evaluaciones.presento_equipo === "1" ? "SI" : "NO"}
                 />
               ) : (
                 <SelectSiNo
-                  className={`form-control ${
-                    evaluaciones.presento_equipo ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.presento_equipo ? null : "myInput"
+                    }`}
                   disabled
                   name="presento_equipo"
                   defaultValue={evaluaciones.presento_equipo}
@@ -603,12 +586,12 @@ const S9_S10View = (props) => {
             </div>
           </React.Fragment>
         )}
-        {/* SECCION GPS-MARK*/}
+        {/* SECCION GPS, Avenza Maps Motobomba MARK III y Motosierra*/}
         {sectionGPSMark && (
           <React.Fragment>
             {/* ENCABEZADO */}
             <div className="col-12 col-md-12 center-text pt-5">
-              <h2>GPS y Bomba MARK III</h2>
+              <h2>GPS, Avenza Maps Motobomba MARK III y Motosierra</h2>
             </div>
             {/* Nombre del evaluador prueba GPS */}
             <div className="col-12 col-md-12">
@@ -617,9 +600,8 @@ const S9_S10View = (props) => {
               </label>
               <input
                 disabled
-                className={`form-control ${
-                  evaluaciones.nombre_evaluador_prueba_gps ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.nombre_evaluador_prueba_gps ? null : "myInput"
+                  }`}
                 type="text"
                 value={evaluaciones.nombre_evaluador_prueba_gps}
                 name="nombre_evaluador_prueba_gps"
@@ -646,9 +628,8 @@ const S9_S10View = (props) => {
               </label>
               <InputNumber
                 disabled
-                className={`form-control ${
-                  evaluaciones.resultado_eval_presencial_gps ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.resultado_eval_presencial_gps ? null : "myInput"
+                  }`}
                 limitLength={1}
                 value={evaluaciones.resultado_eval_presencial_gps}
                 name="resultado_eval_presencial_gps"
@@ -662,13 +643,73 @@ const S9_S10View = (props) => {
               </label>
               <input
                 disabled
-                className={`form-control ${
-                  evaluaciones.porcentaje_gps ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.porcentaje_gps ? null : "myInput"
+                  }`}
                 value={evaluaciones.porcentaje_gps}
                 name="porcentaje_gps"
                 // onChange={setInfo}
                 placeholder="calculo porcentaje de la evaluación presencial de GPS..."
+              />
+            </div>
+            {/*Nombre del evaluador prueba Avenza Maps */}
+            <div className="col-12 col-md-12">
+              <label className="control-label pt-2">
+                Nombre del evaluador prueba Avenza Maps
+              </label>
+              <input
+                disabled
+                className={`form-control ${evaluaciones.nombre_evaluador_prueba_avenza_maps ? null : "myInput"
+                  }`}
+                type="text"
+                value={evaluaciones.nombre_evaluador_prueba_avenza_maps}
+                name="nombre_evaluador_prueba_avenza_maps"
+                onChange={setInfo}
+                onChangeCapture={ToMayus}
+                placeholder="Ingrese Nombre del evaluador prueba Avenza Maps..."
+              />
+            </div>
+            {/* Formato de evaluación habilidad y competencia en el uso de Avenza Maps */}
+            <div className="col-12 pt-2 col-md-12">
+              <a
+                className="btn btn-dark"
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_avenza_maps.pdf`}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Formato de evaluación habilidad y competencia en el uso de Avenza Maps
+              </a>
+            </div>
+            {/* Resultado de la evaluación presencial de Avenza Maps*/}
+            <div className="col-12 col-md-6">
+              <label className="control-label pt-2">
+                Resultado de la evaluación presencial de Avenza Maps
+              </label>
+              <InputNumber
+                disabled
+                className={`form-control ${evaluaciones.resultado_eval_presencial_avenza_maps
+                  ? null
+                  : "myInput"
+                  }`}
+                limitLength={1}
+                min={0}
+                max={8}
+                value={evaluaciones.resultado_eval_presencial_avenza_maps}
+                name="resultado_eval_presencial_avenza_maps"
+                placeholder="Ingrese Resultado de la evaluación presencial de Avenza Maps..."
+              />
+            </div>
+            {/* porcentaje Avenza*/}
+            <div className="col-12 col-md-6">
+              <label className="control-label pt-2">
+                % la evaluación presencial de Avenza Maps
+              </label>
+              <input
+                disabled
+                className={`form-control ${evaluaciones.porcentaje_avenza_maps ? null : "myInput"
+                  }`}
+                value={evaluaciones.porcentaje_avenza_maps}
+                name="porcentaje_avenza_maps"
+                placeholder="calculo porcentaje de la evaluación presencial de Avenza Maps..."
               />
             </div>
             {/* Nombre del evaluador prueba Mark III */}
@@ -678,11 +719,10 @@ const S9_S10View = (props) => {
               </label>
               <input
                 disabled
-                className={`form-control ${
-                  evaluaciones.nombre_evaluador_prueba_mark_III
-                    ? null
-                    : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.nombre_evaluador_prueba_mark_III
+                  ? null
+                  : "myInput"
+                  }`}
                 type="text"
                 // onChangeCapture={ToMayus}
                 value={evaluaciones.nombre_evaluador_prueba_mark_III}
@@ -710,11 +750,10 @@ const S9_S10View = (props) => {
               </label>
               <InputNumber
                 disabled
-                className={`form-control ${
-                  evaluaciones.resultado_eval_presencial_mark_III
-                    ? null
-                    : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.resultado_eval_presencial_mark_III
+                  ? null
+                  : "myInput"
+                  }`}
                 limitLength={2}
                 value={evaluaciones.resultado_eval_presencial_mark_III}
                 name="resultado_eval_presencial_mark_III"
@@ -729,9 +768,8 @@ const S9_S10View = (props) => {
               </label>
               <input
                 disabled
-                className={`form-control ${
-                  evaluaciones.porcentaje_mark_III ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.porcentaje_mark_III ? null : "myInput"
+                  }`}
                 value={evaluaciones.porcentaje_mark_III}
                 name="porcentaje_mark_III"
                 placeholder="calculo porcentaje de la evaluación presencial de mark_III..."
@@ -756,11 +794,10 @@ const S9_S10View = (props) => {
                 Nombre del evaluador prueba Motosierra
               </label>
               <input
-                className={`form-control ${
-                  evaluaciones.nombre_evaluador_prueba_motosierra
-                    ? null
-                    : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.nombre_evaluador_prueba_motosierra
+                  ? null
+                  : "myInput"
+                  }`}
                 disabled
                 type="text"
                 onChangeCapture={ToMayus}
@@ -777,11 +814,10 @@ const S9_S10View = (props) => {
                 Resultado de la evaluación presencial de Motosierra
               </label>
               <InputNumber
-                className={`form-control ${
-                  evaluaciones.resultado_eval_presencial_motosierra
-                    ? null
-                    : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.resultado_eval_presencial_motosierra
+                  ? null
+                  : "myInput"
+                  }`}
                 disabled
                 limitLength={2}
                 value={evaluaciones.resultado_eval_presencial_motosierra}
@@ -797,9 +833,8 @@ const S9_S10View = (props) => {
               </label>
               <input
                 disabled
-                className={`form-control ${
-                  evaluaciones.porcentaje_motosierra ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.porcentaje_motosierra ? null : "myInput"
+                  }`}
                 value={evaluaciones.porcentaje_motosierra}
                 name="porcentaje_motosierra"
                 onChange={setInfo}
@@ -823,9 +858,8 @@ const S9_S10View = (props) => {
               </label>
               <SelectSiNo
                 disabled
-                className={`form-control ${
-                  evaluaciones.presento_constancia_s_211 ? null : "myInput"
-                }`}
+                className={`form-control ${evaluaciones.presento_constancia_s_211 ? null : "myInput"
+                  }`}
                 type="text"
                 name="presento_constancia_s_211"
                 onChange={setInfo}

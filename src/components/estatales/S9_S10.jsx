@@ -92,6 +92,13 @@ const S9_S10 = (props) => {
       .resultado_eval_presencial_gps
       ? props.infoCandidato.resultado_eval_presencial_gps
       : null,
+    nombre_evaluador_prueba_avenza_maps: props.infoCandidato.nombre_evaluador_prueba_avenza_maps
+      ? props.infoCandidato.nombre_evaluador_prueba_avenza_maps
+      : null,
+    resultado_eval_presencial_avenza_maps: props.infoCandidato
+      .resultado_eval_presencial_avenza_maps
+      ? props.infoCandidato.resultado_eval_presencial_avenza_maps
+      : null,
     nombre_evaluador_prueba_mark_III: props.infoCandidato
       .nombre_evaluador_prueba_mark_III
       ? props.infoCandidato.nombre_evaluador_prueba_mark_III
@@ -117,7 +124,8 @@ const S9_S10 = (props) => {
       input.target.name === "formato_eval_habilidad_uso_motosierra" ||
       input.target.name === "constancia_curso_s_211" ||
       input.target.name === "formato_epp" ||
-      input.target.name === "formato_eval_habilidad_uso_gps"
+      input.target.name === "formato_eval_habilidad_uso_gps" ||
+      input.target.name === "formato_eval_habilidad_uso_avenza_maps"
     ) {
       if (input.target.files.length === 1) {
         setArchivos({
@@ -128,11 +136,11 @@ const S9_S10 = (props) => {
           )
             ? input.target.files
             : AlertError(
-                "Error:",
-                `El archivo con la extensión no esta permitido .${input.target.files[0].name
-                  .split(".")
-                  .pop()}`
-              ),
+              "Error:",
+              `El archivo con la extensión no esta permitido .${input.target.files[0].name
+                .split(".")
+                .pop()}`
+            ),
         });
       } else {
         setArchivos({
@@ -411,11 +419,14 @@ const S9_S10 = (props) => {
       segundos_prueba_trabajo_arduo,
       nombre_evaluador_prueba_gps,
       resultado_eval_presencial_gps,
+      nombre_evaluador_prueba_avenza_maps,
+      resultado_eval_presencial_avenza_maps,
       nombre_evaluador_prueba_mark_III,
       resultado_eval_presencial_mark_III,
       presento_constancia_s_211,
       presento_equipo,
       porcentaje_gps,
+      porcentaje_avenza_maps,
       porcentaje_mark_III,
       nombre_evaluador_carrera,
       altura_sobre_niv_mar_carrera,
@@ -429,6 +440,7 @@ const S9_S10 = (props) => {
     const {
       formato,
       formato_eval_habilidad_uso_gps,
+      formato_eval_habilidad_uso_avenza_maps,
       formato_eval_habilidad_uso_mark_III,
       formato_epp,
       formato_eval_habilidad_uso_motosierra,
@@ -562,6 +574,20 @@ const S9_S10 = (props) => {
           );
           return;
         }
+        if (!nombre_evaluador_prueba_avenza_maps) {
+          AlertError(
+            "ERROR",
+            "El campo NOMBRE EVALUADOR PRUEBA AVENZA MAPS debe ser completado "
+          );
+          return;
+        }
+        if (!resultado_eval_presencial_avenza_maps) {
+          AlertError(
+            "ERROR",
+            "El campo RESULTADO EVAL PRESENCIAL GPS debe ser completado "
+          );
+          return;
+        }
         if (!resultado_eval_presencial_motosierra) {
           AlertError(
             "ERROR",
@@ -576,6 +602,15 @@ const S9_S10 = (props) => {
           );
           return;
         }
+
+        if (!formato_eval_habilidad_uso_avenza_maps) {
+          AlertError(
+            "ERROR",
+            "El campo FORMATO EVAL HABILIDAD USO AVENZA MAPS debe ser completado "
+          );
+          return;
+        }
+
         if (!nombre_evaluador_prueba_mark_III) {
           AlertError(
             "ERROR",
@@ -598,6 +633,15 @@ const S9_S10 = (props) => {
           );
           return;
         }
+
+        if (!porcentaje_avenza_maps) {
+          AlertError(
+            "ERROR",
+            "El campo % EVAL PRESENCIAL AVENZA MAPS debe ser completado "
+          );
+          return;
+        }
+
         if (!porcentaje_mark_III) {
           AlertError(
             "ERROR",
@@ -672,6 +716,25 @@ const S9_S10 = (props) => {
     }
   };
 
+  const revisionAvenzaMaps = () => {
+    if (
+      evaluaciones.resultado_eval_presencial_avenza_maps > 8 ||
+      evaluaciones.resultado_eval_presencial_avenza_maps < 0
+    ) {
+      setEvaluaciones({
+        ...evaluaciones,
+        porcentaje_avenza_maps: null,
+      });
+      AlertError("El puntaje maximo es de 8 y minimo 0");
+    } else {
+      const resultado = (evaluaciones.resultado_eval_presencial_avenza_maps * 100) / 8;
+      setEvaluaciones({
+        ...evaluaciones,
+        porcentaje_avenza_maps: resultado.toString().slice(0, 5),
+      });
+    }
+  };
+
   const revisionMarkIII = () => {
     if (
       evaluaciones.resultado_eval_presencial_mark_III > 11 ||
@@ -720,6 +783,7 @@ const S9_S10 = (props) => {
     const formData_formato_epp = new FormData();
     const formData_formato_eval_habilidad_uso_mark_III = new FormData();
     const formato_eval_habilidad_uso_gps = new FormData();
+    const formato_eval_habilidad_uso_avenza_maps = new FormData();
     const formato_eval_habilidad_uso_motosierra = new FormData();
     const formData_constancia_curso_s_211 = new FormData();
 
@@ -780,47 +844,42 @@ const S9_S10 = (props) => {
       if (
         sectionGPSMark &&
         archivos.formato_eval_habilidad_uso_gps &&
+        archivos.formato_eval_habilidad_uso_avenza_maps &&
         archivos.formato_eval_habilidad_uso_mark_III &&
         archivos.formato_eval_habilidad_uso_motosierra
       ) {
-        formData_formato_eval_habilidad_uso_mark_III.append(
-          "file",
-          archivos.formato_eval_habilidad_uso_mark_III[0]
-        );
-        formData_formato_eval_habilidad_uso_mark_III.append(
-          "curp",
-          evaluaciones.curp
-        );
-        formData_formato_eval_habilidad_uso_mark_III.append(
-          "name",
-          "formato_eval_habilidad_uso_mark_III"
-        );
+
+        formData_formato_eval_habilidad_uso_mark_III.append("file", archivos.formato_eval_habilidad_uso_mark_III[0]);
+        formData_formato_eval_habilidad_uso_mark_III.append("curp", evaluaciones.curp);
+        formData_formato_eval_habilidad_uso_mark_III.append("name", "formato_eval_habilidad_uso_mark_III");
+
         const archivo_formato_eval_habilidad_uso_mark_III = await Axios.post(
           `${API_REQUEST}carga_archivo`,
           formData_formato_eval_habilidad_uso_mark_III,
           header
         );
 
-        formato_eval_habilidad_uso_gps.append(
-          "file",
-          archivos.formato_eval_habilidad_uso_gps[0]
-        );
+        formato_eval_habilidad_uso_gps.append("file", archivos.formato_eval_habilidad_uso_gps[0]);
         formato_eval_habilidad_uso_gps.append("curp", evaluaciones.curp);
-        formato_eval_habilidad_uso_gps.append(
-          "name",
-          "formato_eval_habilidad_uso_gps"
-        );
+        formato_eval_habilidad_uso_gps.append("name", "formato_eval_habilidad_uso_gps");
+
         const archivo_formato_eval_habilidad_uso_gps = await Axios.post(
           `${API_REQUEST}carga_archivo`,
           formato_eval_habilidad_uso_gps,
           header
         );
 
-        formato_eval_habilidad_uso_motosierra.append(
-          "file",
-          archivos.formato_eval_habilidad_uso_motosierra[0]
+        formato_eval_habilidad_uso_avenza_maps.append("file", archivos.formato_eval_habilidad_uso_avenza_maps[0]);
+        formato_eval_habilidad_uso_avenza_maps.append("curp", evaluaciones.curp);
+        formato_eval_habilidad_uso_avenza_maps.append("name", "formato_eval_habilidad_uso_avenza_maps");
+
+        const archivo_formato_eval_habilidad_uso_avenza_maps = await Axios.post(
+          `${API_REQUEST}carga_archivo`,
+          formato_eval_habilidad_uso_avenza_maps,
+          header
         );
 
+        formato_eval_habilidad_uso_motosierra.append("file", archivos.formato_eval_habilidad_uso_motosierra[0]);
         formato_eval_habilidad_uso_motosierra.append("curp", evaluaciones.curp);
         formato_eval_habilidad_uso_motosierra.append(
           "name",
@@ -836,11 +895,12 @@ const S9_S10 = (props) => {
         if (
           archivo_formato_eval_habilidad_uso_mark_III.status === 200 &&
           archivo_formato_eval_habilidad_uso_gps.status === 200 &&
+          archivo_formato_eval_habilidad_uso_avenza_maps.status === 200 &&
           archivo_formato_eval_habilidad_uso_motosierra.status === 200
         ) {
-          AlertExito("Se cargo archivos GPS, MARK y MOTOSIERRA con exito!");
+          AlertExito("Se cargo archivos GPS, AVENZA MAPS, MARK y MOTOSIERRA con exito!");
         } else {
-          AlertError("Error al cargar archivos GPS, MARK y MOTOSIERRA ");
+          AlertError("Error al cargar archivos GPS, AVENZA MAPS, MARK y MOTOSIERRA ");
         }
       }
 
@@ -890,7 +950,7 @@ const S9_S10 = (props) => {
       ...pruebasContext.cand,
       pruebasCandidato: evaluaciones,
     });
-    return () => {}
+    return () => { }
 
   }, [evaluaciones]);
 
@@ -920,9 +980,8 @@ const S9_S10 = (props) => {
               Nombre del evaluador de la prueba de mochila
             </label>
             <input
-              className={`form-control ${
-                evaluaciones.nombre_evaluador ? null : "myInput"
-              }`}
+              className={`form-control ${evaluaciones.nombre_evaluador ? null : "myInput"
+                }`}
               name="nombre_evaluador"
               value={evaluaciones.nombre_evaluador}
               type="text"
@@ -936,9 +995,8 @@ const S9_S10 = (props) => {
           <div className="col-12 col-md-4">
             <label className="control-label pt-2">Peso comprobado</label>
             <InputNumber
-              className={`form-control ${
-                evaluaciones.peso_verificado ? null : "myInput"
-              }`}
+              className={`form-control ${evaluaciones.peso_verificado ? null : "myInput"
+                }`}
               name="peso_verificado"
               limitLength={5}
               min={0}
@@ -968,9 +1026,8 @@ const S9_S10 = (props) => {
           <div className="col-12 col-md-4">
             <label className="control-label pt-2">Altura (cm.)</label>
             <InputNumber
-              className={`form-control ${
-                evaluaciones.altura_verificada ? null : "myInput"
-              }`}
+              className={`form-control ${evaluaciones.altura_verificada ? null : "myInput"
+                }`}
               name="altura_verificada"
               limitLength={3}
               min={0}
@@ -987,8 +1044,8 @@ const S9_S10 = (props) => {
               value={
                 evaluaciones.altura_verificada
                   ? Math.round(
-                      evaluaciones.altura_verificada * 0.0328084 * 10
-                    ) / 10
+                    evaluaciones.altura_verificada * 0.0328084 * 10
+                  ) / 10
                   : ""
               }
               type="number"
@@ -1003,9 +1060,8 @@ const S9_S10 = (props) => {
             <label className="control-label pt-2">IMC verificado</label>
             <input
               disabled
-              className={`form-control ${
-                evaluaciones.imc_verificado ? null : "myInput"
-              }`}
+              className={`form-control ${evaluaciones.imc_verificado ? null : "myInput"
+                }`}
               min={0}
               name="imc_verificado"
               type="text"
@@ -1025,9 +1081,8 @@ const S9_S10 = (props) => {
                   prueba.
                 </label>
                 <InputNumber
-                  className={`form-control ${
-                    evaluaciones.altura_sobre_niv_mar ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.altura_sobre_niv_mar ? null : "myInput"
+                    }`}
                   name="altura_sobre_niv_mar"
                   limitLength={4}
                   min={0}
@@ -1046,16 +1101,15 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   disabled
-                  className={`form-control ${
-                    evaluaciones.tiempo_max_correccion_altitud
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.tiempo_max_correccion_altitud
+                    ? null
+                    : "myInput"
+                    }`}
                   name="tiempo_max_correccion_altitud"
                   type="text"
                   value={
                     evaluaciones.tiempo_req_max_min &&
-                    evaluaciones.tiempo_req_mas_seg
+                      evaluaciones.tiempo_req_mas_seg
                       ? `${evaluaciones.tiempo_req_max_min}' ${evaluaciones.tiempo_req_mas_seg}''`
                       : null
                   }
@@ -1070,11 +1124,10 @@ const S9_S10 = (props) => {
                 </label>
                 <InputGroup className="mb-2">
                   <InputNumber
-                    className={`form-control ${
-                      evaluaciones.minutos_prueba_trabajo_arduo
-                        ? null
-                        : "myInput"
-                    }`}
+                    className={`form-control ${evaluaciones.minutos_prueba_trabajo_arduo
+                      ? null
+                      : "myInput"
+                      }`}
                     placeholder="Minutos..."
                     limitLength={2}
                     min={0}
@@ -1087,11 +1140,10 @@ const S9_S10 = (props) => {
                     <InputGroup.Text>'</InputGroup.Text>
                   </InputGroup.Prepend>
                   <InputNumber
-                    className={`form-control ${
-                      evaluaciones.segundos_prueba_trabajo_arduo
-                        ? null
-                        : "myInput"
-                    }`}
+                    className={`form-control ${evaluaciones.segundos_prueba_trabajo_arduo
+                      ? null
+                      : "myInput"
+                      }`}
                     placeholder="Segundos..."
                     limitLength={2}
                     min={0}
@@ -1113,9 +1165,8 @@ const S9_S10 = (props) => {
                 </label>
                 <InputNumber
                   disabled
-                  className={`form-control ${
-                    evaluaciones.puntuacion_estimada ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.puntuacion_estimada ? null : "myInput"
+                    }`}
                   name="puntuacion_estimada"
                   value={evaluaciones.puntuacion_estimada}
                   // onChange={setInfo}
@@ -1127,9 +1178,8 @@ const S9_S10 = (props) => {
                 <label className="control-label pt-2">Prueba:</label>
                 <input
                   disabled
-                  className={`form-control ${
-                    evaluaciones.prueba ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.prueba ? null : "myInput"
+                    }`}
                   name="prueba"
                   // onChange={setInfo}
                   value={evaluaciones.prueba}
@@ -1144,9 +1194,8 @@ const S9_S10 = (props) => {
                 <input
                   type="file"
                   accept="application/pdf"
-                  className={`form-control ${
-                    archivos.formato ? null : "myInput"
-                  }`}
+                  className={`form-control ${archivos.formato ? null : "myInput"
+                    }`}
                   name="formato"
                   onChange={setInfo}
                 />
@@ -1166,11 +1215,10 @@ const S9_S10 = (props) => {
                         Nombre del evaluador de la prueba de la carrera
                       </label>
                       <input
-                        className={`form-control ${
-                          evaluaciones.nombre_evaluador_carrera
-                            ? null
-                            : "myInput"
-                        }`}
+                        className={`form-control ${evaluaciones.nombre_evaluador_carrera
+                          ? null
+                          : "myInput"
+                          }`}
                         name="nombre_evaluador_carrera"
                         value={evaluaciones.nombre_evaluador_carrera}
                         type="text"
@@ -1186,11 +1234,10 @@ const S9_S10 = (props) => {
                         la prueba.
                       </label>
                       <InputNumber
-                        className={`form-control ${
-                          evaluaciones.altura_sobre_niv_mar_carrera
-                            ? null
-                            : "myInput"
-                        }`}
+                        className={`form-control ${evaluaciones.altura_sobre_niv_mar_carrera
+                          ? null
+                          : "myInput"
+                          }`}
                         name="altura_sobre_niv_mar_carrera"
                         limitLength={4}
                         min={0}
@@ -1208,11 +1255,10 @@ const S9_S10 = (props) => {
                       </label>
                       <InputGroup className="mb-2">
                         <InputNumber
-                          className={`form-control ${
-                            evaluaciones.minutos_prueba_trabajo_carrera
-                              ? null
-                              : "myInput"
-                          }`}
+                          className={`form-control ${evaluaciones.minutos_prueba_trabajo_carrera
+                            ? null
+                            : "myInput"
+                            }`}
                           placeholder="Minutos..."
                           limitLength={2}
                           min={0}
@@ -1225,11 +1271,10 @@ const S9_S10 = (props) => {
                           <InputGroup.Text>'</InputGroup.Text>
                         </InputGroup.Prepend>
                         <InputNumber
-                          className={`form-control ${
-                            evaluaciones.segundos_prueba_trabajo_carrera
-                              ? null
-                              : "myInput"
-                          }`}
+                          className={`form-control ${evaluaciones.segundos_prueba_trabajo_carrera
+                            ? null
+                            : "myInput"
+                            }`}
                           placeholder="Segundos..."
                           limitLength={2}
                           min={0}
@@ -1252,9 +1297,8 @@ const S9_S10 = (props) => {
                       <input
                         type="file"
                         accept="application/pdf"
-                        className={`form-control ${
-                          archivos.formato_carrera ? null : "myInput"
-                        }`}
+                        className={`form-control ${archivos.formato_carrera ? null : "myInput"
+                          }`}
                         name="formato_carrera"
                         onChange={setInfo}
                       />
@@ -1276,9 +1320,8 @@ const S9_S10 = (props) => {
                     Formato de equipo de despliegue completo
                   </label>
                   <input
-                    className={`form-control ${
-                      evaluaciones.formato_epp ? null : "myInput"
-                    }`}
+                    className={`form-control ${evaluaciones.formato_epp ? null : "myInput"
+                      }`}
                     name="formato_epp"
                     type="file"
                     accept="application/pdf"
@@ -1291,9 +1334,8 @@ const S9_S10 = (props) => {
                     ¿El candidato presentó el equipo de despliegue completo?
                   </label>
                   <SelectSiNo
-                    className={`form-control ${
-                      evaluaciones.presento_equipo ? null : "myInput"
-                    }`}
+                    className={`form-control ${evaluaciones.presento_equipo ? null : "myInput"
+                      }`}
                     name="presento_equipo"
                     defaultValue={evaluaciones.presento_equipo}
                     onChange={setInfo}
@@ -1302,12 +1344,12 @@ const S9_S10 = (props) => {
                 </div>
               </React.Fragment>
             )}
-          {/* SECCION GPS-MARK*/}
+          {/* SECCION GPS, Avenza Maps Motobomba MARK III y Motosierra*/}
           {sectionGPSMark && (
             <React.Fragment>
               {/* ENCABEZADO */}
               <div className="col-12 col-md-12 center-text pt-5">
-                <h2>GPS, Motobomba MARK III y Motosierra</h2>
+                <h2>GPS, Avenza Maps Motobomba MARK III y Motosierra</h2>
               </div>
               {/* Nombre del evaluador prueba GPS */}
               <div className="col-12 col-md-12">
@@ -1315,9 +1357,8 @@ const S9_S10 = (props) => {
                   Nombre del evaluador prueba GPS
                 </label>
                 <input
-                  className={`form-control ${
-                    evaluaciones.nombre_evaluador_prueba_gps ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.nombre_evaluador_prueba_gps ? null : "myInput"
+                    }`}
                   type="text"
                   value={evaluaciones.nombre_evaluador_prueba_gps}
                   name="nombre_evaluador_prueba_gps"
@@ -1332,11 +1373,10 @@ const S9_S10 = (props) => {
                   Formato de evaluación habilidad y competencia en el uso de GPS
                 </label>
                 <input
-                  className={`form-control ${
-                    evaluaciones.formato_eval_habilidad_uso_gps
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.formato_eval_habilidad_uso_gps
+                    ? null
+                    : "myInput"
+                    }`}
                   type="file"
                   name="formato_eval_habilidad_uso_gps"
                   onChange={setInfo}
@@ -1350,11 +1390,10 @@ const S9_S10 = (props) => {
                   Resultado de la evaluación presencial de GPS
                 </label>
                 <InputNumber
-                  className={`form-control ${
-                    evaluaciones.resultado_eval_presencial_gps
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.resultado_eval_presencial_gps
+                    ? null
+                    : "myInput"
+                    }`}
                   limitLength={1}
                   min={0}
                   max={8}
@@ -1372,13 +1411,79 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   disabled
-                  className={`form-control ${
-                    evaluaciones.porcentaje_gps ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.porcentaje_gps ? null : "myInput"
+                    }`}
                   value={evaluaciones.porcentaje_gps}
                   name="porcentaje_gps"
                   // onChange={setInfo}
                   placeholder="calculo porcentaje de la evaluación presencial de GPS..."
+                />
+              </div>
+              {/*Nombre del evaluador prueba Avenza Maps */}
+              <div className="col-12 col-md-12">
+                <label className="control-label pt-2">
+                  Nombre del evaluador prueba Avenza Maps
+                </label>
+                <input
+                  className={`form-control ${evaluaciones.nombre_evaluador_prueba_avenza_maps ? null : "myInput"
+                    }`}
+                  type="text"
+                  value={evaluaciones.nombre_evaluador_prueba_avenza_maps}
+                  name="nombre_evaluador_prueba_avenza_maps"
+                  onChange={setInfo}
+                  onChangeCapture={ToMayus}
+                  placeholder="Ingrese Nombre del evaluador prueba Avenza Maps..."
+                />
+              </div>
+              {/* Formato de evaluación habilidad y competencia en el uso de Avenza Maps */}
+              <div className="col-12 col-md-12">
+                <label className="control-label pt-2">
+                  Formato de evaluación habilidad y competencia en el uso de Avenza Maps
+                </label>
+                <input
+                  className={`form-control ${evaluaciones.formato_eval_habilidad_uso_avenza_maps
+                    ? null
+                    : "myInput"
+                    }`}
+                  type="file"
+                  name="formato_eval_habilidad_uso_avenza_maps"
+                  onChange={setInfo}
+                  placeholder="Ingrese Formato de evaluación habilidad y competencia en el uso de Avenza Maps..."
+                  accept="application/pdf"
+                />
+              </div>
+              {/* Resultado de la evaluación presencial de Avenza Maps*/}
+              <div className="col-12 col-md-6">
+                <label className="control-label pt-2">
+                  Resultado de la evaluación presencial de Avenza Maps
+                </label>
+                <InputNumber
+                  className={`form-control ${evaluaciones.resultado_eval_presencial_avenza_maps
+                    ? null
+                    : "myInput"
+                    }`}
+                  limitLength={1}
+                  min={0}
+                  max={8}
+                  value={evaluaciones.resultado_eval_presencial_avenza_maps}
+                  name="resultado_eval_presencial_avenza_maps"
+                  onChange={setInfo}
+                  onBlur={revisionAvenzaMaps}
+                  placeholder="Ingrese Resultado de la evaluación presencial de Avenza Maps..."
+                />
+              </div>
+              {/* porcentaje Avenza*/}
+              <div className="col-12 col-md-6">
+                <label className="control-label pt-2">
+                  % la evaluación presencial de Avenza Maps
+                </label>
+                <input
+                  disabled
+                  className={`form-control ${evaluaciones.porcentaje_avenza_maps ? null : "myInput"
+                    }`}
+                  value={evaluaciones.porcentaje_avenza_maps}
+                  name="porcentaje_avenza_maps"
+                  placeholder="calculo porcentaje de la evaluación presencial de Avenza Maps..."
                 />
               </div>
               {/* Nombre del evaluador prueba Mark III */}
@@ -1387,11 +1492,10 @@ const S9_S10 = (props) => {
                   Nombre del evaluador prueba Mark III
                 </label>
                 <input
-                  className={`form-control ${
-                    evaluaciones.nombre_evaluador_prueba_mark_III
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.nombre_evaluador_prueba_mark_III
+                    ? null
+                    : "myInput"
+                    }`}
                   type="text"
                   onChangeCapture={ToMayus}
                   value={evaluaciones.nombre_evaluador_prueba_mark_III}
@@ -1407,11 +1511,10 @@ const S9_S10 = (props) => {
                   Mark III
                 </label>
                 <input
-                  className={`form-control ${
-                    evaluaciones.formato_eval_habilidad_uso_mark_III
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.formato_eval_habilidad_uso_mark_III
+                    ? null
+                    : "myInput"
+                    }`}
                   type="file"
                   name="formato_eval_habilidad_uso_mark_III"
                   onChange={setInfo}
@@ -1426,11 +1529,10 @@ const S9_S10 = (props) => {
                   Resultado de la evaluación presencial de Mark III
                 </label>
                 <InputNumber
-                  className={`form-control ${
-                    evaluaciones.resultado_eval_presencial_mark_III
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.resultado_eval_presencial_mark_III
+                    ? null
+                    : "myInput"
+                    }`}
                   limitLength={2}
                   min={0}
                   max={11}
@@ -1448,9 +1550,8 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   disabled
-                  className={`form-control ${
-                    evaluaciones.porcentaje_mark_III ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.porcentaje_mark_III ? null : "myInput"
+                    }`}
                   value={evaluaciones.porcentaje_mark_III}
                   name="porcentaje_mark_III"
                   onChange={setInfo}
@@ -1464,11 +1565,10 @@ const S9_S10 = (props) => {
                   Nombre del evaluador prueba Motosierra
                 </label>
                 <input
-                  className={`form-control ${
-                    evaluaciones.nombre_evaluador_prueba_motosierra
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.nombre_evaluador_prueba_motosierra
+                    ? null
+                    : "myInput"
+                    }`}
                   type="text"
                   onChangeCapture={ToMayus}
                   value={evaluaciones.nombre_evaluador_prueba_motosierra}
@@ -1484,11 +1584,10 @@ const S9_S10 = (props) => {
                   Motosierra
                 </label>
                 <input
-                  className={`form-control ${
-                    evaluaciones.formato_eval_habilidad_uso_motosierra
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.formato_eval_habilidad_uso_motosierra
+                    ? null
+                    : "myInput"
+                    }`}
                   type="file"
                   name="formato_eval_habilidad_uso_motosierra"
                   onChange={setInfo}
@@ -1503,11 +1602,10 @@ const S9_S10 = (props) => {
                   Resultado de la evaluación presencial de Motosierra
                 </label>
                 <InputNumber
-                  className={`form-control ${
-                    evaluaciones.resultado_eval_presencial_motosierra
-                      ? null
-                      : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.resultado_eval_presencial_motosierra
+                    ? null
+                    : "myInput"
+                    }`}
                   min={0}
                   max={9}
                   limitLength={1}
@@ -1525,9 +1623,8 @@ const S9_S10 = (props) => {
                 </label>
                 <input
                   disabled
-                  className={`form-control ${
-                    evaluaciones.porcentaje_motosierra ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.porcentaje_motosierra ? null : "myInput"
+                    }`}
                   value={evaluaciones.porcentaje_motosierra}
                   name="porcentaje_motosierra"
                   onChange={setInfo}
@@ -1541,9 +1638,8 @@ const S9_S10 = (props) => {
                   ¿El evaluado presento constancia del curso S-211?
                 </label>
                 <SelectSiNo
-                  className={`form-control ${
-                    evaluaciones.presento_constancia_s_211 ? null : "myInput"
-                  }`}
+                  className={`form-control ${evaluaciones.presento_constancia_s_211 ? null : "myInput"
+                    }`}
                   type="text"
                   name="presento_constancia_s_211"
                   onChange={setInfo}
@@ -1557,9 +1653,8 @@ const S9_S10 = (props) => {
                     Constancia curso S-211
                   </label>
                   <input
-                    className={`form-control ${
-                      evaluaciones.constancia_curso_s_211 ? null : "myInput"
-                    }`}
+                    className={`form-control ${evaluaciones.constancia_curso_s_211 ? null : "myInput"
+                      }`}
                     type="file"
                     name="constancia_curso_s_211"
                     onChange={setInfo}

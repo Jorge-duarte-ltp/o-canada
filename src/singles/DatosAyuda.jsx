@@ -52,7 +52,7 @@ const DatosAyuda = ({ setShow, show }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {contactosIncendios.map((item) => <tr>
+                                    {contactosIncendios.map((item, index) => <tr key={index}>
                                         <th scope="row">{item.region}</th>
                                         <td>{item.nombre}</td>
                                         <td>{item.telefono}</td>

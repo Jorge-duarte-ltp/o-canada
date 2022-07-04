@@ -6,7 +6,7 @@ import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './assets/styles.css'
 import Header from './singles/Header';
-import Captura from './rutas/Captura';
+// import Captura from './rutas/Captura';
 import CierreConvocatoria from './rutas/CierreConvocatoria';
 import Administracion from './rutas/Administracion';
 
@@ -15,7 +15,6 @@ import CandidatoState from './context/candidato/candidatoState'
 import SessionState from './context/session/sessionState'
 import PruebasFisiscasState from './context/pruebas_fisicas/pruebasFisiscasState'
 import PDF from './components/captura/PDF';
-import Cierre from './components/cierre/Cierre';
 
 /* variable para cierre de convocatoria */
 const cierre = true;
@@ -32,8 +31,8 @@ const App = () => {
               <Header cierre={cierre} />
               <hr className='gradiente' />
               <Switch>
-                <Route exact path="/" component={Captura} />
-                {/* <Route exact path="/" component={CierreConvocatoria} /> */}
+                {/*<Route exact path="/" component={Captura} />*/}
+                <Route exact path="/" component={CierreConvocatoria} />
                 <Route exact path="/dashboard" component={Administracion} />
                 <Route exact path="/pdf" component={PDF} />
               </Switch>

@@ -1,18 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
-import ExS190 from "./ExS190";
+import React, { useState} from "react";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
-import { Modal, Button } from "react-bootstrap";
-import Swal from "sweetalert2";
-import axios from "axios";
 import AlertError from "../../singles/AlertError";
-import moment from "moment";
 /* CONTEXT */
-import candidatoContext from "../../context/candidato/candidatoContext";
 import SelectSiNo from "../../singles/SelectSiNo";
 import GenerarEstados from "../../singles/GenerarEstados";
 import GenerarPaises from "../../singles/GenerarPaises";
 import { size } from "lodash";
-import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import ExamenS190 from "../examenes/examen_s190/ExamenS190";
 
