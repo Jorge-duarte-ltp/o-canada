@@ -52,7 +52,8 @@ const RevisionDocumentacion = () => {
 
   const getRegionName = () => {
     const { user } = sessContext.login;
-    switch (user.region) {
+
+    switch (user.user_type) {
       case "1":
         setNombreRegion("Noroeste");
         break;
