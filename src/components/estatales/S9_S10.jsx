@@ -41,79 +41,79 @@ const S9_S10 = (props) => {
     curp: props.infoCandidato.curp,
     nombre_evaluador: props.infoCandidato.nombre_evaluador
       ? props.infoCandidato.nombre_evaluador
-      : null,
+      : "",
     peso_verificado: props.infoCandidato.peso_verificado
       ? props.infoCandidato.peso_verificado
-      : null,
+      : "",
     altura_verificada: props.infoCandidato.altura_verificada
       ? props.infoCandidato.altura_verificada
-      : null,
+      : "",
     imc_verificado: props.infoCandidato.imc_verificado
       ? props.infoCandidato.imc_verificado
-      : null,
+      : "",
     altura_sobre_niv_mar: props.infoCandidato.altura_sobre_niv_mar
       ? props.infoCandidato.altura_sobre_niv_mar
-      : null,
+      : "",
     tiempo_max_correccion_altitud: props.infoCandidato
       .tiempo_max_correccion_altitud
       ? props.infoCandidato.tiempo_max_correccion_altitud
-      : null,
+      : "",
     minutos_prueba_trabajo_arduo: props.infoCandidato
       .minutos_prueba_trabajo_arduo
       ? props.infoCandidato.minutos_prueba_trabajo_arduo
-      : null,
+      : "",
     segundos_prueba_trabajo_arduo: props.infoCandidato
       .segundos_prueba_trabajo_arduo
       ? props.infoCandidato.segundos_prueba_trabajo_arduo
-      : null,
+      : "",
     puntuacion_estimada: props.infoCandidato.puntuacion_estimada
       ? props.infoCandidato.puntuacion_estimada
-      : null,
-    prueba: props.infoCandidato.prueba ? props.infoCandidato.prueba : null,
+      : "",
+    prueba: props.infoCandidato.prueba ? props.infoCandidato.prueba : "",
     nombre_evaluador_carrera: props.infoCandidato.nombre_evaluador_carrera
       ? props.infoCandidato.nombre_evaluador_carrera
-      : null,
-    altura_sobre_niv_mar_carrera: props.infoCandidato
-      .altura_sobre_niv_mar_carrera
-      ? props.infoCandidato.altura_sobre_niv_mar_carrera
-      : null,
+      : "",
     minutos_prueba_trabajo_carrera: props.infoCandidato
       .minutos_prueba_trabajo_carrera
       ? props.infoCandidato.minutos_prueba_trabajo_carrera
-      : null,
+      : "",
     segundos_prueba_trabajo_carrera: props.infoCandidato
       .segundos_prueba_trabajo_carrera
       ? props.infoCandidato.segundos_prueba_trabajo_carrera
-      : null,
+      : "",
+    puntuacion_estimada_prueba_carrera: props.infoCandidato
+      .puntuacion_estimada_prueba_carrera
+      ? props.infoCandidato.puntuacion_estimada_prueba_carrera
+      : "",
     nombre_evaluador_prueba_gps: props.infoCandidato.nombre_evaluador_prueba_gps
       ? props.infoCandidato.nombre_evaluador_prueba_gps
-      : null,
+      : "",
     resultado_eval_presencial_gps: props.infoCandidato
       .resultado_eval_presencial_gps
       ? props.infoCandidato.resultado_eval_presencial_gps
-      : null,
+      : "",
     nombre_evaluador_prueba_avenza_maps: props.infoCandidato.nombre_evaluador_prueba_avenza_maps
       ? props.infoCandidato.nombre_evaluador_prueba_avenza_maps
-      : null,
+      : "",
     resultado_eval_presencial_avenza_maps: props.infoCandidato
       .resultado_eval_presencial_avenza_maps
       ? props.infoCandidato.resultado_eval_presencial_avenza_maps
-      : null,
+      : "",
     nombre_evaluador_prueba_mark_III: props.infoCandidato
       .nombre_evaluador_prueba_mark_III
       ? props.infoCandidato.nombre_evaluador_prueba_mark_III
-      : null,
+      : "",
     resultado_eval_presencial_mark_III: props.infoCandidato
       .resultado_eval_presencial_mark_III
       ? props.infoCandidato.resultado_eval_presencial_mark_III
-      : null,
+      : "",
     presento_constancia_s_211: props.infoCandidato.presento_constancia_s_211
       ? props.infoCandidato.presento_constancia_s_211
-      : null,
+      : "",
     presento_equipo: props.infoCandidato.presento_equipo
       ? props.infoCandidato.presento_equipo
-      : null,
-    rechazo: props.infoCandidato.rechazo ? props.infoCandidato.rechazo : null,
+      : "",
+    rechazo: props.infoCandidato.rechazo ? props.infoCandidato.rechazo : "",
   });
 
   const setInfo = (input) => {
@@ -382,6 +382,38 @@ const S9_S10 = (props) => {
     return tiempo <= tiempoMaxRequerido ? "SUPERADA" : "NO SUPERADA";
   };
 
+  const handlePuntuacion = () => {
+    const { minutos_prueba_trabajo_carrera, segundos_prueba_trabajo_carrera } = evaluaciones;
+    const time = parseInt(`${minutos_prueba_trabajo_carrera}${segundos_prueba_trabajo_carrera}`);
+
+    if (minutos_prueba_trabajo_carrera && segundos_prueba_trabajo_carrera) {
+
+      if (time <= 1035) {
+
+        setEvaluaciones({ ...evaluaciones, puntuacion_estimada_prueba_carrera: 10 });
+
+      } else if (time >= 1036 && time <= 1130) {
+
+        setEvaluaciones({ ...evaluaciones, puntuacion_estimada_prueba_carrera: 9 });
+
+      } else if (time >= 1131 && time <= 1300) {
+
+        setEvaluaciones({ ...evaluaciones, puntuacion_estimada_prueba_carrera: 7 });
+
+      } else if (time >= 1301 && time <= 1500) {
+
+        setEvaluaciones({ ...evaluaciones, puntuacion_estimada_prueba_carrera: 6 });
+
+      } else if (time >= 1501) {
+
+        setEvaluaciones({ ...evaluaciones, puntuacion_estimada_prueba_carrera: 2 });
+
+      }
+    } else {
+      setEvaluaciones({ ...evaluaciones, puntuacion_estimada_prueba_carrera: "" });
+    }
+  }
+
   const setNumerico = (input) => {
     if (input.target.name === "altura_verificada") {
       if (size(input.target.value) < 4) {
@@ -429,7 +461,6 @@ const S9_S10 = (props) => {
       porcentaje_avenza_maps,
       porcentaje_mark_III,
       nombre_evaluador_carrera,
-      altura_sobre_niv_mar_carrera,
       minutos_prueba_trabajo_carrera,
       segundos_prueba_trabajo_carrera,
       resultado_eval_presencial_motosierra,
@@ -520,13 +551,6 @@ const S9_S10 = (props) => {
             return;
           }
 
-          if (!altura_sobre_niv_mar_carrera) {
-            AlertError(
-              "Omisión de campo",
-              "El campo ALTURA SOBRE NIVEL DEL MAR CARRERA debe ser completado"
-            );
-            return;
-          }
           if (!minutos_prueba_trabajo_carrera) {
             AlertError(
               "Omisión de campo",
@@ -959,7 +983,7 @@ const S9_S10 = (props) => {
       {/* DATOS DEL CANDIDATO */}
       {/* ENCABEZADO */}
       <div className="col-12 col-md-12 center-text">
-        <h2>Evaluaciones Pruebas Fisicas</h2>
+        <h2>Prueba de la Mochila Nivel Aurduo</h2>
       </div>
       {/* SE PRESENTO EL CANDIDATO */}
       <div className="col-12 col-md-12">
@@ -1208,7 +1232,7 @@ const S9_S10 = (props) => {
                   <React.Fragment>
                     {/* ENCABEZADO */}
                     <div className="col-12 pt-5 col-md-12 center-text">
-                      <h2>Evaluaciones Carrera</h2>
+                      <h2>Prueba de la Carrera</h2>
                     </div>
                     <div className="col-12 col-md-12">
                       <label className="control-label pt-2">
@@ -1225,27 +1249,6 @@ const S9_S10 = (props) => {
                         onChange={setInfo}
                         onChangeCapture={ToMayus}
                         placeholder="Ingrese Nombre completo..."
-                      />
-                    </div>
-                    {/* ALTURA SOBRE EL NIVEL DEL MAR PRUEBA CARRERA */}
-                    <div className="col-12 col-md-6">
-                      <label className="control-label pt-2">
-                        Altura sobre el nivel del mar del lugar donde se realizó
-                        la prueba.
-                      </label>
-                      <InputNumber
-                        className={`form-control ${evaluaciones.altura_sobre_niv_mar_carrera
-                          ? null
-                          : "myInput"
-                          }`}
-                        name="altura_sobre_niv_mar_carrera"
-                        limitLength={4}
-                        min={0}
-                        type="number"
-                        value={evaluaciones.altura_sobre_niv_mar_carrera}
-                        onChange={setInfo}
-                        onBlur={handleASNM}
-                        placeholder="Ingrese Altura sobre el nivel del mar..."
                       />
                     </div>
                     {/* TIEMPO REALIZADO EN LA PRUEBA DE TRABAJO CARRERA */}
@@ -1282,12 +1285,26 @@ const S9_S10 = (props) => {
                           value={evaluaciones.segundos_prueba_trabajo_carrera}
                           name="segundos_prueba_trabajo_carrera"
                           onChange={setNumericoRango}
-                          onBlur={calcResultados}
+                          onBlur={handlePuntuacion}
                         />
                         <InputGroup.Prepend>
                           <InputGroup.Text>''</InputGroup.Text>
                         </InputGroup.Prepend>
                       </InputGroup>
+                    </div>
+                    {/* PUNTUACIÓN ESTIMADA CARRERA*/}
+                    <div className="col-12 col-md-4">
+                      <label className="control-label pt-2">
+                        Puntuación estimada.
+                      </label>
+                      <InputNumber
+                        disabled
+                        className={`form-control ${evaluaciones.puntuacion_estimada_prueba_carrera ? null : "myInput"
+                          }`}
+                        name="puntuacion_estimada_prueba_carrera"
+                        value={evaluaciones.puntuacion_estimada_prueba_carrera}
+                        placeholder="Ingrese Minutos y Segundos de la prueba..."
+                      />
                     </div>
                     {/* FORMATO APTITUD FISICA PRUEBA CARRERA*/}
                     <div className="col-12 col-md-12">

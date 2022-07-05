@@ -155,8 +155,7 @@ const S9_S10View = (props) => {
         minutos_prueba_trabajo_arduo,
         segundos_prueba_trabajo_arduo
       );
-      const rechazo =
-        auxPrueba === "SUPERADA" ? null : "prueba fisica no superada";
+      const rechazo = auxPrueba === "SUPERADA" ? null : "prueba fisica no superada";
 
       /* SI NO ES RECHAZADO SE ABRE SECCION DE EQUIPO DE DESPLIEGUE */
       if (rechazo) {
@@ -234,7 +233,7 @@ const S9_S10View = (props) => {
         {/* DATOS DEL CANDIDATO */}
         {/* ENCABEZADO */}
         <div className="col-12 col-md-12 center-text">
-          <h2>Evaluaciones Arduo</h2>
+          <h2>Prueba de la Mochila Nivel Aurduo</h2>
         </div>
         {/* FORMATO APTITUD FISICA */}
         <div className="col-12 col-md-12">
@@ -451,7 +450,7 @@ const S9_S10View = (props) => {
 
             {/* ENCABEZADO */}
             <div className="col-12 pt-5 col-md-12 center-text">
-              <h2>Evaluaciones Carrera</h2>
+              <h2>Prueba de la Carrera</h2>
             </div>
             {/* FORMATO APTITUD FISICA */}
             <div className="col-12 col-md-12">
@@ -465,7 +464,7 @@ const S9_S10View = (props) => {
               </a>
             </div>
 
-            <div className="col-12 col-md-12">
+            <div className="col-6 col-md-6">
               <label className="control-label pt-2">
                 Nombre del evaluador de la prueba de la carrera
               </label>
@@ -479,26 +478,6 @@ const S9_S10View = (props) => {
                 onChange={setInfo}
                 onChangeCapture={ToMayus}
                 placeholder="Ingrese Nombre completo..."
-              />
-            </div>
-            {/* ALTURA SOBRE EL NIVEL DEL MAR PRUEBA CARRERA */}
-            <div className="col-12 col-md-6">
-              <label className="control-label pt-2">
-                Altura sobre el nivel del mar del lugar donde se realizó la
-                prueba.
-              </label>
-              <InputNumber
-                className={`form-control ${evaluaciones.altura_sobre_niv_mar_carrera ? null : "myInput"
-                  }`}
-                disabled
-                name="altura_sobre_niv_mar_carrera"
-                limitLength={4}
-                min={0}
-                type="number"
-                value={evaluaciones.altura_sobre_niv_mar_carrera}
-                onChange={setInfo}
-                onBlur={handleASNM}
-                placeholder="Ingrese Altura sobre el nivel del mar..."
               />
             </div>
             {/* TIEMPO REALIZADO EN LA PRUEBA DE TRABAJO CARRERA */}
@@ -542,6 +521,20 @@ const S9_S10View = (props) => {
                   <InputGroup.Text>''</InputGroup.Text>
                 </InputGroup.Prepend>
               </InputGroup>
+            </div>
+            {/* PUNTUACIÓN ESTIMADA CARRERA*/}
+            <div className="col-12 col-md-6">
+              <label className="control-label pt-2">
+                Puntuación estimada.
+              </label>
+              <InputNumber
+                disabled
+                className={`form-control ${evaluaciones.puntuacion_estimada_prueba_carrera ? null : "myInput"
+                  }`}
+                name="puntuacion_estimada_prueba_carrera"
+                value={evaluaciones.puntuacion_estimada_prueba_carrera}
+                placeholder="Ingrese Minutos y Segundos de la prueba..."
+              />
             </div>
           </React.Fragment>
         )}
