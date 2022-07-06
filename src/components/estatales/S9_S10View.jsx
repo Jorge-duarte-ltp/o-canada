@@ -834,31 +834,6 @@ const S9_S10View = (props) => {
                 placeholder="calculo porcentaje de la evaluación presencial de Motosierra..."
               />
             </div>
-            {/* ¿El evaluado presento constancia del curso S-211 */}
-            <div className="col-12 pt-2 col-md-12">
-              <a
-                className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/constancia_curso_s_211.pdf`}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Constancia de Curso S-211
-              </a>
-            </div>
-            <div className="col-12 col-md-6">
-              <label className="control-label pt-2">
-                ¿El evaluado presento constancia del curso S-211?
-              </label>
-              <SelectSiNo
-                disabled
-                className={`form-control ${evaluaciones.presento_constancia_s_211 ? null : "myInput"
-                  }`}
-                type="text"
-                name="presento_constancia_s_211"
-                onChange={setInfo}
-                defaultValue={evaluaciones.presento_constancia_s_211}
-              />
-            </div>
           </React.Fragment>
         )}
         <div className="text-center py-3 col-md-12"></div>

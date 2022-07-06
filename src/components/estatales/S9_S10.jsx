@@ -107,9 +107,6 @@ const S9_S10 = (props) => {
       .resultado_eval_presencial_mark_III
       ? props.infoCandidato.resultado_eval_presencial_mark_III
       : "",
-    presento_constancia_s_211: props.infoCandidato.presento_constancia_s_211
-      ? props.infoCandidato.presento_constancia_s_211
-      : "",
     presento_equipo: props.infoCandidato.presento_equipo
       ? props.infoCandidato.presento_equipo
       : "",
@@ -455,7 +452,6 @@ const S9_S10 = (props) => {
       resultado_eval_presencial_avenza_maps,
       nombre_evaluador_prueba_mark_III,
       resultado_eval_presencial_mark_III,
-      presento_constancia_s_211,
       presento_equipo,
       porcentaje_gps,
       porcentaje_avenza_maps,
@@ -475,7 +471,6 @@ const S9_S10 = (props) => {
       formato_eval_habilidad_uso_mark_III,
       formato_epp,
       formato_eval_habilidad_uso_motosierra,
-      constancia_curso_s_211,
     } = archivos;
 
     if (sePresento === 1) {
@@ -701,20 +696,7 @@ const S9_S10 = (props) => {
           );
           return;
         }
-        if (!presento_constancia_s_211) {
-          AlertError(
-            "ERROR",
-            "El campo PRESENTO CONSTANCIA_S_211 debe ser completado "
-          );
-          return;
-        }
-        if (presento_constancia_s_211 === "1" && !constancia_curso_s_211) {
-          AlertError(
-            "ERROR",
-            "El archivo CONSTANCIA S-211 debe ser completado "
-          );
-          return;
-        }
+
       }
     }
 
@@ -742,16 +724,19 @@ const S9_S10 = (props) => {
 
   const revisionAvenzaMaps = () => {
     if (
-      evaluaciones.resultado_eval_presencial_avenza_maps > 8 ||
+      evaluaciones.resultado_eval_presencial_avenza_maps > 9 ||
       evaluaciones.resultado_eval_presencial_avenza_maps < 0
     ) {
+
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_avenza_maps: null,
       });
-      AlertError("El puntaje maximo es de 8 y minimo 0");
+
+      AlertError("El puntaje maximo es de 9 y minimo 0");
+      
     } else {
-      const resultado = (evaluaciones.resultado_eval_presencial_avenza_maps * 100) / 8;
+      const resultado = (evaluaciones.resultado_eval_presencial_avenza_maps * 100) / 9;
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_avenza_maps: resultado.toString().slice(0, 5),
@@ -925,28 +910,6 @@ const S9_S10 = (props) => {
           AlertExito("Se cargo archivos GPS, AVENZA MAPS, MARK y MOTOSIERRA con exito!");
         } else {
           AlertError("Error al cargar archivos GPS, AVENZA MAPS, MARK y MOTOSIERRA ");
-        }
-      }
-
-      if (evaluaciones.presento_constancia_s_211 === "1") {
-        formData_constancia_curso_s_211.append(
-          "file",
-          archivos.constancia_curso_s_211[0]
-        );
-        formData_constancia_curso_s_211.append("curp", evaluaciones.curp);
-        formData_constancia_curso_s_211.append(
-          "name",
-          "constancia_curso_s_211"
-        );
-        const archivo_constancia_curso_s_211 = await Axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_constancia_curso_s_211,
-          header
-        );
-        if (archivo_constancia_curso_s_211.status === 200) {
-          AlertExito("Se cargo archivo S-211 con exito!");
-        } else {
-          AlertError("Error al cargar archivo S-211");
         }
       }
     }
@@ -1649,37 +1612,6 @@ const S9_S10 = (props) => {
                 />
               </div>
 
-              {/* ¿El evaluado presento constancia del curso S-211 */}
-              <div className="col-12 col-md-6">
-                <label className="control-label pt-2">
-                  ¿El evaluado presento constancia del curso S-211?
-                </label>
-                <SelectSiNo
-                  className={`form-control ${evaluaciones.presento_constancia_s_211 ? null : "myInput"
-                    }`}
-                  type="text"
-                  name="presento_constancia_s_211"
-                  onChange={setInfo}
-                  defaultValue={evaluaciones.presento_constancia_s_211}
-                />
-              </div>
-              {/* Constancia curso S-211 */}
-              {evaluaciones.presento_constancia_s_211 === "1" && (
-                <div className="col-12 col-md-6">
-                  <label className="control-label pt-2">
-                    Constancia curso S-211
-                  </label>
-                  <input
-                    className={`form-control ${evaluaciones.constancia_curso_s_211 ? null : "myInput"
-                      }`}
-                    type="file"
-                    name="constancia_curso_s_211"
-                    onChange={setInfo}
-                    placeholder="Ingrese Constancia curso S-211..."
-                    accept="application/pdf"
-                  />
-                </div>
-              )}
             </React.Fragment>
           )}
         </React.Fragment>
