@@ -766,17 +766,17 @@ const S9_S10 = (props) => {
 
   const revisionMotosierra = () => {
     if (
-      evaluaciones.resultado_eval_presencial_motosierra > 9 ||
+      evaluaciones.resultado_eval_presencial_motosierra > 11 ||
       evaluaciones.resultado_eval_presencial_motosierra < 0
     ) {
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_motosierra: null,
       });
-      AlertError("El puntaje maximo es de 9 y minimo 0");
+      AlertError("El puntaje maximo es de 11 y minimo 0");
     } else {
       const resultado =
-        (evaluaciones.resultado_eval_presencial_motosierra * 100) / 9;
+        (evaluaciones.resultado_eval_presencial_motosierra * 100) / 11;
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_motosierra: resultado.toString().slice(0, 5),
