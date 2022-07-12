@@ -746,17 +746,17 @@ const S9_S10 = (props) => {
 
   const revisionMarkIII = () => {
     if (
-      evaluaciones.resultado_eval_presencial_mark_III > 11 ||
+      evaluaciones.resultado_eval_presencial_mark_III > 18 ||
       evaluaciones.resultado_eval_presencial_mark_III < 0
     ) {
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_mark_III: null,
       });
-      AlertError("El puntaje maximo es de 11 y minimo 0");
+      AlertError("El puntaje maximo es de 18 y minimo 0");
     } else {
       const resultado =
-        (evaluaciones.resultado_eval_presencial_mark_III * 100) / 11;
+        (evaluaciones.resultado_eval_presencial_mark_III * 100) / 18;
       setEvaluaciones({
         ...evaluaciones,
         porcentaje_mark_III: resultado.toString().slice(0, 5),
@@ -1444,7 +1444,7 @@ const S9_S10 = (props) => {
                     }`}
                   limitLength={1}
                   min={0}
-                  max={8}
+                  max={9}
                   value={evaluaciones.resultado_eval_presencial_avenza_maps}
                   name="resultado_eval_presencial_avenza_maps"
                   onChange={setInfo}
@@ -1515,7 +1515,7 @@ const S9_S10 = (props) => {
                     }`}
                   limitLength={2}
                   min={0}
-                  max={11}
+                  max={18}
                   value={evaluaciones.resultado_eval_presencial_mark_III}
                   name="resultado_eval_presencial_mark_III"
                   onChange={setInfo}
@@ -1587,8 +1587,8 @@ const S9_S10 = (props) => {
                     : "myInput"
                     }`}
                   min={0}
-                  max={9}
-                  limitLength={1}
+                  max={11}
+                  limitLength={2}
                   value={evaluaciones.resultado_eval_presencial_motosierra}
                   name="resultado_eval_presencial_motosierra"
                   onChange={setInfo}
