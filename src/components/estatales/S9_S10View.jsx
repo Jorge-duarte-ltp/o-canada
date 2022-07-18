@@ -586,6 +586,17 @@ const S9_S10View = (props) => {
             <div className="col-12 col-md-12 center-text pt-5">
               <h2>GPS, Avenza Maps Motobomba MARK III y Motosierra</h2>
             </div>
+             {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
+             <div className="col-12 pt-2 col-md-12">
+              <a
+                className="btn btn-dark"
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Formato de evaluación habilidad y competencia en el uso de GPS
+              </a>
+            </div>
             {/* Nombre del evaluador prueba GPS */}
             <div className="col-12 col-md-12">
               <label className="control-label pt-2">
@@ -603,17 +614,7 @@ const S9_S10View = (props) => {
                 placeholder="Ingrese Nombre del evaluador prueba GPS..."
               />
             </div>
-            {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
-            <div className="col-12 pt-2 col-md-12">
-              <a
-                className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Formato de evaluación habilidad y competencia en el uso de GPS
-              </a>
-            </div>
+           
             {/* Resultado de la evaluación presencial de GPS */}
             <div className="col-12 col-md-6">
               <label className="control-label pt-2">
@@ -644,6 +645,17 @@ const S9_S10View = (props) => {
                 placeholder="calculo porcentaje de la evaluación presencial de GPS..."
               />
             </div>
+             {/* Formato de evaluación habilidad y competencia en el uso de Avenza Maps */}
+             <div className="col-12 pt-2 col-md-12">
+              <a
+                className="btn btn-dark"
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_avenza_maps.pdf`}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Formato de evaluación habilidad y competencia en el uso de Avenza Maps
+              </a>
+            </div>
             {/*Nombre del evaluador prueba Avenza Maps */}
             <div className="col-12 col-md-12">
               <label className="control-label pt-2">
@@ -660,17 +672,6 @@ const S9_S10View = (props) => {
                 onChangeCapture={ToMayus}
                 placeholder="Ingrese Nombre del evaluador prueba Avenza Maps..."
               />
-            </div>
-            {/* Formato de evaluación habilidad y competencia en el uso de Avenza Maps */}
-            <div className="col-12 pt-2 col-md-12">
-              <a
-                className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_avenza_maps.pdf`}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Formato de evaluación habilidad y competencia en el uso de Avenza Maps
-              </a>
             </div>
             {/* Resultado de la evaluación presencial de Avenza Maps*/}
             <div className="col-12 col-md-6">
@@ -705,6 +706,18 @@ const S9_S10View = (props) => {
                 placeholder="calculo porcentaje de la evaluación presencial de Avenza Maps..."
               />
             </div>
+            {/* Formato de evaluación habilidad y competencia en el uso de Mark III */}
+            <div className="col-12 pt-2 col-md-12">
+              <a
+                className="btn btn-dark"
+                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_mark_III.pdf`}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Formato de evaluación habilidad y competencia en el uso de Mark
+                III
+              </a>
+            </div>
             {/* Nombre del evaluador prueba Mark III */}
             <div className="col-12 col-md-12">
               <label className="control-label pt-2">
@@ -723,18 +736,6 @@ const S9_S10View = (props) => {
                 onChange={setInfo}
                 placeholder="Ingrese Nombre del evaluador prueba Mark III..."
               />
-            </div>
-            {/* Formato de evaluación habilidad y competencia en el uso de Mark III */}
-            <div className="col-12 pt-2 col-md-12">
-              <a
-                className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_mark_III.pdf`}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Formato de evaluación habilidad y competencia en el uso de Mark
-                III
-              </a>
             </div>
             {/* Resultado de la evaluación presencial de Mark III */}
             <div className="col-12 col-md-6">

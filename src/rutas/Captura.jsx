@@ -1308,6 +1308,7 @@ const Captura = () => {
         return;
 
       }
+
       if (examen_toeic_toefl_archivo_fl) {
 
         const formData_examen_toeic_toefl_archivo_fl = new FormData();
@@ -1316,6 +1317,7 @@ const Captura = () => {
         formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
 
       }
+      
     } else {
 
       // SI tiene s1, debe cargar los archivos, o responder algo
