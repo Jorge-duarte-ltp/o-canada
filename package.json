@@ -11,8 +11,10 @@
     "bootstrap": "^4.5.0",
     "formik": "^2.2.9",
     "jquery": "^3.5.1",
+    "jsontoxml": "^1.0.1",
     "moment": "^2.26.0",
     "nodemon": "^2.0.7",
+    "path": "^0.12.7",
     "pdf-viewer-reactjs": "^2.0.6",
     "popper.js": "^1.16.1",
     "react": "^16.13.1",
@@ -27,6 +29,7 @@
     "styled-components": "^5.1.1",
     "sweetalert2": "^9.11.0",
     "sweetalert2-react-content": "^3.0.1",
+    "xlsx": "^0.18.5",
     "yup": "^0.32.11"
   },
   "scripts": {

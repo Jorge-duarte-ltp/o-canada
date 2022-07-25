@@ -3,11 +3,15 @@ import { Col, Form } from "react-bootstrap";
 import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-import { AiOutlineReload } from "react-icons/ai";
+import { AiOutlineFileExcel, AiOutlineReload } from "react-icons/ai";
 import axiosClient from "../../config/axios";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertExito from "../../singles/AlertExito";
 import AsignarBrigada from "./AsignarBrigada";
+import * as xlsx from "xlsx";
+import fs from "fs";
+import path from "path";
+import moment from "moment";
 
 const TablaManifiesto = () => {
   const [asignarBrigada, setAsignarBrigada] = useState(false);
@@ -37,12 +41,9 @@ const TablaManifiesto = () => {
       setCurp("");
       setReload(false);
     }
-    
-    return () => { }
 
+    return () => {};
   }, [reload, curp]);
-
-
 
   const columns = [
     {
@@ -123,6 +124,18 @@ const TablaManifiesto = () => {
     },
   ];
 
+  const handleExport = () => {
+    try {
+
+      const wb = xlsx.utils.book_new();
+
+      console.log(wb);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return asignarBrigada ? (
     <Fragment>
       <AsignarBrigada
@@ -158,6 +171,15 @@ const TablaManifiesto = () => {
               onClick={() => setReload(true)}
             >
               <AiOutlineReload />
+            </Button>
+          </Col>
+          <Col xs="auto">
+            <Button
+              className="mb-2 float-sm-right"
+              variant="success"
+              onClick={handleExport}
+            >
+              <AiOutlineFileExcel />
             </Button>
           </Col>
         </Form.Row>

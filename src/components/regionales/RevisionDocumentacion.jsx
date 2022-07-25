@@ -222,6 +222,9 @@ const RevisionDocumentacion = () => {
       case "formato_eval_habilidad_uso_gps":
         return "Formato Evalución GPS";
 
+      case "formato_eval_habilidad_uso_avenza_maps":
+        return "Formato Evalución Avenza Maps";
+
       case "formato_epp":
         return "Formato Equipo Completo";
 

@@ -25,6 +25,7 @@ const S9_S10 = (props) => {
     formato_epp: null,
     formato_eval_habilidad_uso_mark_III: null,
     formato_eval_habilidad_uso_gps: null,
+    formato_eval_habilidad_uso_avenza_maps: null,
     formato_eval_habilidad_uso_motosierra: null,
     constancia_curso_s_211: null,
   });
@@ -437,7 +438,6 @@ const S9_S10 = (props) => {
     }
 
     if (input.target.name === "peso_verificado") {
-      
       const result = input.target.value.match(regex);
 
       if (result) {
@@ -486,14 +486,12 @@ const S9_S10 = (props) => {
       formato_eval_habilidad_uso_motosierra,
     } = archivos;
 
-    if (sePresento === 1) {
-      if (!formato) {
-        AlertError(
-          "Omisión de campo",
-          "El archivo FORMATO debe ser completado"
-        );
-        return;
-      }
+    console.log("entro funcion");
+
+    if (!sePresento) {
+      AlertError("Omisión de campo", "Debe de seleccionar SI o No");
+      return;
+    } else {
       if (!nombre_evaluador) {
         AlertError(
           "Omisión de campo",
@@ -501,6 +499,7 @@ const S9_S10 = (props) => {
         );
         return;
       }
+
       if (!peso_verificado) {
         AlertError(
           "Omisión de campo",
@@ -508,6 +507,7 @@ const S9_S10 = (props) => {
         );
         return;
       }
+
       if (!altura_verificada) {
         AlertError(
           "Omisión de campo",
@@ -515,6 +515,7 @@ const S9_S10 = (props) => {
         );
         return;
       }
+
       if (!imc_verificado) {
         AlertError(
           "Omisión de campo",
@@ -545,6 +546,15 @@ const S9_S10 = (props) => {
           );
           return;
         }
+
+        if (!formato) {
+          AlertError(
+            "Omisión de campo",
+            "El archivo FORMATO debe ser completado"
+          );
+          return;
+        }
+
         if (
           calificacionPrueba(
             minutos_prueba_trabajo_arduo,
