@@ -15,6 +15,7 @@ import CandidatoState from './context/candidato/candidatoState'
 import SessionState from './context/session/sessionState'
 import PruebasFisiscasState from './context/pruebas_fisicas/pruebasFisiscasState'
 import PDF from './components/captura/PDF';
+import ExportToPdf from './components/manifiesto/ExportToPDF';
 
 /* variable para cierre de convocatoria */
 const cierre = true;
@@ -34,6 +35,7 @@ const App = () => {
                 {/* <Route exact path="/" component={Captura} /> */}
                 <Route exact path="/" component={CierreConvocatoria} />
                 <Route exact path="/dashboard" component={Administracion} />
+                <Route exact path="/dashboard/ver-reporte" component={ExportToPdf} />
                 <Route exact path="/pdf" component={PDF} />
               </Switch>
               {/* <Footer> */}

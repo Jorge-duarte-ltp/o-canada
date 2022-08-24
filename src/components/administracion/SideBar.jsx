@@ -20,7 +20,7 @@ const SideBar = (props) => {
           disponibilidad: false,
           brigadas: false,
           manifiesto: false,
-          examen_pruebas: false,
+          reports: false,
         });
         break;
       case "estatales":
@@ -31,7 +31,7 @@ const SideBar = (props) => {
           disponibilidad: false,
           brigadas: false,
           manifiesto: false,
-          examen_pruebas: false,
+          reports: false,
         });
         break;
       case "mesa_ayuda":
@@ -42,7 +42,7 @@ const SideBar = (props) => {
           disponibilidad: false,
           brigadas: false,
           manifiesto: false,
-          examen_pruebas: false,
+          reports: false,
         });
         break;
       case "brigadas":
@@ -53,7 +53,7 @@ const SideBar = (props) => {
           disponibilidad: false,
           brigadas: true,
           manifiesto: false,
-          examen_pruebas: false,
+          reports: false,
         });
         break;
       case "disponibilidad":
@@ -64,7 +64,7 @@ const SideBar = (props) => {
           disponibilidad: true,
           brigadas: false,
           manifiesto: false,
-          examen_pruebas: false,
+          reports: false,
         });
         break;
       case "manifiesto":
@@ -75,10 +75,10 @@ const SideBar = (props) => {
           disponibilidad: false,
           brigadas: false,
           manifiesto: true,
-          examen_pruebas: false,
+          reports: false,
         });
         break;
-      case "examen_pruebas":
+      case "manifest":
         setShowSection({
           regionales: false,
           estatales: false,
@@ -86,7 +86,7 @@ const SideBar = (props) => {
           disponibilidad: false,
           brigadas: false,
           manifiesto: false,
-          examen_pruebas: true,
+          reports: true,
         });
         break;
       default:
@@ -151,6 +151,15 @@ const SideBar = (props) => {
             Mesa de ayuda
           </button>
         )}
+
+        <button
+          value="reports"
+          className="list-group-item list-group-item-action bg-light"
+          onClick={handleClick}
+        >
+          Reportes Pruebas
+        </button>
+
       </div>
     </div>
   );
