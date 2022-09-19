@@ -30,76 +30,114 @@ const TablaEstatales = () => {
             -> columna formato condicional motivo de rechazo rojo
     */
 
-  
+
   const getEstado = (cv_edo = "00") => {
     cv_edo = sessContext.login.user.user_type;
-    switch (cv_edo) {
-      case "01":
-        return "Aguascalientes";
-      case "02":
-        return "Baja california";
-      case "03":
-        return "Baja california sur";
-      case "04":
-        return "Campeche";
-      case "05":
-        return "Coahuila de zaragoza";
-      case "06":
-        return "Colima";
-      case "07":
-        return "Chiapas";
-      case "08":
-        return "Chihuahua";
-      case "09":
-        return "Ciudad de méxico";
-      case "10":
-        return "Durango";
-      case "11":
-        return "Guanajuato";
-      case "12":
-        return "Guerrero";
-      case "13":
-        return "Hidalgo";
-      case "14":
-        return "Jalisco";
-      case "15":
-        return "México";
-      case "16":
-        return "Michoacán";
-      case "17":
-        return "Morelos";
-      case "18":
-        return "Nayarit";
-      case "19":
-        return "Nuevo león";
-      case "20":
-        return "Oaxaca";
-      case "21":
-        return "Puebla";
-      case "22":
-        return "Querétaro";
-      case "23":
-        return "Quintana roo";
-      case "24":
-        return "San luis potosí";
-      case "25":
-        return "Sinaloa";
-      case "26":
-        return "Sonora";
-      case "27":
-        return "Tabasco";
-      case "28":
-        return "Tamaulipas";
-      case "29":
-        return "Tlaxcala";
-      case "30":
-        return "Veracruz";
-      case "31":
-        return "Yucatán";
-      case "32":
-        return "Zacatecas";
-      default:
-        return "Of.Centrales";
+    const porfile = sessContext.login.user.porfile;
+
+    if (porfile.regionales && porfile.estatales) {
+
+
+      switch (cv_edo) {
+        case "1":
+
+          return "NOROESTE";
+
+        case "2":
+
+          return "NORTE";
+
+        case "3":
+
+          return "NORESTE";
+
+        case "4":
+
+          return "OCCIDENTE";
+
+        case "5":
+
+          return "CENTRO";
+
+        case "6":
+
+          return "SURESTE"
+
+        default:
+          return "Of. Centrales";
+
+      }
+
+    } else {
+
+      switch (cv_edo) {
+        case "01":
+          return "Aguascalientes";
+        case "02":
+          return "Baja california";
+        case "03":
+          return "Baja california sur";
+        case "04":
+          return "Campeche";
+        case "05":
+          return "Coahuila de zaragoza";
+        case "06":
+          return "Colima";
+        case "07":
+          return "Chiapas";
+        case "08":
+          return "Chihuahua";
+        case "09":
+          return "Ciudad de méxico";
+        case "10":
+          return "Durango";
+        case "11":
+          return "Guanajuato";
+        case "12":
+          return "Guerrero";
+        case "13":
+          return "Hidalgo";
+        case "14":
+          return "Jalisco";
+        case "15":
+          return "México";
+        case "16":
+          return "Michoacán";
+        case "17":
+          return "Morelos";
+        case "18":
+          return "Nayarit";
+        case "19":
+          return "Nuevo león";
+        case "20":
+          return "Oaxaca";
+        case "21":
+          return "Puebla";
+        case "22":
+          return "Querétaro";
+        case "23":
+          return "Quintana roo";
+        case "24":
+          return "San luis potosí";
+        case "25":
+          return "Sinaloa";
+        case "26":
+          return "Sonora";
+        case "27":
+          return "Tabasco";
+        case "28":
+          return "Tamaulipas";
+        case "29":
+          return "Tlaxcala";
+        case "30":
+          return "Veracruz";
+        case "31":
+          return "Yucatán";
+        case "32":
+          return "Zacatecas";
+        default:
+          return "Of.Centrales";
+      }
     }
   };
 
@@ -176,7 +214,7 @@ const TablaEstatales = () => {
       setModoVista(false);
       setReload(false);
     }
-    return () => {}
+    return () => { }
   }, [reload]);
 
   /* CONFIGURACIONES TABLA */
@@ -260,7 +298,7 @@ const TablaEstatales = () => {
     },
   ];
 
-  
+
 
   const conditionalRowStyles = [
     {

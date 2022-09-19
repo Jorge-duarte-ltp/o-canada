@@ -8,10 +8,7 @@ import axiosClient from "../../config/axios";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertExito from "../../singles/AlertExito";
 import AsignarBrigada from "./AsignarBrigada";
-import * as xlsx from "xlsx";
-import fs from "fs";
-import path from "path";
-import moment from "moment";
+import { useHistory } from "react-router-dom";
 
 const TablaManifiesto = () => {
   const [asignarBrigada, setAsignarBrigada] = useState(false);
@@ -19,6 +16,7 @@ const TablaManifiesto = () => {
   const [data, setData] = useState();
   const [reload, setReload] = useState(true);
   const [curp, setCurp] = useState();
+  const history = useHistory();
 
   const showAsignarBrigada = (data) => {
     setCandidato(data);
@@ -26,6 +24,7 @@ const TablaManifiesto = () => {
   };
 
   useEffect(() => {
+
     if (reload) {
       AlertCargando("Cargando información");
       axiosClient({
@@ -42,7 +41,7 @@ const TablaManifiesto = () => {
       setReload(false);
     }
 
-    return () => {};
+    return () => { };
   }, [reload, curp]);
 
   const columns = [
@@ -125,16 +124,8 @@ const TablaManifiesto = () => {
   ];
 
   const handleExport = () => {
-    try {
-
-      const wb = xlsx.utils.book_new();
-
-      console.log(wb);
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    history.push('/dashboard/ver-reporte');
+  }
 
   return asignarBrigada ? (
     <Fragment>
