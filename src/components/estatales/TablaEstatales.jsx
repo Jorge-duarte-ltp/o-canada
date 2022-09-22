@@ -10,6 +10,7 @@ import S9_S10 from "./S9_S10";
 import S9_S10View from "./S9_S10View";
 import { AiOutlineReload } from "react-icons/ai";
 import InfomacionCandidato from "./InfomacionCandidato";
+import { getStates, getStatesBySearch } from "../../services/states/StatesService";
 
 
 const TablaEstatales = () => {
@@ -144,18 +145,16 @@ const TablaEstatales = () => {
   const buscarRegistro = async () => {
     const { user } = sessContext.login;
     // const searchWord = input.target.value
-    const url = `${API_REQUEST}busqueda_revision_estatal`;
     AlertCargando("Buscando similitudes...");
     setLoading(true);
     if (searchWord !== "") {
       if (user) {
-        try {
-          const resp = await axios.post(url, {
-            busqueda: searchWord,
-            email: user.email,
-            token: user.token,
-            user_type: user.user_type,
-          });
+        await getStatesBySearch({
+          busqueda: searchWord,
+          email: user.email,
+          token: user.token,
+          user_type: user.user_type,
+        }).then((resp) => {
           if (resp.status === 200) {
             setDatosTabla(resp.data);
             AlertExito("Se han cargado los registros existentes");
@@ -163,9 +162,9 @@ const TablaEstatales = () => {
           } else {
             AlertError("Error", resp.data);
           }
-        } catch (error) {
-          AlertError("Error", error);
-        }
+        }).catch((error) => {
+          AlertError("Error", error.responseJSON);
+        })
       }
     } else {
       getCandidatos();
@@ -174,11 +173,9 @@ const TablaEstatales = () => {
 
   const getCandidatos = async () => {
     const { user } = sessContext.login;
-    const url = `${API_REQUEST}revision_estatal`;
-    try {
-      AlertCargando("Extrayendo registros...");
-      setLoading(true);
-      const resp = await axios.post(url, user);
+    AlertCargando("Extrayendo registros...");
+    setLoading(true);
+    await getStates(user).then((resp) => {
       if (resp.status === 200) {
         AlertExito("Registros cargados");
         setDatosTabla(resp.data);
@@ -186,9 +183,10 @@ const TablaEstatales = () => {
       } else {
         AlertError("Error", resp);
       }
-    } catch (error) {
-      AlertError("ERROR", error);
-    }
+    }).catch((error) => {
+      AlertError("Error", error.responseJSON)
+    })
+
   };
 
   const mostrarPlantillaPruebas = (data) => {

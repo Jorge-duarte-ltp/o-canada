@@ -1,15 +1,16 @@
-import axios from "../../config/axios";
 import React, { Fragment, useState, useEffect, useContext } from "react";
-import { Alert, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertError from "../../singles/AlertError";
 import AlertExito from "../../singles/AlertExito";
 import InfomacionCandidato from "../estatales/InfomacionCandidato";
 import sessionContext from "../../context/session/sessionContext";
 import moment from "moment";
+import { postUploadFile } from "../../services/files/FilesService";
+import { postBrigadesEvaluation, putBrigadesEvaluation } from "../../services/brigades/BrigadesService";
 
 const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
-  
+
   const sessContext = useContext(sessionContext);
   const [files, setFiles] = useState({
     evaluacion_desempenio_archivo_fl: null,
@@ -21,39 +22,39 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
   const evaluacionDefault = data.evaluaciones[0]
     ? data.evaluaciones[0]
     : {
-        fk_curp: data.curp,
-        aptitud_fisica: null,
-        uso_gps: null,
-        conducta: null,
-        productividad: null,
-        liderazgo: null,
-        licencia_manejo: null,
-        estado_salud: null,
-        exp_incendios_forestales: null,
-        sis_comando_incendios: null,
-        cadena_mando: null,
-        idioma_ingles: null,
-        equipo_despliegue: null,
-        uso_markIII: null,
-        uso_motosierra: null,
-        observacion_conducta: null,
-        observacion_idioma_ingles: null,
-        observacion_aptitud_fisica: null,
-        observacion_liderazgo: null,
-        observacion_equipo_despliegue: null,
-        observacion_uso_gps: null,
-        observacion_uso_markIII: null,
-        observacion_uso_motosierra: null,
-        observacion_licencia_manejo: null,
-        observacion_estado_salud: null,
-        observacion_exp_incendios_forestales: null,
-        observacion_productividad: null,
-        observacion_sis_comando_incendios: null,
-        observacion_cadena_mando: null,
-      };
+      fk_curp: data.curp,
+      aptitud_fisica: null,
+      uso_gps: null,
+      conducta: null,
+      productividad: null,
+      liderazgo: null,
+      licencia_manejo: null,
+      estado_salud: null,
+      exp_incendios_forestales: null,
+      sis_comando_incendios: null,
+      cadena_mando: null,
+      idioma_ingles: null,
+      equipo_despliegue: null,
+      uso_markIII: null,
+      uso_motosierra: null,
+      observacion_conducta: null,
+      observacion_idioma_ingles: null,
+      observacion_aptitud_fisica: null,
+      observacion_liderazgo: null,
+      observacion_equipo_despliegue: null,
+      observacion_uso_gps: null,
+      observacion_uso_markIII: null,
+      observacion_uso_motosierra: null,
+      observacion_licencia_manejo: null,
+      observacion_estado_salud: null,
+      observacion_exp_incendios_forestales: null,
+      observacion_productividad: null,
+      observacion_sis_comando_incendios: null,
+      observacion_cadena_mando: null,
+    };
   const [state, setState] = useState(evaluacionDefault);
 
-  
+
   const setInfo = (input) => {
     /* setea al state las variables */
     if (input.target.name === "evaluacion_desempenio_archivo") {
@@ -155,13 +156,9 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         formData.append("curp", state.fk_curp);
         formData.append("name", `evaluacion_desempenio_${evento}`);
 
-        const archivo = await axios.post(`/carga_archivo`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        const archivo = await postUploadFile(formData);
         /* crea un nuevo registro */
-        const resp = await axios.post("/create_evaluacion", {
+        const resp = await postBrigadesEvaluation({
           user: { ...user, curp: data.curp_jefe_brigada },
           data: { ...state, suma: sumatoria },
         });
@@ -178,16 +175,18 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
       //    mandar por PUT los datos para edicion
       AlertCargando("Enviando evaluación...");
       try {
-        const resp = await axios.put("/edit_evaluacion", {
+
+        const resp = await putBrigadesEvaluation({
           user: user,
           data: state,
         });
+
         if (resp.status === 200) {
           AlertExito("Se cargo correctamente");
           backTable();
           setReload(!reload);
         }
-      } catch (error) {}
+      } catch (error) { }
       return;
     }
     /* CAMBIAR STATUS DE ENVIADO PARA MODIFICACIÓN */
@@ -605,34 +604,34 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
         {(data.posicion_candidato === "jefe_de_cuadrilla" ||
           data.posicion_candidato === "jefe_de_brigada") && (
-          <Fragment>
-            <div className="col-12 pt-4">
-              <label>15.- CAPACIDAD DE GESTIÓN</label>
-              <p>
-                Resuelve situaciones urgentes y establece planes de
-                contingencia, negocia al interior y al exterior del grupo para
-                mejorar las condiciones del grupo. Analiza, evalúa, propone
-                soluciones. ¿Se anticipa a los problemas y actúa antes de que
-                aparezcan?.
-              </p>
-              <SelectCalificacion
-                defaultValue={state.capacidad_gestion}
-                className="form-control"
-                name="capacidad_gestion"
-                onChange={setInfo}
-              />
-              <br />
-              <textarea
-                className="form-control"
-                name="observacion_capacidad_gestion"
-                defaultValue={state.observacion_capacidad_gestion}
-                // disabled={(edicion) ? true : false}
-                onChange={setInfo}
-                placeholder="Observaciones..."
-              />
-            </div>
-          </Fragment>
-        )}
+            <Fragment>
+              <div className="col-12 pt-4">
+                <label>15.- CAPACIDAD DE GESTIÓN</label>
+                <p>
+                  Resuelve situaciones urgentes y establece planes de
+                  contingencia, negocia al interior y al exterior del grupo para
+                  mejorar las condiciones del grupo. Analiza, evalúa, propone
+                  soluciones. ¿Se anticipa a los problemas y actúa antes de que
+                  aparezcan?.
+                </p>
+                <SelectCalificacion
+                  defaultValue={state.capacidad_gestion}
+                  className="form-control"
+                  name="capacidad_gestion"
+                  onChange={setInfo}
+                />
+                <br />
+                <textarea
+                  className="form-control"
+                  name="observacion_capacidad_gestion"
+                  defaultValue={state.observacion_capacidad_gestion}
+                  // disabled={(edicion) ? true : false}
+                  onChange={setInfo}
+                  placeholder="Observaciones..."
+                />
+              </div>
+            </Fragment>
+          )}
 
         <div className="col-12 pt-4">
           <label className="form-control">Sumatoria:</label>

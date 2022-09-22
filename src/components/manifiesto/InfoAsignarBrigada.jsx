@@ -4,7 +4,6 @@ import SelectProvicia from "../../singles/SelectProvincia";
 import SelectNumeroBrigada from "../../singles/SelectNumeroBrigada";
 import SelectPosionAsignada from "../../singles/SelectPosionAsignada";
 import calculoDiasFechas from "../../helpers/calculoDiasFechas";
-import axiosClient from "../../config/axios";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertExito from "../../singles/AlertExito";
 import { PencilSquare } from "react-bootstrap-icons";
@@ -12,6 +11,8 @@ import { Button } from "react-bootstrap";
 import validarFechas from "../../helpers/validarFechas";
 import AlertError from "../../singles/AlertError";
 import { isEmpty } from "lodash";
+import { ObtenerPosiciones, ObtenerProvincias } from "../../services/catalogs/CatalogoService";
+import { postBrigadesCandidatesById, postBrigadesCandidatesUpdate } from "../../services/manifest/ManifestService";
 const InfoAsignarBrigada = ({ state }) => {
   const [posiciones, setPosiciones] = useState();
   const [provincias, setProvincias] = useState();
@@ -22,35 +23,30 @@ const InfoAsignarBrigada = ({ state }) => {
   });
 
   useEffect(() => {
+
     if (reload) {
       AlertCargando("Cargando información...");
-      axiosClient({
-        method: "post",
-        url: `${process.env.REACT_APP_BACKEND_URL}list_posiciones`,
-      }).then(async ({ data: { data } }) => {
-        await setPosiciones(data);
-      });
+      ObtenerPosiciones()
+        .then(async ({ data: { data } }) => {
+          await setPosiciones(data);
+        });
 
-      axiosClient({
-        method: "post",
-        url: `${process.env.REACT_APP_BACKEND_URL}list_provincias`,
-      }).then(async ({ data: { data } }) => {
-        await setProvincias(data);
-      });
+      ObtenerProvincias()
+        .then(async ({ data: { data } }) => {
+          await setProvincias(data);
+        });
 
-      axiosClient({
-        method: "post",
-        url: `${process.env.REACT_APP_BACKEND_URL}selectCandidatoBrigada`,
-        data: { idCandidato: data.idCandidato },
-      }).then(async ({ data: { data } }) => {
-        await setData(data[0]);
-        AlertExito("Información cargada con éxito");
-      });
+      postBrigadesCandidatesById({ idCandidato: data.idCandidato })
+        .then(async ({ data: { data } }) => {
+          await setData(data[0]);
+          AlertExito("Información cargada con éxito");
+        });
+
       setReload(false);
     }
 
     return () => { }
-    
+
   }, [data, reload]);
 
   return edit ? (
@@ -260,24 +256,20 @@ const EditInfo = ({
           "La fecha conclusión debe ser mayor a la fecha incial."
         );
       } else {
-        await axiosClient({
-          method: "post",
-          url: `${process.env.REACT_APP_BACKEND_URL}updateCandidatoBrigada`,
-          data: {
-            data:
-              dataTemp.asignado === "1"
-                ? dataTemp
-                : {
-                  ...dataTemp,
-                  numero: null,
-                  asignacion: null,
-                  idPais: null,
-                  idProvincia: null,
-                  idPosicion: null,
-                  fechaInicio: null,
-                  fechaFinal: null,
-                },
-          },
+        await postBrigadesCandidatesUpdate({
+          data:
+            dataTemp.asignado === "1"
+              ? dataTemp
+              : {
+                ...dataTemp,
+                numero: null,
+                asignacion: null,
+                idPais: null,
+                idProvincia: null,
+                idPosicion: null,
+                fechaInicio: null,
+                fechaFinal: null,
+              },
         }).then(async (resp) => {
           if (resp.status === 200) {
             AlertExito(

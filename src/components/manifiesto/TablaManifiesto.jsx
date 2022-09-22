@@ -4,11 +4,11 @@ import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { AiOutlineFileExcel, AiOutlineReload } from "react-icons/ai";
-import axiosClient from "../../config/axios";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertExito from "../../singles/AlertExito";
 import AsignarBrigada from "./AsignarBrigada";
 import { useHistory } from "react-router-dom";
+import { postBrigadesCandidates } from "../../services/manifest/ManifestService";
 
 const TablaManifiesto = () => {
   const [asignarBrigada, setAsignarBrigada] = useState(false);
@@ -27,11 +27,7 @@ const TablaManifiesto = () => {
 
     if (reload) {
       AlertCargando("Cargando información");
-      axiosClient({
-        method: "post",
-        url: `${process.env.REACT_APP_BACKEND_URL}brigada_candidatos`,
-        data: { curp: curp ? curp : "" },
-      }).then(async ({ data: { data } }) => {
+      postBrigadesCandidates({ curp: curp ? curp : "" }).then(async ({ data: { data } }) => {
         await setData(data);
         AlertExito(
           "Se han cargado los candidatos disponibles para asignar u asignados"

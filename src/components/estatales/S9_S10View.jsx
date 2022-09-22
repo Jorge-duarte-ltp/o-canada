@@ -30,26 +30,6 @@ const S9_S10View = (props) => {
   const [sectionPruebaFisica, setSectionPruebaFisica] = useState(true);
   const [evaluaciones, setEvaluaciones] = useState(props.infoCandidato);
 
-  const setInfo = (input) => {
-    if (
-      input.target.name === "formato" ||
-      input.target.name === "formato_eval_habilidad_uso_mark_III" ||
-      input.target.name === "constancia_curso_s_211" ||
-      input.target.name === "formato_epp" ||
-      input.target.name === "formato_eval_habilidad_uso_gps"
-    ) {
-      setArchivos({
-        ...archivos,
-        [input.target.name]: input.target.files,
-      });
-    } else {
-      setEvaluaciones({
-        ...evaluaciones,
-        [input.target.name]: input.target.value,
-      });
-    }
-  };
-
   const calculoTiempoMax = (asnm) => {
     /* asnm => Altura sobre el nivel del mar */
     if (asnm) {
@@ -257,7 +237,7 @@ const S9_S10View = (props) => {
             value={evaluaciones.nombre_evaluador}
             type="text"
             // accept="image/png,image/jpeg"
-            onChange={setInfo}
+            readOnly
             // onChangeCapture={ToMayus}
             placeholder="Ingrese Nombre completo..."
           />
@@ -276,7 +256,7 @@ const S9_S10View = (props) => {
             type="number"
             value={evaluaciones.peso_verificado}
             // accept="image/png,image/jpeg"
-            onChange={setInfo}
+            readOnly
             onBlur={handleIMC}
             placeholder="Ingrese Peso verificado..."
           />
@@ -307,7 +287,7 @@ const S9_S10View = (props) => {
             type="number"
             value={evaluaciones.altura_verificada}
             // accept="image/png,image/jpeg"
-            onChange={setInfo}
+            readOnly
             onBlur={handleIMC}
             placeholder="Ingrese Altura verificada..."
           />
@@ -338,7 +318,7 @@ const S9_S10View = (props) => {
             type="text"
             value={evaluaciones.imc_verificado}
             // accept="image/png,image/jpeg"
-            onChange={setInfo}
+            readOnly
             placeholder="Calculo de IMC..."
           />
         </div>
@@ -361,7 +341,7 @@ const S9_S10View = (props) => {
                 type="number"
                 value={evaluaciones.altura_sobre_niv_mar}
                 // accept="image/png,image/jpeg"
-                onChange={setInfo}
+                readOnly
                 onBlur={handleASNM}
                 placeholder="Ingrese Altura sobre el nivel del mar..."
               />
@@ -396,7 +376,7 @@ const S9_S10View = (props) => {
                   min={0}
                   value={evaluaciones.minutos_prueba_trabajo_arduo}
                   name="minutos_prueba_trabajo_arduo"
-                  onChange={setInfo}
+                  readOnly
                   onBlur={calcResultados}
                 />
                 <InputGroup.Prepend>
@@ -413,7 +393,7 @@ const S9_S10View = (props) => {
                   min={0}
                   value={evaluaciones.segundos_prueba_trabajo_arduo}
                   name="segundos_prueba_trabajo_arduo"
-                  onChange={setInfo}
+                  readOnly
                   onBlur={calcResultados}
                 />
                 <InputGroup.Prepend>
@@ -430,7 +410,7 @@ const S9_S10View = (props) => {
                   }`}
                 name="puntuacion_estimada"
                 value={evaluaciones.puntuacion_estimada}
-                // onChange={setInfo}
+                //readOnly
                 placeholder="Ingrese Minutos y Segundos de la prueba..."
               />
             </div>
@@ -442,7 +422,7 @@ const S9_S10View = (props) => {
                 className={`form-control ${evaluaciones.prueba ? null : "myInput"
                   }`}
                 name="prueba"
-                // onChange={setInfo}
+                //readOnly
                 value={evaluaciones.prueba}
                 placeholder="Resultados de la prueba..."
               />
@@ -475,7 +455,7 @@ const S9_S10View = (props) => {
                 name="nombre_evaluador_carrera"
                 value={evaluaciones.nombre_evaluador_carrera}
                 type="text"
-                onChange={setInfo}
+                readOnly
                 onChangeCapture={ToMayus}
                 placeholder="Ingrese Nombre completo..."
               />
@@ -497,7 +477,7 @@ const S9_S10View = (props) => {
                   min={0}
                   value={evaluaciones.minutos_prueba_trabajo_carrera}
                   name="minutos_prueba_trabajo_carrera"
-                  onChange={setInfo}
+                  readOnly
                   onBlur={calcResultados}
                 />
                 <InputGroup.Prepend>
@@ -514,7 +494,7 @@ const S9_S10View = (props) => {
                   min={0}
                   value={evaluaciones.segundos_prueba_trabajo_carrera}
                   name="segundos_prueba_trabajo_carrera"
-                  onChange={setInfo}
+                  readOnly
                   onBlur={calcResultados}
                 />
                 <InputGroup.Prepend>
@@ -572,7 +552,7 @@ const S9_S10View = (props) => {
                   disabled
                   name="presento_equipo"
                   defaultValue={evaluaciones.presento_equipo}
-                  onChange={setInfo}
+                  readOnly
                   onChangeCapture={handleEPP}
                 />
               )}
@@ -586,8 +566,8 @@ const S9_S10View = (props) => {
             <div className="col-12 col-md-12 center-text pt-5">
               <h2>GPS, Avenza Maps Motobomba MARK III y Motosierra</h2>
             </div>
-             {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
-             <div className="col-12 pt-2 col-md-12">
+            {/* Formato de evaluación habilidad y competencia en el uso de GPS */}
+            <div className="col-12 pt-2 col-md-12">
               <a
                 className="btn btn-dark"
                 href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_gps.pdf`}
@@ -609,12 +589,12 @@ const S9_S10View = (props) => {
                 type="text"
                 value={evaluaciones.nombre_evaluador_prueba_gps}
                 name="nombre_evaluador_prueba_gps"
-                // onChange={setInfo}
+                //readOnly
                 onChangeCapture={ToMayus}
                 placeholder="Ingrese Nombre del evaluador prueba GPS..."
               />
             </div>
-           
+
             {/* Resultado de la evaluación presencial de GPS */}
             <div className="col-12 col-md-6">
               <label className="control-label pt-2">
@@ -641,12 +621,12 @@ const S9_S10View = (props) => {
                   }`}
                 value={evaluaciones.porcentaje_gps}
                 name="porcentaje_gps"
-                // onChange={setInfo}
+                //readOnly
                 placeholder="calculo porcentaje de la evaluación presencial de GPS..."
               />
             </div>
-             {/* Formato de evaluación habilidad y competencia en el uso de Avenza Maps */}
-             <div className="col-12 pt-2 col-md-12">
+            {/* Formato de evaluación habilidad y competencia en el uso de Avenza Maps */}
+            <div className="col-12 pt-2 col-md-12">
               <a
                 className="btn btn-dark"
                 href={`${process.env.REACT_APP_BACKEND_FILES}${evaluaciones.curp}/formato_eval_habilidad_uso_avenza_maps.pdf`}
@@ -668,7 +648,7 @@ const S9_S10View = (props) => {
                 type="text"
                 value={evaluaciones.nombre_evaluador_prueba_avenza_maps}
                 name="nombre_evaluador_prueba_avenza_maps"
-                onChange={setInfo}
+                readOnly
                 onChangeCapture={ToMayus}
                 placeholder="Ingrese Nombre del evaluador prueba Avenza Maps..."
               />
@@ -733,7 +713,7 @@ const S9_S10View = (props) => {
                 // onChangeCapture={ToMayus}
                 value={evaluaciones.nombre_evaluador_prueba_mark_III}
                 name="nombre_evaluador_prueba_mark_III"
-                onChange={setInfo}
+                readOnly
                 placeholder="Ingrese Nombre del evaluador prueba Mark III..."
               />
             </div>
@@ -751,7 +731,7 @@ const S9_S10View = (props) => {
                 limitLength={2}
                 value={evaluaciones.resultado_eval_presencial_mark_III}
                 name="resultado_eval_presencial_mark_III"
-                onChange={setInfo}
+                readOnly
                 placeholder="Ingrese Resultado de la evaluación presencial de Mark III..."
               />
             </div>
@@ -797,7 +777,7 @@ const S9_S10View = (props) => {
                 onChangeCapture={ToMayus}
                 value={evaluaciones.nombre_evaluador_prueba_motosierra}
                 name="nombre_evaluador_prueba_motosierra"
-                onChange={setInfo}
+                readOnly
                 placeholder="Ingrese Nombre del evaluador prueba Motosierra..."
               />
             </div>
@@ -816,7 +796,7 @@ const S9_S10View = (props) => {
                 limitLength={2}
                 value={evaluaciones.resultado_eval_presencial_motosierra}
                 name="resultado_eval_presencial_motosierra"
-                onChange={setInfo}
+                readOnly
                 placeholder="Ingrese Resultado de la evaluación presencial de Motosierra..."
               />
             </div>
@@ -831,7 +811,7 @@ const S9_S10View = (props) => {
                   }`}
                 value={evaluaciones.porcentaje_motosierra}
                 name="porcentaje_motosierra"
-                onChange={setInfo}
+                readOnly
                 placeholder="calculo porcentaje de la evaluación presencial de Motosierra..."
               />
             </div>

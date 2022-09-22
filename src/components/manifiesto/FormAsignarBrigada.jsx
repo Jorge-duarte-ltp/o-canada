@@ -10,6 +10,7 @@ import { isEmpty } from "lodash";
 import AlertError from "../../singles/AlertError";
 import validarFechas from "../../helpers/validarFechas";
 import AlertExito from "../../singles/AlertExito";
+import { ObtenerPosiciones, ObtenerProvincias } from "../../services/catalogs/CatalogoService";
 
 const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
   const [posiciones, setPosiciones] = useState();
@@ -24,21 +25,15 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
 
   useEffect(() => {
 
-    axiosClient({
-      method: "post",
-      url: `${process.env.REACT_APP_BACKEND_URL}list_posiciones`,
-    }).then(async ({ data: { data } }) => {
+    ObtenerPosiciones().then(async ({ data: { data } }) => {
       await setPosiciones(data);
     });
 
-    axiosClient({
-      method: "post",
-      url: `${process.env.REACT_APP_BACKEND_URL}list_provincias`,
-    }).then(async ({ data: { data } }) => {
+    ObtenerProvincias().then(async ({ data: { data } }) => {
       await setProvincias(data);
     });
 
-    return () => {}
+    return () => { }
 
   }, []);
 
@@ -168,7 +163,7 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
                 onChange={setInfo}
                 minLength={0}
                 maxLength={255}
-                                pattern="(^MX-\d{3},\s{1}[A-Z]{1,2}-\d{3}$)"
+                pattern="(^MX-\d{3},\s{1}[A-Z]{1,2}-\d{3}$)"
                 type="text"
                 placeholder="Ingrese el nombre clave de la brigada a asignar"
               />

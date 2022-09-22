@@ -152,13 +152,13 @@ const SideBar = (props) => {
           </button>
         )}
 
-        <button
+        {/*<button
           value="reports"
           className="list-group-item list-group-item-action bg-light"
           onClick={handleClick}
         >
           Reportes Pruebas
-        </button>
+        </button>*/}
 
       </div>
     </div>

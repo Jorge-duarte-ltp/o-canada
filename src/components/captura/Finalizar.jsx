@@ -6,12 +6,14 @@ import PDF from "./PDF";
 import candidatoContext from "../../context/candidato/candidatoContext";
 import { isEmpty } from "lodash";
 const Finalizar = (props) => {
+
   const candidatos = useContext(candidatoContext);
   const [state,] = useState(candidatos.candidatos.infoBrigadista);
   const { photo } = props;
   const [mensaje, setMensaje] = useState("");
   const [puesto, setPuesto] = useState("");
   let ventana = window;
+  
   const [secciones, setSecciones] = useState({
     pasaporte_vigente: false,
     documento_para_viajar_a_canad: false,

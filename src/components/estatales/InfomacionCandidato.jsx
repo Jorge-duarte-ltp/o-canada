@@ -1,6 +1,7 @@
 import React from 'react'
 
 const InfomacionCandidato = (props) => {
+
     const { state, setVolver } = props
 
     return (
@@ -10,7 +11,7 @@ const InfomacionCandidato = (props) => {
             </div>
 
             {/* fotografia DEL CANDIDATO */}
-            <div className='col-12 col-md-12' style={{textAlign:'center'}}>
+            <div className='col-12 col-md-12' style={{ textAlign: 'center' }}>
                 <img src={`${process.env.REACT_APP_BACKEND_FILES}${state.curp}/${state.fotografia}`} alt="Fotografía" width={200} height={200} />
             </div>
             {/* NOMBRE DEL CANDIDATO */}

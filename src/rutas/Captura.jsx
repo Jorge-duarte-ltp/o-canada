@@ -10,7 +10,6 @@ import S6 from "../components/captura/S6";
 import S7 from "../components/captura/S7";
 import S8 from "../components/captura/S8";
 import Finalizar from "../components/captura/Finalizar";
-import axios from "axios";
 import AlertError from "../singles/AlertError";
 import AlertCargando from "../singles/AlertCargando";
 import AlertExito from "../singles/AlertExito";
@@ -23,7 +22,8 @@ import candidatoContext from "./../context/candidato/candidatoContext";
 import emailValid from "../helpers/emailValid";
 // import axiosClient from "../config/axios";
 import { formatDate } from "../helpers/formatDate";
-const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
+import { postUploadFile } from "../services/files/FilesService";
+import { postCandidateUpdate } from "../services/candidates/CandidateService";
 
 const Captura = () => {
   const candidatos = useContext(candidatoContext);
@@ -31,9 +31,11 @@ const Captura = () => {
   const [infoBrigadista, setInfoBrigadista] = useState(
     candidatos.candidatos.infoBrigadista
   );
+
+
   // const [infoBrigadista, setInfoBrigadista] = useState()
   const [archivos, setArchivos] = useState({});
-
+  
   const [secciones, setSecciones] = useState({
     login: { status: "faltante", visible: !false },
     s1: { status: "faltante", visible: false },
@@ -192,8 +194,6 @@ const Captura = () => {
       infoBrigadista,
     });
 
-    const url = `${API_REQUEST}candidato_update`;
-
     try {
 
       const formData = new FormData();
@@ -205,28 +205,13 @@ const Captura = () => {
       formDataCurp.append("file", archivos.curp_archivo_fl[0]);
       formDataCurp.append("curp", infoBrigadista.curp);
       formDataCurp.append("name", "curp_archivo");
-      const archivo = await axios.post(`${API_REQUEST}carga_archivo`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
 
-      const archivo_curp = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formDataCurp,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const archivo = await postUploadFile(formData);
+      const archivo_curp = await postUploadFile(formDataCurp);
 
       AlertCargando("Enviando los datos, espere por favor");
 
-      const respuesta = await axios.post(url, {
+      const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
         secuencia: { ...secciones, s1: seccionCompleta, s2: seccionSiguiente },
       });
@@ -401,54 +386,22 @@ const Captura = () => {
 
     }
 
-    /*   actualizacion de informacion por AXIOS */
-    const url = `${API_REQUEST}candidato_update`;
-
     try {
-      const archivo_pasaporte_archivo = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_pasaporte_archivo,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      const archivo_eta_visa_archivo = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_eta_visa_archivo,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const archivo_pasaporte_archivo = await postUploadFile(formData_pasaporte_archivo);
+      const archivo_eta_visa_archivo = await postUploadFile(formData_eta_visa_archivo);
 
       if (tiene_licencia === "1") {
-        const archivo_licencia_manejo = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_licencia_manejo,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+
+        const archivo_licencia_manejo = await postUploadFile(formData_licencia_manejo);
+
         if (archivo_licencia_manejo.status !== 200) {
           AlertError("Error", "no se pudo cargar el archivo de licencia");
         }
       }
 
       if (tiene_visa_usa === "1") {
-        const archivo_visa_usa = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_visa_usa,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+
+        const archivo_visa_usa = await postUploadFile(formData_visa_usa);
 
         if (archivo_visa_usa.status !== 200) {
           AlertError(
@@ -459,7 +412,7 @@ const Captura = () => {
       }
 
       AlertCargando("Enviando los datos, espere por favor");
-      const respuesta = await axios.post(url, {
+      const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
         secuencia: {
           ...secciones,
@@ -599,76 +552,43 @@ const Captura = () => {
     formData_cert_medico.append("curp", infoBrigadista.curp);
     formData_cert_medico.append("name", "cert_medico");
 
-    const formDtaa_certificado_covid = new FormData();
+    const formData_certificado_covid = new FormData();
 
     if (certificado_covid_fl) {
-      formDtaa_certificado_covid.append("file", archivos.certificado_covid_fl[0]);
-      formDtaa_certificado_covid.append("curp", infoBrigadista.curp);
-      formDtaa_certificado_covid.append("name", "certificado_covid");
+      formData_certificado_covid.append("file", archivos.certificado_covid_fl[0]);
+      formData_certificado_covid.append("curp", infoBrigadista.curp);
+      formData_certificado_covid.append("name", "certificado_covid");
     }
 
-    const formDtaa_certificado_covid_refuerzo = new FormData();
+    const formData_certificado_covid_refuerzo = new FormData();
 
     if (certificado_covid_refuerzo_fl) {
 
-      formDtaa_certificado_covid_refuerzo.append("file", archivos.certificado_covid_refuerzo_fl[0]);
-      formDtaa_certificado_covid_refuerzo.append("curp", infoBrigadista.curp);
-      formDtaa_certificado_covid_refuerzo.append("name", "certificado_covid_refuerzo");
+      formData_certificado_covid_refuerzo.append("file", archivos.certificado_covid_refuerzo_fl[0]);
+      formData_certificado_covid_refuerzo.append("curp", infoBrigadista.curp);
+      formData_certificado_covid_refuerzo.append("name", "certificado_covid_refuerzo");
 
     }
 
-    const url = `${API_REQUEST}candidato_update`;
 
     try {
       /*  actualizacion de informacion por AXIOS */
-      const archivo_cert_toxicologico = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_cert_toxicologico,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      const archivo_cert_medico = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_cert_medico,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const archivo_cert_toxicologico = await postUploadFile(formData_cert_toxicologico);
+      const archivo_cert_medico = await postUploadFile(formData_cert_medico);
 
       let archivo_certificado_covid = null;
       if (certificado_covid_fl) {
 
-        archivo_certificado_covid = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formDtaa_certificado_covid,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        archivo_certificado_covid = await postUploadFile(formData_certificado_covid);
       }
 
       let archivo_certificado_covid_refuerzo = null;
       if (certificado_covid_refuerzo_fl) {
-        archivo_certificado_covid_refuerzo = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formDtaa_certificado_covid_refuerzo,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        archivo_certificado_covid_refuerzo = await postUploadFile(formData_certificado_covid_refuerzo);
       }
 
       AlertCargando("Enviando los datos, espere por favor");
-      const respuesta = await axios.post(url, {
+      const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
         secuencia: {
           ...secciones,
@@ -745,8 +665,6 @@ const Captura = () => {
       infoBrigadista,
     });
 
-    /* update AXIOS */
-    const url = `${API_REQUEST}candidato_update`;
 
     try {
       const formData_sci_smi_100_fl = new FormData();
@@ -754,30 +672,14 @@ const Captura = () => {
       formData_sci_smi_100_fl.append("curp", infoBrigadista.curp);
       formData_sci_smi_100_fl.append("name", "sci_smi_100");
 
-      const archivo_sci_smi_100 = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_sci_smi_100_fl,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const archivo_sci_smi_100 = await postUploadFile(formData_sci_smi_100_fl);
 
       const formData_sci_smi_200_fl = new FormData();
       formData_sci_smi_200_fl.append("file", archivos.sci_smi_200_fl[0]);
       formData_sci_smi_200_fl.append("curp", infoBrigadista.curp);
       formData_sci_smi_200_fl.append("name", "sci_smi_200");
 
-      const archivo_sci_smi_200 = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_sci_smi_200_fl,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const archivo_sci_smi_200 = await postUploadFile(formData_sci_smi_200_fl);
 
       if (archivos.sci_smi_300_fl) {
 
@@ -786,60 +688,52 @@ const Captura = () => {
         formData_sci_smi_300_fl.append("curp", infoBrigadista.curp);
         formData_sci_smi_300_fl.append("name", "sci_smi_300");
 
-        await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_sci_smi_300_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-      }
+        await postUploadFile(formData_sci_smi_300_fl);
 
-      const respuesta = await axios.post(url, {
-        data: infoBrigadista,
-        secuencia: {
-          ...secciones,
-          s4: seccionCompleta,
-          s5: seccionSiguiente,
-        },
-      });
-
-      if (
-        respuesta.status === 200 &&
-        archivo_sci_smi_100.status === 200 &&
-        archivo_sci_smi_200.status === 200
-      ) {
-        if (infoBrigadista.rechazo) {
-          // se ocultan las secciones
-          setSecciones({
-            s1: false,
-            s2: false,
-            s3: false,
-            s4: false,
-            s5: false,
-            s6: false,
-            s7: false,
-            s8: false,
-            login: false,
-          });
-          // se muestra pantalla motivo de rechazo
-          setRechazo({
-            rechazo: true,
-            motivo_rechazo: infoBrigadista.motivo_rechazo,
-          });
-        } else {
-          /* Agrega al context general */
-
-          setSecciones({
+        const respuesta = await postCandidateUpdate({
+          data: infoBrigadista,
+          secuencia: {
             ...secciones,
             s4: seccionCompleta,
             s5: seccionSiguiente,
-          });
+          },
+        });
+
+        if (
+          respuesta.status === 200 &&
+          archivo_sci_smi_100.status === 200 &&
+          archivo_sci_smi_200.status === 200
+        ) {
+          if (infoBrigadista.rechazo) {
+            // se ocultan las secciones
+            setSecciones({
+              s1: false,
+              s2: false,
+              s3: false,
+              s4: false,
+              s5: false,
+              s6: false,
+              s7: false,
+              s8: false,
+              login: false,
+            });
+            // se muestra pantalla motivo de rechazo
+            setRechazo({
+              rechazo: true,
+              motivo_rechazo: infoBrigadista.motivo_rechazo,
+            });
+          } else {
+            /* Agrega al context general */
+
+            setSecciones({
+              ...secciones,
+              s4: seccionCompleta,
+              s5: seccionSiguiente,
+            });
+          }
+        } else {
+          AlertError("Error", respuesta.data);
         }
-      } else {
-        AlertError("Error", respuesta.data);
       }
     } catch (error) {
       if (error.response.status === 400) {
@@ -872,10 +766,8 @@ const Captura = () => {
     formData_s_130_fl.append("curp", infoBrigadista.curp);
     formData_s_130_fl.append("name", "s_130");
 
-    const url = `${API_REQUEST}candidato_update`;
-
     try {
-      const respuesta = await axios.post(url, {
+      const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
         secuencia: {
           ...secciones,
@@ -883,25 +775,9 @@ const Captura = () => {
           s6: seccionSiguiente,
         },
       });
-      const archivo_s_190 = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_s_190_fl,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
 
-      const archivo_s_130 = await axios.post(
-        `${API_REQUEST}carga_archivo`,
-        formData_s_130_fl,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const archivo_s_190 = await postUploadFile(formData_s_190_fl);
+      const archivo_s_130 = await postUploadFile(formData_s_130_fl);
 
       if (
         respuesta.status === 200 &&
@@ -1014,14 +890,11 @@ const Captura = () => {
       infoBrigadista,
     });
 
-    /* actualizacion de informacion por AXIOS */
-    const url = `${API_REQUEST}candidato_update`;
-
     try {
 
       AlertCargando("Enviando los datos, espere por favor");
 
-      const respuesta = await axios.post(url, {
+      const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
         secuencia: { ...secciones, s6: seccionCompleta, s7: seccionSiguiente },
       });
@@ -1029,15 +902,7 @@ const Captura = () => {
       AlertExito("Cargado exitosamente");
       if (doc_acred_primeros_auxilios_fl) {
 
-        const archivo_doc_acred_primeros_auxilios_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_doc_acred_primeros_auxilios_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_doc_acred_primeros_auxilios_fl = await postUploadFile(formData_doc_acred_primeros_auxilios_fl);
 
         if (archivo_doc_acred_primeros_auxilios_fl.status !== 200) {
           AlertError(
@@ -1050,15 +915,7 @@ const Captura = () => {
 
       if (constancia_operaciones_aereas_fl) {
 
-        const archivo_constancia_operaciones_aereas_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_constancia_operaciones_aereas_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_constancia_operaciones_aereas_fl = await postUploadFile(formData_constancia_operaciones_aereas_fl);
 
         if (archivo_constancia_operaciones_aereas_fl.status !== 200) {
 
@@ -1129,7 +986,7 @@ const Captura = () => {
 
     const { antecedentes_fecha, tiene_epp_completo, calificacion_evaluacion_disponibilidad } = infoBrigadista;
     const { carta_antecedentes_fl, evaluacion_disponibilidad_fl } = archivos;
-    
+
     if ((evaluacion_disponibilidad_fl && !calificacion_evaluacion_disponibilidad) ||
       (calificacion_evaluacion_disponibilidad && !carta_antecedentes_fl) ||
       (calificacion_evaluacion_disponibilidad && !antecedentes_fecha) ||
@@ -1163,42 +1020,26 @@ const Captura = () => {
     }
 
 
-    const url = `${API_REQUEST}candidato_update`;
-
     try {
 
       let archivo_evaluacion_disponibilidad = null;
 
       if (evaluacion_disponibilidad_fl) {
-        archivo_evaluacion_disponibilidad = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_evaluacion_disponibilidad,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        archivo_evaluacion_disponibilidad = await postUploadFile(formData_evaluacion_disponibilidad);
       }
 
       let archivo_carta_antecedentes = null;
+
       if (carta_antecedentes_fl) {
 
-        archivo_carta_antecedentes = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_carta_antecedentes,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        archivo_carta_antecedentes = await postUploadFile(formData_carta_antecedentes);
+
       }
 
 
       AlertCargando("Enviando los datos, espere por favor");
 
-      const respuesta = await axios.post(url, {
+      const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
         secuencia: { ...secciones, s7: seccionCompleta, s8: seccionSiguiente },
       });
@@ -1317,7 +1158,7 @@ const Captura = () => {
         formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
 
       }
-      
+
     } else {
 
       // SI tiene s1, debe cargar los archivos, o responder algo
@@ -1417,7 +1258,6 @@ const Captura = () => {
 
     }
 
-    const url = `${API_REQUEST}candidato_update`;
     try {
 
       setSecciones({
@@ -1427,31 +1267,17 @@ const Captura = () => {
 
       if (examen_toeic_toefl_archivo_fl) {
 
-        const archivo_examen_toeic_toefl_archivo_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_examen_toeic_toefl_archivo_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_examen_toeic_toefl_archivo_fl = await postUploadFile(formData_examen_toeic_toefl_archivo_fl);
 
         if (archivo_examen_toeic_toefl_archivo_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "examen_toeic_toefl_ar");
         }
+
       }
+
       if (l_280_file_fl) {
 
-        const archivo_l_280_file_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_l_280_file_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_l_280_file_fl = await postUploadFile(formData_l_280_file_fl);
 
         if (archivo_l_280_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "l_280");
@@ -1461,15 +1287,7 @@ const Captura = () => {
 
       if (s_211_file_fl) {
 
-        const archivo_s_211_file_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_s_211_file_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_s_211_file_fl = await postUploadFile(formData_s_211_file_fl);
 
         if (archivo_s_211_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "l_280");
@@ -1479,15 +1297,7 @@ const Captura = () => {
 
       if (s_290_file_fl) {
 
-        const archivo_s_290_file_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_s_290_file_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_s_290_file_fl = await postUploadFile(formData_s_290_file_fl);
 
         if (archivo_s_290_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "s_290");
@@ -1496,15 +1306,7 @@ const Captura = () => {
       }
       if (cert_intern_incendios_file_fl) {
 
-        const archivo_cert_intern_incendios_file_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_cert_intern_incendios_file_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_cert_intern_incendios_file_fl = await postUploadFile(formData_cert_intern_incendios_file_fl);
 
         if (archivo_cert_intern_incendios_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "cert_intern_incendios");
@@ -1514,15 +1316,7 @@ const Captura = () => {
 
       if (cert_intern_ate_emerg_med_file_fl) {
 
-        const archivo_cert_intern_ate_emerg_med_file_fl = await axios.post(
-          `${API_REQUEST}carga_archivo`,
-          formData_cert_intern_ate_emerg_med_file_fl,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const archivo_cert_intern_ate_emerg_med_file_fl = await postUploadFile(formData_cert_intern_ate_emerg_med_file_fl);
 
         if (archivo_cert_intern_ate_emerg_med_file_fl.status !== 200) {
           AlertError("no se pudo cargar archivo", "cert_intern_ate_emerg_med");
@@ -1530,7 +1324,7 @@ const Captura = () => {
 
       }
 
-      const respuesta = await axios.post(url, {
+      const respuesta = await postCandidateUpdate({
         data: { ...infoBrigadista, fechaCreacion: formatDate(new Date().toString().toUpperCase(), 0) },
         secuencia: {
           login: seccionCompleta,
@@ -1700,7 +1494,7 @@ const Captura = () => {
       {rechazo.rechazo && (
         <Finalizar
           photo={
-            archivos.fotografia_fl ? archivos.fotografia_fl[0] : imagen_persona
+            archivos.fotografia_fl ? URL.createObjectURL(archivos.fotografia_fl[0]) : imagen_persona
           }
           state={infoBrigadista}
         />

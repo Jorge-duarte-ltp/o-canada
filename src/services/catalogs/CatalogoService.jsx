@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from "qs";
 
 export function ObtenerEstados() {
 
@@ -28,8 +29,8 @@ export function ObtenerMunicipios(cve_entidad) {
         const config = {
             method: "POST",
             url: `${process.env.REACT_APP_BACKEND_URL}obtener_municipios_entidad`,
-            data: JSON.stringify({ clave_entidad: cve_entidad }),
-            headers: { 'Content-Type': 'application/json' }
+            data: qs.stringify({ clave_entidad: cve_entidad }),
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
         };
 
         return axios(config);
@@ -62,6 +63,27 @@ export function ObtenerPaises() {
     const config = {
         method: "post",
         url: `${process.env.REACT_APP_BACKEND_URL}list_paises`,
+    };
+
+    return axios(config);
+}
+
+
+export function ObtenerPosiciones() {
+
+    const config = {
+        method: "post",
+        url: `${process.env.REACT_APP_BACKEND_URL}list_posiciones`,
+    };
+
+    return axios(config);
+}
+
+export function ObtenerProvincias() {
+
+    const config = {
+        method: "post",
+        url: `${process.env.REACT_APP_BACKEND_URL}list_provincias`,
     };
 
     return axios(config);

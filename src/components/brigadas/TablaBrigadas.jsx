@@ -5,12 +5,12 @@ import AlertError from '../../singles/AlertError'
 import AlertExito from '../../singles/AlertExito'
 import AlertCargando from '../../singles/AlertCargando'
 import EvaluacionDesepenio from './EvaluacionDesepenio';
-import axios from '../../config/axios'
 import sessionContext from "../../context/session/sessionContext";
+import { postBrigades } from '../../services/brigades/BrigadesService';
 
 const TablaBrigadas = () => {
 
-    
+
     const sessContext = useContext(sessionContext)
 
     const [showEvaluacion, setShowEvaluacion] = useState(false)
@@ -25,18 +25,20 @@ const TablaBrigadas = () => {
     }
 
     const getBrigadistas = async () => {
-        const { user } = sessContext.login
-        try {
-            AlertCargando('Buscando brigadistas....');
-            const resp = await axios.post('/brigadistas_evaluacion', user)
+        
+        const { user } = sessContext.login;
+
+        AlertCargando('Buscando brigadistas....');
+        await postBrigades(user).then((resp) => {
             if (resp.status === 200) {
                 setBrigadistas(resp.data)
                 AlertExito('¡Cargado con exito!')
             }
-        } catch (error) {
-            AlertError(error)
-        }
+        }).catch((error) => {
+            AlertError("Error", error.responseJSON);
+        });
     }
+
 
 
     useEffect(() => {
@@ -120,7 +122,7 @@ const TablaBrigadas = () => {
                             setReload(!reload)
                         }}>
                             Recargar
-                    </button>
+                        </button>
                         <DataTable
                             title="Candidatos para  físicas"
                             columns={columns}

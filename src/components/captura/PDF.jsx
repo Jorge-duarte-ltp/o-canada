@@ -150,125 +150,10 @@ const blackColor = { color: "#0f0f0f" };
 
 // Create Document Component
 const PDF = (props) => {
-  const {
-    state = {
-      curp: "MADO921030HJCRZS05",
-      rechazo: true,
-      motivo_rechazo: "pasaporte vence en menos de 10 meses",
-      grupo_sanguineo: "",
-      nombres: "Oscar Jaime",
-      apellido_paterno: "Martinez",
-      apellido_materno: "Diaz",
-      rfc: "MADO921030QD9",
-      estado: "19",
-      numero_telefonico_notificaciones: "3319638873",
-      correo_electronico: "nachomartinez3010@gmail.com",
-      posicion_candidato: "jefe_de_cuadrilla",
-      dependencia: "cnf",
-      tipo_dependencia: "forestal",
-      nombre_beneficiario: "Francisco Moreno",
-      telefono_beneficiario: "4657687987",
-      correo_beneficiario: "nachomartinez3010@gmail.com",
-      carta_antecedentes: "",
-      pasaporte_archivo: "",
-      pasaporte_numero: "21212121212",
-      eta_visa_archivo: "",
-      documento_viajar_canada: "eTA",
-      eta_visa_num: "24654657657",
-      licencia_manejo: "",
-      tipo_licencia: "Nacional Traducida",
-      cert_toxicologico: "",
-      cert_medico: "",
-      que_enfermedad: "",
-      que_medicamentos: "",
-      autoevaluacion_salud: "",
-      nivel_ingles: "",
-      toeic_toefl: "",
-      examen_toeic_toefl_punt: null,
-      padece_enfermedad: false,
-      requiere_medicamentos_perm: false,
-      experimento_dolor_pecho: false,
-      experimento_dificultad_respirar: false,
-      presion_arterial_sistolica_diastolica: false,
-      enfermedad_cardiaca: false,
-      cirugia_corazon: false,
-      pulso_mayor_100: false,
-      problemas_afeccion_osea: false,
-      experiencia_personal_consejos: false,
-      medico_personal_recomendo: false,
-      opera_autonoma_gps: false,
-      opera_autonoma_mark3: false,
-      opera_autonoma_motosierra: false,
-      tiene_epp_completo: false,
-      l_280: false,
-      s_290: false,
-      cert_intern_incendios: false,
-      cert_intern_ate_emerg_med: false,
-      fecha_nacimiento: "1992-10-30",
-      fecha_ingreso_dependencia: "2020-01-01",
-      antecedentes_fecha: null,
-      pasaporte_fecha_cad: "2020-09-03",
-      eta_visa_fecha_exp: "2020-12-31",
-      eta_visa_fecha_cad: "2021-12-30",
-      licencia_fecha_cad: "2020-01-01",
-      fecha_cert_toxicologico: null,
-      fecha_cert_medico: null,
-      sexo: "1",
-      anios_experiencia: "1",
-      imc: null,
-      altura: null,
-      peso: null,
-      municipio: "21",
-      fotografia: null,
-      puesto_en_dependencia: "lorem",
-      funciones_dependencia: "logostica",
-      cpcif_s_190: null,
-      cpcif_s_130: null,
-      s_190: null,
-      s_130: null,
-      eventos_plnaeados_sci: false,
-      eventos_plnaeados_sci_fuera: false,
-      eventos_plnaeados_dentro_estructura: false,
-      evaluado_menejo_incidentes: false,
-      sci_cual: null,
-      sci_smi_100: null,
-      sci_smi_200: null,
-      examen_smi_100: null,
-      asignado_recurso_nacional: null,
-      asignado_recurso_otro_pais: null,
-      examen_s_190: null,
-      cert_intern_ate_emerg_med_file: null,
-      l_280_file: null,
-      s_290_file: null,
-      cert_intern_incendios_file: null,
-      examen_toeic_toefl_archivo: null,
-      acuerdo_aviso: true,
-    },
-    photo = "../assets/user.svg",
-    sections = {
-      login: false,
-      s1: false,
-      s2: false,
-      s3: false,
-      s4: false,
-      s5: false,
-      s6: false,
-      s7: false,
-      s8: false,
-    },
-    puesto,
-    mensaje = "No es posible continuar con el proceso debido a que por el resultado de su autoevaluación. No cumple con los requisitos mínimos para realizar la prueba de la mochila nivel arduo",
-  } = props;
-
-  let idioma =
-    (state.posicion_candidato === "jefe_de_brigada" ||
-      state.posicion_candidato === "tecnico") &&
-      state.toeic_toefl
-      ? "Aprobado"
-      : "No Aprobado";
+  const { state, sections, puesto, photo, mensaje } = props;
 
   return (
-    <PDFViewer PDFViewer width={window.innerWidth} height={window.innerHeight}>
+    <PDFViewer width={window.innerWidth} height={window.innerHeight}>
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.sectionImgTop} debug={false}>
@@ -280,9 +165,7 @@ const PDF = (props) => {
           <View style={styles.sectionImg} debug={false}>
             <Image
               style={styles.image}
-              src={
-                typeof photo === "object" ? URL.createObjectURL(photo) : photo
-              }
+              src={`${process.env.REACT_APP_BACKEND_URL}obtener_archivo?curp=${state.curp}&filename=${state.fotografia}`}
             />
           </View>
           <View style={styles.sectionDatos} debug={false}>

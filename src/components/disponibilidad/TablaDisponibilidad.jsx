@@ -4,13 +4,13 @@ import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import { AiOutlineReload } from "react-icons/ai";
-import axiosClient from "../../config/axios";
+import { postAvalibles, postAvaliblesStatusCandidate } from "../../services/avalibles/AvaliblesService";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertError from "../../singles/AlertError";
 import AlertExito from "../../singles/AlertExito";
 import SelectSiNo from "../../singles/SelectSiNo";
 const TablaDisponibilidad = () => {
-  
+
   const [data, setData] = useState();
   const [reload, setReload] = useState(true);
   const [curp, setCurp] = useState();
@@ -21,22 +21,19 @@ const TablaDisponibilidad = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    
+
     if (reload) {
       AlertCargando("Cargando información");
-      axiosClient({
-        method: "post",
-        url: `${process.env.REACT_APP_BACKEND_URL}disponible_candidatos`,
-        data: { curp: curp ? curp : "" },
-      }).then(async ({ data: { data } }) => {
-        await setData(data);
-        AlertExito("Se han cargado los candidatos disponibles");
-      });
+      postAvalibles({ curp: curp ? curp : "" })
+        .then(async ({ data: { data } }) => {
+          await setData(data);
+          AlertExito("Se han cargado los candidatos disponibles");
+        });
       setCurp("");
       setReload(false);
     }
 
-    return () => {}
+    return () => { }
 
   }, [reload, curp]);
 
@@ -142,16 +139,9 @@ const TablaDisponibilidad = () => {
   ];
 
   const onSubmit = () => {
-    const config = {
-      method: "post",
-      url: `${process.env.REACT_APP_BACKEND_URL}asignarDisponibilidadCandidato`,
-      data: {
-        data:
-          state.disponible === 1
-            ? { ...state, referenciaDisponible: null }
-            : state,
-      },
-    };
+
+    const data = { data: state.disponible === 1 ? { ...state, referenciaDisponible: null } : state };
+
     if (!state.disponible) {
       AlertError("Campo vacio", "Debe selecionar al menos una opción SI o NO.");
     } else if (state.disponible === "0") {
@@ -163,7 +153,7 @@ const TablaDisponibilidad = () => {
       } else {
         handleClose();
         AlertCargando("Guardando disponibilidad del Usuario");
-        axiosClient(config).then((resp) => {
+        postAvaliblesStatusCandidate(data).then((resp) => {
           if (resp.status === 200) {
             AlertExito("Guardado Correctamente");
             setReload(true);
@@ -174,7 +164,7 @@ const TablaDisponibilidad = () => {
     } else {
       handleClose();
       AlertCargando("Guardando disponibilidad del Usuario");
-      axiosClient(config).then((resp) => {
+      postAvaliblesStatusCandidate(data).then((resp) => {
         if (resp.status === 200) {
           AlertExito("Guardado Correctamente");
           setReload(true);
@@ -229,9 +219,8 @@ const TablaDisponibilidad = () => {
             <div className="col-5 col-md-5">
               <label className="control-label">Disponible:</label>
               <SelectSiNo
-                className={`form-control ${
-                  state.disponible ? state.disponible : "myInput"
-                }`}
+                className={`form-control ${state.disponible ? state.disponible : "myInput"
+                  }`}
                 name="disponible"
                 defaultValue={state.disponible}
                 onChange={setInfo}
@@ -242,11 +231,10 @@ const TablaDisponibilidad = () => {
                 <div className="col-7 col-md-7">
                   <label className="control-label">Referencia:</label>
                   <input
-                    className={`form-control ${
-                      state.referenciaDisponible
-                        ? state.referenciaDisponible
-                        : "myInput"
-                    }`}
+                    className={`form-control ${state.referenciaDisponible
+                      ? state.referenciaDisponible
+                      : "myInput"
+                      }`}
                     name="referenciaDisponible"
                     defaultValue={state.referenciaDisponible}
                     onChange={setInfo}

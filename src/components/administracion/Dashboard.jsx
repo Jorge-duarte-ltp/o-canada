@@ -21,7 +21,7 @@ const Dashboard = ({ userPorfile }) => {
     disponibilidad: false,
     brigadas: false,
     manifiesto: false,
-    reports: true,
+    reports: false,
   });
 
   const [toggled, setToggled] = useState(true);
@@ -52,7 +52,7 @@ const Dashboard = ({ userPorfile }) => {
           {showSection.disponibilidad && <TablaDisponibilidad />}
           {showSection.manifiesto && <TablaManifiesto />}
           {showSection.mesa_ayuda && <MesaAyuda />}
-          {showSection.reports && <Manifiest />}
+          {/*showSection.reports && <Manifiest />*/}
         </div>
       </div>
     </div>

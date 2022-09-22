@@ -4,12 +4,12 @@ import Ingreso from "./Ingreso";
 import TerminosAviso from "./TerminosAviso";
 /* CONTEXT */
 import candidatoContext from "../../context/candidato/candidatoContext";
-import axios from "axios";
 import AlertError from "../../singles/AlertError";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
+import { getCandidate, postCandidateCreate } from "../../services/candidates/CandidateService";
 
 const Login = (props) => {
-  
+
   const { secciones, setSecciones, archivos, setArchivos } = props;
   const candidatos = useContext(candidatoContext);
 
@@ -25,18 +25,19 @@ const Login = (props) => {
   });
 
   const sendTerminos = async () => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}create_candidato`;
+
     const { curp_reg, comp_pass_reg } = state;
 
-    try {
-      const respuesta = await axios.post(url, {
-        curp: curp_reg,
-        pass: comp_pass_reg,
-        acuerdo_aviso: aceptarTerminos,
-      });
 
-      if (respuesta.status === 200) {
+    await postCandidateCreate({
+      curp: curp_reg,
+      pass: comp_pass_reg,
+      acuerdo_aviso: aceptarTerminos,
+    }).then((resp) => {
+
+      if (resp.status === 200) {
         /* setContext */
+
         candidatos.candidatos.agregarCandidato({
           ...candidatos.candidatos,
           infoBrigadista: {
@@ -51,40 +52,28 @@ const Login = (props) => {
           s1: { status: "actual", visible: true },
         });
       }
-    } catch (error) {
-      if (error.response.status === 400) {
-        AlertError("Error", error.response.data.msg);
-      } else {
-        AlertError("Error", error);
-      }
-    }
+    }).catch((error) => {
+      AlertError("Error", error.responseJSON);
+    });
+
   };
 
   const checkLogin = async () => {
     const { curp_ing, pass } = state;
-    const url = `${process.env.REACT_APP_BACKEND_URL}get_candidato`;
 
-    try {
-      const respuesta = await axios.post(url, { curp: curp_ing, pass: pass });
-      if (respuesta.status === 200) {
+    await getCandidate({ curp: curp_ing, pass: pass }).then(async (resp) => {
 
-        if (respuesta.data.data.fotografia) {
+      if (resp.status === 200) {
 
-          setArchivos({
-            ...archivos,
-            fotografia_fl: [
-              `${process.env.REACT_APP_BACKEND_URL}get_photo_candidato?curp=${curp_ing}&filename=${respuesta.data.data.fotografia}`,
-            ],
-          });
-
-        }
+        const { data: { data } } = resp;
 
         candidatos.candidatos.agregarCandidato({
           ...candidatos.candidatos,
-          infoBrigadista: respuesta.data["data"],
+          infoBrigadista: data,
         });
+
         /* mostrar secciones */
-        setSecciones(respuesta.data["secuencias"]);
+        setSecciones(resp.data["secuencias"]);
         setState({
           curp_reg: "",
           pass_reg: "",
@@ -92,15 +81,13 @@ const Login = (props) => {
           curp_ing: "",
           pass: "",
         });
+
       }
-    } catch (error) {
-      AlertError("Error", "Las credenciales de acceso son incorrectas o el usuario no existe");
-      // if (typeof error.response !== "undefined") {
-      //   if (error.response.status === 404) {
-      //     AlertError("Error", error.response.data.msg);
-      //   }
-      // }
-    }
+    }).catch((error) => {
+      // AlertError("Error", "Las credenciales de acceso son incorrectas o el usuario no existe");
+      AlertError("Error", error);
+    });
+
   };
 
   const changeSection = (to) => {

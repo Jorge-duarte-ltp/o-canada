@@ -4,6 +4,9 @@ import { useState } from "react";
 import Imagen1 from "../../assets/reportes/imagen1.png";
 import { getManifest } from "../../services/reports/ManifestService";
 import { range } from "lodash";
+import AlertError from "../../singles/AlertError";
+import AlertCargando from "../../singles/AlertCargando";
+import AlertExito from "../../singles/AlertExito";
 
 export const ReportManifest = React.forwardRef((props, ref) => {
 
@@ -11,14 +14,14 @@ export const ReportManifest = React.forwardRef((props, ref) => {
     const [count,] = useState(20);
 
     useEffect(() => {
-
+        AlertCargando("Consultando Reporte de Manifiesto");
         getManifest().then(({ status, data }) => {
-            console.log(data, status);
             if (status === 200) {
+                AlertExito("La información ha sido cargada correctamente");
                 setData(data[0]);
             }
         }).catch((error) => {
-            console.log(error);
+            AlertError("Error", error.responseJSON);
         });
 
     }, [])

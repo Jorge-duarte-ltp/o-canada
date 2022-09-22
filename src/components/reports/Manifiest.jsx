@@ -4,6 +4,9 @@ import { useState } from "react";
 import Imagen1 from "../../assets/reportes/imagen1.png";
 import { getManifest } from "../../services/reports/ManifestService";
 import { range } from "lodash";
+import AlertError from "../../singles/AlertError";
+import AlertExito from "../../singles/AlertExito";
+import AlertCargando from "../../singles/AlertCargando";
 
 const Manifiest = () => {
 
@@ -11,14 +14,15 @@ const Manifiest = () => {
     const [count,] = useState(20);
 
     useEffect(() => {
-
+        
+        AlertCargando("Cargando Información");
         getManifest().then(({ status, data }) => {
-            console.log(data, status);
             if (status === 200) {
                 setData(data[0]);
+                AlertExito("Información Cargada Correctamente");
             }
         }).catch((error) => {
-            console.log(error);
+            AlertError("Error", error.responseJSON);
         });
 
     }, [])

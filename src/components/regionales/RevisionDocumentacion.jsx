@@ -8,7 +8,6 @@ import {
   Col,
   InputGroup
 } from "react-bootstrap";
-import axios from "axios";
 import AlertError from "../../singles/AlertError";
 import DataTable from "react-data-table-component";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
@@ -16,11 +15,7 @@ import AlertExito from "../../singles/AlertExito";
 import AlertCargando from "../../singles/AlertCargando";
 import { AiOutlineReload } from "react-icons/ai";
 import sessionContext from "../../context/session/sessionContext";
-
-const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
-// const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
-// const URL_documentos = process.env.REACT_APP_BACKEND_DOCS
-// const URL_documentos = '187.218.230.38:81'
+import { getRegionals, getRegionalsBySearch, postRegionalInformation, postRegionalsApproveCandidate, postRegionalsDisapproveCandidate } from "../../services/regionals/RegionalService";
 
 const RevisionDocumentacion = () => {
   const sessContext = useContext(sessionContext);
@@ -81,19 +76,16 @@ const RevisionDocumentacion = () => {
   /* Edicion de la tabla */
   const buscarRegistro = async () => {
     const { user } = sessContext.login;
-    // const searchWord = input.target.value
-    const url = `${API_REQUEST}busqueda_revision_region`;
     AlertCargando("Buscando similitudes...");
     setLoading(true);
     if (searchWord !== "") {
       if (user) {
-        try {
-          const resp = await axios.post(url, {
-            busqueda: searchWord,
-            email: user.email,
-            token: user.token,
-            user_type: user.user_type,
-          });
+        await getRegionalsBySearch({
+          busqueda: searchWord,
+          email: user.email,
+          token: user.token,
+          user_type: user.user_type,
+        }).then((resp) => {
           if (resp.status === 200) {
             setCandidatos(resp.data);
             setDatosTabla(resp.data);
@@ -102,9 +94,9 @@ const RevisionDocumentacion = () => {
           } else {
             AlertError("Error", resp.data);
           }
-        } catch (error) {
-          AlertError("Error", error);
-        }
+        }).catch((error) => {
+          AlertError("Error", error.responseJSON);
+        })
       }
     } else {
       getCandidatos();
@@ -113,22 +105,21 @@ const RevisionDocumentacion = () => {
 
   const getCandidatos = async () => {
     const { user } = sessContext.login;
-    const url = `${API_REQUEST}revision_region`;
     AlertCargando("Solicitando registros...");
     setLoading(true);
-    try {
-      const respuesta = await axios.post(url, user);
-      if (respuesta.status === 200) {
-        setCandidatos(respuesta.data);
-        setDatosTabla(respuesta.data);
+    await getRegionals(user).then((resp) => {
+      if (resp.status === 200) {
+        setCandidatos(resp.data);
+        setDatosTabla(resp.data);
         AlertExito("Se han cargado los registros");
         setLoading(false);
       } else {
-        AlertError("Error", respuesta.data);
+        AlertError("Error", resp.data);
       }
-    } catch (error) {
-      AlertError("Error:", error);
-    }
+    }).catch((error) => {
+      AlertError("Error:", error.responseJSON);
+    });
+
   };
 
   useEffect(() => {
@@ -572,18 +563,16 @@ const RevisionDocumentacion = () => {
   ];
 
   const sendObservacion = async () => {
-    const url = `${API_REQUEST}candidato_observacion_regional`;
-
     /* TOMAR STATE */
-    try {
-      const resp = await axios.post(url, {
-        data: infoObservacionModal,
-      });
+    await postRegionalInformation({
+      data: infoObservacionModal,
+    }).then((resp) => {
       if (resp.status === 200) {
         AlertExito("Éxito", "El registro fue actualizado");
         setReload(true);
       }
-    } catch (error) { }
+    });
+
     /* ENVIARLO VIA AXIOS */
     /* HACER RELOAD */
   };
@@ -598,42 +587,39 @@ const RevisionDocumentacion = () => {
   };
 
   const aprobarRegistros = async () => {
-    const url = `${API_REQUEST}aprobar_cand_regionales`;
-    try {
-      /* ENVIO DE AXIOS PARA APROBACION DE CANDIDATO POR CADA CURP */
-      const aprobacionCandidatos = await axios.post(url, {
-        data: selectedRows,
-      });
 
-      if (aprobacionCandidatos.status === 200) {
+    /* ENVIO DE AXIOS PARA APROBACION DE CANDIDATO POR CADA CURP */
+    await postRegionalsApproveCandidate({
+      data: selectedRows,
+    }).then((resp) => {
+      if (resp.status === 200) {
         setSelectedRows([]);
         setToggleCleared(!toggleCleared);
         setReload(true);
         AlertExito("Registros Aprobados");
       }
-    } catch (error) {
+
+    }).catch((error) => {
       AlertError("Error", error);
-    }
+    });
+
+
   };
   const desaprobarRegistros = async () => {
     /* ENVIO DE AXIOS PARA DESAPROBACION POR CADA CURP */
-    const url = `${API_REQUEST}desaprobar_cand_regionales`;
-    try {
-      /* ENVIO DE AXIOS PARA APROBACION DE CANDIDATO POR CADA CURP */
-      const aprobacionCandidatos = await axios.post(url, {
-        data: selectedRows,
-      });
-
-      if (aprobacionCandidatos.status === 200) {
+    await postRegionalsDisapproveCandidate({
+      data: selectedRows,
+    }).then((resp) => {
+      if (resp.status === 200) {
         setSelectedRows([]);
         setToggleCleared(!toggleCleared);
         setReload(true);
         AlertExito("Registros desaprobados");
       }
-    } catch (error) {
-      AlertError("Error", error);
-    }
-    AlertExito("Registros Desaprobados");
+    }).catch((error) => {
+      AlertError("Error", error.responseJSON);
+    });
+
   };
 
   const conditionalRowStyles = [
@@ -641,7 +627,6 @@ const RevisionDocumentacion = () => {
       when: (row) => row.observacion_regional,
       style: {
         backgroundColor: "#b78d86",
-        // backgroundColor: '#D69200',
         color: "white",
         "&:hover": {
           cursor: "pointer",
@@ -651,6 +636,7 @@ const RevisionDocumentacion = () => {
   ];
 
   const contextActions = useMemo(() => {
+
     const handleAprobar = () => {
       AlertaSiguiente(
         "Se aprobarán los registros seleccionados",
@@ -664,6 +650,7 @@ const RevisionDocumentacion = () => {
         desaprobarRegistros
       );
     };
+
     return (
       <>
         <button

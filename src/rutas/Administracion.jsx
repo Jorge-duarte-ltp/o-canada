@@ -2,15 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import Dashboard from "../components/administracion/Dashboard";
 import LoginUsers from "../singles/LoginUsers";
 import sessionContext from "../context/session/sessionContext";
-import Axios from "axios";
 import AlertError from "../singles/AlertError";
+import { postLogin } from "../services/users/UsersService";
+import AlertCargando from "../singles/AlertCargando";
 
 const Administracion = () => {
   const sessContext = useContext(sessionContext);
-
-  const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
-  // const API_REQUEST = 'http://187.218.230.38/o_canada_sisecoif/api/'
-  // const [user, setUser] = useState(sessContext.session.user)
   const [user, setUser] = useState(false);
 
   // nota poner todo esto en false
@@ -29,24 +26,24 @@ const Administracion = () => {
 
   const checkUser = async (event) => {
     event.preventDefault();
-    const url = `${API_REQUEST}login_user`;
+    
+    AlertCargando("Cargando");
 
-    try {
-      const resp = await Axios.post(url, toSend);
+    await postLogin(toSend).then((resp) => {
       if (resp.status === 200) {
-        /* ingresar en el context y en el state la respuesta */
         setUser(resp.data);
         sessContext.login.loginUser({
           ...sessContext.login,
-          // user: resp.data.user
           user: resp.data.user,
         });
         setUserPorfile(resp.data.user.porfile);
         sessionStorage.setItem("user_session", JSON.stringify(resp.data.user));
       }
-    } catch (error) {
-      AlertError("Error", error);
-    }
+    }).catch((error) => {
+      AlertError("Error", error.responseJSON);
+
+    });
+
   };
 
   useEffect(() => {
