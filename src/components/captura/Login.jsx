@@ -60,7 +60,6 @@ const Login = (props) => {
 
   const checkLogin = async () => {
     const { curp_ing, pass } = state;
-
     await getCandidate({ curp: curp_ing, pass: pass }).then(async (resp) => {
 
       if (resp.status === 200) {
@@ -69,7 +68,7 @@ const Login = (props) => {
 
         candidatos.candidatos.agregarCandidato({
           ...candidatos.candidatos,
-          infoBrigadista: data,
+          infoBrigadista: { ...data },
         });
 
         /* mostrar secciones */
@@ -84,8 +83,7 @@ const Login = (props) => {
 
       }
     }).catch((error) => {
-      // AlertError("Error", "Las credenciales de acceso son incorrectas o el usuario no existe");
-      AlertError("Error", error);
+      AlertError("Error", "Las credenciales  acceso son incorrectas o el usuario no existe");
     });
 
   };

@@ -1417,114 +1417,112 @@ const Captura = () => {
     }
   };
 
-  return (
-    <>
-      <div className="container">
-        {candidatos.candidatos.infoBrigadista.curp && (
-          <div style={{ textAlign: "right" }}>
-            <a
-              className="btn btn-info"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`${process.env.REACT_APP_BACKEND_DOCUMENT}Manual_de_usuario_SISECOIF.pdf`}
-            >
-              Manual de Usuario
-            </a>
-          </div>
-        )}
-        {secciones.login.visible && (
-          <Login
-            secciones={secciones}
-            setSecciones={setSecciones}
-            archivos={archivos}
-            setArchivos={setArchivos}
-          />
-        )}
-        {secciones.s1.visible && (
-          <S1
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS1}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-
-        {secciones.s2.visible && (
-          <S2
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS2}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-        {/* S2 y 3 estan cambiados en hoja de requerimientos */}
-        {secciones.s3.visible && (
-          <S3
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS3}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-        {secciones.s4.visible && (
-          <S4
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS4}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-        {secciones.s5.visible && (
-          <S5
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS5}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-        {secciones.s6.visible && (
-          <S6
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS6}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-        {secciones.s7.visible && (
-          <S7
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS7}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-        {secciones.s8.visible && (
-          <S8
-            state={infoBrigadista}
-            setState={setInfoBrigadista}
-            checkData={checkDataS8}
-            files={archivos}
-            setStateFiles={setArchivos}
-          />
-        )}
-      </div>
-      {/* rechazo.rechazo */}
-      {rechazo.rechazo && (
-        <Finalizar
-          photo={
-            archivos.fotografia_fl ? URL.createObjectURL(archivos.fotografia_fl[0]) : imagen_persona
-          }
-          state={infoBrigadista}
+  return candidatos.candidatos.infoBrigadista && (<>
+    <div className="container">
+      {candidatos.candidatos.infoBrigadista && (
+        <div style={{ textAlign: "right" }}>
+          <a
+            className="btn btn-info"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`${process.env.REACT_APP_BACKEND_DOCUMENT}Manual_de_usuario_SISECOIF.pdf`}
+          >
+            Manual de Usuario
+          </a>
+        </div>
+      )}
+      {secciones.login.visible && (
+        <Login
+          secciones={secciones}
+          setSecciones={setSecciones}
+          archivos={archivos}
+          setArchivos={setArchivos}
         />
       )}
-    </>
+      {secciones.s1.visible && (
+        <S1
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS1}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+
+      {secciones.s2.visible && (
+        <S2
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS2}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+      {/* S2 y 3 estan cambiados en hoja de requerimientos */}
+      {secciones.s3.visible && (
+        <S3
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS3}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+      {secciones.s4.visible && (
+        <S4
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS4}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+      {secciones.s5.visible && (
+        <S5
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS5}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+      {secciones.s6.visible && (
+        <S6
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS6}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+      {secciones.s7.visible && (
+        <S7
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS7}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+      {secciones.s8.visible && (
+        <S8
+          state={infoBrigadista}
+          setState={setInfoBrigadista}
+          checkData={checkDataS8}
+          files={archivos}
+          setStateFiles={setArchivos}
+        />
+      )}
+    </div>
+    {/* rechazo.rechazo */}
+    {
+      rechazo.rechazo && (
+        <Finalizar
+          state={infoBrigadista}
+        />
+      )
+    }
+  </>
   );
 };
 

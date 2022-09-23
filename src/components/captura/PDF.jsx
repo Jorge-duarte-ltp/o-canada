@@ -150,7 +150,7 @@ const blackColor = { color: "#0f0f0f" };
 
 // Create Document Component
 const PDF = (props) => {
-  const { state, sections, puesto, photo, mensaje } = props;
+  const { state, sections, puesto, mensaje } = props;
 
   return (
     <PDFViewer width={window.innerWidth} height={window.innerHeight}>
