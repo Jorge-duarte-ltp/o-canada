@@ -144,7 +144,6 @@ const S1 = (props) => {
     /* MENOR DE EDAD */
 
     if (anios < 21) {
-
       setState({
         ...state,
         rechazo: true,

@@ -35,7 +35,7 @@ const Captura = () => {
 
   // const [infoBrigadista, setInfoBrigadista] = useState()
   const [archivos, setArchivos] = useState({});
-  
+
   const [secciones, setSecciones] = useState({
     login: { status: "faltante", visible: !false },
     s1: { status: "faltante", visible: false },
@@ -194,72 +194,81 @@ const Captura = () => {
       infoBrigadista,
     });
 
-    try {
 
-      const formData = new FormData();
-      formData.append("file", archivos.fotografia_fl[0]);
-      formData.append("curp", infoBrigadista.curp);
-      formData.append("name", "fotografia");
+    AlertCargando("Enviando los datos, espere por favor");
 
-      const formDataCurp = new FormData();
-      formDataCurp.append("file", archivos.curp_archivo_fl[0]);
-      formDataCurp.append("curp", infoBrigadista.curp);
-      formDataCurp.append("name", "curp_archivo");
+    const formData = new FormData();
+    formData.append("file", archivos.fotografia_fl[0]);
+    formData.append("curp", infoBrigadista.curp);
+    formData.append("name", "fotografia");
 
-      const archivo = await postUploadFile(formData);
-      const archivo_curp = await postUploadFile(formDataCurp);
+    await postUploadFile(formData).then(async (resp) => {
 
-      AlertCargando("Enviando los datos, espere por favor");
+      if (resp.status === 200) {
 
-      const respuesta = await postCandidateUpdate({
-        data: infoBrigadista,
-        secuencia: { ...secciones, s1: seccionCompleta, s2: seccionSiguiente },
-      });
+        AlertExito("La fotografía ha sido cargada correctamente.");
 
-      if (
-        respuesta.status === 200 &&
-        archivo.status === 200 &&
-        archivo_curp.status === 200
-      ) {
-        AlertExito("Cargado exitosamente");
-        if (infoBrigadista.rechazo) {
-          // se ocultan las secciones
-          setSecciones({
-            s1: false,
-            s2: false,
-            s3: false,
-            s4: false,
-            s5: false,
-            s6: false,
-            s7: false,
-            s8: false,
-            login: false,
-          });
-          // se muestra pantalla motivo de rechazo
-          setRechazo({
-            rechazo: true,
-            motivo_rechazo: infoBrigadista.motivo_rechazo,
-          });
-        } else {
-          setSecciones({
-            ...secciones,
-            s1: seccionCompleta,
-            s2: seccionSiguiente,
-          });
-        }
-      } else {
-        AlertError("Error", respuesta.data);
-      }
-    } catch (error) {
-      if (error.response.status === 400) {
-        Swal.fire({
-          icon: "error",
-          title: "Este candidato ya fué registrado.",
+        const formDataCurp = new FormData();
+        formDataCurp.append("file", archivos.curp_archivo_fl[0]);
+        formDataCurp.append("curp", infoBrigadista.curp);
+        formDataCurp.append("name", "curp_archivo");
+
+        await postUploadFile(formDataCurp).then(async (resp) => {
+
+          if (resp.status === 200) {
+
+            AlertExito("La curp ha sido cargado correctamente.");
+
+            await postCandidateUpdate({
+              data: infoBrigadista,
+              secuencia: { ...secciones, s1: seccionCompleta, s2: seccionSiguiente },
+            }).then((resp) => {
+
+              if (resp.status === 200) {
+
+                AlertExito("La informació ha sido guardada correctamente.");
+
+                if (infoBrigadista.rechazo) {
+                  // se ocultan las secciones
+                  setSecciones({
+                    s1: false,
+                    s2: false,
+                    s3: false,
+                    s4: false,
+                    s5: false,
+                    s6: false,
+                    s7: false,
+                    s8: false,
+                    login: false,
+                  });
+                  // se muestra pantalla motivo de rechazo
+                  setRechazo({
+                    rechazo: true,
+                    motivo_rechazo: infoBrigadista.motivo_rechazo,
+                  });
+                } else {
+                  setSecciones({
+                    ...secciones,
+                    s1: seccionCompleta,
+                    s2: seccionSiguiente,
+                  });
+                }
+              }
+
+            }).catch((error) => {
+              AlertError("Error", error.responseJSON);
+            });
+
+          }
+        }).catch((error) => {
+          AlertError("Error", error.responseJSON);
         });
-        return;
+
       }
-      AlertError("Error", error);
-    }
+    }).catch((error) => {
+      AlertError("Error", error.responseJSON);
+    });
+
     /*  mostrar siguiente seccion*/
   };
 
@@ -547,10 +556,31 @@ const Captura = () => {
     formData_cert_toxicologico.append("curp", infoBrigadista.curp);
     formData_cert_toxicologico.append("name", "cert_toxicologico");
 
-    const formData_cert_medico = new FormData();
-    formData_cert_medico.append("file", archivos.cert_medico_fl[0]);
-    formData_cert_medico.append("curp", infoBrigadista.curp);
-    formData_cert_medico.append("name", "cert_medico");
+    AlertCargando("Guardando información");
+
+    await postUploadFile(formData_cert_toxicologico).then(async (resp) => {
+      if (resp.status === 200) {
+        AlertExito("El certificado toxilogico ha sido cargado correctamente.");
+
+        const formData_cert_medico = new FormData();
+        formData_cert_medico.append("file", archivos.cert_medico_fl[0]);
+        formData_cert_medico.append("curp", infoBrigadista.curp);
+        formData_cert_medico.append("name", "cert_medico");
+
+        await postUploadFile(formData_cert_medico).then(async (resp) => {
+          if (resp.status === 200) {
+            AlertExito("El certificado médifico o ha sido cargado correctamente.");
+          }
+        }).catch((error) => {
+          AlertError("Error", error.responseJSON);
+          return;
+        })
+      }
+    }).catch((error) => {
+      AlertError("Error", error.responseJSON);
+      return;
+    })
+
 
     const formData_certificado_covid = new FormData();
 
@@ -573,9 +603,6 @@ const Captura = () => {
 
     try {
       /*  actualizacion de informacion por AXIOS */
-      const archivo_cert_toxicologico = await postUploadFile(formData_cert_toxicologico);
-      const archivo_cert_medico = await postUploadFile(formData_cert_medico);
-
       let archivo_certificado_covid = null;
       if (certificado_covid_fl) {
 
@@ -600,8 +627,6 @@ const Captura = () => {
       AlertExito("Cargado exitosamente");
       if (
         respuesta.status === 200 &&
-        archivo_cert_toxicologico.status === 200 &&
-        archivo_cert_medico.status === 200 ||
         archivo_certificado_covid?.status === 200 ||
         archivo_certificado_covid_refuerzo?.status === 200
       ) {
