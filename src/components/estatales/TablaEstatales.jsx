@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Form, InputGroup } from "react-bootstrap";
 import DataTable from "react-data-table-component";
@@ -15,7 +14,6 @@ import { getStates, getStatesBySearch } from "../../services/states/StatesServic
 
 const TablaEstatales = () => {
   const sessContext = useContext(sessionContext);
-  const API_REQUEST = process.env.REACT_APP_BACKEND_URL;
 
   const [reload, setReload] = useState(true);
   const [showPruebas, setShowPruebas] = useState(false);
@@ -320,7 +318,7 @@ const TablaEstatales = () => {
             className="btn btn-danger"
             onClick={() => setShowPruebas(false)}
           >
-            Volver
+            Regresar
           </button>
           <InfomacionCandidato state={candidatoSelected} />
           {modoVista ? (

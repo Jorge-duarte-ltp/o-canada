@@ -3,7 +3,7 @@ import React from 'react'
 const InfomacionCandidato = (props) => {
 
     const { state, setVolver } = props
-
+    
     return (
         <div className='row body_wrap pb-4'>
             <div className='col-12 col-md-12 center-text'>

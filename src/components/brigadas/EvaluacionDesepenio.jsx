@@ -7,7 +7,7 @@ import InfomacionCandidato from "../estatales/InfomacionCandidato";
 import sessionContext from "../../context/session/sessionContext";
 import moment from "moment";
 import { postUploadFile } from "../../services/files/FilesService";
-import { postBrigadesEvaluation, putBrigadesEvaluation } from "../../services/brigades/BrigadesService";
+import { postCreateBrigadesEvaluation, postUpdateBrigadesEvaluation } from "../../services/brigades/BrigadesService";
 
 const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
@@ -17,12 +17,12 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
   });
   const [sumatoria, setSumatoria] = useState(0);
   /* TODO: El evento debe ser de forma dinamica para futuros deploys */
-  const evento = `canada${moment().format('YYYY')}`;
+  const evento = `california${moment().format('YYYY')}`;
   const [edicion, setEdicion] = useState(data.evaluaciones[0] ? true : false);
   const evaluacionDefault = data.evaluaciones[0]
     ? data.evaluaciones[0]
     : {
-      fk_curp: data.curp,
+      idBrigadaCandidato: data.id,
       aptitud_fisica: null,
       uso_gps: null,
       conducta: null,
@@ -51,7 +51,9 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
       observacion_productividad: null,
       observacion_sis_comando_incendios: null,
       observacion_cadena_mando: null,
+      evento: evento
     };
+
   const [state, setState] = useState(evaluacionDefault);
 
 
@@ -158,7 +160,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
         const archivo = await postUploadFile(formData);
         /* crea un nuevo registro */
-        const resp = await postBrigadesEvaluation({
+        const resp = await postCreateBrigadesEvaluation({
           user: { ...user, curp: data.curp_jefe_brigada },
           data: { ...state, suma: sumatoria },
         });
@@ -176,7 +178,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
       AlertCargando("Enviando evaluación...");
       try {
 
-        const resp = await putBrigadesEvaluation({
+        const resp = await postUpdateBrigadesEvaluation({
           user: user,
           data: state,
         });
@@ -269,10 +271,10 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
   return (
     <Fragment>
-      <Button onClick={backTable}>Volver</Button>
+      <Button onClick={backTable} className="btn btn-danger">Regresar</Button>
       <div className="row body_wrap">
         <InfomacionCandidato state={data} />
-        {data.status_evaluacion === "faltante" ? (
+        {!data.status_evaluacion ? (
           <React.Fragment>
             <div className="col-12 pt-4">
               <label className="control-label pt-2">Formato escaneado</label>
@@ -291,7 +293,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
             <div className="col-12 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEND_FILES}${data.curp_brigadista}/evaluacion_desempanio_2021.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${data.curp}/evaluacion_desempenio_canada2021.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -648,13 +650,13 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
             placeholder="Observaciones..."
           />
         </div>
-        <div className="col-12 pt-4 d-flex justify-content-end">
-          <button className="btn btn-success " onClick={handleSubmit}>
+        <div className="col-12 pt-4 d-flex justify-content-between">
+          <Button onClick={backTable} className="btn btn-danger">Regresar</Button>
+          <Button className="btn btn-success " onClick={handleSubmit}>
             {!edicion ? "Guardar" : "Editar"}
-          </button>
+          </Button>
         </div>
       </div>
-      <Button onClick={backTable}>Volver</Button>
     </Fragment>
   );
 };

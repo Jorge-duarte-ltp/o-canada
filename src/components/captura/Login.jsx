@@ -10,7 +10,7 @@ import { getCandidate, postCandidateCreate } from "../../services/candidates/Can
 
 const Login = (props) => {
 
-  const { secciones, setSecciones, archivos, setArchivos } = props;
+  const { secciones, setSecciones } = props;
   const candidatos = useContext(candidatoContext);
 
   const [ingreso, setIngreso] = useState(false);

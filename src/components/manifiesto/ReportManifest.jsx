@@ -8,7 +8,7 @@ import AlertError from "../../singles/AlertError";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertExito from "../../singles/AlertExito";
 
-export const ReportManifest = React.forwardRef((props, ref) => {
+export const ReportManifest = React.forwardRef(({ StyleComponent }, ref) => {
 
     const [data, setData] = useState([]);
     const [count,] = useState(20);
@@ -18,7 +18,7 @@ export const ReportManifest = React.forwardRef((props, ref) => {
         getManifest().then(({ status, data }) => {
             if (status === 200) {
                 AlertExito("La información ha sido cargada correctamente");
-                setData(data[0]);
+                setData(data);
             }
         }).catch((error) => {
             AlertError("Error", error.responseJSON);
@@ -28,7 +28,8 @@ export const ReportManifest = React.forwardRef((props, ref) => {
 
 
     return (
-        <div ref={ref} className="d-block m-auto" style={{ width: "2100", height: "auto", padding: "1rem", border: "solid 1px #c2c2c2", borderRadius: "4px" }}>
+        <div ref={ref} className="d-block m-auto" style={{ background: "#ffffff", width: "2000px", height: "auto", padding: "1rem", border: "solid 1px #c2c2c2", borderRadius: "4px" }}>
+            <StyleComponent />
             <div className="row">
                 <div className="d-flex col-12 pt-2 pb-2">
                     <div className="col-2"><img src={Imagen1} alt="logo" width="auto" height="32px" /></div>
@@ -238,7 +239,7 @@ export const ReportManifest = React.forwardRef((props, ref) => {
                         <div className="d-flex col-1 p-0" >
                             <div className="d-flex col-6 p-0 m-0 text-center">
                                 <div className="col-10 p-0 m-0 text-center border border-dark" style={{ height: "25px" }}>
-                                    <small className="font-weight-normal">{item.nat_id}</small>
+                                    <small className="font-weight-normal">{index + 1}</small>
                                 </div>
                                 <div className="col-2 p-0 m-0 text-center border border-dark" style={{ height: "25px" }}>
                                     <small className="font-weight-normal">{item.nat_lyrics}</small>

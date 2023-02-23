@@ -32,6 +32,20 @@ export function postBrigadesCandidatesById(data = null) {
     }
 }
 
+export function postBrigadesCandidatesInsert(data = null) {
+    
+    if (data) {
+        const config = {
+            method: "post",
+            url: `${process.env.REACT_APP_BACKEND_URL}insertCandidatoBrigada`,
+            data: qs.stringify(data),
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        };
+
+        return axios(config);
+    }
+}
+
 export function postBrigadesCandidatesUpdate(data = null) {
 
     if (data) {
@@ -46,5 +60,4 @@ export function postBrigadesCandidatesUpdate(data = null) {
         return axios(config);
     }
 }
-
 

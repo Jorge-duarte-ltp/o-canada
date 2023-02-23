@@ -3,7 +3,7 @@ import { Col, Form } from "react-bootstrap";
 import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-import { AiOutlineFileExcel, AiOutlineReload } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineReload } from "react-icons/ai";
 import AlertCargando from "../../singles/AlertCargando";
 import AlertExito from "../../singles/AlertExito";
 import AsignarBrigada from "./AsignarBrigada";
@@ -15,7 +15,7 @@ const TablaManifiesto = () => {
   const [candidato, setCandidato] = useState(null);
   const [data, setData] = useState();
   const [reload, setReload] = useState(true);
-  const [curp, setCurp] = useState();
+  const [search, setSearch] = useState();
   const history = useHistory();
 
   const showAsignarBrigada = (data) => {
@@ -27,18 +27,18 @@ const TablaManifiesto = () => {
 
     if (reload) {
       AlertCargando("Cargando información");
-      postBrigadesCandidates({ curp: curp ? curp : "" }).then(async ({ data: { data } }) => {
+      postBrigadesCandidates({ search: search ? search : "" }).then(async ({ data: { data } }) => {
         await setData(data);
         AlertExito(
           "Se han cargado los candidatos disponibles para asignar u asignados"
         );
       });
-      setCurp("");
+      setSearch("");
       setReload(false);
     }
 
     return () => { };
-  }, [reload, curp]);
+  }, [reload, search]);
 
   const columns = [
     {
@@ -119,7 +119,7 @@ const TablaManifiesto = () => {
     },
   ];
 
-  const handleExport = () => {
+  const handleView = () => {
     history.push('/dashboard/ver-reporte');
   }
 
@@ -140,8 +140,8 @@ const TablaManifiesto = () => {
         <Form.Row className="align-items-center">
           <Col xs="auto">
             <Form.Control
-              value={curp ? curp : ""}
-              onChange={(input) => setCurp(input.target.value)}
+              value={search ? search : ""}
+              onChange={(input) => setSearch(input.target.value)}
               className="mb-2 px-5"
               placeholder="Buscar..."
             />
@@ -164,9 +164,9 @@ const TablaManifiesto = () => {
             <Button
               className="mb-2 float-sm-right"
               variant="success"
-              onClick={handleExport}
+              onClick={handleView}
             >
-              <AiOutlineFileExcel />
+              <AiOutlineEye />
             </Button>
           </Col>
         </Form.Row>

@@ -18,7 +18,7 @@ export function postBrigades(data = null) {
 }
 
 
-export function postBrigadesEvaluation(data = null) {
+export function postCreateBrigadesEvaluation(data = null) {
     if (data) {
 
         const config = {
@@ -32,11 +32,11 @@ export function postBrigadesEvaluation(data = null) {
     }
 }
 
-export function putBrigadesEvaluation(data = null) {
+export function postUpdateBrigadesEvaluation(data = null) {
     if (data) {
 
         const config = {
-            method: "put",
+            method: "post",
             url: `${process.env.REACT_APP_BACKEND_URL}edit_evaluacion`,
             data: qs.stringify(data),
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
@@ -45,3 +45,18 @@ export function putBrigadesEvaluation(data = null) {
         return axios(config);
     }
 }
+
+export function postRealeaseBrigadesCandidate() {
+
+    const config = {
+        method: "post",
+        url: `${process.env.REACT_APP_BACKEND_URL}release_candidates`,
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    };
+
+    return axios(config);
+}
+
+
+
+

@@ -5,12 +5,12 @@ import SelectNumeroBrigada from "../../singles/SelectNumeroBrigada";
 import SelectPosionAsignada from "../../singles/SelectPosionAsignada";
 import calculoDiasFechas from "../../helpers/calculoDiasFechas";
 import { Button } from "react-bootstrap";
-import axiosClient from "../../config/axios";
 import { isEmpty } from "lodash";
 import AlertError from "../../singles/AlertError";
 import validarFechas from "../../helpers/validarFechas";
 import AlertExito from "../../singles/AlertExito";
 import { ObtenerPosiciones, ObtenerProvincias } from "../../services/catalogs/CatalogoService";
+import { postBrigadesCandidatesInsert } from "../../services/manifest/ManifestService";
 
 const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
   const [posiciones, setPosiciones] = useState();
@@ -67,11 +67,7 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
           "La fecha conclusión debe ser mayor a la fecha incial."
         );
       } else {
-        axiosClient({
-          method: "post",
-          url: `${process.env.REACT_APP_BACKEND_URL}insertCandidatoBrigada`,
-          data: { data: state },
-        }).then((resp) => {
+        postBrigadesCandidatesInsert({ data: state }).then((resp) => {
           if (resp.status === 200) {
             AlertExito("Asignado", "Candidato asignado Correctamente.");
             setShow(false);
