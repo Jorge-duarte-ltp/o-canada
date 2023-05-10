@@ -6,8 +6,8 @@ import 'popper.js';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './assets/styles.css'
 import Header from './singles/Header';
-import Captura from './rutas/Captura';
-// import CierreConvocatoria from './rutas/CierreConvocatoria';
+// import Captura from './rutas/Captura';
+import CierreConvocatoria from './rutas/CierreConvocatoria';
 import Administracion from './rutas/Administracion';
 
 /* CONTEXT */
@@ -32,8 +32,8 @@ const App = () => {
               <Header cierre={cierre} />
               <hr className='gradiente' />
               <Switch>
-                 <Route exact path="/" component={Captura} /> 
-                {/*<Route exact path="/" component={CierreConvocatoria} />*/}
+                 {/*<Route exact path="/" component={Captura} /> */} 
+                <Route exact path="/" component={CierreConvocatoria} />
                 <Route exact path="/dashboard" component={Administracion} />
                 <Route exact path="/dashboard/ver-reporte" component={ExportToPdf} />
                 <Route exact path="/pdf" component={PDF} />

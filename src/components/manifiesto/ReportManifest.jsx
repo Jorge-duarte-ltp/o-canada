@@ -239,7 +239,7 @@ export const ReportManifest = React.forwardRef(({ StyleComponent }, ref) => {
                         <div className="d-flex col-1 p-0" >
                             <div className="d-flex col-6 p-0 m-0 text-center">
                                 <div className="col-10 p-0 m-0 text-center border border-dark" style={{ height: "25px" }}>
-                                    <small className="font-weight-normal">{item.nat_id}</small>
+                                    <small className="font-weight-normal">{index + 1}</small>
                                 </div>
                                 <div className="col-2 p-0 m-0 text-center border border-dark" style={{ height: "25px" }}>
                                     <small className="font-weight-normal">{item.nat_lyrics}</small>
