@@ -1,22 +1,41 @@
 import React, { Fragment, useEffect, useState, useContext } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button, Form, Col, InputGroup } from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
 import AlertError from '../../singles/AlertError'
 import AlertExito from '../../singles/AlertExito'
 import AlertCargando from '../../singles/AlertCargando'
 import EvaluacionDesepenio from './EvaluacionDesepenio';
 import sessionContext from "../../context/session/sessionContext";
-import { postBrigades } from '../../services/brigades/BrigadesService';
+import { postBrigades, postRealeaseBrigadesCandidate } from '../../services/brigades/BrigadesService';
+import { AiOutlineReload, AiOutlineSync } from 'react-icons/ai';
 
 const TablaBrigadas = () => {
 
 
     const sessContext = useContext(sessionContext)
-
     const [showEvaluacion, setShowEvaluacion] = useState(false)
-    const [reload, setReload] = useState(false)
+    const [reload, setReload] = useState(true)
     const [brigadistaSelected, setBrigadistaSelected] = useState({})
     const [brigadistas, setBrigadistas] = useState([])
+    const [search, setSearch] = useState("");
+    const { user } = sessContext.login;
+
+    useEffect(() => {
+
+        if (reload) {
+            AlertCargando('Cargando información');
+            postBrigades({ ...user, search }).then((resp) => {
+                if (resp.status === 200) {
+                    setBrigadistas(resp.data)
+                    setReload(false);
+                    AlertExito('¡Información cargada con exito!')
+                }
+            }).catch((error) => {
+                AlertError("Error", error.responseJSON);
+            });
+        }
+
+    }, [reload]);
 
     const mostrarEvaluacionBrigadista = row => {
         setBrigadistaSelected(row)
@@ -24,27 +43,29 @@ const TablaBrigadas = () => {
         setShowEvaluacion(true)
     }
 
-    const getBrigadistas = async () => {
-        
-        const { user } = sessContext.login;
+    const handleSearch = ({ target }) => {
+        setSearch(target.value);
+    }
 
-        AlertCargando('Buscando brigadistas....');
-        await postBrigades(user).then((resp) => {
+    const handleRefresh = () => {
+        setSearch("");
+        setReload(true);
+    }
+
+    const handleRelease = async () => {
+        AlertCargando('Verificando si hay candidatos disponibles para liberar');
+        await postRealeaseBrigadesCandidate().then((resp) => {
             if (resp.status === 200) {
-                setBrigadistas(resp.data)
-                AlertExito('¡Cargado con exito!')
+                AlertExito(resp.data.msg);
+
+                setTimeout(() => {
+                    setReload(true);
+                }, [1000])
             }
         }).catch((error) => {
             AlertError("Error", error.responseJSON);
         });
     }
-
-
-
-    useEffect(() => {
-        /* carga por jefe de brigada, los brigadistas que le corresponden */
-        getBrigadistas();
-    }, [reload])
 
     /* CONFIGURACIONES TABLA */
     // PARA ESTE CASO SE MODIFICÓ EL PUESTO EN LA VISTA DEL BACKEND
@@ -56,7 +77,7 @@ const TablaBrigadas = () => {
             minWidth: '180px',
             sortable: true,
             /* enviar a evaluacion del brigadista */
-            cell: (row) => (row.status_evaluacion === 'evaluado') ?
+            cell: (row) => Boolean(row.status_evaluacion) ?
                 <Button className='btn btn-block btn-info' onClick={() => mostrarEvaluacionBrigadista(row)}>Ver evaluación</Button>
                 :
                 <Button className='btn btn-block btn-success' onClick={() => mostrarEvaluacionBrigadista(row)}>Evaluar</Button>
@@ -64,7 +85,7 @@ const TablaBrigadas = () => {
         },
         {
             name: 'CURP',
-            selector: 'curp_brigadista',
+            selector: 'curp',
             wrap: false,
             minWidth: '200px',
             sortable: true
@@ -92,7 +113,9 @@ const TablaBrigadas = () => {
         },
         {
             name: 'Estatus',
-            selector: 'status_evaluacion',
+            cell: (row) => {
+                return Boolean(row.status_evaluacion) ? 'evaluado' : 'faltante';
+            },
             wrap: false,
             minWidth: '200px',
             sortable: true
@@ -116,15 +139,43 @@ const TablaBrigadas = () => {
                     <Fragment>
                         {/* Mostrar en una tabla, los brigadistas petenecientes a la cuenta entrante */}
                         <div style={{ alignContent: 'right' }}><h3>Brigada: {''}</h3></div>
-
-                        <button className='btn btn-outline-info' onClick={() => {
-                            // setSearchWord('')
-                            setReload(!reload)
-                        }}>
-                            Recargar
-                        </button>
+                        <InputGroup className="mb-2 pt-4">
+                            <Form.Row className="align-items-center">
+                                <Col xs="auto">
+                                    <Form.Control
+                                        value={search ? search : ""}
+                                        onChange={handleSearch}
+                                        className="mb-2 px-5"
+                                        placeholder="Buscar..."
+                                    />
+                                </Col>
+                                <Col xs="auto">
+                                    <Button className="mb-2" onClick={() => setReload(true)}>
+                                        Buscar
+                                    </Button>
+                                </Col>
+                                <Col xs="auto">
+                                    <Button
+                                        className="mb-2"
+                                        variant="info"
+                                        onClick={handleRefresh}
+                                    >
+                                        <AiOutlineReload />
+                                    </Button>
+                                </Col>
+                                <Col xs="auto">
+                                    <Button
+                                        className="mb-2"
+                                        variant="info"
+                                        onClick={handleRelease}
+                                    >
+                                        <AiOutlineSync />
+                                    </Button>
+                                </Col>
+                            </Form.Row>
+                        </InputGroup>
                         <DataTable
-                            title="Candidatos para  físicas"
+                            title="Evaluación de Candidatos"
                             columns={columns}
                             data={brigadistas}
                             defaultSortField="curp"
@@ -138,38 +189,8 @@ const TablaBrigadas = () => {
                             }
                             persistTableHead
                             progressPending={false}
-                            // subHeader
-                            // subHeaderComponent={
-                            //     (
-                            //         <Form.Row className="align-items-center">
-                            //             <Col xs="auto">
-                            //                 <Form.Control
-                            //                     onChange={(input) => setSearchWord(input.target.value)}
-                            //                     className="mb-2"
-                            //                     value={searchWord}
-                            //                     id="inlineFormInput"
-                            //                     placeholder="Buscar..."
-                            //                 />
-                            //             </Col>
-                            //             <Col xs="auto">
-                            //                 <Button className="mb-2"
-                            //                     onClick={buscarRegistro}
-                            //                 >
-                            //                     Buscar
-                            //                     </Button>
-                            //             </Col>
-                            //         </Form.Row>
-                            //     )
-                            // }
-                            // contextActions={contextActions}
                             contextMessage={{ singular: 'registro', plural: 'registros', message: 'seleccionados' }}
                             subHeaderAlign={'left'}
-                            // direction={directionValue}
-                            // selectableRows
-                            // selectableRowsHighlight
-                            // clearSelectedRows={toggleCleared}
-                            // onSelectedRowsChange={manejadorCambiosColumnas}
-                            // conditionalRowStyles={conditionalRowStyles}
                             pagination
                         />
                     </Fragment>

@@ -4,7 +4,6 @@ import LoginUsers from "../singles/LoginUsers";
 import sessionContext from "../context/session/sessionContext";
 import AlertError from "../singles/AlertError";
 import { postLogin } from "../services/users/UsersService";
-import AlertCargando from "../singles/AlertCargando";
 
 const Administracion = () => {
   const sessContext = useContext(sessionContext);
@@ -27,8 +26,6 @@ const Administracion = () => {
   const checkUser = async (event) => {
     event.preventDefault();
     
-    AlertCargando("Cargando");
-
     await postLogin(toSend).then((resp) => {
       if (resp.status === 200) {
         setUser(resp.data);
