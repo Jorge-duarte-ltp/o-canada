@@ -242,7 +242,7 @@ export const ReportManifest = React.forwardRef(({ StyleComponent }, ref) => {
                                     <small className="font-weight-normal">{index + 1}</small>
                                 </div>
                                 <div className="col-2 p-0 m-0 text-center border border-dark" style={{ height: "25px" }}>
-                                    <small className="font-weight-normal">{item.nat_lyrics}</small>
+                                    <small className="font-weight-normal">{item.indicativo}</small>
                                 </div>
                             </div>
                             <div className="d-block col-6 p-0 m-0 text-center border border-dark" style={{ height: "25px" }}>

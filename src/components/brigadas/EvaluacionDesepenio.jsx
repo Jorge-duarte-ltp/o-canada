@@ -274,7 +274,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
       <Button onClick={backTable} className="btn btn-danger">Regresar</Button>
       <div className="row body_wrap">
         <InfomacionCandidato state={data} />
-        {!data.status_evaluacion ? (
+        {data.status_evaluacion == 0 ? (
           <React.Fragment>
             <div className="col-12 pt-4">
               <label className="control-label pt-2">Formato escaneado</label>
@@ -293,11 +293,11 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
             <div className="col-12 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEND_FILES}${data.curp}/evaluacion_desempenio_canada2021.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${data.curp}/evaluacion_desempenio_canada2023.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Evaluación de Desempeño 2021
+                Evaluación de Desempeño 2023
               </a>
             </div>
           </React.Fragment>
@@ -604,8 +604,8 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
           />
         </div>
 
-        {(data.posicion_candidato === "jefe_de_cuadrilla" ||
-          data.posicion_candidato === "jefe_de_brigada") && (
+        {(data.posicion_candidato === "JEFE_DE_CUADRILLA" ||
+          data.posicion_candidato === "JEFE_DE_BRIGADA" || data.posicion_candidato === "TECNICO") && (
             <Fragment>
               <div className="col-12 pt-4">
                 <label>15.- CAPACIDAD DE GESTIÓN</label>

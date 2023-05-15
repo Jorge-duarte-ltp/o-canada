@@ -8,7 +8,7 @@ const CierreConvocatoria = () => {
           De acuerdo a la convocatoria emitida referente al "Proceso de selección
           de combatientes y técnicos para participación internacional en incendios forestales" en
           Canadá, se notifica que la “FASE 1 EN LÍNEA” de autoregistro en línea
-          de candidatos, finalizó el 03 de julio a las 23:59 hrs del presente año.
+          de candidatos, finalizó el 03 de julio del 2022 a las 23:59 hrs.
         </h1>
       </div>
     </div>

@@ -1,19 +1,20 @@
 import React from "react";
 
-const SelectNumeroBrigada = ({
+const SelectIndicativo = ({
   onChange,
   value,
   name,
-  numero,
+  indicativo,
   className,
   disabled,
 }) => {
   const data = [];
 
-  for (let i = 1; i <= numero; i++) {
-    data.push({ [`id${i}`]: i });
+  let i = 0;
+  for (let letra = "a"; letra <= indicativo; letra = String.fromCharCode(letra.charCodeAt(0) + 1)) {
+    data.push({id: i, value: letra});
+    i++;
   }
-  data.push({[`id${numero+1}`]: 'POSICION DE MANDO'});
 
   return (
     <select
@@ -24,13 +25,13 @@ const SelectNumeroBrigada = ({
       disabled={disabled}
     >
       <option value="">-- Seleccione --</option>
-      {data.map((item, key) => (
-        <option key={item[`id${key + 1}`]} value={item[`id${key + 1}`]}>
-          {item[`id${key + 1}`]}
+      {data.map(item => (
+        <option key={item.id} value={item.value}>
+          {item.value}
         </option>
       ))}
     </select>
   );
 };
 
-export default SelectNumeroBrigada;
+export default SelectIndicativo;

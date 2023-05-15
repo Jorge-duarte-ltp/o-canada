@@ -53,7 +53,7 @@ const TablaManifiesto = () => {
             className="btn btn-block btn-info"
             onClick={() => showAsignarBrigada(row)}
           >
-            Ver
+            Editar
           </Button>
         ) : (
           <Button
