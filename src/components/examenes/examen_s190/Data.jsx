@@ -331,7 +331,7 @@ const Data = [
     },
     {
         "id": 12,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea de combustible que no se ha quemado dentro del perímetro del incendio",
+        "nombre": "Área de combustible que no se ha quemado dentro del perímetro del incendio.",
         "image": Image38,
         "show": true,
         "width": "512px",
@@ -395,7 +395,7 @@ const Data = [
     },
     {
         "id": 13,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nUn área, generalmente una franja estrecha, que es extensión del incendio principal",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nEs una franja, generalmente estrecha, extensión del incendio principal",
         "image": Image38,
         "show": true,
         "width": "512px",
@@ -459,7 +459,7 @@ const Data = [
     },
     {
         "id": 14,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea que no se ha quemado entre el incendio principal y cualquiera extensión del incendio principal",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea que no se ha quemado entre el incendio principal y cualquiera extensión del perímetro del incendio principal.",
         "image": Image38,
         "show": true,
         "width": "512px",
@@ -523,7 +523,7 @@ const Data = [
     },
     {
         "id": 15,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea ardiente fuera del perímetro principal del incendio, causado a menudo por los brasas que ruedan o chispas que vuelan",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea quemándose fuera del perímetro principal del incendio, causado a menudo por pavesas que ruedan o vuelan.",
         "image": Image38,
         "show": true,
         "width": "512px",
