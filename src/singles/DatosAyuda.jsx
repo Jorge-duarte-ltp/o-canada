@@ -9,9 +9,9 @@ const DatosAyuda = ({ setShow, show }) => {
         { region: 'Noroeste', nombre: 'Rodrigo Contreras Armenta', telefono: '(662) 260 4977   ||   (662) 262 0918 ', celular: '(662) 299 7566', extension: '9780', correo: 'rcontreras@conafor.gob.mx' },
         { region: 'Norte', nombre: 'Oscar René Domínguez Moreno', telefono: '(618) 827 9833', celular: '(618) 176 2691', extension: '9790', correo: 'odominguez@conafor.gob.mx' },
         { region: 'Noreste', nombre: 'Jorge Alberto Serna Zamarron', telefono: '(844) 488 3500   ||   (844) 488 1668', celular: '(844) 505 9093', extension: '9770', correo: 'jorge.serna@conafor.gob.mx' },
-        { region: 'Occidente', nombre: 'Juvenal Rodríguez Villa', telefono: '(341) 413 6401   ||   (341) 413 6478', celular: '(311) 102 4341', extension: '9760', correo: 'juvenal.rodriguez@conafor.gob.mx' },
+        { region: 'Occidente', nombre: 'Juvenal Rodríguez Villa', telefono: '(341) 413 6401   ||   (341) 413 6478', celular: '(342) 108 9394', extension: '9760', correo: 'juvenal.rodriguez@conafor.gob.mx' },
         { region: 'Centro', nombre: 'Ismael Solórzano Ibarra', telefono: '(222) 291 4377   ||   (222) 291 4666', celular: '(222) 564 6626', extension: '9740', correo: 'isolorzano@conafor.gob.mx' },
-        { region: 'Sureste', nombre: 'Pánfilo Fernández Flores', telefono: '(981) 811 4417', celular: '(981) 207 5900   ||   (981) 817 2498', extension: '9750', correo: 'pfernandez@conafor.gob.mx' },
+        { region: 'Sureste', nombre: 'Pánfilo Fernández Flores', telefono: '(981) 811 4417', celular: '(981) 207 5900', extension: '9750', correo: 'pfernandez@conafor.gob.mx' },
     ]
     return (
         <Modal show={show} onHide={() => setShow(false)}>
@@ -26,7 +26,7 @@ const DatosAyuda = ({ setShow, show }) => {
                         </IconContext.Provider>
                                  Si tiene alguna <b>falla</b> respecto al <b>sistema</b>, puede comunicarse
                                 directamente a la Mesa de Ayuda marcando al teléfono
-                                <b>(33)3777-7000</b> ext. <b>4505</b>, <b>4425</b> o <b>4508</b>.
+                                <b>(33)3777-7000</b> ext. <b>4505</b>, <b>4425 </b> o <b>4508</b>.
                     </p>
                 </div>
                 <hr />

@@ -8,10 +8,12 @@ import AlertError from "../../singles/AlertError";
 import pruebasFisicasContext from "../../context/pruebas_fisicas/pruebasFisicasContext";
 import SelectSiNo from "../../singles/SelectSiNo";
 import AlertExito from "../../singles/AlertExito";
+import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import { size, isEmpty } from "lodash";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import { postUploadFile } from "../../services/files/FilesService";
 import { postStatesEvaluation } from "../../services/states/StatesService";
+import { CheckLg } from "react-bootstrap-icons";
 const S9_S10 = (props) => {
   
   const regex =
@@ -475,7 +477,16 @@ const S9_S10 = (props) => {
       resultado_eval_presencial_motosierra,
       nombre_evaluador_prueba_motosierra,
       porcentaje_motosierra,
+      rechazo,
     } = evaluaciones;
+
+    if(rechazo){
+      AlertaSiguiente(
+        `El candidato será rechazado: ${rechazo}`,
+        sendData()
+      );
+      return;
+    }
 
     const {
       formato,
@@ -813,193 +824,206 @@ const S9_S10 = (props) => {
     const formato_eval_habilidad_uso_gps = new FormData();
     const formato_eval_habilidad_uso_avenza_maps = new FormData();
     const formato_eval_habilidad_uso_motosierra = new FormData();
+    if(!evaluaciones.rechazo){
+      if (sePresento === "1" && archivos.formato) {
+        formData_formato.append("file", archivos.formato[0]);
+        formData_formato.append("curp", evaluaciones.curp);
+        formData_formato.append("name", "formato");
 
-    if (sePresento === "1" && archivos.formato) {
-      formData_formato.append("file", archivos.formato[0]);
-      formData_formato.append("curp", evaluaciones.curp);
-      formData_formato.append("name", "formato");
+        await postUploadFile(formData_formato).then((resp) => {
 
-      await postUploadFile(formData_formato).then((resp) => {
-
-        if (resp.status === 200) {
-          AlertExito("Se cargo formato con exito!");
-        } else {
-          AlertError("Error al cargar formato");
-          return;
-        }
-
-      }).catch((error) => {
-        AlertError("Error", error.responseJSON);
-        return;
-      });
-
-
-      if (archivos.formato_carrera) {
-        formData_formato_carrera.append("file", archivos.formato_carrera[0]);
-        formData_formato_carrera.append("curp", evaluaciones.curp);
-        formData_formato_carrera.append("name", "formato_carrera");
-
-        await postUploadFile(formData_formato_carrera).then((resp) => {
           if (resp.status === 200) {
-            AlertExito("Se cargo formato de carrera con exito!");
+            AlertExito("Se cargo formato con exito!");
           } else {
             AlertError("Error al cargar formato");
             return;
           }
+
         }).catch((error) => {
           AlertError("Error", error.responseJSON);
           return;
         });
 
-      }
 
-      if (sectionEPP && archivos.formato_epp) {
-        formData_formato_epp.append("file", archivos.formato_epp[0]);
-        formData_formato_epp.append("curp", evaluaciones.curp);
-        formData_formato_epp.append("name", "formato_epp");
+        if (archivos.formato_carrera) {
+          formData_formato_carrera.append("file", archivos.formato_carrera[0]);
+          formData_formato_carrera.append("curp", evaluaciones.curp);
+          formData_formato_carrera.append("name", "formato_carrera");
 
-        await postUploadFile(
-          formData_formato_epp
-        ).then((resp) => {
-          if (resp.status === 200) {
-            AlertExito("Se cargo archivo_formato_epp con exito!");
-          } else {
-            AlertError("Error al cargar archivo_formato_epp");
+          await postUploadFile(formData_formato_carrera).then((resp) => {
+            if (resp.status === 200) {
+              AlertExito("Se cargo formato de carrera con exito!");
+            } else {
+              AlertError("Error al cargar formato");
+              return;
+            }
+          }).catch((error) => {
+            AlertError("Error", error.responseJSON);
             return;
-          }
-        }).catch((error) => {
-          AlertError("Error", error.responseJSON);
-          return;
-        });
+          });
 
-      }
+        }
 
-      if (
-        sectionGPSMark &&
-        archivos.formato_eval_habilidad_uso_gps &&
-        archivos.formato_eval_habilidad_uso_avenza_maps &&
-        archivos.formato_eval_habilidad_uso_mark_III &&
-        archivos.formato_eval_habilidad_uso_motosierra
-      ) {
+        if (sectionEPP && archivos.formato_epp) {
+          formData_formato_epp.append("file", archivos.formato_epp[0]);
+          formData_formato_epp.append("curp", evaluaciones.curp);
+          formData_formato_epp.append("name", "formato_epp");
 
-        formData_formato_eval_habilidad_uso_mark_III.append(
-          "file",
-          archivos.formato_eval_habilidad_uso_mark_III[0]
-        );
-        formData_formato_eval_habilidad_uso_mark_III.append(
-          "curp",
-          evaluaciones.curp
-        );
-        formData_formato_eval_habilidad_uso_mark_III.append(
-          "name",
-          "formato_eval_habilidad_uso_mark_III"
-        );
+          await postUploadFile(
+            formData_formato_epp
+          ).then((resp) => {
+            if (resp.status === 200) {
+              AlertExito("Se cargo archivo_formato_epp con exito!");
+            } else {
+              AlertError("Error al cargar archivo_formato_epp");
+              return;
+            }
+          }).catch((error) => {
+            AlertError("Error", error.responseJSON);
+            return;
+          });
 
-        await postUploadFile(formData_formato_eval_habilidad_uso_mark_III).then(async (resp) => {
-          if (resp.status === 200) {
-            AlertExito(
-              "Se cargo archivos MARK III con exito!"
-            );
+        }
 
-            formato_eval_habilidad_uso_gps.append(
-              "file",
-              archivos.formato_eval_habilidad_uso_gps[0]
-            );
-            formato_eval_habilidad_uso_gps.append("curp", evaluaciones.curp);
-            formato_eval_habilidad_uso_gps.append(
-              "name",
-              "formato_eval_habilidad_uso_gps"
-            );
-            await postUploadFile(formato_eval_habilidad_uso_gps).then(async (resp) => {
+        if (
+          sectionGPSMark &&
+          archivos.formato_eval_habilidad_uso_gps &&
+          archivos.formato_eval_habilidad_uso_avenza_maps &&
+          archivos.formato_eval_habilidad_uso_mark_III &&
+          archivos.formato_eval_habilidad_uso_motosierra
+        ) {
 
-              if (resp.status === 200) {
+          formData_formato_eval_habilidad_uso_mark_III.append(
+            "file",
+            archivos.formato_eval_habilidad_uso_mark_III[0]
+          );
+          formData_formato_eval_habilidad_uso_mark_III.append(
+            "curp",
+            evaluaciones.curp
+          );
+          formData_formato_eval_habilidad_uso_mark_III.append(
+            "name",
+            "formato_eval_habilidad_uso_mark_III"
+          );
 
-                AlertExito(
-                  "Se cargo archivos GPS con exito!"
-                );
+          await postUploadFile(formData_formato_eval_habilidad_uso_mark_III).then(async (resp) => {
+            if (resp.status === 200) {
+              AlertExito(
+                "Se cargo archivos MARK III con exito!"
+              );
 
-                formato_eval_habilidad_uso_avenza_maps.append(
-                  "file",
-                  archivos.formato_eval_habilidad_uso_avenza_maps[0]
-                );
-                formato_eval_habilidad_uso_avenza_maps.append(
-                  "curp",
-                  evaluaciones.curp
-                );
-                formato_eval_habilidad_uso_avenza_maps.append(
-                  "name",
-                  "formato_eval_habilidad_uso_avenza_maps"
-                );
+              formato_eval_habilidad_uso_gps.append(
+                "file",
+                archivos.formato_eval_habilidad_uso_gps[0]
+              );
+              formato_eval_habilidad_uso_gps.append("curp", evaluaciones.curp);
+              formato_eval_habilidad_uso_gps.append(
+                "name",
+                "formato_eval_habilidad_uso_gps"
+              );
+              await postUploadFile(formato_eval_habilidad_uso_gps).then(async (resp) => {
 
-                await postUploadFile(formato_eval_habilidad_uso_avenza_maps).then(async (resp) => {
+                if (resp.status === 200) {
 
-                  if (resp.status === 200) {
-
-                    AlertExito(
-                      "Se cargo archivos Avenza Maps con exito!"
-                    );
-
-                    formato_eval_habilidad_uso_motosierra.append(
-                      "file",
-                      archivos.formato_eval_habilidad_uso_motosierra[0]
-                    );
-                    formato_eval_habilidad_uso_motosierra.append("curp", evaluaciones.curp);
-                    formato_eval_habilidad_uso_motosierra.append(
-                      "name",
-                      "formato_eval_habilidad_uso_motosierra"
-                    );
-                    await postUploadFile(formato_eval_habilidad_uso_motosierra).then(async (resp) => {
-
-                      if (resp.status === 200) {
-
-                        AlertExito(
-                          "Se cargo archivos de Uso de Motoriserra con exito!"
-                        );
-
-                        await postStatesEvaluation(evaluaciones).then((resp) => {
-                          if (resp.status === 200) {
-                            AlertExito("Se cargo correctamente la información de la evaluación");
-                            props.setVolver(false);
-                          }
-                        }).catch((error) => {
-                          AlertError("Error", error.responseJSON);
-                        })
-                      }
-                    }).catch((error) => {
-
-                      AlertError(
-                        "Error", error.responseJSON
-                      );
-
-                      return;
-
-                    });
-                  }
-                }).catch((error) => {
-
-                  AlertError(
-                    "Error", error.responseJSON
+                  AlertExito(
+                    "Se cargo archivos GPS con exito!"
                   );
 
-                  return;
-                });
+                  formato_eval_habilidad_uso_avenza_maps.append(
+                    "file",
+                    archivos.formato_eval_habilidad_uso_avenza_maps[0]
+                  );
+                  formato_eval_habilidad_uso_avenza_maps.append(
+                    "curp",
+                    evaluaciones.curp
+                  );
+                  formato_eval_habilidad_uso_avenza_maps.append(
+                    "name",
+                    "formato_eval_habilidad_uso_avenza_maps"
+                  );
 
-              }
-            }).catch((error) => {
+                  await postUploadFile(formato_eval_habilidad_uso_avenza_maps).then(async (resp) => {
 
-              AlertError("Error", error.responseJSON);
+                    if (resp.status === 200) {
 
-              return;
-            });
-          }
-        }).catch((error) => {
+                      AlertExito(
+                        "Se cargo archivos Avenza Maps con exito!"
+                      );
 
-          AlertError("Error", error.responseJSON);
+                      formato_eval_habilidad_uso_motosierra.append(
+                        "file",
+                        archivos.formato_eval_habilidad_uso_motosierra[0]
+                      );
+                      formato_eval_habilidad_uso_motosierra.append("curp", evaluaciones.curp);
+                      formato_eval_habilidad_uso_motosierra.append(
+                        "name",
+                        "formato_eval_habilidad_uso_motosierra"
+                      );
+                      await postUploadFile(formato_eval_habilidad_uso_motosierra).then(async (resp) => {
 
-          return;
-        });
+                        if (resp.status === 200) {
 
+                          AlertExito(
+                            "Se cargo archivos de Uso de Motoriserra con exito!"
+                          );
+
+                          await postStatesEvaluation(evaluaciones).then((resp) => {
+                            if (resp.status === 200) {
+                              AlertExito("Se cargo correctamente la información de la evaluación");
+                              props.setVolver(false);
+                            }
+                          }).catch((error) => {
+                            AlertError("Error", error.responseJSON);
+                          })
+                        }
+                      }).catch((error) => {
+
+                        AlertError(
+                          "Error", error.responseJSON
+                        );
+
+                        return;
+
+                      });
+                    }
+                  }).catch((error) => {
+
+                    AlertError(
+                      "Error", error.responseJSON
+                    );
+
+                    return;
+                  });
+
+                }
+              }).catch((error) => {
+
+                AlertError("Error", error.responseJSON);
+
+                return;
+              });
+            }
+          }).catch((error) => {
+
+            AlertError("Error", error.responseJSON);
+
+            return;
+          });
+
+        }
       }
+    } else {
+      await postStatesEvaluation(evaluaciones).then((resp) => {
+        if (resp.status === 200) {
+          AlertError(
+            "El candidato fue rechazado",
+            evaluaciones.rechazo            
+          );
+          props.setVolver(false);
+        }
+      }).catch((error) => {
+        AlertError("Error", error.responseJSON);
+      })
     }
   };
 

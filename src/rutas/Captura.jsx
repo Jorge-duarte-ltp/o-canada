@@ -294,7 +294,6 @@ const Captura = () => {
     const {
       pasaporte_archivo_fl,
       eta_visa_archivo_fl,
-      licencia_manejo_fl,
       visa_usa_archivo_fl,
     } = archivos;
     /* revision de campos vacíos */
@@ -314,7 +313,7 @@ const Captura = () => {
 
     if (
       tiene_licencia === "1" &&
-      (!tipo_licencia || !licencia_fecha_cad || !licencia_manejo_fl)
+      (!tipo_licencia || !licencia_fecha_cad)
     ) {
       /* LIMPIEZA DE DATOS */
       msgFaltanCampos();
@@ -509,7 +508,8 @@ const Captura = () => {
       data,
     } = infoBrigadista;
 
-    const { cert_toxicologico_fl, cert_medico_fl, certificado_covid_fl, certificado_covid_refuerzo_fl } = archivos;
+    //const { cert_toxicologico_fl, cert_medico_fl, certificado_covid_fl, certificado_covid_refuerzo_fl } = archivos;
+    const { cert_toxicologico_fl, cert_medico_fl } = archivos;
 
     if (
       !sexo ||
@@ -532,14 +532,14 @@ const Captura = () => {
       !pulso_mayor_100 ||
       !problemas_afeccion_osea ||
       !experiencia_personal_consejos ||
-      !medico_personal_recomendo ||
-      !data.esquema_completo === "" ||
-      (data.esquema_completo === "1" && !data.refuerzo === "") ||
-      (data.esquema_completo === "1" && !data.vacuna_aprobada === "") ||
-      (data.vacuna_aprobada === "1" && !certificado_covid_fl) ||
-      (data.vacuna_aprobada === "1" && !data.idPrimeraDosis === "") ||
-      (data.vacuna_aprobada === "1" && !data.fecha_primera_dosis === "") ||
-      (data.vacuna_aprobada === "1" && !data.padecimineto === "")
+      !medico_personal_recomendo
+      // !data.esquema_completo === "" ||
+      // (data.esquema_completo === "1" && !data.refuerzo === "") ||
+      // (data.esquema_completo === "1" && !data.vacuna_aprobada === "") ||
+      // (data.vacuna_aprobada === "1" && !certificado_covid_fl) ||
+      // (data.vacuna_aprobada === "1" && !data.idPrimeraDosis === "") ||
+      // (data.vacuna_aprobada === "1" && !data.fecha_primera_dosis === "") ||
+      // (data.vacuna_aprobada === "1" && !data.padecimineto === "")
     ) {
       msgFaltanCampos();
       return;
@@ -569,7 +569,7 @@ const Captura = () => {
 
         await postUploadFile(formData_cert_medico).then(async (resp) => {
           if (resp.status === 200) {
-            AlertExito("El certificado médifico o ha sido cargado correctamente.");
+            AlertExito("El certificado médico o ha sido cargado correctamente.");
           }
         }).catch((error) => {
           AlertError("Error", error.responseJSON);
@@ -582,37 +582,37 @@ const Captura = () => {
     })
 
 
-    const formData_certificado_covid = new FormData();
+    // const formData_certificado_covid = new FormData();
 
-    if (certificado_covid_fl) {
-      formData_certificado_covid.append("file", archivos.certificado_covid_fl[0]);
-      formData_certificado_covid.append("curp", infoBrigadista.curp);
-      formData_certificado_covid.append("name", "certificado_covid");
-    }
+    // if (certificado_covid_fl) {
+    //   formData_certificado_covid.append("file", archivos.certificado_covid_fl[0]);
+    //   formData_certificado_covid.append("curp", infoBrigadista.curp);
+    //   formData_certificado_covid.append("name", "certificado_covid");
+    // }
 
-    const formData_certificado_covid_refuerzo = new FormData();
+    // const formData_certificado_covid_refuerzo = new FormData();
 
-    if (certificado_covid_refuerzo_fl) {
+    // if (certificado_covid_refuerzo_fl) {
 
-      formData_certificado_covid_refuerzo.append("file", archivos.certificado_covid_refuerzo_fl[0]);
-      formData_certificado_covid_refuerzo.append("curp", infoBrigadista.curp);
-      formData_certificado_covid_refuerzo.append("name", "certificado_covid_refuerzo");
+    //   formData_certificado_covid_refuerzo.append("file", archivos.certificado_covid_refuerzo_fl[0]);
+    //   formData_certificado_covid_refuerzo.append("curp", infoBrigadista.curp);
+    //   formData_certificado_covid_refuerzo.append("name", "certificado_covid_refuerzo");
 
-    }
+    // }
 
 
     try {
       /*  actualizacion de informacion por AXIOS */
-      let archivo_certificado_covid = null;
-      if (certificado_covid_fl) {
+      // let archivo_certificado_covid = null;
+      // if (certificado_covid_fl) {
 
-        archivo_certificado_covid = await postUploadFile(formData_certificado_covid);
-      }
+      //   archivo_certificado_covid = await postUploadFile(formData_certificado_covid);
+      // }
 
-      let archivo_certificado_covid_refuerzo = null;
-      if (certificado_covid_refuerzo_fl) {
-        archivo_certificado_covid_refuerzo = await postUploadFile(formData_certificado_covid_refuerzo);
-      }
+      // let archivo_certificado_covid_refuerzo = null;
+      // if (certificado_covid_refuerzo_fl) {
+      //   archivo_certificado_covid_refuerzo = await postUploadFile(formData_certificado_covid_refuerzo);
+      // }
 
       AlertCargando("Enviando los datos, espere por favor");
       const respuesta = await postCandidateUpdate({
@@ -626,9 +626,10 @@ const Captura = () => {
 
       AlertExito("Cargado exitosamente");
       if (
-        respuesta.status === 200 &&
-        archivo_certificado_covid?.status === 200 ||
-        archivo_certificado_covid_refuerzo?.status === 200
+        respuesta.status === 200 
+        // &&
+        // archivo_certificado_covid?.status === 200 ||
+        // archivo_certificado_covid_refuerzo?.status === 200
       ) {
         if (infoBrigadista.rechazo) {
           // se ocultan las secciones

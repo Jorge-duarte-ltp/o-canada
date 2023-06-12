@@ -8,6 +8,7 @@ import sessionContext from "../../context/session/sessionContext";
 import moment from "moment";
 import { postUploadFile } from "../../services/files/FilesService";
 import { postCreateBrigadesEvaluation, postUpdateBrigadesEvaluation } from "../../services/brigades/BrigadesService";
+import { CheckLg } from "react-bootstrap-icons";
 
 const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
@@ -17,7 +18,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
   });
   const [sumatoria, setSumatoria] = useState(0);
   /* TODO: El evento debe ser de forma dinamica para futuros deploys */
-  const evento = `california${moment().format('YYYY')}`;
+  const evento = `chile${moment().format('YYYY')}`;
   const [edicion, setEdicion] = useState(data.evaluaciones[0] ? true : false);
   const evaluacionDefault = data.evaluaciones[0]
     ? data.evaluaciones[0]
@@ -155,7 +156,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         /* Envio del archivo */
         const formData = new FormData();
         formData.append("file", files.evaluacion_desempenio_archivo_fl[0]);
-        formData.append("curp", state.fk_curp);
+        formData.append("curp", data.curp);
         formData.append("name", `evaluacion_desempenio_${evento}`);
 
         const archivo = await postUploadFile(formData);
@@ -176,8 +177,17 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
     } else {
       //    mandar por PUT los datos para edicion
       AlertCargando("Enviando evaluación...");
-      try {
+      if(files.evaluacion_desempenio_archivo_fl[0] != 'undefined')
+      {
+        const formData = new FormData();
+        formData.append("file", files.evaluacion_desempenio_archivo_fl[0]);
+        formData.append("curp", data.curp);
+        formData.append("name", `evaluacion_desempenio_${evento}`);
+        console.log(state);
+        await postUploadFile(formData);
+      }
 
+      try {
         const resp = await postUpdateBrigadesEvaluation({
           user: user,
           data: state,
@@ -274,7 +284,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
       <Button onClick={backTable} className="btn btn-danger">Regresar</Button>
       <div className="row body_wrap">
         <InfomacionCandidato state={data} />
-        {data.status_evaluacion == 0 ? (
+        {data.status_evaluacion == "Sin Evaluar" ? (
           <React.Fragment>
             <div className="col-12 pt-4">
               <label className="control-label pt-2">Formato escaneado</label>
@@ -293,7 +303,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
             <div className="col-12 col-md-12">
               <a
                 className="btn btn-dark"
-                href={`${process.env.REACT_APP_BACKEND_FILES}${data.curp}/evaluacion_desempenio_canada2023.pdf`}
+                href={`${process.env.REACT_APP_BACKEND_FILES}${data.curp}/evaluacion_desempenio_chile2023.pdf`}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -343,8 +353,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>3.- INCENDIOS FORESTALES</label>
           <p>
-            ¿Cuenta con los conocimientos y experiencia necesaria para el
-            desarrollo de sus asignaciones de manera adecuada?
+          ¿Contó con los conocimientos y experiencia para el desarrollo de sus asignaciones de manera adecuada?
           </p>
           <SelectCalificacion
             defaultValue={state.exp_incendios_forestales}
@@ -387,8 +396,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>5- SISTEMA DE COMANDO DE INCIDENTES</label>
           <p>
-            ¿Cuenta con los conocimientos y experiencia para la aplicación del
-            sistema de manera adecuada?
+          ¿Contó con los conocimientos y experiencia para la aplicación del sistema de manera adecuada?
           </p>
           <SelectCalificacion
             defaultValue={state.sis_comando_incendios}
@@ -431,10 +439,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>7.- CONDUCTA</label>
           <p>
-            Forma en que la persona EVALUADA se comportó en el equipo y en sus
-            acciones durante el despliegue. ¿Mostró flexibilidad,
-            disponibilidad, puntualidad, buena actitud y se adaptó a las
-            condiciones de acuerdo las situaciones prevalecientes?
+          Forma en que la persona EVALUADA se comportó en el equipo, en las operaciones y en las instalaciones durante el despliegue. ¿Mostró flexibilidad, disponibilidad, puntualidad, buena actitud y se adaptó a las condiciones de acuerdo a las situaciones prevalecientes?
           </p>
           <SelectCalificacion
             defaultValue={state.conducta}
@@ -454,7 +459,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         </div>
         <div className="col-12 pt-4">
           <label>8.- IDIOMA INGLÉS</label>
-          <p>¿Recibió y transmite información en inglés adecuadamente?</p>
+          <p>¿Recibió y transmitió información en inglés adecuadamente?</p>
           <SelectCalificacion
             defaultValue={state.idioma_ingles}
             className="form-control"
@@ -474,7 +479,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>9.- APTITUD FISICA</label>
           <p>
-            ¿Demostró buena aptitud física en el desarrollo de sus actividades?
+          ¿Contó con la aptitud física requerida para el cumplimiento de las asignaciones?
           </p>
           <SelectCalificacion
             defaultValue={state.aptitud_fisica}
@@ -495,9 +500,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>10.- LIDERAZGO</label>
           <p>
-            ¿Muestra decisión e iniciativa, brinda buen ejemplo e instrucciones
-            claras a sus subordinados o compañeros? Aplica los valores DEBER,
-            INTEGRIDAD, RESPETO.
+          ¿Mostró decisión e iniciativa, brindó buen ejemplo e instrucciones claras a sus subordinados o compañeros? Aplicó los valores DEBER, INTEGRIDAD, RESPETO.
           </p>
           <SelectCalificacion
             defaultValue={state.liderazgo}
@@ -518,8 +521,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>11.-EQUIPO DE DESPLIEGUE</label>
           <p>
-            ¿El equipo de despliegue fue el adecuado para el cumplimento de la
-            asignación?
+          ¿El equipo de despliegue utilizado fue el requerido en el proceso de selección?  ¿Utilizó el equipo de despliegues y equipo de protección de forma adecuada para el cumplimiento de la asignación?
           </p>
           <SelectCalificacion
             defaultValue={state.equipo_despliegue}
@@ -540,8 +542,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>12.- USO DE EQUIPO DE GEOREFERENCIACIÓN</label>
           <p>
-            ¿Opera el GPS, AVENZA u otra herramienta de georreferenciación de
-            forma autónoma?
+          ¿Operó el GPS, AVENZA u otra herramienta de georreferenciación de forma autónoma?
           </p>
           <SelectCalificacion
             defaultValue={state.uso_gps}
@@ -562,8 +563,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>13.- MANEJO DE BOMBA PORTATIL MARK</label>
           <p>
-            3 ¿Opera la motobomba y equipo de forma autónoma? ¿Utilizó
-            adecuadamente los accesorios y equipo complementario?
+          ¿Operó la motobomba y equipo de forma autónoma? ¿Utilizó adecuadamente los accesorios y equipo complementario?
           </p>
           <SelectCalificacion
             defaultValue={state.uso_markIII}
@@ -584,8 +584,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
         <div className="col-12 pt-4">
           <label>14.- MANEJO DE MOTOSIERRA</label>
           <p>
-            ¿Opera la motosierra y equipo de forma autónoma? ¿Utilizó
-            adecuadamente los accesorios y equipo complementario?
+          ¿Operó la motosierra y equipo de forma autónoma? ¿Utilizó adecuadamente los accesorios y equipo complementario?
           </p>
           <SelectCalificacion
             defaultValue={state.uso_motosierra}
@@ -610,11 +609,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
               <div className="col-12 pt-4">
                 <label>15.- CAPACIDAD DE GESTIÓN</label>
                 <p>
-                  Resuelve situaciones urgentes y establece planes de
-                  contingencia, negocia al interior y al exterior del grupo para
-                  mejorar las condiciones del grupo. Analiza, evalúa, propone
-                  soluciones. ¿Se anticipa a los problemas y actúa antes de que
-                  aparezcan?.
+                ¿Resolvió situaciones urgentes y estableció planes de contingencia, negoció al interior y al exterior del EQUIPO para mejorar el bienestar del grupo? ¿Analizó, evaluó, propuso soluciones? ¿Se anticipó a los problemas y actuó antes de que aparecieran?
                 </p>
                 <SelectCalificacion
                   defaultValue={state.capacidad_gestion}

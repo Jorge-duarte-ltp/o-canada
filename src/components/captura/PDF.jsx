@@ -204,7 +204,7 @@ const PDF = (props) => {
             <Text style={styles.header}>Requisitos y estándares</Text>
           </View>
           <View style={styles.sectionRequisitos} debug={false}>
-            <Text style={styles.RequisitosInfo}>1.- Pasaporte Mexicano</Text>
+            <Text style={styles.RequisitosInfo}>1.- Documentos de identidad (Pasaporte, CURP, edad)</Text>
             <Text style={styles.RequisitosInfo}>
               2.- Documento para viajar a Canadá
             </Text>

@@ -35,7 +35,9 @@ const S1 = (props) => {
   const [aeropuertos, setAeropuertos] = useState([]);
   const [preview, setPreview] = useState("");
   const [enter, setEnter] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [hideCombatant, sethideCombatant] = useState(false);
+  const [hideCuadrilla, sethideCuadrilla] = useState(false);
+  const [hideTecnico, sethideTecnico] = useState(false);
   const [, setPuedeContinuar] = useState(false);
 
   /* validaciones */
@@ -159,11 +161,23 @@ const S1 = (props) => {
         motivo_rechazo: null,
         fechaCreacion: null,
       });
-
+      // Edad Combatiente
       if (anios > 50) {
-        setHidden(true);
+        sethideCombatant(true);
       } else {
-        setHidden(false);
+        sethideCombatant(false);
+      }
+      // Edad Jefe Cuadrilla
+      if (anios >= 50) {
+        sethideCuadrilla(true);
+      } else {
+        sethideCuadrilla(false);
+      }
+      // Edad Tecnico/Jefe Brigada
+      if (anios >= 60) {
+        sethideTecnico(true);
+      } else {
+        sethideTecnico(false);
       }
 
     }
@@ -188,7 +202,7 @@ const S1 = (props) => {
     <div className="row body_wrap">
       {/* FOTOGRAFIA */}
       <div className="col-12 col-md-6">
-        <label className="control-label pt-2">Fotografia</label>
+        <label className="control-label pt-2">Fotografía digital a color (formato JPG)</label>
         <input
           className={`form-control ${state.fotografia ? "" : "myInput"}`}
           name="fotografia"
@@ -443,10 +457,10 @@ const S1 = (props) => {
           placeholder="Posición a la que es candidato..."
         >
           <option value="">---Seleccione---</option>
-          {!hidden && <option value="combatiente">Combatiente</option>}
-          <option value="jefe_de_cuadrilla">Jefe de Cuadrilla</option>
-          <option value="jefe_de_brigada">Jefe de Brigada</option>
-          <option value="tecnico">Técnico</option>
+          {!hideCombatant && <option value="combatiente">Combatiente</option>}
+          {!hideCuadrilla && <option value="jefe_de_cuadrilla">Jefe de Cuadrilla</option>}
+          {!hideTecnico && <option value="jefe_de_brigada">Jefe de Brigada</option>}
+          {!hideTecnico && <option value="tecnico">Técnico</option>}
         </select>
       </div>
 

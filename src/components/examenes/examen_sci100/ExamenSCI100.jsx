@@ -20,7 +20,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const [show, setShow] = useState(false);
   const [current, setCurrent] = useState([]);
   const initialValues = { examen: "smi100", respuestas: [] };
-  const [timeLeft, setTimeLeft] = useState(900);
+  const [timeLeft, setTimeLeft] = useState(2100);
   const [showOnBeforeUnload, setShowOnBeforeUnload] = useExitPrompt({});
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
 
       setData(temp);
 
-      setTimeLeft(900);
+      setTimeLeft(2100);
 
 
     }, 2000);
@@ -247,7 +247,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
       text:
         "Asegurese de tener una conexion estable de internet.\n" +
         "EL EXAMEN NO PODRA VOLVERSE A PRESENTAR SI SE SALE O REFRESCA LA PAGINA.\n" +
-        "Cuenta con 15 minutos para responderla.",
+        "Cuenta con 35 minutos para responderla.",
       icon: "warning",
       showCancelButton: true,
       cancelButtonText: "Cancelar",

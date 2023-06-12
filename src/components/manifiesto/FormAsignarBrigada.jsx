@@ -156,7 +156,7 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
                 numero={20}
               />
             </div>
-            <div className="col-3 col-md-3">
+            <div className="col-3 col-md-3" >
               <label className="control-label">Asignación de Brigada:</label>
               <input
                 className={`form-control ${state.asignacion ? null : "myInput"

@@ -114,7 +114,7 @@ const S4 = (props) => {
           <div className="col-12">
             <label className="control-label danger pt-2">
               ¿El evaluado ha participado en eventos planeados o no planeados
-              atendidos bajo el SCI?
+              atendidos bajo el SCI en los últimos tres años?
             </label>
             <SelectSiNo
               className="form-control myInput"
@@ -130,7 +130,7 @@ const S4 = (props) => {
           <div className="col-12">
             <label className="control-label danger pt-2">
               ¿El evaluado ha participado en eventos planeados o no planeados
-              atendidos bajo el SCI fuera de su país?
+              atendidos bajo el SCI fuera de su país en los últimos tres años?
             </label>
             <SelectSiNo
               className="form-control myInput"

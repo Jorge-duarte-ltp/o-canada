@@ -11,8 +11,8 @@ import Image38 from "../../../assets/images/examen/image38.png";
 const Data = [
     {
         "id": 1,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué nombre reciben los tres elementos que deben estar presentes y combinados antes que ocurra y continué la combustión?",
-        "image": Image32,
+        "nombre": "Seleccione la opción correcta. ¿Cuál es el nombre que reciben los tres elementos indispensables para que ocurra el proceso de combustión?",
+        "image": null,
         "show": true,
         "width": "256px",
         "height": "256px",
@@ -133,7 +133,7 @@ const Data = [
     },
     {
         "id": 6,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿En qué tipo de combustible de los descritos en las imágenes, el contenido de humedad es el menos afectado por el cambio diario de humedad relativa?",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿En cuál tipo de combustible (mostrado en las imágenes) el contenido de humedad es el menos afectado por el cambio diario de humedad relativa?",
         "image": Image34,
         "show": true,
         "width": "256px",
@@ -143,7 +143,7 @@ const Data = [
                 "id": 1,
                 "nombre": "Pastos",
                 "value": "a",
-                "correcta": true
+                "correcta": false
             },
             {
                 "id": 2,
@@ -155,7 +155,7 @@ const Data = [
                 "id": 3,
                 "nombre": "Desechos de aprovechamiento",
                 "value": "c",
-                "correcta": false
+                "correcta": true
             }
         ]
     },
@@ -784,41 +784,6 @@ const Data = [
     },
     {
         "id": 22,
-        "nombre": "Difícil acceso y una vía angosta y congestionada, casas ubicadas en zonas de chimenea, cañones angostos, puertos o sobre pendientes inclinadas, límite de carga en los puentes, combustibles naturales cercanos a 10 metros de casas y evacuación del público; son ejemplos de… ",
-        "image": null,
-        "show": false,
-        "width": "512px",
-        "height": "512px",
-        "answers": [
-
-            {
-                "id": 1,
-                "nombre": "Cosas que existen en las ciudades.",
-                "value": "a",
-                "correcta": false
-            },
-            {
-                "id": 2,
-                "nombre": "Normas de seguridad en incendios forestales.",
-                "value": "b",
-                "correcta": false
-            },
-            {
-                "id": 3,
-                "nombre": "Condiciones de alerta en zonas de interfase urbana/forestal.",
-                "value": "c",
-                "correcta": true
-            },
-            {
-                "id": 4,
-                "nombre": "Situaciones que hay que observar para los helicópteros.",
-                "value": "d",
-                "correcta": false
-            }
-        ]
-    },
-    {
-        "id": 23,
         "nombre": "Seleccione la “Norma de Combate” en que se hace referencia a considerar la Organización y Control de la brigada:",
         "image": null,
         "show": false,
@@ -853,7 +818,7 @@ const Data = [
         ]
     },
     {
-        "id": 24,
+        "id": 23,
         "nombre": "La parte del incendio que está quemando de manera más intensa y con mayor propagación es generalmente llamada:",
         "image": null,
         "show": false,
@@ -888,36 +853,7 @@ const Data = [
         ]
     },
     {
-        "id": 25,
-        "nombre": "¿Cuáles son los tres métodos de transferencia de calor?",
-        "image": null,
-        "show": false,
-        "width": "512px",
-        "height": "512px",
-        "answers": [
-
-            {
-                "id": 1,
-                "nombre": "Pavesas, Tiempo Atmosférico, Calor.",
-                "value": "a",
-                "correcta": false
-            },
-            {
-                "id": 2,
-                "nombre": "Combustibles, Organización y Seguridad.",
-                "value": "b",
-                "correcta": false
-            },
-            {
-                "id": 3,
-                "nombre": "Radiación, Convección y Conducción.",
-                "value": "c",
-                "correcta": true
-            }
-        ]
-    },
-    {
-        "id": 26,
+        "id": 24,
         "nombre": "¿Cuáles son los tres elementos del triángulo de fuego?",
         "image": null,
         "show": false,
@@ -946,7 +882,7 @@ const Data = [
         ]
     },
     {
-        "id": 27,
+        "id": 25,
         "nombre": "¿Qué sucede cuando el oxígeno es eliminado del triángulo de fuego?",
         "image": null,
         "show": false,
@@ -975,30 +911,7 @@ const Data = [
         ]
     },
     {
-        "id": 28,
-        "nombre": "Una exposición norte tendrá más actividad de fuego que una exposición sur.",
-        "image": null,
-        "show": false,
-        "width": "512px",
-        "height": "512px",
-        "answers": [
-
-            {
-                "id": 1,
-                "nombre": "Verdadero.",
-                "value": "a",
-                "correcta": false
-            },
-            {
-                "id": 2,
-                "nombre": "Falso.",
-                "value": "b",
-                "correcta": true
-            }
-        ]
-    },
-    {
-        "id": 29,
+        "id": 26,
         "nombre": "La disposición de combustible aéreo describe que:",
         "image": null,
         "show": false,
@@ -1033,7 +946,7 @@ const Data = [
         ]
     },
     {
-        "id": 30,
+        "id": 27,
         "nombre": "Seleccione los tres indicadores que señalan que el comportamiento del fuego va en aumento:",
         "image": null,
         "show": false,
@@ -1062,7 +975,7 @@ const Data = [
         ]
     },
     {
-        "id": 31,
+        "id": 28,
         "nombre": "¿Qué factor influye en la propagación del fuego más que cualquier otro?",
         "image": null,
         "show": false,
@@ -1097,7 +1010,7 @@ const Data = [
         ]
     },
     {
-        "id": 32,
+        "id": 29,
         "nombre": "Seleccione la “Norma de Combate” en que se hace referencia a considerar la Seguridad en la Línea de Fuego:",
         "image": null,
         "show": false,
@@ -1132,7 +1045,7 @@ const Data = [
         ]
     },
     {
-        "id": 33,
+        "id": 30,
         "nombre": "Seleccione la “Situación que Grita Cuidado” que se presenta cuando al llegar al incendio, la brigada inmediatamente entra al terreno y combate realizando ataque directo:",
         "image": null,
         "show": false,
@@ -1167,7 +1080,7 @@ const Data = [
         ]
     },
     {
-        "id": 34,
+        "id": 31,
         "nombre": "¿Qué incluyen los peligros de tormentas respecto del comportamiento de un incendio forestal?",
         "image": null,
         "show": false,
@@ -1202,7 +1115,7 @@ const Data = [
         ]
     },
     {
-        "id": 35,
+        "id": 32,
         "nombre": "¿En qué tipo de combustible, el contenido de humedad, es el más afectado por un cambio de humedad relativa?",
         "image": null,
         "show": false,

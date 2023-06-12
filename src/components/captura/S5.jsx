@@ -98,7 +98,7 @@ const S5 = (props) => {
           {/* ¿Participó como miembro de una brigada nacional el presente año? */}
           <div className="col-6">
             <label className="control-label pt-2">
-              ¿Participó como miembro de una brigada nacional el presente año?
+            ¿Participó como técnico en algún incidente en el presente año?
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_part_brig_nac"
@@ -142,7 +142,7 @@ const S5 = (props) => {
           {/*¿Participó en las movilizaciones nacionales el presente  año?  */}
           <div className="col-6">
             <label className="control-label pt-2">
-              ¿Participó en las movilizaciones nacionales el presente año?
+            ¿Participó como combatiente en movilizaciones nacionales en el presente año?
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_part_mov_nac"

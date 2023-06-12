@@ -618,7 +618,7 @@ const S3 = (props) => {
       </div>
 
       {/* ¿Cuenta con el esquema completo de COVID-19? */}
-      <div className="col-12">
+      {/* <div className="col-12">
         <label className="control-label pt-2">
           ¿Cuenta con el esquema completo de COVID-19?
         </label>
@@ -633,10 +633,10 @@ const S3 = (props) => {
           <option value={1}>Si</option>
           <option value={0}>No</option>
         </select>
-      </div>
+      </div> */}
 
       {/** ¿Cuenta con la dosis de refuerzo? */}
-      {state?.data?.esquema_completo === "1" && <React.Fragment>
+      {/* {state?.data?.esquema_completo === "1" && <React.Fragment>
         <div className="col-12">
           <label className="control-label pt-2">
             ¿Cuenta con dosis de refuerzo?
@@ -651,11 +651,11 @@ const S3 = (props) => {
             <option value={1}>Si</option>
             <option value={0}>No</option>
           </select>
-        </div>
+        </div> */}
 
         {/* ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?*/}
 
-        <div className="col-12">
+        {/* <div className="col-12">
           <label className="control-label pt-2">
             ¿Fue vacunado con alguna de las siguientes marcas de vacunas válidas para viajar a  Estados Unidos y Canadá (Pfizer-BioNTech, Moderna, AstraZeneca SINOVAC y Johnson & Johnson)?
           </label>
@@ -670,11 +670,11 @@ const S3 = (props) => {
             <option value={1}>Si</option>
             <option value={0}>No</option>
           </select>
-        </div>
+        </div> */}
 
-        {state?.data?.vacuna_aprobada === "1" && <React.Fragment>
+        {/* {state?.data?.vacuna_aprobada === "1" && <React.Fragment> */}
           {/* Certificado de vacunación COVID-19 (2 DÓSIS) */}
-          <div className="col-12 col-md-12">
+          {/* <div className="col-12 col-md-12">
             <label className="control-label pt-2">Certificado de vacunación COVID-19 (2 DÓSIS)</label>
             <input
               className="form-control myInput"
@@ -686,10 +686,10 @@ const S3 = (props) => {
             />
           </div>
 
-          {files.certificado_covid_fl && <React.Fragment>
+          {files.certificado_covid_fl && <React.Fragment> */}
 
             {/** Marca de la vacuna primera dosis */}
-            <div className="col-12 col-md-4">
+            {/* <div className="col-12 col-md-4">
               <label className="control-label pt-2">Marca de la Vacuna</label>
               <SelectVacuna
                 className={`form-control myInput`}
@@ -698,10 +698,10 @@ const S3 = (props) => {
                 value={state?.data?.idPrimeraDosis}
                 onChange={handleChange}
               />
-            </div>
+            </div> */}
 
             {/* Fecha de aplicación de 1 dosis */}
-            <div className="col-12 col-md-4">
+            {/* <div className="col-12 col-md-4">
               <label className="control-label pt-2">
                 Fecha aplicación 1 dosis
               </label>
@@ -712,11 +712,11 @@ const S3 = (props) => {
                 type="date"
                 onChange={handleChange}
               />
-            </div>
+            </div> */}
 
             {/* Fecha de aplicación de 2 dosis */}
 
-            {state?.data?.idPrimeraDosis && isUnique(state?.data?.idPrimeraDosis) &&
+            {/* {state?.data?.idPrimeraDosis && isUnique(state?.data?.idPrimeraDosis) &&
               <div className="col-12 col-md-4">
                 <label className="control-label pt-2">
                   Fecha aplicación 2 dosis
@@ -728,10 +728,10 @@ const S3 = (props) => {
                   type="date"
                   onChange={handleChange}
                 />
-              </div>}
+              </div>} */}
 
             {/* Certificado de dosis de refuerzo */}
-            {state?.data?.refuerzo === "1" && <React.Fragment>
+            {/* {state?.data?.refuerzo === "1" && <React.Fragment>
               <div className="col-12 col-md-12">
                 <label className="control-label pt-2">Certificado de dosis de Refuerzo</label>
                 <input
@@ -742,12 +742,12 @@ const S3 = (props) => {
                   onChange={setInfo}
                   placeholder="Cargar"
                 />
-              </div>
+              </div> */}
 
 
               {/** Marca de la vacuna */}
 
-              <div className="col-12 col-md-6">
+              {/* <div className="col-12 col-md-6">
                 <label className="control-label pt-2">Marca de la Vacuna</label>
                 <SelectVacuna
                   className={`form-control myInput`}
@@ -756,10 +756,10 @@ const S3 = (props) => {
                   value={state?.data?.idRefuerzoDosis}
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
 
               {/* Fecha de aplicación de dosis de refuerzo */}
-              <div className="col-12 col-md-6">
+              {/* <div className="col-12 col-md-6">
                 <label className="control-label pt-2">
                   Fecha aplicación dosis de refuerzo
                 </label>
@@ -772,10 +772,10 @@ const S3 = (props) => {
                 />
               </div>
 
-            </React.Fragment>}
+            </React.Fragment>} */}
 
             {/* ¿Ha padecido COVID-19 en los últimos 6 meses? */}
-            <div className="col-12">
+            {/* <div className="col-12">
               <label className="control-label pt-2">
                 ¿Ha padecido COVID-19 en los últimos 6 meses?
               </label>
@@ -789,10 +789,10 @@ const S3 = (props) => {
                 <option value={1}>Si</option>
                 <option value={0}>No</option>
               </select>
-            </div>
+            </div> */}
 
             {/* ¿Requirió hospitalización cuando padeció COVID-19? */}
-            {state?.data?.padecimiento === "1" &&
+            {/* {state?.data?.padecimiento === "1" &&
               <div className="col-12">
                 <label className="control-label pt-2">
                   ¿Requirió hospitalización cuando padeció COVID-19?
@@ -808,9 +808,9 @@ const S3 = (props) => {
                   <option value={0}>No</option>
                 </select>
               </div>}
-          </React.Fragment>}
-        </React.Fragment>}
-      </React.Fragment>}
+          </React.Fragment>} 
+        </React.Fragment>} 
+      </React.Fragment>}  */}
       {/* BTN Continuar */}
       <div className="col-12 pt-5 btn-margin">
         <button

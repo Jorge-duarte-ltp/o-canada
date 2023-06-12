@@ -67,7 +67,15 @@ const Header = ({ cierre }) => {
             rel="noopener noreferrer"
             className="btn btn-primary registroStyle"
           >
-            ¿Como me resgistro?
+            ¿Cómo me registro?
+          </a>
+          <a
+            href={`${process.env.REACT_APP_BACKEND_DOCUMENT}2023_Guia_Gráfica_Fase_1.5.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-secondary registroStyle"
+          >
+            Guía Fase 1.5
           </a>
 
           {/* DATOS MESA DE AYUDA */}
