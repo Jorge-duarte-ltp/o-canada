@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import SelectSiNo from "../../singles/SelectSiNo";
-
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
-
 import AlertError from "../../singles/AlertError";
 
 /* CONTEXT */
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import ExamenSCI100 from "../examenes/examen_sci100/ExamenSCI100";
+import SelectEstados from "../../singles/SelectEstados";
 
 const S4 = (props) => {
- 
   const { state, setState, checkData, files, setStateFiles } = props;
   const [isCompleteExam, setIsCompleteExam] = useState(false);
-  const [preguntas_smi_100, setPreguntas_smi_100] = useState(false);
+  const [isLoadCourses, setIsLoadCourses] = useState(false);
 
   const setInfo = (input) => {
     if (input.target.type === "file") {
@@ -55,13 +53,19 @@ const S4 = (props) => {
           accept="application/pdf"
           onChange={setInfo}
           onBlur={() => {
-            setPreguntas_smi_100(
-              files.sci_smi_100_fl && files.sci_smi_200_fl ? true : false
+            setIsLoadCourses(
+              files.sci_smi_100_fl &&
+                files.sci_smi_200_fl
+                ? true
+                : false
             );
           }}
           onMouseLeave={() => {
-            setPreguntas_smi_100(
-              files.sci_smi_100_fl && files.sci_smi_200_fl ? true : false
+            setIsLoadCourses(
+              files.sci_smi_100_fl &&
+                files.sci_smi_200_fl
+                ? true
+                : false
             );
           }}
           placeholder="Ingrese SCI/SMI 100..."
@@ -80,13 +84,19 @@ const S4 = (props) => {
           accept="application/pdf"
           onChange={setInfo}
           onBlur={() => {
-            setPreguntas_smi_100(
-              files.sci_smi_100_fl && files.sci_smi_200_fl ? true : false
+            setIsLoadCourses(
+              files.sci_smi_100_fl &&
+                files.sci_smi_200_fl
+                ? true
+                : false
             );
           }}
           onMouseLeave={() => {
-            setPreguntas_smi_100(
-              files.sci_smi_100_fl && files.sci_smi_200_fl ? true : false
+            setIsLoadCourses(
+              files.sci_smi_100_fl &&
+                files.sci_smi_200_fl
+                ? true
+                : false
             );
           }}
           placeholder="Ingrese SCI/SMI 200..."
@@ -104,78 +114,213 @@ const S4 = (props) => {
           type="file"
           accept="application/pdf"
           onChange={setInfo}
+          onBlur={() => {
+            setIsLoadCourses(
+              files.sci_smi_100_fl &&
+                files.sci_smi_200_fl
+                ? true
+                : false
+            );
+          }}
+          onMouseLeave={() => {
+            setIsLoadCourses(
+              files.sci_smi_100_fl &&
+                files.sci_smi_200_fl
+                ? true
+                : false
+            );
+          }}
           placeholder="Ingrese SCI/SMI 300..."
         />
       </div>
 
-      {preguntas_smi_100 && (
+      {isLoadCourses && (
         <React.Fragment>
-          {/* ¿El evaluado ha participado en eventos planeados o no...? */}
+          {/* ¿Cuenta con el curso CEMI? */}
           <div className="col-12">
             <label className="control-label danger pt-2">
-              ¿El evaluado ha participado en eventos planeados o no planeados
-              atendidos bajo el SCI en los últimos tres años?
+              ¿Cuenta con el curso CEMI?
             </label>
             <SelectSiNo
               className="form-control myInput"
-              name="eventos_plnaeados_sci"
+              name="tiene_curso_cemi"
               onChange={setInfo}
-              value={
-                state.eventos_plnaeados_sci ? state.eventos_plnaeados_sci : ""
-              }
+              value={state.tiene_curso_cemi ? state.tiene_curso_cemi : ""}
             />
           </div>
-
-          {/* ¿El evaluado ha participado en eventos planeados o no planeados...? */}
+          {state.tiene_curso_cemi === "1" && (
+            <div className="col-12 col-md-4">
+              <label className="control-label pt-2">
+                Cargar constancia del Curso CEMI
+              </label>
+              <input
+                className="form-control myInput"
+                name="sci_cemi"
+                type="file"
+                accept="application/pdf"
+                onChange={setInfo}
+                placeholder="Ingrese CEMI..."
+              />
+            </div>
+          )}
+          {/*¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2023? */}
           <div className="col-12">
             <label className="control-label danger pt-2">
-              ¿El evaluado ha participado en eventos planeados o no planeados
-              atendidos bajo el SCI fuera de su país en los últimos tres años?
+              El evaluado ha participado en eventos planeados o no planeados
+              atendidos bajo el SCI en el año 2023?
             </label>
             <SelectSiNo
               className="form-control myInput"
-              name="eventos_plnaeados_sci_fuera"
+              name="eventos_planeados_sci_2023"
               onChange={setInfo}
               value={
-                state.eventos_plnaeados_sci_fuera
-                  ? state.eventos_plnaeados_sci_fuera
+                state.eventos_planeados_sci_2023
+                  ? state.eventos_planeados_sci_2023
                   : ""
               }
             />
           </div>
 
-          {/* ¿El evaluado ha ocupado en eventos planeados o no estructura...? */}
-          <div className="col-12">
-            <label className="control-label danger pt-2">
-              ¿El evaluado ha ocupado en eventos planeados o no planeados alguna
-              posición dentro de la estructura del SCI?
-            </label>
-            <SelectSiNo
-              className="form-control myInput"
-              name="eventos_plnaeados_dentro_estructura"
-              onChange={setInfo}
-              value={
-                state.eventos_plnaeados_dentro_estructura
-                  ? state.eventos_plnaeados_dentro_estructura
-                  : ""
-              }
-            />
-          </div>
-
-          {/* Indique cual Posición */}
-          {state.eventos_plnaeados_dentro_estructura === "1" && (
+          {state.eventos_planeados_sci_2023 === "1" && (
             <React.Fragment>
-              <div className="col-5">
-                <label className="control-label pt-2">
-                  Indique cual Posición
-                </label>
+              <div className="col-4">
+                <label className="control-label danger pt-2">¿En cuál posición?</label>
                 <input
                   className="form-control myInput"
-                  name="sci_cual"
+                  name="eventos_planeados_sci_2023_posicion"
                   type="text"
                   onChange={setInfo}
                   placeholder="Indique cual posición..."
-                  value={state.sci_cual ? state.sci_cual : ""}
+                  value={state.eventos_planeados_sci_2023_posicion ? state.eventos_planeados_sci_2023_posicion : ""}
+                />
+              </div>
+              <div className="col-4">
+                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <input
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2023_incidente"
+                  type="text"
+                  onChange={setInfo}
+                  placeholder="Indique cual posición..."
+                  value={state.eventos_planeados_sci_2023_incidente ? state.eventos_planeados_sci_2023_incidente : ""}
+                />
+              </div>
+              <div className="col-4">
+                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <SelectEstados
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2023_estado"
+                  onChange={setInfo}
+                  value={state.eventos_planeados_sci_2023_estado ? state.eventos_planeados_sci_2023_estado : ""}
+                  placeholder="Indique cual posición..."
+                />
+              </div>
+            </React.Fragment>
+          )}
+
+          {/* ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2022? */}
+          <div className="col-12">
+            <label className="control-label danger pt-2">
+            ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2022?
+            </label>
+            <SelectSiNo
+              className="form-control myInput"
+              name="eventos_planeados_sci_2022"
+              onChange={setInfo}
+              value={
+                state.eventos_planeados_sci_2022
+                  ? state.eventos_planeados_sci_2022
+                  : ""
+              }
+            />
+          </div>
+
+          {state.eventos_planeados_sci_2022 === "1" && (
+            <React.Fragment>
+              <div className="col-4">
+                <label className="control-label danger pt-2">¿En cuál posición?</label>
+                <input
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2022_posicion"
+                  type="text"
+                  onChange={setInfo}
+                  placeholder="Indique cual posición..."
+                  value={state.eventos_planeados_sci_2022_posicion ? state.eventos_planeados_sci_2022_posicion : ""}
+                />
+              </div>
+              <div className="col-4">
+                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <input
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2022_incidente"
+                  type="text"
+                  onChange={setInfo}
+                  placeholder="Indique cual posición..."
+                  value={state.eventos_planeados_sci_2022_incidente ? state.eventos_planeados_sci_2022_incidente : ""}
+                />
+              </div>
+              <div className="col-4">
+                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <SelectEstados
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2022_estado"
+                  onChange={setInfo}
+                  value={state.eventos_planeados_sci_2022_estado ? state.eventos_planeados_sci_2022_estado : ""}
+                  placeholder="Indique cual posición..."
+                />
+              </div>
+            </React.Fragment>
+          )}
+
+          {/* ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2021? */}
+          <div className="col-12">
+            <label className="control-label danger pt-2">
+            ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2021?
+            </label>
+            <SelectSiNo
+              className="form-control myInput"
+              name="eventos_planeados_sci_2021"
+              onChange={setInfo}
+              value={
+                state.eventos_planeados_sci_2021
+                  ? state.eventos_planeados_sci_2021
+                  : ""
+              }
+            />
+          </div>
+
+          {state.eventos_planeados_sci_2021 === "1" && (
+            <React.Fragment>
+              <div className="col-4">
+                <label className="control-label danger pt-2">¿En cuál posición?</label>
+                <input
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2021_posicion"
+                  type="text"
+                  onChange={setInfo}
+                  placeholder="Indique cual posición..."
+                  value={state.eventos_planeados_sci_2021_posicion ? state.eventos_planeados_sci_2021_posicion : ""}
+                />
+              </div>
+              <div className="col-4">
+                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <input
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2021_incidente"
+                  type="text"
+                  onChange={setInfo}
+                  placeholder="Indique cual posición..."
+                  value={state.eventos_planeados_sci_2021_incidente ? state.eventos_planeados_sci_2021_incidente : ""}
+                />
+              </div>
+              <div className="col-4">
+                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <SelectEstados
+                  className="form-control myInput"
+                  name="eventos_planeados_sci_2021_estado"
+                  onChange={setInfo}
+                  value={state.eventos_planeados_sci_2021_estado ? state.eventos_planeados_sci_2021_estado : ""}
+                  placeholder="Indique cual posición..."
                 />
               </div>
             </React.Fragment>
@@ -197,6 +342,24 @@ const S4 = (props) => {
               }
             />
           </div>
+          {/* Indique cual Posición */}
+          {state.evaluado_menejo_incidentes === "1" && (
+            <React.Fragment>
+              <div className="col-5">
+                <label className="control-label pt-2">
+                  Indique cual Posición
+                </label>
+                <input
+                  className="form-control myInput"
+                  name="manejo_incidentes_posicion"
+                  type="text"
+                  onChange={setInfo}
+                  placeholder="Indique cual posición..."
+                  value={state.manejo_incidentes_posicion ? state.manejo_incidentes_posicion : ""}
+                />
+              </div>
+            </React.Fragment>
+          )}
         </React.Fragment>
       )}
 
@@ -206,9 +369,9 @@ const S4 = (props) => {
           hidden={
             files.sci_smi_100_fl &&
             files.sci_smi_200_fl &&
-            state.eventos_plnaeados_sci &&
-            state.eventos_plnaeados_sci_fuera &&
-            state.eventos_plnaeados_dentro_estructura &&
+            state.eventos_planeados_sci_2021 &&
+            state.eventos_planeados_sci_2022 &&
+            state.eventos_planeados_sci_2023 &&
             state.evaluado_menejo_incidentes &&
             !isCompleteExam
               ? false

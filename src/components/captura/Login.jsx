@@ -83,6 +83,7 @@ const Login = (props) => {
 
       }
     }).catch((error) => {
+      console.log(error);
       AlertError("Error", "Las credenciales  acceso son incorrectas o el usuario no existe");
     });
 
