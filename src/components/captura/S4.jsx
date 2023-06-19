@@ -166,7 +166,7 @@ const S4 = (props) => {
           {/*¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2023? */}
           <div className="col-12">
             <label className="control-label danger pt-2">
-              El evaluado ha participado en eventos planeados o no planeados
+              ¿El evaluado ha participado en eventos planeados o no planeados
               atendidos bajo el SCI en el año 2023?
             </label>
             <SelectSiNo
@@ -195,7 +195,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <label className="control-label danger pt-2">¿En qué estado?</label>
                 <input
                   className="form-control myInput"
                   name="eventos_planeados_sci_2023_incidente"
@@ -206,7 +206,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <label className="control-label danger pt-2">¿En qué estado?</label>
                 <SelectEstados
                   className="form-control myInput"
                   name="eventos_planeados_sci_2023_estado"
@@ -249,7 +249,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <label className="control-label danger pt-2">¿En qué estado?</label>
                 <input
                   className="form-control myInput"
                   name="eventos_planeados_sci_2022_incidente"
@@ -260,7 +260,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <label className="control-label danger pt-2">¿En qué estado?</label>
                 <SelectEstados
                   className="form-control myInput"
                   name="eventos_planeados_sci_2022_estado"
@@ -303,7 +303,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <label className="control-label danger pt-2">¿En qué estado?</label>
                 <input
                   className="form-control myInput"
                   name="eventos_planeados_sci_2021_incidente"
@@ -314,7 +314,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">Escriba el nombre del incidente</label>
+                <label className="control-label danger pt-2">¿En qué estado?</label>
                 <SelectEstados
                   className="form-control myInput"
                   name="eventos_planeados_sci_2021_estado"

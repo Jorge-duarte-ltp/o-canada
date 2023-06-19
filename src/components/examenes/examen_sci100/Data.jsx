@@ -1216,7 +1216,7 @@ const Data = [
     },
     {
         "id": 29,
-        "nombre": "¿En qué formato del PAI puede encontrar la lista de asignaciones tácticas del incidente para el periodo operacional?",
+        "nombre": "¿En cuál formato del SCI se describen las asignaciones tácticas?",
         "image": null,
         "show": false,
         "width": "512px",
@@ -1522,7 +1522,7 @@ const Data = [
     },
     {
         "id": 38,
-        "nombre": "¿Quién generalmente facilita la Sesión Informativa del periodo operacional?",
+        "nombre": "¿Quién  es la persona que  dirige la Sesión Informativa del periodo operacional?",
         "image": null,
         "show": false,
         "width": "512px",
