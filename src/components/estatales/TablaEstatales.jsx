@@ -24,8 +24,8 @@ const TablaEstatales = () => {
   const [searchWord, setSearchWord] = useState("");
 
 
-  /* 
-        TODO: consultar segun el estado del usuario que registra 
+  /*
+        TODO: consultar segun el estado del usuario que registra
             -> columna formato condicional motivo de rechazo rojo
     */
 
@@ -211,6 +211,7 @@ const TablaEstatales = () => {
       setReload(false);
     }
     return () => { }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reload]);
 
   /* CONFIGURACIONES TABLA */

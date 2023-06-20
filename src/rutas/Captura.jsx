@@ -67,6 +67,7 @@ const Captura = () => {
     setInfoBrigadista(candidatos.candidatos.infoBrigadista);
 
     return () => {};
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [secciones]);
 
   const [rechazo, setRechazo] = useState({
@@ -498,8 +499,7 @@ const Captura = () => {
       pulso_mayor_100,
       problemas_afeccion_osea,
       experiencia_personal_consejos,
-      medico_personal_recomendo,
-      data,
+      medico_personal_recomendo
     } = infoBrigadista;
 
     //const { cert_toxicologico_fl, cert_medico_fl, certificado_covid_fl, certificado_covid_refuerzo_fl } = archivos;
@@ -715,15 +715,7 @@ const Captura = () => {
         await postUploadFile(formData_sci_smi_300_fl);
       }
 
-      if (archivos.sci_cemi_fl) {
 
-        const formData_sci_cemi_fl = new FormData();
-        formData_sci_cemi_fl.append("file", archivos.sci_cemi_fl[0]);
-        formData_sci_cemi_fl.append("curp", infoBrigadista.curp);
-        formData_sci_cemi_fl.append("name", "sci_cemi");
-
-        await postUploadFile(formData_sci_cemi_fl);
-      }
 
       const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
@@ -868,8 +860,9 @@ const Captura = () => {
       niv_primeros_auxilios,
       conocimiento_equipo_aereo,
       examen_equipo_aereo,
+      tiene_curso_cemi
     } = infoBrigadista;
-    const { doc_acred_primeros_auxilios_fl, constancia_operaciones_aereas_fl } =
+    const { doc_acred_primeros_auxilios_fl, constancia_operaciones_aereas_fl, sci_cemi_fl } =
       archivos;
 
     if (
@@ -882,7 +875,8 @@ const Captura = () => {
       conocimiento_equipo_aereo === "" ||
       (conocimiento_equipo_aereo === "1" &&
         !constancia_operaciones_aereas_fl) ||
-      !examen_equipo_aereo != ""
+      !examen_equipo_aereo !== "" ||
+      (tiene_curso_cemi === "1" && !sci_cemi_fl)
     ) {
       msgFaltanCampos();
       return;
@@ -920,6 +914,16 @@ const Captura = () => {
         "name",
         "constancia_operaciones_aereas"
       );
+    }
+
+    if (sci_cemi_fl) {
+
+      const formData_sci_cemi_fl = new FormData();
+      formData_sci_cemi_fl.append("file", archivos.sci_cemi_fl[0]);
+      formData_sci_cemi_fl.append("curp", infoBrigadista.curp);
+      formData_sci_cemi_fl.append("name", "sci_cemi");
+
+      await postUploadFile(formData_sci_cemi_fl);
     }
 
     // SE AGREGA A CONTEXT

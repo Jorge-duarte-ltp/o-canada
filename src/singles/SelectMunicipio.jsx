@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { isEmpty } from "lodash";
-import axiosClient from "../config/axios";
 import AlertError from "./AlertError";
 import { ObtenerMunicipios } from "../services/catalogs/CatalogoService";
 

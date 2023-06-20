@@ -8,27 +8,28 @@ import SelectSiNo from "../../singles/SelectSiNo";
 import { formatDate } from "../../helpers/formatDate";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import AlertError from "../../singles/AlertError";
-import SelectVacuna from "../../singles/SelectVacunas";
-import { ObtenerVacunas } from "../../services/catalogs/CatalogoService";
+// import SelectVacuna from "../../singles/SelectVacunas";
+// import { ObtenerVacunas } from "../../services/catalogs/CatalogoService";
 const S3 = (props) => {
 
   const { state, setState, checkData, files, setStateFiles } = props;
-  const [vacunas, setVacunas] = useState([]);
+  // const [vacunas, setVacunas] = useState([]);
   const [timeout, setTimeout] = useState(0);
 
 
   useEffect(() => {
     setTimeout(() => {
-      ObtenerVacunas().then((response) => {
-        if (response.status === 200) {
-          setVacunas(response.data);
-        }
-      }).catch((error) => {
-        AlertError("Error al obtener la lista de vacunas");
-      })
+      // ObtenerVacunas().then((response) => {
+      //   if (response.status === 200) {
+      //     setVacunas(response.data);
+      //   }
+      // }).catch((error) => {
+      //   AlertError("Error al obtener la lista de vacunas");
+      // })
     }, 2000);
 
     return () => clearTimeout(timeout);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const setInfo = (input) => {
@@ -65,9 +66,9 @@ const S3 = (props) => {
     }
   };
 
-  const handleChange = ({ target }) => {
-    setState({ ...state, data: { ...state.data, [target.name]: target.value } });
-  }
+  // const handleChange = ({ target }) => {
+  //   setState({ ...state, data: { ...state.data, [target.name]: target.value } });
+  // }
 
   const setNumerico = (input) => {
     if (input.target.name === "altura") {
@@ -109,9 +110,9 @@ const S3 = (props) => {
     }
   };
 
-  const isUnique = (id) => {
-    return vacunas.find(item => item.id === id)?.dosisunica === '1' ? false : true;
-  }
+  // const isUnique = (id) => {
+  //   return vacunas.find(item => item.id === id)?.dosisunica === '1' ? false : true;
+  // }
 
   const revisarFormulario = () => {
     const {
@@ -808,8 +809,8 @@ const S3 = (props) => {
                   <option value={0}>No</option>
                 </select>
               </div>}
-          </React.Fragment>} 
-        </React.Fragment>} 
+          </React.Fragment>}
+        </React.Fragment>}
       </React.Fragment>}  */}
       {/* BTN Continuar */}
       <div className="col-12 pt-5 btn-margin">

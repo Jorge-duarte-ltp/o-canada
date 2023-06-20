@@ -558,7 +558,7 @@ const MesaAyuda = () => {
             tiene_sleeping_bag,
             tiene_sleeping_pad } = infoBrigadista
         const { carta_antecedentes_fl } = archivos
-        
+
         if (
             !antecedentes_fecha ||
             !carta_antecedentes_fl ||
@@ -628,14 +628,8 @@ const MesaAyuda = () => {
 
     }
     const checkDataS8 = async () => {
-        const { nivel_ingles, toeic_toefl, l_280, s_290, cert_intern_incendios, cert_intern_ate_emerg_med,
-            examen_toeic_toefl_punt, examen_toeic_toefl_archivo, l_280_file, s_290_file,
-            cert_intern_incendios_file, cert_intern_ate_emerg_med_file, posicion_candidato } = infoBrigadista
+        const { nivel_ingles, toeic_toefl, l_280, s_290, cert_intern_incendios, cert_intern_ate_emerg_med, examen_toeic_toefl_punt, examen_toeic_toefl_archivo, posicion_candidato } = infoBrigadista
 
-        const { examen_toeic_toefl_archivo_fl, l_280_file_fl,
-            s_290_file_fl, cert_intern_incendios_file_fl,
-            cert_intern_ate_emerg_med_file_fl
-        } = archivos
 
         if (posicion_candidato === 'jefe_de_cuadrilla' || posicion_candidato === 'tecnico') {
             if (!nivel_ingles || !toeic_toefl || !examen_toeic_toefl_punt || !examen_toeic_toefl_archivo ||
@@ -658,28 +652,20 @@ const MesaAyuda = () => {
         formData_examen_toeic_toefl_archivo_fl.append("curp", infoBrigadista.curp);
         formData_examen_toeic_toefl_archivo_fl.append("name", infoBrigadista.toeic_toefl);
 
-
-
         const formData_l_280_file_fl = new FormData();
         formData_l_280_file_fl.append("file", archivos.l_280_file_fl[0]);
         formData_l_280_file_fl.append("curp", infoBrigadista.curp);
         formData_l_280_file_fl.append("name", 'l_280_file');
-
-
 
         const formData_s_290_file_fl = new FormData();
         formData_s_290_file_fl.append("file", archivos.s_290_file_fl[0]);
         formData_s_290_file_fl.append("curp", infoBrigadista.curp);
         formData_s_290_file_fl.append("name", 's_290_file');
 
-
-
         const formData_cert_intern_incendios_file_fl = new FormData();
         formData_cert_intern_incendios_file_fl.append("file", archivos.cert_intern_incendios_file_fl[0]);
         formData_cert_intern_incendios_file_fl.append("curp", infoBrigadista.curp);
         formData_cert_intern_incendios_file_fl.append("name", 'cert_intern_incendios_file');
-
-
 
         const formData_cert_intern_ate_emerg_med_file_fl = new FormData();
         formData_cert_intern_ate_emerg_med_file_fl.append("file", archivos.cert_intern_ate_emerg_med_file_fl[0]);
@@ -690,7 +676,7 @@ const MesaAyuda = () => {
         const url = `${API_REQUEST}candidato_update`;
         try {
 
-
+            // eslint-disable-next-line no-unused-vars
             const archivo_examen_toeic_toefl_archivo_fl = await axios.post(`${API_REQUEST}carga_archivo`, formData_examen_toeic_toefl_archivo_fl, {
                 headers: {
                     'Content-Type': 'multipart/form-data'

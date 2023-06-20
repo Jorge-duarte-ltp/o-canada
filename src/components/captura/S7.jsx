@@ -27,6 +27,7 @@ const S7 = (props) => {
 
     return () => { clearTimeout(timeout) }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.rechazo])
 
   const setInfo = (input) => {

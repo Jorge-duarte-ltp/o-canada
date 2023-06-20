@@ -13,7 +13,7 @@ const Finalizar = (props) => {
   const [mensaje, setMensaje] = useState("");
   const [puesto, setPuesto] = useState("");
   let ventana = window;
-  
+
   const [secciones, setSecciones] = useState({
     pasaporte_vigente: false,
     documento_para_viajar_a_canad: false,
@@ -437,6 +437,7 @@ const Finalizar = (props) => {
   useEffect(() => {
     getMensaje(state.motivo_rechazo);
     getPuesto();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mensaje, puesto, state]);
   return (
     <>

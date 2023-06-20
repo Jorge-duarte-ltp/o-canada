@@ -17,12 +17,6 @@ const S9_S10View = (props) => {
 
   const pruebasContext = useContext(pruebasFisicasContext);
 
-  const [archivos, setArchivos] = useState({
-    formato: null,
-    formato_epp: null,
-    formato_eval_habilidad_uso_mark_III: null,
-    constancia_curso_s_211: null,
-  });
 
   /* SECCIONES */
   const [sectionGPSMark, setSectionGPSMark] = useState(true);
@@ -205,6 +199,7 @@ const S9_S10View = (props) => {
     });
 
     return () => { }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [evaluaciones]);
 
   return (
