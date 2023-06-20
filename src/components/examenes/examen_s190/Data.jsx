@@ -1,12 +1,9 @@
-import Image32 from "../../../assets/images/examen/image32.jpg";
 import Image33 from "../../../assets/images/examen/image33.png";
 import Image34 from "../../../assets/images/examen/image34.png";
 import Image35 from "../../../assets/images/examen/image35.png";
 import Image36 from "../../../assets/images/examen/image36.jpg";
 import Image37 from "../../../assets/images/examen/image37.png";
 import Image38 from "../../../assets/images/examen/image38.png";
-
-
 
 const Data = [
     {

@@ -13,9 +13,8 @@ import { size, isEmpty } from "lodash";
 import { validarExtPdf } from "../../helpers/validarExtPDF";
 import { postUploadFile } from "../../services/files/FilesService";
 import { postStatesEvaluation } from "../../services/states/StatesService";
-import { CheckLg } from "react-bootstrap-icons";
 const S9_S10 = (props) => {
-  
+
   const regex =
     /((^[0-9]{0}$)|(^[0-9]{1}$)|(^[0-9]{2}$)|(^[0-9]{2}\.[0-9]$)|(^[0-9]{3}$)|(^[0-9]{3}\.[0-9]$))/gm;
 
@@ -1017,7 +1016,7 @@ const S9_S10 = (props) => {
         if (resp.status === 200) {
           AlertError(
             "El candidato fue rechazado",
-            evaluaciones.rechazo            
+            evaluaciones.rechazo
           );
           props.setVolver(false);
         }
@@ -1034,6 +1033,7 @@ const S9_S10 = (props) => {
       pruebasCandidato: evaluaciones,
     });
     return () => { };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [evaluaciones]);
 
   return (

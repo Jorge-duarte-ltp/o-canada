@@ -282,7 +282,6 @@ const EditInfo = ({
                 idPosicion: null,
                 fechaInicio: null,
                 fechaFinal: null,
-                indicativo: null,
               },
         }).then(async (resp) => {
           if (resp.status === 200) {

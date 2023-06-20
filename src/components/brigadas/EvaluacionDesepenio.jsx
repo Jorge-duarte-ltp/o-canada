@@ -8,7 +8,6 @@ import sessionContext from "../../context/session/sessionContext";
 import moment from "moment";
 import { postUploadFile } from "../../services/files/FilesService";
 import { postCreateBrigadesEvaluation, postUpdateBrigadesEvaluation } from "../../services/brigades/BrigadesService";
-import { CheckLg } from "react-bootstrap-icons";
 
 const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
@@ -19,7 +18,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
   const [sumatoria, setSumatoria] = useState(0);
   /* TODO: El evento debe ser de forma dinamica para futuros deploys */
   const evento = `chile${moment().format('YYYY')}`;
-  const [edicion, setEdicion] = useState(data.evaluaciones[0] ? true : false);
+  const [edicion,] = useState(data.evaluaciones[0] ? true : false);
   const evaluacionDefault = data.evaluaciones[0]
     ? data.evaluaciones[0]
     : {
@@ -177,7 +176,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
     } else {
       //    mandar por PUT los datos para edicion
       AlertCargando("Enviando evaluación...");
-      if(files.evaluacion_desempenio_archivo_fl[0] != 'undefined')
+      if(files.evaluacion_desempenio_archivo_fl[0] !== 'undefined')
       {
         const formData = new FormData();
         formData.append("file", files.evaluacion_desempenio_archivo_fl[0]);
@@ -261,6 +260,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
 
   useEffect(() => {
     sumarPuntos();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   /* CREACION DE COMPONENTE SELECTOR */
@@ -284,7 +284,7 @@ const EvaluacionDesepenio = ({ data, backTable, setReload, reload }) => {
       <Button onClick={backTable} className="btn btn-danger">Regresar</Button>
       <div className="row body_wrap">
         <InfomacionCandidato state={data} />
-        {data.status_evaluacion == "Sin Evaluar" ? (
+        {data.status_evaluacion === "Sin Evaluar" ? (
           <React.Fragment>
             <div className="col-12 pt-4">
               <label className="control-label pt-2">Formato escaneado</label>

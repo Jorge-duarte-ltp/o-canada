@@ -136,33 +136,6 @@ const S4 = (props) => {
 
       {isLoadCourses && (
         <React.Fragment>
-          {/* ¿Cuenta con el curso CEMI? */}
-          <div className="col-12">
-            <label className="control-label danger pt-2">
-              ¿Cuenta con el curso CEMI?
-            </label>
-            <SelectSiNo
-              className="form-control myInput"
-              name="tiene_curso_cemi"
-              onChange={setInfo}
-              value={state.tiene_curso_cemi ? state.tiene_curso_cemi : ""}
-            />
-          </div>
-          {state.tiene_curso_cemi === "1" && (
-            <div className="col-12 col-md-4">
-              <label className="control-label pt-2">
-                Cargar constancia del Curso CEMI
-              </label>
-              <input
-                className="form-control myInput"
-                name="sci_cemi"
-                type="file"
-                accept="application/pdf"
-                onChange={setInfo}
-                placeholder="Ingrese CEMI..."
-              />
-            </div>
-          )}
           {/*¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2023? */}
           <div className="col-12">
             <label className="control-label danger pt-2">

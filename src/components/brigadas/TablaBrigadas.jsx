@@ -35,6 +35,7 @@ const TablaBrigadas = () => {
             });
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reload]);
 
     const mostrarEvaluacionBrigadista = row => {

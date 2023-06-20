@@ -1,17 +1,15 @@
-import React, { useContext, useState } from "react";
-import sessionContext from "../../context/session/sessionContext";
+import React, { useState } from "react";
+// import sessionContext from "../../context/session/sessionContext";
 import SideBar from "./SideBar";
 import RevisionDocumentacion from "../regionales/RevisionDocumentacion";
-
 // import AlertError from '../../singles/AlertError';
-
 import MesaAyuda from "../..//components/mesa_ayuda/MesaAyuda";
 // import S9 from '../estatales/S9';
 import TablaEstatales from "../estatales/TablaEstatales";
 import TablaBrigadas from "../brigadas/TablaBrigadas";
 import TablaManifiesto from "../manifiesto/TablaManifiesto";
 import TablaDisponibilidad from "../disponibilidad/TablaDisponibilidad";
-import Manifiest from "../reports/Manifiest";
+// import Manifiest from "../reports/Manifiest";
 
 const Dashboard = ({ userPorfile }) => {
   const [showSection, setShowSection] = useState({
