@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import InputCURP from '../../singles/InputCURP';
 import ToMayus from '../../helpers/ToMayus';
-import curpValida from '../../helpers/curpValida';
 import { Alert } from 'react-bootstrap';
 
 const Registro = (props) => {

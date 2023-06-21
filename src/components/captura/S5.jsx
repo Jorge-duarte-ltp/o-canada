@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import AlertError from "../../singles/AlertError";
 /* CONTEXT */
@@ -95,10 +95,10 @@ const S5 = (props) => {
 
       {preguntas_s_190 && (
         <React.Fragment>
-          {/* ¿Participó como miembro de una brigada nacional el presente año? */}
-          <div className="col-6">
+          {/* ¿Ha participado como miembro de una brigada nacional? */}
+          <div className="col-12 col-md-6">
             <label className="control-label pt-2">
-            ¿Participó como técnico en algún incidente en el presente año?
+              ¿Ha participado como miembro de una brigada nacional?
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_part_brig_nac"
@@ -110,7 +110,27 @@ const S5 = (props) => {
           </div>
 
           {state.tiene_part_brig_nac === "1" && (
-            <div className="col-6">
+            <div className="col-12 col-md-6">
+              <label className="control-label pt-2">
+                ¿En cuál brigada?
+                <select
+                  className="form-control myInput"
+                  name="brigada_nacional"
+                  value={state.brigada_nacional}
+                  onChange={setInfo}
+                  onBlur={setInfo}
+                >
+                  <option value="0">---seleccione---</option>
+                  <option value="1">N-2</option>
+                  <option value="2">N-3</option>
+                  <option value="3">E-N</option>
+                </select>
+              </label>
+            </div>
+          )}
+
+          {state.tiene_part_brig_nac === "1" && (
+            <div className="col-12 col-md-6">
               <React.Fragment>
                 <label className="control-label pt-2">
                   ¿A cuantos estados Participo como miembro de brigada?
@@ -118,8 +138,10 @@ const S5 = (props) => {
                     className="form-control myInput"
                     type="number"
                     value={state.num_est_part ? state.num_est_part : ""}
+                    id="num_est_part"
                     name="num_est_part"
                     onChange={setNumero}
+                    onMouseDown={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>
@@ -140,9 +162,10 @@ const S5 = (props) => {
           )}
 
           {/*¿Participó en las movilizaciones nacionales el presente  año?  */}
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             <label className="control-label pt-2">
-            ¿Participó como combatiente en movilizaciones nacionales en el presente año?
+              ¿Participó como combatiente en movilizaciones nacionales en el
+              presente año?
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_part_mov_nac"
@@ -152,7 +175,7 @@ const S5 = (props) => {
               />
             </label>
           </div>
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             {state.tiene_part_mov_nac === "1" && (
               <React.Fragment>
                 <label className="control-label pt-2">
@@ -163,6 +186,7 @@ const S5 = (props) => {
                     name="num_est_mov"
                     value={state.num_est_mov ? state.num_est_mov : ""}
                     onChange={setNumero}
+                    onKeyUp={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>
@@ -207,6 +231,7 @@ const S5 = (props) => {
                     name="num_pais_asig"
                     value={state.num_pais_asig ? state.num_pais_asig : ""}
                     onChange={setNumero}
+                    onBlur={setNumero}
                     placeholder="Ingresa el numero de estados"
                   />
                 </label>

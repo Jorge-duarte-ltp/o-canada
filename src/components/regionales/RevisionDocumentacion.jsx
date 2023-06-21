@@ -19,7 +19,7 @@ import { getRegionals, getRegionalsBySearch, postRegionalInformation, postRegion
 
 const RevisionDocumentacion = () => {
   const sessContext = useContext(sessionContext);
-  /* TODO:  
+  /* TODO:
     -> cambiar a liga de produccion
     -> revision de srvicio activo
     -> cambio a base de datos produccion
@@ -35,7 +35,7 @@ const RevisionDocumentacion = () => {
   const [infoObservacionModal, setInfoObservacionModal] = useState({});
   const [toggleCleared, setToggleCleared] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [directionValue, setDirectionValue] = useState("auto");
+  const [directionValue,] = useState("auto");
   const [nombreRegion, setNombreRegion] = useState("");
 
   const paginationOptions = {
@@ -127,6 +127,7 @@ const RevisionDocumentacion = () => {
     getRegionName();
     setReload(false);
     return () => { }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reload]);
 
   const mostrarDocumento = (documento, data) => {
@@ -669,6 +670,7 @@ const RevisionDocumentacion = () => {
         </button>
       </>
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [datosTabla, selectedRows, toggleCleared]);
 
   const handleCloseModal = () => setShowModal(false);

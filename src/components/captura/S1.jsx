@@ -43,9 +43,9 @@ const S1 = (props) => {
   /* validaciones */
   const [correoValido, setCorreoValido] = useState();
   const [correBenefValido, setCorreBenefValido] = useState();
-  const [curpCorrecto, setCurpCorrecto] = useState(false);
+  const [,setCurpCorrecto] = useState(false);
 
-  // implementación posterior 
+  // implementación posterior
   // const [checkFiles, setCheckFiles] = useState({});
   // const [rfcCorrecto, setRfcCorrecto] = useState(false)
 
@@ -80,6 +80,7 @@ const S1 = (props) => {
 
     setEnter(true);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enter]);
 
   const setInfo = (input) => {

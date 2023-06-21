@@ -81,6 +81,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
     // eslint-disable-next-line
   }, [timeLeft, show]);
 
+  // eslint-disable-next-line no-unused-vars
   const beforeUnloadListener = (event) => {
     event.preventDefault();
     return event.returnValue = "Are you sure you want to exit?";
@@ -234,6 +235,7 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
     });
   };
 
+  // eslint-disable-next-line no-unused-vars
   const onbeforeunload = () => {
     if (show) {
       guardar();

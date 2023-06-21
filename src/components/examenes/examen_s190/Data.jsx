@@ -1,12 +1,9 @@
-import Image32 from "../../../assets/images/examen/image32.jpg";
 import Image33 from "../../../assets/images/examen/image33.png";
 import Image34 from "../../../assets/images/examen/image34.png";
 import Image35 from "../../../assets/images/examen/image35.png";
 import Image36 from "../../../assets/images/examen/image36.jpg";
 import Image37 from "../../../assets/images/examen/image37.png";
 import Image38 from "../../../assets/images/examen/image38.png";
-
-
 
 const Data = [
     {
@@ -195,7 +192,7 @@ const Data = [
     },
     {
         "id": 8,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasnferencia de calor, en que los gases calientes que componen la columna de humo puede secar y encender otros combustibles.",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasferencia de calor, en que los gases calientes que componen la columna de humo puede secar y encender otros combustibles.",
         "image": Image35,
         "show": true,
         "width": "512px",
@@ -229,7 +226,7 @@ const Data = [
     },
     {
         "id": 9,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasnferencia de calor, en que el calor se propaga en forma de rayo o onda.\n El calor lo calienta a usted cuando se para cerca de una fogata, o se para frente a los rayos del sol.",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasferencia de calor, en que el calor se propaga en forma de rayo o onda.\n El calor lo calienta a usted cuando se para cerca de una fogata, o se para frente a los rayos del sol.",
         "image": Image35,
         "show": true,
         "width": "512px",
@@ -291,7 +288,7 @@ const Data = [
     },
     {
         "id": 11,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nCon respecto a la imagen satelital, de suscitarse un incendio forestal en esta zona,¿Sería denominado un incendio de tipo?",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nDe suscitarse un incendio forestal en esta zona, ¿Cómo se le llamaría a ese tipo de incendio?",
         "image": Image37,
         "show": true,
         "width": "512px",
@@ -395,7 +392,7 @@ const Data = [
     },
     {
         "id": 13,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nEs una franja, generalmente estrecha, extensión del incendio principal",
+        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nEs una franja, generalmente estrecha, extensión del incendio principal.",
         "image": Image38,
         "show": true,
         "width": "512px",
@@ -587,7 +584,7 @@ const Data = [
     },
     {
         "id": 16,
-        "nombre": "Es una definición de zona de seguridad:",
+        "nombre": "¿Cuál es la definición de “zona de seguridad”?",
         "image": null,
         "show": false,
         "width": "512px",
@@ -607,7 +604,7 @@ const Data = [
             },
             {
                 "id": 3,
-                "nombre": "Un lugar donde las y los combatientes pueden encontrar refugio del peligro",
+                "nombre": "Es un lugar donde las y los combatientes pueden encontrar un refugio del peligro.",
                 "value": "c",
                 "correcta": true
             },
@@ -714,7 +711,7 @@ const Data = [
     },
     {
         "id": 20,
-        "nombre": "Seleccione la “Norma de Combate” en que se hace referencia a considerar el Comportamiento de Fuego:",
+        "nombre": "¿Cuál es la “Norma de Combate”  número 10?, en la que se hace referencia a considerar el Comportamiento de Fuego?",
         "image": null,
         "show": false,
         "width": "512px",
@@ -729,15 +726,15 @@ const Data = [
             },
             {
                 "id": 2,
-                "nombre": "Norma 10. Combata el incendio agresivamente, habiendo provisto primero la seguridad.",
+                "nombre": "Norma 10. Combata el incendio agresivamente, priorice la seguridad del personal.",
                 "value": "b",
-                "correcta": false
+                "correcta": true
             },
             {
                 "id": 3,
                 "nombre": "Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
                 "value": "c",
-                "correcta": true
+                "correcta": false
             },
             {
                 "id": 4,
@@ -819,7 +816,7 @@ const Data = [
     },
     {
         "id": 23,
-        "nombre": "La parte del incendio que está quemando de manera más intensa y con mayor propagación es generalmente llamada:",
+        "nombre": "La parte del incendio, que se quema de manera más intensa y con mayor propagación es generalmente llamada:",
         "image": null,
         "show": false,
         "width": "512px",
@@ -1046,7 +1043,7 @@ const Data = [
     },
     {
         "id": 30,
-        "nombre": "Seleccione la “Situación que Grita Cuidado” que se presenta cuando al llegar al incendio, la brigada inmediatamente entra al terreno y combate realizando ataque directo:",
+        "nombre": "¿Cuál “Situación que Grita Cuidado” se presenta cuando al llegar al incendio, la brigada inmediatamente entra al terreno y combate realizando ataque directo?",
         "image": null,
         "show": false,
         "width": "512px",
@@ -1063,13 +1060,13 @@ const Data = [
                 "id": 2,
                 "nombre": "El incendio no ha sido explorado o evaluado.",
                 "value": "b",
-                "correcta": false
+                "correcta": true
             },
             {
                 "id": 3,
                 "nombre": "Existe combustible no quemado entre usted y el incendio.",
                 "value": "c",
-                "correcta": true
+                "correcta": false
             },
             {
                 "id": 4,

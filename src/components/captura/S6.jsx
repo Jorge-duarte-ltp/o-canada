@@ -14,6 +14,7 @@ const S6 = (props) => {
   useEffect(() => {
     window.onbeforeunload = false;
     revisionCompetencias();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.examen_equipo_aereo]);
 
   const setInfo = (input) => {
@@ -82,6 +83,33 @@ const S6 = (props) => {
 
   return (
     <div className="row body_wrap">
+      {/* ¿Cuenta con el curso CEMI? */}
+      <div className="col-12 col-md-6">
+            <label className="control-label danger pt-2">
+              ¿Cuenta con el curso CEMI?
+            </label>
+            <SelectSiNo
+              className="form-control myInput"
+              name="tiene_curso_cemi"
+              onChange={setInfo}
+              value={state.tiene_curso_cemi ? state.tiene_curso_cemi : ""}
+            />
+          </div>
+          {state.tiene_curso_cemi === "1" && (
+            <div className="col-12 col-md-6">
+              <label className="control-label pt-2">
+                Cargar constancia del Curso CEMI
+              </label>
+              <input
+                className="form-control myInput"
+                name="sci_cemi"
+                type="file"
+                accept="application/pdf"
+                onChange={setInfo}
+                placeholder="Ingrese CEMI..."
+              />
+            </div>
+      )}
       {/* Opera de manera autónoma GPS */}
       <div className="col-12 col-md-6">
         <label className="control-label pt-2">
@@ -111,7 +139,7 @@ const S6 = (props) => {
       </div>
 
       {/* Opera de manera autónoma Motosierra */}
-      <div className="col-4 col-md-6">
+      <div className="col-4 col-md-4">
         <label className="control-label pt-2">
           ¿Opera de manera autónoma la Motosierra?
         </label>
@@ -127,7 +155,7 @@ const S6 = (props) => {
       {/* ¿Ha ocupado la posición de Operador de Motosierra en alguna brigada? */}
       {state.opera_autonoma_motosierra === "1" && (
         <React.Fragment>
-          <div className="col-6 col-md-6">
+          <div className="col-6 col-md-8">
             <label className="control-label pt-2">
               ¿Ha ocupado la posición de Operador de Motosierra en alguna
               brigada?
@@ -229,7 +257,7 @@ const S6 = (props) => {
         )}
       </div>
       {/** ¿Cuenta con concimientos básicos en operaciones Seguras en equipo aéreo? */}
-      <div className="col-12 col-md-4">
+      <div className="col-12 col-md-6">
         <React.Fragment>
           <label className="control-label pt-2">¿Cuenta con conocimientos básicos en Operaciones Seguras en equipo aéreo?</label>
           <SelectSiNo
@@ -243,7 +271,7 @@ const S6 = (props) => {
 
 
       {/** Constancia de alumno o instructor en Operaciones (S-217, S-271 Y S-371). */}
-      <div className="col-12 col-md-12">
+      <div className="col-12 col-md-6">
         {state.conocimiento_equipo_aereo === "1" && (
           <React.Fragment>
             <label className="control-label pt-2">

@@ -4,9 +4,7 @@ import logo_conafor from "../assets/logo_cnf.svg";
 import logo_semarnat from "../assets/logo_semarnat.svg";
 import serpiente_amarilla from "../assets/serpiente_amarilla.svg";
 import { BsFillQuestionSquareFill } from "react-icons/bs";
-import { FcAssistant, FcVoicePresentation } from "react-icons/fc";
-import { Button, Modal } from "react-bootstrap";
-import { IconContext } from "react-icons/lib";
+import { Button } from "react-bootstrap";
 import DatosAyuda from "./DatosAyuda";
 
 const Header = ({ cierre }) => {

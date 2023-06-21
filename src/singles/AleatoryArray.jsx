@@ -9,6 +9,7 @@ const AleatoryArray = (array) => {
 
     for (let i = 0; i < limite; i++) {
         let random = 1;
+        // eslint-disable-next-line no-loop-func
         while (!isUndefined(count.find(item => item === random))) {
             random = RandomInt(1, size(array))
         }
