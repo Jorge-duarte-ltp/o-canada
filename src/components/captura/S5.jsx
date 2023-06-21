@@ -129,40 +129,8 @@ const S5 = (props) => {
             </div>
           )}
 
-          {state.tiene_part_brig_nac === "1" && (
-            <div className="col-12 col-md-6">
-              <React.Fragment>
-                <label className="control-label pt-2">
-                  ¿A cuantos estados Participo como miembro de brigada?
-                  <input
-                    className="form-control myInput"
-                    type="number"
-                    value={state.num_est_part ? state.num_est_part : ""}
-                    id="num_est_part"
-                    name="num_est_part"
-                    onChange={setNumero}
-                    onMouseDown={setNumero}
-                    placeholder="Ingresa el numero de estados"
-                  />
-                </label>
-              </React.Fragment>
-            </div>
-          )}
-
-          {state.num_est_part > 0 && state.tiene_part_brig_nac === "1" && (
-            <React.Fragment>
-              <GenerarEstados
-                titulo={"¿A que estado (s) participo como miembro de brigada?"}
-                name="estados_part_brig"
-                state={state}
-                setState={setState}
-                cantEstados={state.num_est_part}
-              />
-            </React.Fragment>
-          )}
-
           {/*¿Participó en las movilizaciones nacionales el presente  año?  */}
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-7">
             <label className="control-label pt-2">
               ¿Participó como combatiente en movilizaciones nacionales en el
               presente año?
@@ -175,7 +143,7 @@ const S5 = (props) => {
               />
             </label>
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-5">
             {state.tiene_part_mov_nac === "1" && (
               <React.Fragment>
                 <label className="control-label pt-2">
