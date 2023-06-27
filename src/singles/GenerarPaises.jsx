@@ -113,7 +113,6 @@ export const GenerarPaises = (props) => {
           <option value="TECNICO_AREP">Técnico (AREP)</option>
           <option value="TECNICO_SAREP">Técnico (SAREP)</option>
           <option value="TECNICO_IARR">Técnico (IARR)</option>
-          <option value="ESPECIALISTA_COVID">Especialista COVID</option>
         </select>
       </label>
     </div>
