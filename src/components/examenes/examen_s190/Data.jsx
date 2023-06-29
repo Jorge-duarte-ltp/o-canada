@@ -688,42 +688,6 @@ const Data = [
     ],
   },
   {
-    id: 18,
-    nombre: "Al abordar un helicóptero usted debe:",
-    image: null,
-    show: false,
-    width: "512px",
-    height: "512px",
-    is_number: false,
-    answers: [
-      {
-        id: 1,
-        nombre:
-          "Acercarse cuando el piloto o el miembro de la brigada helitransportada se lo indique.",
-        value: "a",
-        correcta: true,
-      },
-      {
-        id: 2,
-        nombre: "Acercarse desde la cola del helicóptero.",
-        value: "b",
-        correcta: false,
-      },
-      {
-        id: 3,
-        nombre: "Puede abordar sin ser guiado.",
-        value: "c",
-        correcta: false,
-      },
-      {
-        id: 4,
-        nombre: "Todas las respuestas aplican.",
-        value: "d",
-        correcta: false,
-      },
-    ],
-  },
-  {
     id: 19,
     nombre:
       "La técnica en terreno más eficiente para patrullar por focos secundarios es el uso sistemático cuadricular de revisar un área designada.",
@@ -760,28 +724,28 @@ const Data = [
       {
         id: 1,
         nombre:
-          "Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
+          "Norma. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
         value: "a",
         correcta: false,
       },
       {
         id: 2,
         nombre:
-          "Norma 10. Combata el incendio agresivamente, priorice la seguridad del personal.",
+          "Norma. Combata el incendio agresivamente, priorice la seguridad del personal.",
         value: "b",
         correcta: true,
       },
       {
         id: 3,
         nombre:
-          "Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
+          "Norma. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
         value: "c",
         correcta: false,
       },
       {
         id: 4,
         nombre:
-          "Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.",
+          "Norma. Disponga de vigilantes cuando existe la posibilidad de peligro.",
         value: "d",
         correcta: false,
       },
@@ -960,7 +924,7 @@ const Data = [
   },
   {
     id: 26,
-    nombre: "La disposición de combustible aéreo describe que:",
+    nombre: "El combustible vertical se puede apreciar normalmente  como:",
     image: null,
     show: false,
     width: "512px",
@@ -984,16 +948,16 @@ const Data = [
       {
         id: 3,
         nombre:
-          "El combustible que ayuda la propagación del incendio desde la superficie del suelo hacia las copas.",
+          "Los combustibles forman una escalera; desde el suelo del bosque hacia las copas de los árboles, tales como ramas extendidas cerca del suelo, arbustos, árboles jóvenes en el sotobosque, etc.",
         value: "c",
-        correcta: false,
+        correcta: true,
       },
       {
         id: 4,
         nombre:
           "El combustible es todo material vivo y muerto ubicado en las copas superiores.",
         value: "d",
-        correcta: true,
+        correcta: false,
       },
     ],
   },

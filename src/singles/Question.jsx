@@ -33,7 +33,7 @@ const Question = ({ question, value, name, onChange }) => {
                     <option value="">---seleccione---</option>
                     {question.answers.map((item, index) => (
                         <option key={index} value={item.value}>
-                            {item?.is_number ? index + 1  : handleNumberToChar(index)}) {item.nombre}
+                            {question?.is_number ? index + 1  : handleNumberToChar(index)}) {item.nombre}
                         </option>
                     ))}
                 </select>
