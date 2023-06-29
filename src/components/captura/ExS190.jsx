@@ -92,10 +92,10 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
-          <option value='b'>b) Norma 10. Combata el incendio agresivamente, habiendo provisto primero la seguridad.</option>
-          <option value='c'>c) Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.</option>
-          <option value='d'>d) Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
+          <option value='a'>a) Norma Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
+          <option value='b'>b) Norma Combata el incendio agresivamente, habiendo provisto primero la seguridad.</option>
+          <option value='c'>c) Norma Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.</option>
+          <option value='d'>d) Norma Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
         </select>
       </div>
 
@@ -147,10 +147,10 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
-          <option value='b'>b) Norma 10. Combata el incendio agresivamente, habiendo provisto primero la seguridad.</option>
-          <option value='c'>c) Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.</option>
-          <option value='d'>d) Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
+          <option value='a'>a) Norma Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
+          <option value='b'>b) Norma Combata el incendio agresivamente, habiendo provisto primero la seguridad.</option>
+          <option value='c'>c) Norma Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.</option>
+          <option value='d'>d) Norma Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
         </select>
       </div>
 
@@ -239,10 +239,10 @@ const S190 = (props) => {
         </select>
       </div>
 
-      {/* 14. La disposición de combustible aéreo describe que: */}
+      {/* 14. El combustible vertical se puede apreciar normalmente como: */}
       <div className='col-12'>
       
-        <label className="control-label pt-2">14. La disposición de combustible aéreo describe que:</label>
+        <label className="control-label pt-2">14. El combustible vertical se puede apreciar normalmente como:</label>
         <select
           className="form-control myInput"
           name='14_tipos_combustible'
@@ -252,7 +252,7 @@ const S190 = (props) => {
           <option value='x' >---Seleccione---</option>
           <option value='a'>a) El combustible es todo material inflamable ubicado debajo de la superficie.</option>
           <option value='b'>b) El combustible es todo material inflamable ubicado en ó sobre el suelo.</option>
-          <option value='c'>c) El combustible que ayuda la propagación del incendio desde la superficie del suelo hacia las copas.</option>
+          <option value='c'>c) Los combustibles forman una escalera; desde el suelo del bosque hacia las copas de los árboles, tales como ramas extendidas cerca del suelo, arbustos, árboles jóvenes en el sotobosque, etc.</option>
           <option value='d'>d) El combustible es todo material vivo y muerto ubicado en las copas superiores.</option>
         </select>
       </div>
@@ -303,10 +303,10 @@ const S190 = (props) => {
           onChange={setInfo}
         >
           <option value='x' >---Seleccione---</option>
-          <option value='a'>a) Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
-          <option value='b'>b) Norma 3. Base toda acción en el comportamiento actual y futuro del incendio.</option>
-          <option value='c'>c) Norma 8. Dar instrucciones claras y asegurarse que han sido entendidas.</option>
-          <option value='d'>d) Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
+          <option value='a'>a) Norma Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.</option>
+          <option value='b'>b) Norma Base toda acción en el comportamiento actual y futuro del incendio.</option>
+          <option value='c'>c) Norma Dar instrucciones claras y asegurarse que han sido entendidas.</option>
+          <option value='d'>d) Norma Disponga de vigilantes cuando existe la posibilidad de peligro.</option>
         </select>
       </div>
 

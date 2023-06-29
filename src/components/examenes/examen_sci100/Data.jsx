@@ -20,7 +20,7 @@ import Image31 from "../../../assets/images/examen/image31.png";
 const Data = [
     {
         "id": 1,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué nombre recibe el conjunto  de los jefes de sección en el Incidente?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿Qué nombre recibe el conjunto  de los jefes de sección en el Incidente?",
         "image": Image15,
         "show": true,
         "width": "512px",
@@ -54,7 +54,7 @@ const Data = [
         ]
     }, {
         "id": 2,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué puesto le corresponde a la persona responsable del seguimiento a la Información Pública del Incidente?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿Qué puesto le corresponde a la persona responsable del seguimiento a la Información Pública del Incidente?",
         "image": Image15,
         "show": true,
         "width": "512px",
@@ -88,7 +88,7 @@ const Data = [
         ]
     }, {
         "id": 3,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Qué nombre recibe el conjunto  de los Oficiales en el Incidente?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿Qué nombre recibe el conjunto  de los Oficiales en el Incidente?",
         "image": Image15,
         "show": true,
         "width": "512px",
@@ -123,7 +123,7 @@ const Data = [
     },
     {
         "id": 4,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el número de personas para un  alcance de control mínimo?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿Cuál letra representa el número de personas para un  alcance de control mínimo?",
         "image": Image16,
         "show": true,
         "width": "256px",
@@ -164,7 +164,7 @@ const Data = [
     },
     {
         "id": 5,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el número de personas para un alcance de control máximo?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿Cuál letra representa el número de personas para un alcance de control máximo?",
         "image": Image16,
         "show": true,
         "width": "256px",
@@ -205,7 +205,7 @@ const Data = [
     },
     {
         "id": 6,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál letra representa el número de personas para un alcance de control óptimo?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿Cuál letra representa el número de personas para un alcance de control óptimo?",
         "image": Image16,
         "show": true,
         "width": "256px",
@@ -708,7 +708,7 @@ const Data = [
     },
     {
         "id": 13,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image23,
         "show": true,
         "width": "512px",
@@ -737,7 +737,7 @@ const Data = [
     },
     {
         "id": 14,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image24,
         "show": true,
         "width": "512px",
@@ -766,7 +766,7 @@ const Data = [
     },
     {
         "id": 15,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image25,
         "show": true,
         "width": "512px",
@@ -795,7 +795,7 @@ const Data = [
     },
     {
         "id": 16,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image26,
         "show": true,
         "width": "512px",
@@ -824,7 +824,7 @@ const Data = [
     },
     {
         "id": 17,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image27,
         "show": true,
         "width": "512px",
@@ -853,7 +853,7 @@ const Data = [
     },
     {
         "id": 18,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image28,
         "show": true,
         "width": "512px",
@@ -882,7 +882,7 @@ const Data = [
     },
     {
         "id": 19,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta\n¿En cuál formato del SCI se describen las asignaciones tácticas?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta\n¿En cuál formato del SCI se describen las asignaciones tácticas?",
         "image": Image29,
         "show": true,
         "width": "512px",
@@ -917,7 +917,7 @@ const Data = [
     },
     {
         "id": 20,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta\n¿En cuál formato del SCI se describe el Plan Médico?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta\n¿En cuál formato del SCI se describe el Plan Médico?",
         "image": Image30,
         "show": true,
         "width": "512px",
@@ -958,7 +958,7 @@ const Data = [
     },
     {
         "id": 21,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta\n¿En cuál formato del SCI se describe el Resumen del Incidente?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta\n¿En cuál formato del SCI se describe el Resumen del Incidente?",
         "image": Image31,
         "show": true,
         "width": "512px",
@@ -1524,7 +1524,7 @@ const Data = [
     },
     {
         "id": 37,
-        "nombre": "¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?",
+        "nombre": "¿Cuál formato del PAI SCI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?",
         "image": null,
         "show": false,
         "width": "512px",

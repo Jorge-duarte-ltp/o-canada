@@ -305,10 +305,10 @@ const SCI100 = (props) => {
                 </select>
             </div>
 
-            {/* 18. ¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional? */}
+            {/* 18. ¿Cuál formato del PAI SCI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional? */}
             <div className='col-12'>
        
-                <label className="control-label pt-2">18. ¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?</label>
+                <label className="control-label pt-2">18. ¿Cuál formato del PAI SCI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?</label>
                 <select
                     className="form-control myInput"
                     name='18_formato_trabajo'

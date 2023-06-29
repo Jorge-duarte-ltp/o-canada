@@ -7,7 +7,7 @@ import Image14 from "../../../assets/images/examen/image14.png";
 const Data = [
     {
         "id": 1,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 1 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
@@ -54,7 +54,7 @@ const Data = [
     },
     {
         "id": 2,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 2 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
@@ -101,7 +101,7 @@ const Data = [
     },
     {
         "id": 3,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 3 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
@@ -148,7 +148,7 @@ const Data = [
     },
     {
         "id": 4,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 4 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
@@ -195,7 +195,7 @@ const Data = [
     },
     {
         "id": 5,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 5 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
@@ -242,7 +242,7 @@ const Data = [
     },
     {
         "id": 6,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 6 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
@@ -289,7 +289,7 @@ const Data = [
     },
     {
         "id": 7,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image11,
         "show": true,
         "width": "256px",
@@ -342,7 +342,7 @@ const Data = [
     },
     {
         "id": 8,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image12,
         "show": true,
         "width": "256px",
@@ -395,7 +395,7 @@ const Data = [
     },
     {
         "id": 9,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image13,
         "show": true,
         "width": "256px",
@@ -448,7 +448,7 @@ const Data = [
     },
     {
         "id": 10,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image14,
         "show": true,
         "width": "256px",
