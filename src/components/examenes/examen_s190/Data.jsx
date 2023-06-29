@@ -130,7 +130,7 @@ const Data = [
     },
     {
         "id": 6,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿En cuál tipo de combustible (mostrado en las imágenes) el contenido de humedad es el menos afectado por el cambio diario de humedad relativa?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿En cuál tipo de combustible (mostrado en las imágenes) el contenido de humedad es el menos afectado por el cambio diario de humedad relativa?",
         "image": Image34,
         "show": true,
         "width": "256px",
@@ -158,7 +158,7 @@ const Data = [
     },
     {
         "id": 7,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de transferencia de calor, en que el calor se propaga de una partícula del material hacia otra en la misma dirección, a través de contacto directo.",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\nMétodo de transferencia de calor, en que el calor se propaga de una partícula del material hacia otra en la misma dirección, a través de contacto directo.",
         "image": Image35,
         "show": true,
         "width": "512px",
@@ -192,7 +192,7 @@ const Data = [
     },
     {
         "id": 8,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasferencia de calor, en que los gases calientes que componen la columna de humo puede secar y encender otros combustibles.",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\nMétodo de trasferencia de calor, en que los gases calientes que componen la columna de humo puede secar y encender otros combustibles.",
         "image": Image35,
         "show": true,
         "width": "512px",
@@ -226,7 +226,7 @@ const Data = [
     },
     {
         "id": 9,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nMétodo de trasferencia de calor, en que el calor se propaga en forma de rayo o onda.\n El calor lo calienta a usted cuando se para cerca de una fogata, o se para frente a los rayos del sol.",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\nMétodo de trasferencia de calor, en que el calor se propaga en forma de rayo o onda.\n El calor lo calienta a usted cuando se para cerca de una fogata, o se para frente a los rayos del sol.",
         "image": Image35,
         "show": true,
         "width": "512px",
@@ -260,7 +260,7 @@ const Data = [
     },
     {
         "id": 10,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\n¿Cuál de las situaciones que gritan cuidado observamos en la imagen?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\n¿Cuál de las situaciones que gritan cuidado observamos en la imagen?",
         "image": Image36,
         "show": true,
         "width": "512px",
@@ -288,7 +288,7 @@ const Data = [
     },
     {
         "id": 11,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nDe suscitarse un incendio forestal en esta zona, ¿Cómo se le llamaría a ese tipo de incendio?",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\nDe suscitarse un incendio forestal en esta zona, ¿Cómo se le llamaría a ese tipo de incendio?",
         "image": Image37,
         "show": true,
         "width": "512px",
@@ -392,7 +392,7 @@ const Data = [
     },
     {
         "id": 13,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nEs una franja, generalmente estrecha, extensión del incendio principal.",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\nEs una franja, generalmente estrecha, extensión del incendio principal.",
         "image": Image38,
         "show": true,
         "width": "512px",
@@ -456,7 +456,7 @@ const Data = [
     },
     {
         "id": 14,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea que no se ha quemado entre el incendio principal y cualquiera extensión del perímetro del incendio principal.",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\nÁrea que no se ha quemado entre el incendio principal y cualquiera extensión del perímetro del incendio principal.",
         "image": Image38,
         "show": true,
         "width": "512px",
@@ -520,7 +520,7 @@ const Data = [
     },
     {
         "id": 15,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta:\nÁrea quemándose fuera del perímetro principal del incendio, causado a menudo por pavesas que ruedan o vuelan.",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta:\nÁrea quemándose fuera del perímetro principal del incendio, causado a menudo por pavesas que ruedan o vuelan.",
         "image": Image38,
         "show": true,
         "width": "512px",
@@ -720,25 +720,25 @@ const Data = [
 
             {
                 "id": 1,
-                "nombre": "Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
+                "nombre": "Norma Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
                 "value": "a",
                 "correcta": false
             },
             {
                 "id": 2,
-                "nombre": "Norma 10. Combata el incendio agresivamente, priorice la seguridad del personal.",
+                "nombre": "Norma Combata el incendio agresivamente, priorice la seguridad del personal.",
                 "value": "b",
                 "correcta": true
             },
             {
                 "id": 3,
-                "nombre": "Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
+                "nombre": "Norma Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
                 "value": "c",
                 "correcta": false
             },
             {
                 "id": 4,
-                "nombre": "Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.",
+                "nombre": "Norma Disponga de vigilantes cuando existe la posibilidad de peligro.",
                 "value": "d",
                 "correcta": false
             }
@@ -790,25 +790,25 @@ const Data = [
 
             {
                 "id": 1,
-                "nombre": "Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
+                "nombre": "Norma Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
                 "value": "a",
                 "correcta": true
             },
             {
                 "id": 2,
-                "nombre": "Norma 10. Combata el incendio agresivamente, habiendo provisto primero la seguridad.",
+                "nombre": "Norma Combata el incendio agresivamente, habiendo provisto primero la seguridad.",
                 "value": "b",
                 "correcta": false
             },
             {
                 "id": 3,
-                "nombre": "Norma 1. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
+                "nombre": "Norma Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
                 "value": "c",
                 "correcta": false
             },
             {
                 "id": 4,
-                "nombre": "Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.",
+                "nombre": "Norma Disponga de vigilantes cuando existe la posibilidad de peligro.",
                 "value": "d",
                 "correcta": false
             }
@@ -909,7 +909,7 @@ const Data = [
     },
     {
         "id": 26,
-        "nombre": "La disposición de combustible aéreo describe que:",
+        "nombre": "El combustible vertical se puede apreciar normalmente como:",
         "image": null,
         "show": false,
         "width": "512px",
@@ -930,7 +930,7 @@ const Data = [
             },
             {
                 "id": 3,
-                "nombre": "El combustible que ayuda la propagación del incendio desde la superficie del suelo hacia las copas.",
+                "nombre": "Los combustibles forman una escalera; desde el suelo del bosque hacia las copas de los árboles, tales como ramas extendidas cerca del suelo, arbustos, árboles jóvenes en el sotobosque, etc.",
                 "value": "c",
                 "correcta": false
             },
@@ -1017,25 +1017,25 @@ const Data = [
 
             {
                 "id": 1,
-                "nombre": "Norma 7. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
+                "nombre": "Norma Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
                 "value": "a",
                 "correcta": false
             },
             {
                 "id": 2,
-                "nombre": "Norma 3. Base toda acción en el comportamiento actual y futuro del incendio.",
+                "nombre": "Norma Base toda acción en el comportamiento actual y futuro del incendio.",
                 "value": "b",
                 "correcta": false
             },
             {
                 "id": 3,
-                "nombre": "Norma 8. Dar instrucciones claras y asegurarse que han sido entendidas.",
+                "nombre": "Norma Dar instrucciones claras y asegurarse que han sido entendidas.",
                 "value": "c",
                 "correcta": false
             },
             {
                 "id": 4,
-                "nombre": "Norma 5. Disponga de vigilantes cuando existe la posibilidad de peligro.",
+                "nombre": "Norma Disponga de vigilantes cuando existe la posibilidad de peligro.",
                 "value": "d",
                 "correcta": true
             }
