@@ -12,6 +12,7 @@ const Data = [
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -58,6 +59,7 @@ const Data = [
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -104,6 +106,7 @@ const Data = [
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -150,6 +153,7 @@ const Data = [
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -196,6 +200,7 @@ const Data = [
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -242,6 +247,7 @@ const Data = [
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -288,6 +294,7 @@ const Data = [
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -340,6 +347,7 @@ const Data = [
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -392,6 +400,7 @@ const Data = [
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -444,6 +453,7 @@ const Data = [
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -496,6 +506,7 @@ const Data = [
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -530,6 +541,7 @@ const Data = [
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -570,6 +582,7 @@ const Data = [
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -604,6 +617,7 @@ const Data = [
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -638,6 +652,7 @@ const Data = [
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -672,6 +687,7 @@ const Data = [
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
