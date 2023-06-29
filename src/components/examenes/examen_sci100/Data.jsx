@@ -1114,40 +1114,6 @@ const Data = [
     },
     {
         "id": 26,
-        "nombre": "¿Cuál es el rango óptimo de Alcance de Control?",
-        "image": null,
-        "show": false,
-        "width": "512px",
-        "height": "512px",
-        "answers": [
-            {
-                "id": 1,
-                "nombre": "1 a 5",
-                "value": "a",
-                "correcta": true
-            },
-            {
-                "id": 2,
-                "nombre": "1 a 3",
-                "value": "b",
-                "correcta": false
-            },
-            {
-                "id": 3,
-                "nombre": "1 a 7",
-                "value": "c",
-                "correcta": false
-            },
-            {
-                "id": 4,
-                "nombre": "21 a 10",
-                "value": "d",
-                "correcta": false
-            }
-        ]
-    },
-    {
-        "id": 27,
         "nombre": "¿Qué significa desmovilización?",
         "image": null,
         "show": false,
@@ -1181,7 +1147,7 @@ const Data = [
         ]
     },
     {
-        "id": 28,
+        "id": 27,
         "nombre": "¿Qué es un Plan de Acción del Incidente (PAI)?",
         "image": null,
         "show": false,
@@ -1215,7 +1181,7 @@ const Data = [
         ]
     },
     {
-        "id": 29,
+        "id": 28,
         "nombre": "¿En cuál formato del SCI se describen las asignaciones tácticas?",
         "image": null,
         "show": false,
@@ -1249,7 +1215,7 @@ const Data = [
         ]
     },
     {
-        "id": 30,
+        "id": 29,
         "nombre": "¿Qué es la transferencia de mando?",
         "image": null,
         "show": false,
@@ -1283,7 +1249,7 @@ const Data = [
         ]
     },
     {
-        "id": 31,
+        "id": 30,
         "nombre": "La cadena de mando se refiere a:",
         "image": null,
         "show": false,
@@ -1317,7 +1283,7 @@ const Data = [
         ]
     },
     {
-        "id": 32,
+        "id": 31,
         "nombre": "Al momento de establecer los objetivos para atender un incidente, ¿Cuál es la primera prioridad?",
         "image": null,
         "show": false,
@@ -1351,7 +1317,7 @@ const Data = [
         ]
     },
     {
-        "id": 33,
+        "id": 32,
         "nombre": "¿Qué es una helibase?",
         "image": null,
         "show": false,
@@ -1385,7 +1351,7 @@ const Data = [
         ]
     },
     {
-        "id": 34,
+        "id": 33,
         "nombre": "¿Qué incluye una sesión informativa?",
         "image": null,
         "show": false,
@@ -1419,7 +1385,7 @@ const Data = [
         ]
     },
     {
-        "id": 35,
+        "id": 34,
         "nombre": "¿En qué formato del PAI puede encontrar los Objetivos del incidente para el periodo operacional?",
         "image": null,
         "show": false,
@@ -1453,7 +1419,7 @@ const Data = [
         ]
     },
     {
-        "id": 36,
+        "id": 35,
         "nombre": "Seleccione la opción VERDADERA",
         "image": null,
         "show": false,
@@ -1487,41 +1453,7 @@ const Data = [
         ]
     },
     {
-        "id": 37,
-        "nombre": "¿En qué formato del PAI puede encontrar el Plan Médico del incidente para el periodo operacional?",
-        "image": null,
-        "show": false,
-        "width": "512px",
-        "height": "512px",
-        "answers": [
-            {
-                "id": 1,
-                "nombre": "SCI-204",
-                "value": "a",
-                "correcta": false
-            },
-            {
-                "id": 2,
-                "nombre": "SCI-202",
-                "value": "b",
-                "correcta": false
-            },
-            {
-                "id": 3,
-                "nombre": "SCI-214",
-                "value": "c",
-                "correcta": false
-            },
-            {
-                "id": 4,
-                "nombre": "SCI-206",
-                "value": "d",
-                "correcta": true
-            }
-        ]
-    },
-    {
-        "id": 38,
+        "id": 36,
         "nombre": "¿Quién  es la persona que  dirige la Sesión Informativa del periodo operacional?",
         "image": null,
         "show": false,
@@ -1555,7 +1487,7 @@ const Data = [
         ]
     },
     {
-        "id": 39,
+        "id": 37,
         "nombre": "¿Qué formato del PAI es conocido como Bitácora de Unidad y sirve para registrar actividades relevantes ocurridas en el periodo operacional?",
         "image": null,
         "show": false,
@@ -1589,7 +1521,7 @@ const Data = [
         ]
     },
     {
-        "id": 40,
+        "id": 38,
         "nombre": "Un individuo asumiendo el papel de Comandante de Incidente Auxiliar debe:",
         "image": null,
         "show": false,
@@ -1623,7 +1555,7 @@ const Data = [
         ]
     },
     {
-        "id": 41,
+        "id": 39,
         "nombre": "¿Quién es responsable de determinar las tácticas apropiadas para un incidente?",
         "image": null,
         "show": false,

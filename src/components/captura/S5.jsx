@@ -129,11 +129,10 @@ const S5 = (props) => {
             </div>
           )}
 
-          {/*¿Participó en las movilizaciones nacionales el presente  año?  */}
+          {/*En los últimos 3 años ¿Ha participado como combatiente o técnico en movilizaciones nacionales? */}
           <div className="col-12 col-md-7">
             <label className="control-label pt-2">
-              ¿Participó como combatiente en movilizaciones nacionales en el
-              presente año?
+            En los últimos 3 años ¿Ha participado como combatiente o técnico en movilizaciones nacionales?
               <SelectSiNo
                 className="form-control myInput"
                 name="tiene_part_mov_nac"
@@ -147,7 +146,7 @@ const S5 = (props) => {
             {state.tiene_part_mov_nac === "1" && (
               <React.Fragment>
                 <label className="control-label pt-2">
-                  ¿A cuantos estados fue movilizado?
+                  ¿Cuantas movilizaciones tuvo o ha tenido en los últimos 3 años?
                   <input
                     className="form-control myInput"
                     type="number"
@@ -192,7 +191,7 @@ const S5 = (props) => {
             {state.tiene_asig_recurso_pais === "1" && (
               <React.Fragment>
                 <label className="control-label pt-2">
-                  ¿A cuantos paises fue asignado?
+                  ¿Cuántas veces ha sido movilizado a nivel internacional?
                   <input
                     className="form-control myInput"
                     type="number"
@@ -200,7 +199,7 @@ const S5 = (props) => {
                     value={state.num_pais_asig ? state.num_pais_asig : ""}
                     onChange={setNumero}
                     onBlur={setNumero}
-                    placeholder="Ingresa el numero de estados"
+                    placeholder="Ingrese el numero de movilizaciones"
                   />
                 </label>
               </React.Fragment>

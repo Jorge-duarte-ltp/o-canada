@@ -214,7 +214,7 @@ const Data = [
                 "id": 3,
                 "nombre": "Conducción",
                 "value": "c",
-                "correcta": true
+                "correcta": false
             },
             {
                 "id": 4,

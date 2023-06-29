@@ -136,11 +136,10 @@ const S4 = (props) => {
 
       {isLoadCourses && (
         <React.Fragment>
-          {/*¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2023? */}
+          {/*¿Ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2023 (Quema prescrita,  Curso, Capacitación, incendios en su estado, entre otros.)? */}
           <div className="col-12">
             <label className="control-label danger pt-2">
-              ¿El evaluado ha participado en eventos planeados o no planeados
-              atendidos bajo el SCI en el año 2023?
+              ¿Ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2023 (Quema prescrita,  Curso, Capacitación, incendios en su estado, entre otros.)?
             </label>
             <SelectSiNo
               className="form-control myInput"
@@ -168,7 +167,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">¿En qué estado?</label>
+                <label className="control-label danger pt-2">Nombre del Incidente</label>
                 <input
                   className="form-control myInput"
                   name="eventos_planeados_sci_2023_incidente"
@@ -191,10 +190,10 @@ const S4 = (props) => {
             </React.Fragment>
           )}
 
-          {/* ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2022? */}
+          {/* ¿Ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2022 (Quema prescrita,  Curso, Capacitación, incendios en su estado, entre otros.)? */}
           <div className="col-12">
             <label className="control-label danger pt-2">
-            ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2022?
+            ¿Ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2022 (Quema prescrita,  Curso, Capacitación, incendios en su estado, entre otros.) (Quema prescrita,  Curso, Capacitación, incendios en su estado, entre otros.)?
             </label>
             <SelectSiNo
               className="form-control myInput"
@@ -222,7 +221,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">¿En qué estado?</label>
+                <label className="control-label danger pt-2">Nombre del Incidente</label>
                 <input
                   className="form-control myInput"
                   name="eventos_planeados_sci_2022_incidente"
@@ -245,10 +244,10 @@ const S4 = (props) => {
             </React.Fragment>
           )}
 
-          {/* ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2021? */}
+          {/* ¿Ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2021 (Quema prescrita,  Curso, Capacitación, incendios en su estado, entre otros.)? */}
           <div className="col-12">
             <label className="control-label danger pt-2">
-            ¿El evaluado ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2021?
+            ¿Ha participado en eventos planeados o no planeados atendidos bajo el SCI en el año 2021 (Quema prescrita,  Curso, Capacitación, incendios en su estado, entre otros.)?
             </label>
             <SelectSiNo
               className="form-control myInput"
@@ -276,7 +275,7 @@ const S4 = (props) => {
                 />
               </div>
               <div className="col-4">
-                <label className="control-label danger pt-2">¿En qué estado?</label>
+                <label className="control-label danger pt-2">Nombre del Incidente</label>
                 <input
                   className="form-control myInput"
                   name="eventos_planeados_sci_2021_incidente"
