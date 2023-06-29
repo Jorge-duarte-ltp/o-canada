@@ -226,7 +226,7 @@ const PDF = (props) => {
             <Text style={styles.RequisitosInfo}>
               8.- Capacidad para comunicarse en inglés
             </Text>
-            <Text style={styles.RequisitosInfo}>9.- Liderazgo, comunicación efectiva y capacidad de gestión</Text>
+            <Text style={styles.RequisitosInfo}>9.- Liderazgo, comunicación efectiva y cap. gestión</Text>
             <Text style={styles.RequisitosInfo}>10.- Aptitud Física Prueba de la Mochila</Text>
             <Text style={styles.RequisitosInfo}>11.- Aptitud Física Prueba de la Carrera</Text>
             <Text style={styles.RequisitosInfo}>12.- Habilidad y Competencia GPS</Text>
