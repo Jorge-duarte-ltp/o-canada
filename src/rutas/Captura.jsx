@@ -870,11 +870,9 @@ const Captura = () => {
       !opera_autonoma_mark3 ||
       !opera_autonoma_motosierra ||
       !conocimientos_primeros_auxilios === "" ||
-      (conocimientos_primeros_auxilios === "1" &&
-        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
+      (conocimientos_primeros_auxilios === "1" && (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
       conocimiento_equipo_aereo === "" ||
-      (conocimiento_equipo_aereo === "1" &&
-        !constancia_operaciones_aereas_fl) ||
+      (conocimiento_equipo_aereo === "1" && !constancia_operaciones_aereas_fl) ||
       !examen_equipo_aereo !== "" ||
       (tiene_curso_cemi === "1" && !sci_cemi_fl)
     ) {
