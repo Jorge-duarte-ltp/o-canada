@@ -878,6 +878,15 @@ const Captura = () => {
       !examen_equipo_aereo !== "" ||
       (tiene_curso_cemi === "1" && !sci_cemi_fl)
     ) {
+      console.log("1): ",!opera_autonoma_gps );
+      console.log("2): ",!opera_autonoma_mark3 );
+      console.log("3): ",!opera_autonoma_motosierra );
+      console.log("4): ",!conocimientos_primeros_auxilios === "" );
+      console.log("5): ",(conocimientos_primeros_auxilios === "1" && (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) );
+      console.log("6): ",conocimiento_equipo_aereo === "" );
+      console.log("7): ",(conocimiento_equipo_aereo === "1" && !constancia_operaciones_aereas_fl) );
+      console.log("8): ",!examen_equipo_aereo !== "" );
+      console.log("9): ",(tiene_curso_cemi === "1" && !sci_cemi_fl));
       msgFaltanCampos();
       return;
     }
