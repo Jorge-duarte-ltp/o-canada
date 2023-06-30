@@ -334,14 +334,24 @@ const PDF = (props) => {
               {sections.liderazgo ? "Aprobado" : "No Aprobado"}
             </Text>
             <Text
-              style={[styles.RequisitosEspecial]}
+              style={[
+                styles.RequisitosEspecial,
+                sections.gps ? aprobadoColor : reprobadoColor,
+              ]}
             >
-              {'Realizar la prueba en la Promotoria de su Entidad'}
+              {sections.gps
+                ? "Realizar la prueba en la Promotoria de su Entidad"
+                : "No Aprobado"}
             </Text>
             <Text
-              style={[styles.RequisitosEspecial]}
+              style={[
+                styles.RequisitosEspecial,
+                sections.gps ? aprobadoColor : reprobadoColor,
+              ]}
             >
-              {'Realizar la prueba en la Promotoria de su Entidad'}
+              {sections.gps
+                ? "Realizar la prueba en la Promotoria de su Entidad"
+                : "No Aprobado"}
             </Text>
             <Text
               style={[
