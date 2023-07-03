@@ -67,7 +67,7 @@ const Captura = () => {
     setInfoBrigadista(candidatos.candidatos.infoBrigadista);
 
     return () => {};
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [secciones]);
 
   const [rechazo, setRechazo] = useState({
@@ -499,7 +499,7 @@ const Captura = () => {
       pulso_mayor_100,
       problemas_afeccion_osea,
       experiencia_personal_consejos,
-      medico_personal_recomendo
+      medico_personal_recomendo,
     } = infoBrigadista;
 
     //const { cert_toxicologico_fl, cert_medico_fl, certificado_covid_fl, certificado_covid_refuerzo_fl } = archivos;
@@ -706,7 +706,6 @@ const Captura = () => {
       const archivo_sci_smi_200 = await postUploadFile(formData_sci_smi_200_fl);
 
       if (archivos.sci_smi_300_fl) {
-
         const formData_sci_smi_300_fl = new FormData();
         formData_sci_smi_300_fl.append("file", archivos.sci_smi_300_fl[0]);
         formData_sci_smi_300_fl.append("curp", infoBrigadista.curp);
@@ -714,8 +713,6 @@ const Captura = () => {
 
         await postUploadFile(formData_sci_smi_300_fl);
       }
-
-
 
       const respuesta = await postCandidateUpdate({
         data: infoBrigadista,
@@ -860,20 +857,27 @@ const Captura = () => {
       niv_primeros_auxilios,
       conocimiento_equipo_aereo,
       examen_equipo_aereo,
-      tiene_curso_cemi
+      tiene_curso_cemi,
     } = infoBrigadista;
-    const { doc_acred_primeros_auxilios_fl, constancia_operaciones_aereas_fl, sci_cemi_fl } =
-      archivos;
+    const {
+      doc_acred_primeros_auxilios_fl,
+      constancia_operaciones_aereas_fl,
+      sci_cemi_fl,
+    } = archivos;
 
     if (
       !opera_autonoma_gps ||
       !opera_autonoma_mark3 ||
       !opera_autonoma_motosierra ||
       !conocimientos_primeros_auxilios === "" ||
-      (conocimientos_primeros_auxilios === "1" && (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
-      conocimiento_equipo_aereo === "" || (conocimiento_equipo_aereo === "1" && !constancia_operaciones_aereas_fl) ||
+      (conocimientos_primeros_auxilios === "1" &&
+        (!niv_primeros_auxilios || !doc_acred_primeros_auxilios_fl)) ||
+      conocimiento_equipo_aereo === "" ||
+      (conocimiento_equipo_aereo === "1" &&
+        !constancia_operaciones_aereas_fl) ||
       !examen_equipo_aereo === "" ||
-      !tiene_curso_cemi === "" || (tiene_curso_cemi === "1" && !sci_cemi_fl)
+      !tiene_curso_cemi === "" ||
+      (tiene_curso_cemi === "1" && !sci_cemi_fl)
     ) {
       msgFaltanCampos();
       return;
@@ -914,7 +918,6 @@ const Captura = () => {
     }
 
     if (sci_cemi_fl) {
-
       const formData_sci_cemi_fl = new FormData();
       formData_sci_cemi_fl.append("file", archivos.sci_cemi_fl[0]);
       formData_sci_cemi_fl.append("curp", infoBrigadista.curp);

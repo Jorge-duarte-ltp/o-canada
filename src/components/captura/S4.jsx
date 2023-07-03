@@ -69,6 +69,7 @@ const S4 = (props) => {
             );
           }}
           placeholder="Ingrese SCI/SMI 100..."
+          disabled={isCompleteExam}
         />
       </div>
 
@@ -100,6 +101,7 @@ const S4 = (props) => {
             );
           }}
           placeholder="Ingrese SCI/SMI 200..."
+          disabled={isCompleteExam}
         />
       </div>
 
@@ -131,6 +133,7 @@ const S4 = (props) => {
             );
           }}
           placeholder="Ingrese SCI/SMI 300..."
+          disabled={isCompleteExam}
         />
       </div>
 
@@ -151,6 +154,7 @@ const S4 = (props) => {
                   : ""
               }
             />
+            disabled={isCompleteExam}
           </div>
 
           {state.eventos_planeados_sci_2023 === "1" && (
@@ -164,6 +168,7 @@ const S4 = (props) => {
                   onChange={setInfo}
                   placeholder="Indique cual posición..."
                   value={state.eventos_planeados_sci_2023_posicion ? state.eventos_planeados_sci_2023_posicion : ""}
+                  disabled={isCompleteExam}
                 />
               </div>
               <div className="col-4">
@@ -175,6 +180,7 @@ const S4 = (props) => {
                   onChange={setInfo}
                   placeholder="Indique cual posición..."
                   value={state.eventos_planeados_sci_2023_incidente ? state.eventos_planeados_sci_2023_incidente : ""}
+                  disabled={isCompleteExam}
                 />
               </div>
               <div className="col-4">
@@ -185,6 +191,7 @@ const S4 = (props) => {
                   onChange={setInfo}
                   value={state.eventos_planeados_sci_2023_estado ? state.eventos_planeados_sci_2023_estado : ""}
                   placeholder="Indique cual posición..."
+                  disabled={isCompleteExam}
                 />
               </div>
             </React.Fragment>
@@ -199,6 +206,7 @@ const S4 = (props) => {
               className="form-control myInput"
               name="eventos_planeados_sci_2022"
               onChange={setInfo}
+              disabled={isCompleteExam}
               value={
                 state.eventos_planeados_sci_2022
                   ? state.eventos_planeados_sci_2022
@@ -216,6 +224,7 @@ const S4 = (props) => {
                   name="eventos_planeados_sci_2022_posicion"
                   type="text"
                   onChange={setInfo}
+                  disabled={isCompleteExam}
                   placeholder="Indique cual posición..."
                   value={state.eventos_planeados_sci_2022_posicion ? state.eventos_planeados_sci_2022_posicion : ""}
                 />
@@ -228,6 +237,7 @@ const S4 = (props) => {
                   type="text"
                   onChange={setInfo}
                   placeholder="Indique cual posición..."
+                  disabled={isCompleteExam}
                   value={state.eventos_planeados_sci_2022_incidente ? state.eventos_planeados_sci_2022_incidente : ""}
                 />
               </div>
@@ -239,6 +249,7 @@ const S4 = (props) => {
                   onChange={setInfo}
                   value={state.eventos_planeados_sci_2022_estado ? state.eventos_planeados_sci_2022_estado : ""}
                   placeholder="Indique cual posición..."
+                  disabled={isCompleteExam}
                 />
               </div>
             </React.Fragment>
@@ -258,6 +269,7 @@ const S4 = (props) => {
                   ? state.eventos_planeados_sci_2021
                   : ""
               }
+              disabled={isCompleteExam}
             />
           </div>
 
@@ -272,6 +284,7 @@ const S4 = (props) => {
                   onChange={setInfo}
                   placeholder="Indique cual posición..."
                   value={state.eventos_planeados_sci_2021_posicion ? state.eventos_planeados_sci_2021_posicion : ""}
+                  disabled={isCompleteExam}
                 />
               </div>
               <div className="col-4">
@@ -283,6 +296,7 @@ const S4 = (props) => {
                   onChange={setInfo}
                   placeholder="Indique cual posición..."
                   value={state.eventos_planeados_sci_2021_incidente ? state.eventos_planeados_sci_2021_incidente : ""}
+                  disabled={isCompleteExam}
                 />
               </div>
               <div className="col-4">
@@ -293,6 +307,7 @@ const S4 = (props) => {
                   onChange={setInfo}
                   value={state.eventos_planeados_sci_2021_estado ? state.eventos_planeados_sci_2021_estado : ""}
                   placeholder="Indique cual posición..."
+                  disabled={isCompleteExam}
                 />
               </div>
             </React.Fragment>
@@ -312,6 +327,7 @@ const S4 = (props) => {
                   ? state.evaluado_menejo_incidentes
                   : ""
               }
+              disabled={isCompleteExam}
             />
           </div>
           {/* Indique cual Posición */}
@@ -329,6 +345,7 @@ const S4 = (props) => {
                   placeholder="Indique cual posición..."
                   value={state.manejo_incidentes_posicion ? state.manejo_incidentes_posicion : ""}
                 />
+                 disabled={isCompleteExam}
               </div>
             </React.Fragment>
           )}
