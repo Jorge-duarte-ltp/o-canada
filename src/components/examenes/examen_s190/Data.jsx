@@ -724,28 +724,28 @@ const Data = [
       {
         id: 1,
         nombre:
-          "Norma. Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
+          "Mantenga constante comunicación con su brigada, jefes o jefas y fuerzas adjuntas.",
         value: "a",
         correcta: false,
       },
       {
         id: 2,
         nombre:
-          "Norma. Combata el incendio agresivamente, priorice la seguridad del personal.",
+          "Combata el incendio agresivamente, priorice la seguridad del personal.",
         value: "b",
         correcta: true,
       },
       {
         id: 3,
         nombre:
-          "Norma. Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
+          "Manténgase informado o informada sobre las condiciones del tiempo atmosférico y sus pronósticos.",
         value: "c",
         correcta: false,
       },
       {
         id: 4,
         nombre:
-          "Norma. Disponga de vigilantes cuando existe la posibilidad de peligro.",
+          "Disponga de vigilantes cuando existe la posibilidad de peligro.",
         value: "d",
         correcta: false,
       },
