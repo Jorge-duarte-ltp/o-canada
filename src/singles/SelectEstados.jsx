@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ObtenerEstados } from "../services/catalogs/CatalogoService";
 
 const SelectEstados = (props) => {
-  const { name, className, onChange, onBlur, onClick, value, defaultValue } = props;
+  const { name, className, onChange, onBlur, onClick, value, defaultValue, disabled = false } = props;
   const [data, setData] = useState([]);
 
 
@@ -26,6 +26,7 @@ const SelectEstados = (props) => {
       onClick={onClick}
       value={value ? value : ""}
       defaultValue={defaultValue}
+      disabled={disabled}
     >
       <option value="">---Seleccione---</option>
       {data && data.map((item) => (

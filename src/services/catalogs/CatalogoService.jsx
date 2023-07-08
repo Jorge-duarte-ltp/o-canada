@@ -62,7 +62,7 @@ export function ObtenerPaises() {
 export function ObtenerAniosByPaisId(id = null) {
   if (id) {
     const config = {
-      method: "POST",
+      method: "post",
       url: `${process.env.REACT_APP_BACKEND_URL}list_paises_anios`,
       data: qs.stringify({ id }),
       headers: { "content-type": "application/x-www-form-urlencoded" },
