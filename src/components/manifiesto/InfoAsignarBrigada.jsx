@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import SelectPaises from "../../singles/SelectPaises";
 import SelectProvicia from "../../singles/SelectProvincia";
 import SelectNumeroBrigada from "../../singles/SelectNumeroBrigada";
+import SelectIndicativo from "../../singles/SelectIndicativo";
 import SelectPosionAsignada from "../../singles/SelectPosionAsignada";
 import calculoDiasFechas from "../../helpers/calculoDiasFechas";
 import AlertCargando from "../../singles/AlertCargando";
@@ -13,6 +14,7 @@ import AlertError from "../../singles/AlertError";
 import { isEmpty } from "lodash";
 import { ObtenerPosiciones, ObtenerProvincias } from "../../services/catalogs/CatalogoService";
 import { postBrigadesCandidatesById, postBrigadesCandidatesUpdate } from "../../services/manifest/ManifestService";
+
 const InfoAsignarBrigada = ({ state }) => {
   const [posiciones, setPosiciones] = useState();
   const [provincias, setProvincias] = useState();
@@ -118,7 +120,7 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
         />
       </div>
       <div className="col-6 col-md-6">
-        <label className="control-label">Providencia/Estado:</label>
+        <label className="control-label">Región/Provincia/Estado:</label>
         {provincias && (
           <SelectProvicia
             className={`form-control ${data.idProvincia ? data.idProvincia : "myInput"
@@ -170,6 +172,16 @@ const ViewInfo = ({ data, posiciones, provincias, setEdit }) => (
           />
         )}
       </div>
+      {/* <div className="col-3 col-md-3">
+        <label className="control-label">Indicativo:</label>
+        <SelectIndicativo
+          className={`form-control ${data.indicativo ? null : "myInput"}`}
+          name="indicativo"
+          value={data.indicativo ? data.indicativo : ""}
+          indicativo={"t"}
+          disabled={true}
+        />
+      </div> */}
       <div className="d-flex col-12 col-md-12 m-0 p-0">
         <div className="col-4 col-md-4">
           <label className="control-label">Fecha de Inicio:</label>
@@ -264,6 +276,7 @@ const EditInfo = ({
                 ...dataTemp,
                 numero: null,
                 asignacion: null,
+                indicativo: null,
                 idPais: null,
                 idProvincia: null,
                 idPosicion: null,
@@ -290,6 +303,13 @@ const EditInfo = ({
       [input.target.name]: input.target.value.toUpperCase(),
     });
   };
+
+  const setInfo2 = (input) => {
+    setState({
+        ...data,
+        [input.target.name]: input.target.value
+    })
+}
 
   const verifyInfo = () => {
     if (data.asignado === "0") {
@@ -349,7 +369,7 @@ const EditInfo = ({
               />
             </div>
             <div className="col-6 col-md-6">
-              <label className="control-label">Providencia/Estado:</label>
+              <label className="control-label">Región/Provincia/Estado:</label>
               {provincias && (
                 <SelectProvicia
                   className={`form-control ${data.idProvincia ? data.idProvincia : "myInput"
@@ -404,6 +424,16 @@ const EditInfo = ({
                   onChange={setInfo}
                 />
               )}
+            </div>
+            <div className="col-3 col-md-3">
+              <label className="control-label">Indicativo:</label>
+              <SelectIndicativo
+                className={`form-control ${data.indicativo ? null : "myInput"}`}
+                name="indicativo"
+                onChange={setInfo2}
+                value={data.indicativo ? data.indicativo : ""}
+                indicativo={"t"}
+              />
             </div>
             <div className="col-4 col-md-4">
               <label className="control-label">

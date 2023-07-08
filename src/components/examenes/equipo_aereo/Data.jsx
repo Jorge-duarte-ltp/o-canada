@@ -7,11 +7,12 @@ import Image14 from "../../../assets/images/examen/image14.png";
 const Data = [
     {
         "id": 1,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 1 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -53,11 +54,12 @@ const Data = [
     },
     {
         "id": 2,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 2 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -99,11 +101,12 @@ const Data = [
     },
     {
         "id": 3,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 3 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -145,11 +148,12 @@ const Data = [
     },
     {
         "id": 4,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 4 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -191,11 +195,12 @@ const Data = [
     },
     {
         "id": 5,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 5 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -237,11 +242,12 @@ const Data = [
     },
     {
         "id": 6,
-        "nombre": "El número de esta indicación se corresponde con el número en la imagen",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta. \nDe acuerdo con el numero 6 representado en la imagen ¿A qué parte hace referencia?",
         "image": Image9,
         "show": true,
         "width": "512px",
         "height": "512px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -283,11 +289,12 @@ const Data = [
     },
     {
         "id": 7,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image11,
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -335,11 +342,12 @@ const Data = [
     },
     {
         "id": 8,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image12,
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -387,11 +395,12 @@ const Data = [
     },
     {
         "id": 9,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image13,
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -439,11 +448,12 @@ const Data = [
     },
     {
         "id": 10,
-        "nombre": "De acuerdo a la imagen seleccione la opción correcta",
+        "nombre": "De acuerdo con la imagen seleccione la opción correcta",
         "image": Image14,
         "show": true,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -491,33 +501,34 @@ const Data = [
     },
     {
         "id": 11,
-        "nombre": "¡Como combatiente que debe considerar para subir las herramientas al helicóptero!",
+        "nombre": "Usted es un combatiente que será transportado vía aérea ¿Qué debe considerar para subir las herramientas al helicóptero?",
         "image": null,
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
-                "nombre": "Acerque la herramienta desde una mayor altura que el helicótero",
+                "nombre": "Acerque la herramienta desde una mayor altura que el helicóptero.",
                 "value": "a",
                 "correcta": false,
             },
             {
                 "id": 2,
-                "nombre": "Camine agachado cuando pase debajo el rotor principal",
+                "nombre": "Realizar la carga y descarga de la herramienta bajo el alcance de visión directa del piloto, una vez que este le haya indicado pueda realizarlo.",
                 "value": "b",
                 "correcta": true,
             },
             {
                 "id": 3,
-                "nombre": "Acérquese al helicóptero por la parte posterior para más fácil acceso",
+                "nombre": "Acercarse al helicóptero por la parte posterior para más fácil acceso.",
                 "value": "c",
                 "correcta": false
             },
             {
                 "id": 4,
-                "nombre": "Acérquese al helicóptero en cuanto aterrice",
+                "nombre": "Subirá su herramienta a los asientos para mayor rapidez en el descenso.",
                 "value": "d",
                 "correcta": true
             }
@@ -525,11 +536,12 @@ const Data = [
     },
     {
         "id": 12,
-        "nombre": "¿Qué debe hacer en preparación para abordar un helcóptero?",
+        "nombre": "En una operación, ¿Qué debe hacer en preparación para abordar un helicóptero? ",
         "image": null,
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
@@ -539,7 +551,7 @@ const Data = [
             },
             {
                 "id": 2,
-                "nombre": "Acercarse al helicóptero cuando se lo indique el piloto o la persona responsable de abordar, manteniendo contacto visual con el piloto",
+                "nombre": "Acercarse cuando el piloto o miembro de la brigada helitransportada se lo indique, el personal deberá mantener una formación en línea en el rango de visión del piloto y ubicando las zonas de visión del piloto en todo momento.",
                 "value": "b",
                 "correcta": true,
             },
@@ -565,27 +577,28 @@ const Data = [
     },
     {
         "id": 13,
-        "nombre": "¿Qué debe considerar al ser transportado en un helicóptero?",
+        "nombre": "Es una medida de seguridad a considerar al momento de encontrarse dentro de un helicóptero.",
         "image": null,
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
-                "nombre": "No es necesario usar el barbiquejo del casco en todo momento",
+                "nombre": "No es necesario usar el barbiquejo del casco.",
                 "value": "a",
                 "correcta": false,
             },
             {
                 "id": 2,
-                "nombre": "Podrá cambiar de lugar si no se siente cómodo",
+                "nombre": "Podrá cambiar de lugar si no se siente cómodo.",
                 "value": "b",
                 "correcta": false,
             },
             {
                 "id": 3,
-                "nombre": "Mantenga las manos alejadas de los controles, la puerta y las manijas de las ventanas",
+                "nombre": "Mantenga las manos alejadas de los controles, la puerta y las manijas de las ventanas.",
                 "value": "c",
                 "correcta": true
             },
@@ -599,74 +612,105 @@ const Data = [
     },
     {
         "id": 14,
-        "nombre": "¿Qué es lo que debe realizar al accesar a un helicóptero en operación?",
+        "nombre": "La siguiente es una de las precauciones de seguridad que se debe tomar para abordar un helicóptero:",
         "image": null,
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
-                "nombre": "Abroche el barbiquejo del casco",
+                "nombre": "Cargar herramientas y objetos largos paralelos al suelo.",
                 "value": "a",
-                "correcta": true,
+                "correcta": false,
             },
             {
                 "id": 2,
-                "nombre": "Tratar de alcanzar o correr tras algún objecto suelto",
+                "nombre": "Manténgase alejado a 2 metros de los rotores del helicóptero.",
                 "value": "b",
                 "correcta": false,
             },
             {
                 "id": 3,
-                "nombre": "Encender radios portátiles",
+                "nombre": "Acérquese y aléjese agachado de frente o de lado a plena vista del piloto o dirigido por el piloto.",
                 "value": "c",
                 "correcta": false
             },
             {
                 "id": 4,
-                "nombre": "Correr para agilizar el acceso",
+                "nombre": "Todas las anteriores",
                 "value": "d",
-                "correcta": false
+                "correcta": true
             }
         ]
     },
     {
         "id": 15,
-        "nombre": "La siguiente es una de las precauciones de seguridad en tierra cuando se opera con helicópteros",
+        "nombre": "Es una habilidad necesaria del personal que es helitransportado.",
         "image": null,
         "show": false,
         "width": "256px",
         "height": "256px",
+        "is_number": false,
         "answers": [
             {
                 "id": 1,
-                "nombre": "Cargar herramientas y objectos largos paralelos al suelo, o en el hombro.",
+                "nombre": "Identificar las zonas de peligro de un helicóptero.",
                 "value": "a",
                 "correcta": false,
             },
             {
                 "id": 2,
-                "nombre": "En cada ocasión previo al abordaje de un helicóptero deberá recibir la informativa de pasajero",
+                "nombre": "Demostrar procedimientos seguros de aproximación, embarque, salida y despegue de un helicóptero.",
                 "value": "b",
                 "correcta": false,
             },
             {
                 "id": 3,
-                "nombre": "Manténgase alejado a 2 metros de los rotores del helicóptero",
+                "nombre": "Demostrar cómo cargar correctamente una red de carga lista para engancharla con seguridad al helicóptero.",
                 "value": "c",
                 "correcta": false
             },
             {
                 "id": 4,
-                "nombre": "Acérquese y aléjese agachado del frente o de lado a plena vista del piloto o dirigido por el piloto",
+                "nombre": "Todas las anteriores",
                 "value": "d",
                 "correcta": true
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "nombre": "¿Qué NO debe hacer para abordar un helicóptero?",
+        "image": null,
+        "show": false,
+        "width": "256px",
+        "height": "256px",
+        "is_number": false,
+        "answers": [
+            {
+                "id": 1,
+                "nombre": "Aproximación y salida del helicóptero siguiendo los procedimientos adecuados.",
+                "value": "a",
+                "correcta": false,
             },
             {
-                "id": 5,
-                "nombre": "No siempre séra necesario asegurar artículos livianos/sueltos esperando transporte",
-                "value": "e",
+                "id": 2,
+                "nombre": "Acercarse desde un terreno que está a mayor altura que el helicóptero si se encuentra al frente del helicóptero.",
+                "value": "b",
+                "correcta": true,
+            },
+            {
+                "id": 3,
+                "nombre": "Abrió y cerró correctamente la puerta al subir y bajar del helicóptero.",
+                "value": "c",
+                "correcta": false
+            },
+            {
+                "id": 4,
+                "nombre": "Se abrochó y desabrochó correctamente el cinturón de seguridad y el arnés de hombro y volvió a abrocharse el cinturón de seguridad en el asiento antes de salir del helicóptero.",
+                "value": "d",
                 "correcta": false
             }
         ]

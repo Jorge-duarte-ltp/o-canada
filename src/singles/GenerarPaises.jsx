@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { range, size } from "lodash";
 import SelectPaisesGenerados from "./SelectPaisesGenerados";
 import { ObtenerPaises } from "../services/catalogs/CatalogoService";
+import SelectAnios from "./SelectAnios";
 
 export const GenerarPaises = (props) => {
   const { state, setState, cantPaises, name } = props;
@@ -11,6 +12,7 @@ export const GenerarPaises = (props) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+
       ObtenerPaises().then(async (response) => {
         if (response.status === 200) {
           setData(response.data);
@@ -78,19 +80,21 @@ export const GenerarPaises = (props) => {
           }
         />
       </label>
-      <label className="control-label pt-2">
-       ¿En qué año fue asignado (a) al pais?
-        <input
+
+      <div className="col-12 col-md-6">
+        <label className="control-label pt-2">¿En qué año fue asignado (a) al pais?</label>
+        <SelectAnios
+          className={"form-control myInput"}
           name={item.anio.name}
-          className="form-control myInput"
-          type="number"
           onChange={setAnio}
           onBlur={setAnio}
           value={
             paises[item.anio.name] ? paises[item.anio.name] : item.anio.value
           }
+          placeholder="Ingrese Estado..."
+          idPais={ paises[item.pais.name] ? paises[item.pais.name] : item.pais.value}
         />
-      </label>
+      </div>
       <label className="control-label pt-2">
         ¿Qué posición ocupó?
         <select
@@ -109,9 +113,10 @@ export const GenerarPaises = (props) => {
           <option value="COMBATIENTE">Combatiente</option>
           <option value="JEFE_DE_CUADRILLA">Jefe de Cuadrilla</option>
           <option value="JEFE_DE_BRIGADA">Jefe de Brigada</option>
+          <option value="LIDER_DE_EQUIPO_DE_INTERVENCION">Líder de Equipo de intervención</option>
           <option value="TECNICO_AREP">Técnico (AREP)</option>
+          <option value="TECNICO_SAREP">Técnico (SAREP)</option>
           <option value="TECNICO_IARR">Técnico (IARR)</option>
-          <option value="COORDINADIR_COVID">Ténico (COORDINADOR COVID)</option>
         </select>
       </label>
     </div>

@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import SelectPaises from "../../singles/SelectPaises";
 import SelectProvicia from "../../singles/SelectProvincia";
 import SelectNumeroBrigada from "../../singles/SelectNumeroBrigada";
+import SelectIndicativo from "../../singles/SelectIndicativo";
 import SelectPosionAsignada from "../../singles/SelectPosionAsignada";
 import calculoDiasFechas from "../../helpers/calculoDiasFechas";
 import { Button } from "react-bootstrap";
@@ -22,6 +23,13 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
       [input.target.name]: input.target.value.toUpperCase(),
     });
   };
+
+  const setInfo2 = (input) => {
+    setState({
+        ...state,
+        [input.target.name]: input.target.value
+    })
+}
 
   useEffect(() => {
 
@@ -124,7 +132,7 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
               />
             </div>
             <div className="col-6 col-md-6">
-              <label className="control-label">Providencia/Estado:</label>
+              <label className="control-label">Región/Provincia/Estado:</label>
               {provincias && (
                 <SelectProvicia
                   className={`form-control ${state.idProvincia ? null : "myInput"
@@ -148,7 +156,7 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
                 numero={20}
               />
             </div>
-            <div className="col-3 col-md-3">
+            <div className="col-3 col-md-3" >
               <label className="control-label">Asignación de Brigada:</label>
               <input
                 className={`form-control ${state.asignacion ? null : "myInput"
@@ -181,6 +189,16 @@ const FormAsignarBrigada = ({ state, setState, setShow, setReload }) => {
                   filter={state.idPais}
                 />
               )}
+            </div>
+            <div className="col-3 col-md-3">
+              <label className="control-label">Indicativo:</label>
+              <SelectIndicativo
+                className={`form-control ${state.indicativo ? null : "myInput"}`}
+                name="indicativo"
+                onChange={setInfo2}
+                value={state.indicativo}
+                indicativo={'t'}
+              />
             </div>
             <div className="row col-12">
               <div className="col-4 col-md-4">

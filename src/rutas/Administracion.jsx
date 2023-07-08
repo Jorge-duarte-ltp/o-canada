@@ -25,7 +25,7 @@ const Administracion = () => {
 
   const checkUser = async (event) => {
     event.preventDefault();
-    
+
     await postLogin(toSend).then((resp) => {
       if (resp.status === 200) {
         setUser(resp.data);
@@ -57,6 +57,7 @@ const Administracion = () => {
       setUserPorfile(user.porfile);
     }
     return () => { }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //  descomentar esta parte
   return (

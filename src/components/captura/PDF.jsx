@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
     width: "50%",
     position: "absolute",
     left: "8mm",
-    bottom: "72.1mm",
+    bottom: "60mm",
     paddingBottom: "2mm",
   },
   sectionResultados: {
     width: "50%",
     position: "absolute",
-    bottom: "72.1mm",
+    bottom: "60mm",
     right: "8mm",
     paddingBottom: "2mm",
     textAlign: "justify",
@@ -204,7 +204,7 @@ const PDF = (props) => {
             <Text style={styles.header}>Requisitos y estándares</Text>
           </View>
           <View style={styles.sectionRequisitos} debug={false}>
-            <Text style={styles.RequisitosInfo}>1.- Pasaporte Mexicano</Text>
+            <Text style={styles.RequisitosInfo}>1.- Documentos de identidad</Text>
             <Text style={styles.RequisitosInfo}>
               2.- Documento para viajar a Canadá
             </Text>
@@ -226,11 +226,13 @@ const PDF = (props) => {
             <Text style={styles.RequisitosInfo}>
               8.- Capacidad para comunicarse en inglés
             </Text>
-            <Text style={styles.RequisitosInfo}>9.- Liderazgo</Text>
-            <Text style={styles.RequisitosInfo}>10.- GPS</Text>
-            <Text style={styles.RequisitosInfo}>11.- Avenza Maps</Text>
-            <Text style={styles.RequisitosInfo}>12.- Motobomba Mark III</Text>
-            <Text style={styles.RequisitosInfo}>13.- Motosierra Autonoma</Text>
+            <Text style={styles.RequisitosInfo}>9.- Liderazgo, comunicación efectiva y cap. gestión</Text>
+            <Text style={styles.RequisitosInfo}>10.- Aptitud Física Prueba de la Mochila</Text>
+            <Text style={styles.RequisitosInfo}>11.- Aptitud Física Prueba de la Carrera</Text>
+            <Text style={styles.RequisitosInfo}>12.- Habilidad y Competencia GPS</Text>
+            <Text style={styles.RequisitosInfo}>13.- Habilidad y Competencia Avenza Maps</Text>
+            <Text style={styles.RequisitosInfo}>14.- Habilidad y Competencia Motobomba Mark III</Text>
+            <Text style={styles.RequisitosInfo}>15.- Habilidad y Competencia Motosierra Autonoma</Text>
           </View>
           <View style={styles.sectionResultados} debug={false}>
             <Text
@@ -330,6 +332,26 @@ const PDF = (props) => {
               ]}
             >
               {sections.liderazgo ? "Aprobado" : "No Aprobado"}
+            </Text>
+            <Text
+              style={[
+                styles.RequisitosEspecial,
+                sections.gps ? aprobadoColor : reprobadoColor,
+              ]}
+            >
+              {sections.gps
+                ? "Realizar la prueba en la Promotoria de su Entidad"
+                : "No Aprobado"}
+            </Text>
+            <Text
+              style={[
+                styles.RequisitosEspecial,
+                sections.gps ? aprobadoColor : reprobadoColor,
+              ]}
+            >
+              {sections.gps
+                ? "Realizar la prueba en la Promotoria de su Entidad"
+                : "No Aprobado"}
             </Text>
             <Text
               style={[

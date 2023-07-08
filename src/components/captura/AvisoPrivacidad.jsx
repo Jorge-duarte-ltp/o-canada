@@ -135,7 +135,7 @@ const AvisoPrivacidad = () => {
                         <a href="mailto:unidadtransparencia@conafor.gob.mx">unidadtransparencia@conafor.gob.mx</a>
                         <br />
                         <b>• Teléfono y extensión:</b>
-        (33) 3777 7000 ext. 1606 y 1607
+        (33) 3777 7000 ext. 1246 y 1247
         <br />
                         <b>• Domicilio:</b>
         Periférico Poniente No. 5360, Col. San Juan de Ocotán, C.P. 45019, Zapopan, Jalisco.
@@ -181,7 +181,7 @@ const AvisoPrivacidad = () => {
             <p className="justify">
                 Cualquier duda y/o comentario respecto al presente Aviso de Privacidad, puede comunicarse al teléfono +52
                 (33)
-    3777 7000 ext. 1606 y 1607 o al correo <a href="unidadtransparencia@conafor.gob.mx">unidadtransparencia@conafor.gob.mx</a>
+    3777 7000 ext. 1246 y 1247 o al correo <a href="unidadtransparencia@conafor.gob.mx">unidadtransparencia@conafor.gob.mx</a>
             </p>
         </div>
 

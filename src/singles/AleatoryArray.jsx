@@ -1,23 +1,25 @@
-import { RandomInt } from './RandomInt';
-import { size, isUndefined } from "lodash";
+import { RandomInt } from "./RandomInt";
+import { size } from "lodash";
 
 const AleatoryArray = (array) => {
+  const count = [];
+  const arrayTemp = [];
+  const limite = size(array) <= 20 ? size(array) : 20;
 
-    const count = [];
-    const arrayTemp = [];
-    const limite = (size(array) <= 20 ? size(array) : 20);
+  for (let i = 0; i < limite; i++) {
+      let random = 0;
 
-    for (let i = 0; i < limite; i++) {
-        let random = 1;
-        while (!isUndefined(count.find(item => item === random))) {
-            random = RandomInt(1, size(array))
-        }
-        count.push(random);
-        arrayTemp.push(array.find(item => item.id === random));
-    }
-    return arrayTemp;
-}
+      const isContained = (random) => count.some(item => item === random);
 
+      while (isContained(random)) {
+          random = RandomInt(0, size(array) - 1)
+      }
+
+      count.push(random);
+      arrayTemp.push(array.find((item, index) => index === random));
+  }
+
+  return arrayTemp;
+};
 
 export default AleatoryArray;
-

@@ -13,7 +13,7 @@ const Finalizar = (props) => {
   const [mensaje, setMensaje] = useState("");
   const [puesto, setPuesto] = useState("");
   let ventana = window;
-  
+
   const [secciones, setSecciones] = useState({
     pasaporte_vigente: false,
     documento_para_viajar_a_canad: false,
@@ -35,6 +35,8 @@ const Finalizar = (props) => {
   const [showPDF, setShowPDF] = useState(false);
 
   const getMensaje = (motivo) => {
+    if(motivo == "")
+      motivo = null;
     switch (motivo) {
       case "candidato menor de edad":
         setMensaje(
@@ -437,6 +439,7 @@ const Finalizar = (props) => {
   useEffect(() => {
     getMensaje(state.motivo_rechazo);
     getPuesto();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mensaje, puesto, state]);
   return (
     <>

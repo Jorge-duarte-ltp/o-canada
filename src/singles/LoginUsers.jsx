@@ -17,7 +17,7 @@ const LoginUsers = (props) => {
             <div className="card card-container">
                 <img id="profile-img" className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt='User Pic' />
                 <p id="profile-name" className="profile-name-card" />
-                <label className='col-form-label'>Ingresar sus crédenciales</label>
+                <label className='col-form-label'>Ingresar sus credenciales</label>
                 <form className="form-signin"
                     onSubmit={onSubmit}
                 >

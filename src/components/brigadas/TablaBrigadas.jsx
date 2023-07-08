@@ -35,6 +35,7 @@ const TablaBrigadas = () => {
             });
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reload]);
 
     const mostrarEvaluacionBrigadista = row => {
@@ -77,7 +78,7 @@ const TablaBrigadas = () => {
             minWidth: '180px',
             sortable: true,
             /* enviar a evaluacion del brigadista */
-            cell: (row) => row.status_evaluacion === 1 ?
+            cell: (row) => (row.status_evaluacion === 'Evaluado') ?
                 <Button className='btn btn-block btn-info' onClick={() => mostrarEvaluacionBrigadista(row)}>Ver evaluación</Button>
                 :
                 <Button className='btn btn-block btn-success' onClick={() => mostrarEvaluacionBrigadista(row)}>Evaluar</Button>
@@ -113,9 +114,7 @@ const TablaBrigadas = () => {
         },
         {
             name: 'Estatus',
-            cell: (row) => {
-                return row.status_evaluacion === 1 ? 'evaluado' : 'faltante';
-            },
+            selector: 'status_evaluacion',
             wrap: false,
             minWidth: '200px',
             sortable: true

@@ -2,8 +2,7 @@ import React from 'react'
 
 const Question = ({ question, value, name, onChange }) => {
 
-    const handleNumberToChar = (value) =>
-        String.fromCharCode("a".charCodeAt(0) + value);
+    const handleNumberToChar = (value) => String.fromCharCode("a".charCodeAt(0) + value);
 
     return (
         <div className="col-12 col-md-12 d-flex">
@@ -34,7 +33,7 @@ const Question = ({ question, value, name, onChange }) => {
                     <option value="">---seleccione---</option>
                     {question.answers.map((item, index) => (
                         <option key={index} value={item.value}>
-                            {handleNumberToChar(index)}) {item.nombre}
+                            {question?.is_number ? index + 1  : handleNumberToChar(index)}) {item.nombre}
                         </option>
                     ))}
                 </select>

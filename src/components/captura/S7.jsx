@@ -27,6 +27,7 @@ const S7 = (props) => {
 
     return () => { clearTimeout(timeout) }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.rechazo])
 
   const setInfo = (input) => {
@@ -56,7 +57,7 @@ const S7 = (props) => {
 
   const setNumero = (input) => {
 
-    if (size(input.target.value) <= 2 && input.target.value >= 0 && input.target.value <= 10) {
+    if (size(input.target.value) <= 2 && input.target.value >= 0 && input.target.value <= 12) {
 
       setState({
         ...state,

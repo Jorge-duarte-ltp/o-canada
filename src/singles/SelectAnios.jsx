@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { isEmpty } from "lodash";
 import AlertError from "./AlertError";
-import { ObtenerMunicipios } from "../services/catalogs/CatalogoService";
+import { ObtenerAniosByPaisId } from "../services/catalogs/CatalogoService";
 
-const SelectMunicipio = (props) => {
-  const { name, className, onChange, onBlur, onClick, value, cve_entidad, defaultValue } = props;
+const SelectAnios = (props) => {
+  const { name, className, onChange, onBlur, onClick, value, idPais, defaultValue } = props;
   const [data, setData] = useState([]);
 
 
 
   useEffect(() => {
 
-    if (!isEmpty(cve_entidad)) {
+    if (!isEmpty(idPais)) {
 
-      ObtenerMunicipios(cve_entidad).then((resp) => {
+      ObtenerAniosByPaisId(idPais).then((resp) => {
         if (resp.status === 200) {
           setData(resp.data);
         }
@@ -25,7 +25,7 @@ const SelectMunicipio = (props) => {
 
     return () => { };
 
-  }, [cve_entidad])
+  }, [idPais])
 
   return (
     <select
@@ -40,11 +40,11 @@ const SelectMunicipio = (props) => {
       <option value="">--Seleccione--</option>
       {data && data.map((item) => (
         <option key={item.id} value={item.id}>
-          {item.nom_mun}
+          {item.anio}
         </option>
       ))}
     </select>
   );
 };
 
-export default SelectMunicipio;
+export default SelectAnios;

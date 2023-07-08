@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import AlertaSiguiente from "../../singles/AlertaSiguiente";
 import diferenciaFechasMeses from "../../helpers/diferenciaFechasMeses";
-import diferenciaFechasDias from "../../helpers/diferenciaFechaDias";
+// import diferenciaFechasDias from "../../helpers/diferenciaFechaDias";
 import SelectSiNo from "../../singles/SelectSiNo";
 import ToMayus from "../../helpers/ToMayus";
 import { formatDate } from "../../helpers/formatDate";
@@ -10,8 +10,8 @@ import AlertError from "../../singles/AlertError";
 
 const S2 = (props) => {
   const { state, setState, checkData, files, setStateFiles } = props;
-  const [checkFiles, setCheckFiles] = useState({});
-  
+  // const [checkFiles, setCheckFiles] = useState({});
+
   const setInfo = (input) => {
     /* setea al state las variables */
     if (input.target.type === "file") {
