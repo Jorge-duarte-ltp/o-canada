@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^1.4.0",
     "bootstrap": "^4.5.0",
+    "dayjs": "^1.11.9",
     "formik": "^2.2.9",
     "jquery": "^3.5.1",
     "jsontoxml": "^1.0.1",
