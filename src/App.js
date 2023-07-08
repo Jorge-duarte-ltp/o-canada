@@ -7,7 +7,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './assets/styles.css'
 import Header from './singles/Header';
 import Captura from './rutas/Captura';
-// import CierreConvocatoria from './rutas/CierreConvocatoria';
+import CierreConvocatoria from './rutas/CierreConvocatoria';
 import Administracion from './rutas/Administracion';
 
 /* CONTEXT */
@@ -18,8 +18,12 @@ import PDF from './components/captura/PDF';
 import ExportToPdf from './components/manifiesto/ExportToPDF';
 
 /* variable para cierre de convocatoria */
-const cierre = true;
 
+const isCierre = () => {
+  return Date.now() === Date('2023-07-08')
+}
+
+const cierre = true;
 
 const App = () => {
   return (
@@ -32,8 +36,8 @@ const App = () => {
               <Header cierre={cierre} />
               <hr className='gradiente' />
               <Switch>
-                <Route exact path="/" component={Captura} /> 
-                {/* <Route exact path="/" component={CierreConvocatoria} /> */}
+                {/* <Route exact path="/" component={Captura} />  */}
+                <Route exact path="/" component={CierreConvocatoria} />
                 <Route exact path="/dashboard" component={Administracion} />
                 <Route exact path="/dashboard/ver-reporte" component={ExportToPdf} />
                 <Route exact path="/pdf" component={PDF} />
