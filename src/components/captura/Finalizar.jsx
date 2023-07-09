@@ -35,6 +35,8 @@ const Finalizar = (props) => {
   const [showPDF, setShowPDF] = useState(false);
 
   const getMensaje = (motivo) => {
+    if(motivo == "")
+      motivo = null;
     switch (motivo) {
       case "candidato menor de edad":
         setMensaje(

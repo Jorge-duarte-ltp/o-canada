@@ -53,7 +53,8 @@ const Login = (props) => {
         });
       }
     }).catch((error) => {
-      AlertError("Error", error.responseJSON);
+      console.log(error);
+      AlertError("Error", "Ya existe un usuario con esa curp, intente acceder con su contraseña.");
     });
 
   };
