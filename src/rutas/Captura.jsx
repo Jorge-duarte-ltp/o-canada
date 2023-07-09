@@ -706,7 +706,6 @@ const Captura = () => {
       const archivo_sci_smi_200 = await postUploadFile(formData_sci_smi_200_fl);
 
       if (archivos.sci_smi_300_fl) {
-
         const formData_sci_smi_300_fl = new FormData();
         formData_sci_smi_300_fl.append("file", archivos.sci_smi_300_fl[0]);
         formData_sci_smi_300_fl.append("curp", infoBrigadista.curp);

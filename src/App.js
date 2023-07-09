@@ -1,24 +1,25 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery';
-import 'popper.js';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import './assets/styles.css'
-import Header from './singles/Header';
-// import Captura from './rutas/Captura';
-import CierreConvocatoria from './rutas/CierreConvocatoria';
-import Administracion from './rutas/Administracion';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "jquery";
+import "popper.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "./assets/styles.css";
+import Header from "./singles/Header";
+import Captura from "./rutas/Captura";
+import CierreConvocatoria from "./rutas/CierreConvocatoria";
+import Administracion from "./rutas/Administracion";
 
 /* CONTEXT */
-import CandidatoState from './context/candidato/candidatoState'
-import SessionState from './context/session/sessionState'
-import PruebasFisiscasState from './context/pruebas_fisicas/pruebasFisiscasState'
-import PDF from './components/captura/PDF';
-import ExportToPdf from './components/manifiesto/ExportToPDF';
+import CandidatoState from "./context/candidato/candidatoState";
+import SessionState from "./context/session/sessionState";
+import PruebasFisiscasState from "./context/pruebas_fisicas/pruebasFisiscasState";
+import PDF from "./components/captura/PDF";
+import ExportToPdf from "./components/manifiesto/ExportToPDF";
+import isClose from "./helpers/isClose";
 
 /* variable para cierre de convocatoria */
-const cierre = true;
+
 
 
 const App = () => {
@@ -29,13 +30,21 @@ const App = () => {
           <PruebasFisiscasState>
             {/* <Router basename='o-canada'> */}
             <Router>
-              <Header cierre={cierre} />
-              <hr className='gradiente' />
+              <Header cierre={isClose()} />
+              <hr className="gradiente" />
               <Switch>
                 {/* <Route exact path="/" component={Captura} />  */}
-                <Route exact path="/" component={CierreConvocatoria} />
+                <Route
+                  exact
+                  path="/"
+                  component={isClose() === true ? CierreConvocatoria : Captura}
+                />
                 <Route exact path="/dashboard" component={Administracion} />
-                <Route exact path="/dashboard/ver-reporte" component={ExportToPdf} />
+                <Route
+                  exact
+                  path="/dashboard/ver-reporte"
+                  component={ExportToPdf}
+                />
                 <Route exact path="/pdf" component={PDF} />
               </Switch>
               {/* <Footer> */}
@@ -45,6 +54,6 @@ const App = () => {
       </CandidatoState>
     </div>
   );
-}
+};
 
 export default App;

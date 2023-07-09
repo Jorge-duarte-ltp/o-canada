@@ -164,8 +164,6 @@ const ExamenSCI100 = ({ state, setState, hidden, setIsCompleteExam }) => {
   const guardar = () => {
     const { examen, respuestas } = formik.values;
 
-    console.log(examen, respuestas);
-
     let suma = 0;
 
     const object = { curp, examen, resultado: [] };
