@@ -202,6 +202,9 @@ const RevisionDocumentacion = () => {
       case "s_211_file":
         return "Cert. S-211";
 
+      case "sci_cemi":
+        return "Cert. CEMI";
+
       case "cert_intern_incendios_file":
         return "Cert. Intern. Incendios";
 
